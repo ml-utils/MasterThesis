@@ -8,10 +8,13 @@
 % Dimensione del font
 \usepackage[fontsize=13pt]{scrextend}
 % Lingua del testo
-% \usepackage[english,italian]{babel}
+\usepackage[english,italian]{babel}
 % Lingua per la bibliografia
-% \usepackage[fixlanguage]{babelbib}
+\usepackage[fixlanguage]{babelbib}
 % pacchetto per la bibliografia
+%Includes "References" in the table of contents
+\usepackage[nottoc]{tocbibind}
+% pacchetto natbib per la bibligrafia in formato autore-anno
 \usepackage[round]{natbib} 
 % \usepackage{biblatex}
 % Codifica del testo
@@ -151,6 +154,7 @@
 \begin{document}
 
 \include{chapters/Frontespizio}
+% todo: blank page after titlepage
 \include{chapters/Abstract}
 
 \tableofcontents
