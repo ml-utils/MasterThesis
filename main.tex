@@ -11,6 +11,8 @@
 \usepackage[english,italian]{babel}
 % Lingua per la bibliografia
 \usepackage[fixlanguage]{babelbib}
+% pacchetto per la bibliografia
+% \usepackage{biblatex}
 % Codifica del testo
 \usepackage[utf8]{inputenc} 
 % Encoding del testo
@@ -117,7 +119,7 @@
 } \lstset{style=codeStyle}
 
 % Togliendo il commento al comando che segue, si inseriscono nella bibliografia anche le fonti presenti in Bibliography.bib ma non citati direttamente con il comando \cite
-% \nocite{*}
+ \nocite{*}
 
 % Margini prima e dopo blocchi di codice, per avere più distanza
 \lstset{aboveskip=20pt,belowskip=20pt}
@@ -163,7 +165,9 @@
 
 
 \bibliographystyle{plain}
-\bibliography{chapters/Bibliografia.bib}
-
+\bibliography{chapters/Bibliografia}
+% .. 
+% \addbibresource{references.bib}
+% \include{chapters/Bibliografia}
 \end{document}
 % -----------------------------------------------------------------
