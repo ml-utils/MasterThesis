@@ -8,10 +8,11 @@
 % Dimensione del font
 \usepackage[fontsize=13pt]{scrextend}
 % Lingua del testo
-\usepackage[english,italian]{babel}
+% \usepackage[english,italian]{babel}
 % Lingua per la bibliografia
-\usepackage[fixlanguage]{babelbib}
+% \usepackage[fixlanguage]{babelbib}
 % pacchetto per la bibliografia
+\usepackage[round]{natbib} 
 % \usepackage{biblatex}
 % Codifica del testo
 \usepackage[utf8]{inputenc} 
@@ -27,7 +28,7 @@
 \usepackage{fancyhdr}               
 
 % Librerie matematiche
-\usepackage{amssymb}
+% \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}         
 
@@ -164,8 +165,11 @@
 \include{chapters/AppendiceA}
 
 
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 \bibliography{chapters/Bibliografia}
+\include{chapters/Bibliography}
+
+
 % .. 
 % \addbibresource{references.bib}
 % \include{chapters/Bibliografia}
