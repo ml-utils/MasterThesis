@@ -22,18 +22,26 @@ The results are shown in \autoref{tab:accResults}.
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}{p{0.08\linewidth}|p{0.09\linewidth}|c|c|c|c|c|c|c|c|c|c|}
-			  &  & \multicolumn{2}{c|}{\text{Gpt2-it}} & \multicolumn{4}{c|}{\text{Bert-it}}  & \multicolumn{4}{c|}{\text{GilBERTo-it}} \\
-			 Pheno-menon & Sent. form & LP & PenLP & LP & PenLP & LP-L & PenLP-L & LP & PenLP & \text{LP-L} & \text{PenLP-L} \\
+			  &  & \multicolumn{2}{c|}{Gpt2-it} & \multicolumn{4}{c|}{Bert-it}  & \multicolumn{4}{c|}{GilBERTo-it} \\
+			 Pheno-menon & Sent. form & LP & PenLP & LP & PenLP & LP-L & PenLP-L & LP & PenLP & LP-L & PenLP-L \\
 			\hline
 			\multirow{3}{0.8cm}{Wh adjunct}  & Short-N.I. & \textbf{96} & 92 & 94 & 90 & \textbf{96} & \textbf{96} & 86 & 70 & 86 & 86 \\ 
-					\cline{2-12}
+				%	\cline{2-12}
 		  			   & Long-N.I. & 98 & 86 &  &  &  &  &  &  &  &  \\ 
-		  			   \cline{2-12}
+		  		%	   \cline{2-12}
 		  			   & Short-I.S. & 96 & 98 &  &  &  &  &  &  &  &  \\ 
 		  	\hline
 		  	\multirow{3}{0.8cm}{Wh complex np} & Short-N.I. & 90 & 92 &  &  &  &  &  &  &  &  \\ 
 		  			  		& Long-N.I. & 98 & 86 &  &  &  &  &  &  &  &  \\ 
-		  					& Short-I.S. & 96 & 98 &  &  &  &  &  &  &  &  \\ 
+		  					& Short-I.S. & 96 & 98 &  &  &  &  &  &  &  &  \\ 		  			 
+		  	\hline
+		  	\multirow{3}{0.8cm}{Wh subject} & Short-N.I. & 98 & 90 &  &  &  &  &  &  &  &  \\ 
+		  	& Long-N.I. & 100 & 98 &  &  &  &  &  &  &  &  \\ 
+		  	& Short-I.S. & 40 & 56 &  &  &  &  &  &  &  &  \\ 
+		  	\hline
+		  	\multirow{3}{0.8cm}{Wh whether} & Short-N.I. & 91.5 & 94.9 &  &  &  &  &  &  &  &  \\ 
+		  	& Long-N.I. & 100 & 100 &  &  &  &  &  &  &  &  \\ 
+		  	& Short-I.S. & 59.3 & 96.6 &  &  &  &  &  &  &  &  \\ 		  	
 		\end{tabular}
 		\caption{Accuracy results for Gpt-2 and Bert Italian models, on a testsuite of 50 items per phenomenon. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The Bert-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
 		\label{tab:accResults}
