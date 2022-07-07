@@ -1,39 +1,124 @@
-\chapter{Questo è un capitolo}
+\chapter{This is a chapter title}
 
-\lipsum[1]
+..
 
-\section{Questa è una sezione}
+\section{Accuracy results on island effects minimal pairs in Italian}
 
-\lipsum[2]
+..
 
-\subsection{Questa è una sottosezione}
+\subsection{Test description}
 
-\lipsum[3]
+..
 
-\subsubsection{Questa è una sotto-sottosezione}
+\subsection{Results table}
 
-\lipsum[4]
+
+La tabella si indirizza sempre con l'uso di una label, ottenendo il risultato \autoref{tab:labelTabella}.
+
+\begin{table}
+	\caption{Una simpatica tabella!}\label{tab:labelTabella}
+	\begin{center}
+		\begin{tabular}{c|c|c|c}
+			\textbf{Colonna 1} & \textbf{Colonna 2} & \textbf{Colonna 3} & \textbf{Colonna 4} \\
+			\hline
+			$3$      & $24$     & $24$    & $29$ \\ 
+			$36$     & $31$     & $49$    & $39$ \\ 
+			$32$     & $41$     & $59$    & $57$ \\ 
+			$34$     & $60$     & $79$    & $74$ \\ 
+			$328$    & $96$     & $194$   & $99$ \\ 
+			$356$    & $117$    & $297$   & $149$ \\ 
+			$312$    & $315$    & $293$   & $242$ \\ 
+			$3024$   & $184$    & $253$   & $019$ \\ 
+			$3048$   & $7795$   & $253$   & $077$ \\ 
+			$3096$   & $7767$   & $2432$  & $0514$ \\ 
+			$3192$   & $3769$   & $2435$  & $0551$ \\ 
+			$36384$  & $6625$   & $3432$  & $0497$ \\ 
+			$32768$  & $15469$  & $6472$  & $0471$ \\ 
+			$35536$  & $15425$  & $14539$ & $10289$ \\ 
+			$331072$ & $34623$  & $24941$ & $20444$ \\  
+		\end{tabular}
+	\end{center}
+\end{table}
+
+..
+
+
+\subsection{Italian models details}
+
+Bert (dbmdz/bert-base-italian-xxl-cased): 81GB (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model size 424 MB.
+GePpeTto (LorenzoDeMattei/GePpeTto): 13.8GB of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
+GilBERTo (idb-ita/gilberto-uncased-from-camembert): Trained on ~71GB of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
+
+
+\section{Factorial test design}
+
+..
+
+\subsection{Introduction}
+
+..
+
+\subsection{Results}
+
 
 É possibile riferire l'immagine, una volta assegnatagli una label, tramite il comando \texttt{\textbackslash autoref\{fig:immagine\}}, ottenendo il seguente risultato: \autoref{fig:immagine}.
 
 \begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/Chapter1/immagine.jpg} % width= 0.8\textwidth
-    \caption{Questa è un'immagine} 
-    \label{fig:immagine} % this internally labels the figure for future referencing.
+	\centering
+	\includegraphics[width=0.8\textwidth]{images/Chapter1/immagine.jpg} % width= 0.8\textwidth
+	\caption{This is an image} 
+	\label{fig:immagine} % this internally labels the figure for future referencing.
 \end{figure}
 
-Questa è una citazione \cite{warstadt2020blimp}.
-Questa è una citazione "regular in text citation" \citet{warstadt2020blimp}.  % or \cite{<key>}
-Questa è una citazione tra parentesi \citep{warstadt2020blimp}
-Questa è un'altra citazione \citep{wei2021frequency}
-Listing bibliography entries \citep{hu2020systematic, lau2020furiously,  sprouse2016experimental}
+Fig.1 Results from Sprouse et al (2016)
+Fig.2 Results of acceptability judgements to the same stimuli from Sprouse et al. 2016 from an Italian Gpt-2 model (GePpeTto) with the PenLP acceptability ..score. 
+Fig.3
 
-\subsubsection{Questa è un'altra sottosezionelipsum}
+\subsection{Differences between the plots}
+
+..
+\subsubsection{Overall}
+..
+\subsubsection{Whether islands}
+..
+\subsubsection{Complex np islands}
+..
+\subsubsection{Subject islands}
+..
+\subsubsection{Adjunct islands}
+..
+
+\subsection{What seems to affect the models acceptability scores}
+..
+\subsubsection{Whether islands}
+..
+\subsubsection{Complex np islands}
+..
+\subsubsection{Subject islands}
+..
+\subsubsection{Adjunct islands}
+..
+
+\subsection{Future work}
+..
+
+\subsubsection{This is a sub-subsection}
+..
+
+
+
+Listing bibliography entries \citep{wei2021frequency, hu2020systematic, lau2020furiously,  sprouse2016experimental}
+
+\subsubsection{This is another subsection}
 
 Quello che segue è un esempio di codice. E' possibile modificare il linguaggio per il synyax highlight, aggiungere parole chiave... E' tutto disponibile nella guida del pacchetto \texttt{listings}.
 
 \lstinputlisting[language=C++]{listings/Capitolo1/code1.cpp} 
+
+\section{Blimp English dataset}
+..
+\subsection{English models details}
+..
 
 \section{Misc notes with refs}
 
@@ -45,32 +130,3 @@ Repeated exposure to a type of island construct will increase its perceived acce
 \citep{chaves2014subject}
 
 Targed ..syntactic tests on modern language models seem to have started with \citet{linzen2016assessing}, while the use of psycholinguistic tests for this seem to have started with \citet{futrell2018rnns}.
-
-\subsection{Sottosezione con una tabella}
-
-La tabella si indirizza sempre con l'uso di una label, ottenendo il risultato \autoref{tab:labelTabella}.
-
-\begin{table}
-    \caption{Una simpatica tabella!}\label{tab:labelTabella}
-    \begin{center}
-    \begin{tabular}{c|c|c|c}
-        \textbf{Colonna 1} & \textbf{Colonna 2} & \textbf{Colonna 3} & \textbf{Colonna 4} \\
-        \hline
-            $3$      & $24$     & $24$    & $29$ \\ 
-            $36$     & $31$     & $49$    & $39$ \\ 
-            $32$     & $41$     & $59$    & $57$ \\ 
-            $34$     & $60$     & $79$    & $74$ \\ 
-            $328$    & $96$     & $194$   & $99$ \\ 
-            $356$    & $117$    & $297$   & $149$ \\ 
-            $312$    & $315$    & $293$   & $242$ \\ 
-            $3024$   & $184$    & $253$   & $019$ \\ 
-            $3048$   & $7795$   & $253$   & $077$ \\ 
-            $3096$   & $7767$   & $2432$  & $0514$ \\ 
-            $3192$   & $3769$   & $2435$  & $0551$ \\ 
-            $36384$  & $6625$   & $3432$  & $0497$ \\ 
-            $32768$  & $15469$  & $6472$  & $0471$ \\ 
-            $35536$  & $15425$  & $14539$ & $10289$ \\ 
-            $331072$ & $34623$  & $24941$ & $20444$ \\  
-        \end{tabular}
-    \end{center}
-\end{table}
