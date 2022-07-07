@@ -12,32 +12,30 @@
 
 \subsection{Results table}
 
+Results description: ..
 
-Tables are always referenced with a label, like this: \autoref{tab:accResults}.
+The results are shown in \autoref{tab:accResults}.
 
-\begin{table}
-	
+% TODO: consider putting here only the values based on softmax, for less cols in the table. Add the full table to the appendix (in portait mode).
+% TODO: use a smaller for for this table.
+
+\begin{table} \scriptsize 
 	\begin{center}
-		\begin{tabular}{c|c|c|c}
-			\textbf{Column 1} & \textbf{Column 2} & \textbf{Column 3} & \textbf{Column 4} \\
+		\begin{tabular}{p{0.08\linewidth}|p{0.09\linewidth}|c|c|c|c|c|c|c|c|c|c|}
+			 \text{} & \text{} & \multicolumn{2}{c|}{\text{Gpt2-it}} & \multicolumn{4}{c|}{\text{Bert-it}}  & \multicolumn{4}{c|}{\text{GilBERTo-it}} \\
+			 Pheno-menon & Sent. form} & \text{LP} & \text{PenLP} & \text{LP} & \text{PenLP} & \text{LP-L} & \text{PenLP-L} & \text{LP} & \text{PenLP} & \text{LP-L} & \text{PenLP-L} \\
 			\hline
-			$3$      & $24$     & $24$    & $29$ \\ 
-			$36$     & $31$     & $49$    & $39$ \\ 
-			$32$     & $41$     & $59$    & $57$ \\ 
-			$34$     & $60$     & $79$    & $74$ \\ 
-			$328$    & $96$     & $194$   & $99$ \\ 
-			$356$    & $117$    & $297$   & $149$ \\ 
-			$312$    & $315$    & $293$   & $242$ \\ 
-			$3024$   & $184$    & $253$   & $019$ \\ 
-			$3048$   & $7795$   & $253$   & $077$ \\ 
-			$3096$   & $7767$   & $2432$  & $0514$ \\ 
-			$3192$   & $3769$   & $2435$  & $0551$ \\ 
-			$36384$  & $6625$   & $3432$  & $0497$ \\ 
-			$32768$  & $15469$  & $6472$  & $0471$ \\ 
-			$35536$  & $15425$  & $14539$ & $10289$ \\ 
-			$331072$ & $34623$  & $24941$ & $20444$ \\  
+			\multirow{3}{0.8cm}{Wh adjunct}  & Short-N.I. & \textbf{96} & 92 & 94 & 90 & \textbf{96} & \textbf{96} & 86 & 70 & 86 & 86 \\ 
+					\cline{2-12}
+		  			   & Long-N.I. & 98 & 86 &  &  &  &  &  &  &  &  \\ 
+		  			   \cline{2-12}
+		  			   & Short-I.S. & 96 & 98 &  &  &  &  &  &  &  &  \\ 
+		  	\hline
+		  	\multirow{3}{0.8cm}{Wh complex np} & Short-N.I. & 90 & 92 &  &  &  &  &  &  &  &  \\ 
+		  			  		& Long-N.I. & 98 & 86 &  &  &  &  &  &  &  &  \\ 
+		  					& Short-I.S. & 96 & 98 &  &  &  &  &  &  &  &  \\ 
 		\end{tabular}
-		\caption{This is a table}
+		\caption{Accuracy results for Gpt-2 and Bert Italian models, on a testsuite of 50 items per phenomenon. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The Bert-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
 		\label{tab:accResults}
 	\end{center}
 \end{table}
