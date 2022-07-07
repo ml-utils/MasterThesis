@@ -1,4 +1,9 @@
 del *.aux
 del *.bbl
+del main.lof
+del main.log
+del main.out
+del main.toc
+del main.synctex.gz
 del ".\chapters\*.aux"
 del ".\chapters\*.bbl"
