@@ -68,16 +68,18 @@ GilBERTo (idb-ita/gilberto-uncased-from-camembert): Trained on ~71GB of Italian 
 
 Table with the four sentences of an example item ..
 
+The scores (log probability LP) when then converted into a 7-point likert scale and normalized into z-scores as in \citet{sprouse2016experimental}. The likert scale conversion and the z-score normalization where done considering a model (like Gpt-2 from \citet{de2020geppetto}) and a particular sentence acceptability approximation (like PenLP from ..) as an individual subject taking all its scores across the four wh-dependency island effects phenomena of a particular testsuite.
+
 \subsection{Results}
 
 
 An image can be referenced after assigning it a label with the statement, getting the following result: \autoref{fig:wh_whether}.
 
-
+% todo: regenerate Sprouse's plots from the published score data?
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-whether.png} % width= 0.8\textwidth
-	\caption{Comparison of wh-dependencies whether islands} 
+	\caption{Comparison of wh-dependency whether islands} 
 	\label{fig:wh_whether} % this internally labels the figure for future referencing.
 	\medskip
 	\small
