@@ -15,8 +15,8 @@ The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet
 	PenLP = \frac{LP}{((5+|s|) \big/ (5+1))^\alpha}
 \end{displaymath}
 
-Where the PenLP divides by a penalty term which depends on the sentence lenght \( s \) measured in number of tokens.
-..
+Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides the \( LP \) estimate by a penalty term which depends on the sentence lenght \( |s| \) measured in number of tokens. Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
+
 
 \section{Accuracy results on island effects minimal pairs in Italian}
 
