@@ -83,6 +83,12 @@ The results are shown in \autoref{tab:accResults}.
 
 Table with the four sentences of an example item ..
 
+\subsection{Test suites}
+
+For the present thesis, we develop a new testsuite that follows the same paradigm form as the one in \citet{sprouse2016experimental}, but with an increased item number of 50 (from the original 8). As in the original testsuite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 items, which in turn are composed by four sentences covering the combinations of two factors: presence or absence of an island structure, and a short or long-distance dependency.
+
+In the present work we treat only wh-dependencies and leave relative clause dependencies for future work.
+
 \subsubsection{Scores normalization}
 
 To be more directly comparable with the results in \citet{sprouse2016experimental}, the scores (LP or PenLP) were then discretized into a 7-point likert scale (using bins rather than quantiles) and normalized into z-scores.
@@ -122,7 +128,7 @@ The lines on sprouse data have much higher ..variance/standard error. This is li
 	The first plot on the left shows the scores on humans subjects published in \citet{sprouse2016experimental} for Italian whether islands with wh-dependencies. For each line, the left-most edge represents the score for the short-distance dependency sentence, the right-most the long-distance dependency. The plot in the middle shows the scores from a Gpt-2 model \citep{de2020geppetto} on the same testsuite used for the first plot. The plot on the right shows the scores from the same Gpt-2 model but on the expanded testsuite developed for the present thesis.
 \end{figure}
 
-From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the Gtp-2 model with the PenLP sentence acceptability approximation gives higher scores for sentences that don't have an island structure, with this difference being more pronounced in the scores on the original testsuite from \citet{sprouse2016experimental} (image in the middle).
+From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the Gtp-2 model, with the PenLP sentence acceptability estimate, gives higher scores for all sentence types. This difference is more pronounced in the scores on the original testsuite from \citet{sprouse2016experimental} (middle image). The slope of the lines (both for island and non-island sentence structures) is however quite similar to the human scores. The Gpt-2 scores on the original Sprouse et al. testsuite have wider standard error bars, which reduced considerably with the new testsuite developed for the present thesis (this might be due to the fact that the number of items increases from 8 to 50).
 
 -- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
 -- significant variation in acceptability diff btw short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvemento toward the expected acceptability rate (only 10 out of 50 are .."misclassified"). With the proper noun "Gianni", 18 are misclassified. With the personal pronoun 29 out of 50 are misclassified.
