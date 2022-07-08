@@ -15,7 +15,7 @@ The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet
 	PenLP = \frac{LP}{((5+|s|) \big/ (5+1))^\alpha}
 \end{displaymath}
 
-Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides the \( LP \) estimate by a penalty term which depends on the sentence lenght \( |s| \) measured in number of tokens. Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
+Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides the \( LP \) estimate by a penalty term which depends on the sentence lenght \( |s| \), measured in number of tokens. Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
 
 
 \section{Accuracy results on island effects minimal pairs in Italian}
@@ -84,7 +84,10 @@ GilBERTo (idb-ita/gilberto-uncased-from-camembert): Trained on ~71GB of Italian 
 
 Table with the four sentences of an example item ..
 
-The scores (log probability LP) when then converted into a 7-point likert scale and normalized into z-scores as in \citet{sprouse2016experimental}. The likert scale conversion and the z-score normalization where done considering a model (like Gpt-2 from \citet{de2020geppetto}) and a particular sentence acceptability approximation (like PenLP from \citet{lau2020furiously}) as an individual subject taking all its scores across the four wh-dependency island effects phenomena of a particular testsuite.
+\subsubsection{Scores normalization}
+
+To be more directly comparable with the results in \citet{sprouse2016experimental}, the scores (LP or PenLP) were then discretized into a 7-point likert scale (using bins rather than quantiles) and normalized into z-scores.
+The The likert scale discretization and the z-score normalization where done considering as an individual subject a model (like a Gpt-2 instance) paired with a particular sentence acceptability approximation (LP or PenLP), and taking all its scores across the four wh-dependency island effects phenomena of a particular testsuite.
 
 \subsection{Results}
 
