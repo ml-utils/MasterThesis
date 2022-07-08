@@ -94,6 +94,24 @@ The The likert scale discretization and the z-score normalization where done con
 An image can be referenced after assigning it a label with the statement, getting the following result: \autoref{fig:wh_whether}.
 
 % todo: regenerate Sprouse's plots from the published score data?
+
+% Fig.1 Results from Sprouse et al (2016)
+% Fig.2 Results of acceptability judgements to the same stimuli from Sprouse et al. 2016 from an Italian Gpt-2 model (GePpeTto) with the PenLP acceptability ..score. 
+% Fig.3
+
+\subsection{Differences between the plots}
+
+In this section we discuss the results and plots with the Gpt-2 model and the PenLP sentence acceptability measure, since this combination seems to produce in general more accurate results. We include in the appendix the plots for the Bert models and the other acceptability measures (LP and PenLP based either on the model outputs after softmax of logistic activation functions).
+% TODO: also model outputs based on a logistic function, but as a probability (divide for the sum of all the scores, but without the skewed exponential effect of the softmax)
+..
+\subsubsection{Overall}
+
+With the sprouse data and the models' scores there is more variation in score (std error). Is it possible it's due to the longer sentences in the new data?
+The lines on sprouse data have much higher ..variance/standard error. This is likely due to the fact that the original Sprouse dataset is smaller, with 8 items per phenomenon compared to the 50 of new data. ..
+
+
+\subsubsection{Whether islands}
+
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-whether.png} % width= 0.8\textwidth
@@ -104,6 +122,18 @@ An image can be referenced after assigning it a label with the statement, gettin
 	The first plot on the left shows the scores on humans subjects published in \citet{sprouse2016experimental} for Italian whether islands with wh-dependencies. For each line, the left-most edge represents the score for the short-distance dependency sentence, the right-most the long-distance dependency. The plot in the middle shows the scores from a Gpt-2 model \citep{de2020geppetto} on the same testsuite used for the first plot. The plot on the right shows the scores from the same Gpt-2 model but on the expanded testsuite developed for the present thesis.
 \end{figure}
 
+From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the Gtp-2 model with the PenLP sentence acceptability approximation gives higher scores for sentences that don't have an island structure, with this difference being more pronounced in the scores on the original testsuite from \citet{sprouse2016experimental} (image in the middle).
+
+-- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
+-- significant variation in acceptability diff btw short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvemento toward the expected acceptability rate (only 10 out of 50 are .."misclassified"). With the proper noun "Gianni", 18 are misclassified. With the personal pronoun 29 out of 50 are misclassified.
+Try replacing with .. another proper noun, more common like ..
+(tables and examples of these variations to put on the thesis/report?)
+(possible explanation: personal pronouns and proper nouns might be less common in the type/genre of corpora these models were trained on, like wikipedia).
+Observations: the direct objects in the examples are all relatively common words..
+try with rarer ones.
+
+\subsubsection{Complex np islands}
+
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-complex.png} 
@@ -111,12 +141,31 @@ An image can be referenced after assigning it a label with the statement, gettin
 	\label{fig:wh_complex} % this internally labels the figure for future referencing.
 \end{figure}
 
+In \autoref{fig:wh_complex} 
+
+-- the non island line is significantly lower in new data (see constructs that increase the score of both long and short)
+
+The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
+
+-- also the short island point is significantly lower
+
+
+\subsubsection{Subject islands}
+
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-subject.png} 
 	\caption{Comparison of wh-dependencies subject islands} 
 	\label{fig:wh_subject} % this internally labels the figure for future referencing.
 \end{figure}
+
+In \autoref{fig:wh_subject}
+
+on Sprouse data, island line is significantly lower (check sorting of sentences to see why). On new data, is similar.
+For the non island line, the short point is lower on both sprouse and new data. The long point is similar on new data (around 1.0) but lower on sprouse data. The slope is sismilar on the model, both for sprouse and new data, but steeper compared to acceptability results on human subjects.
+
+
+\subsubsection{Adjunct islands}
 
 \begin{figure}
 	\centering
@@ -126,37 +175,51 @@ An image can be referenced after assigning it a label with the statement, gettin
 \end{figure}
 
 
-Fig.1 Results from Sprouse et al (2016)
-Fig.2 Results of acceptability judgements to the same stimuli from Sprouse et al. 2016 from an Italian Gpt-2 model (GePpeTto) with the PenLP acceptability ..score. 
-Fig.3
+In \autoref{fig:wh_adjunct}
 
-\subsection{Differences between the plots}
+the non island line on new data is similar, althoughg with an higer acceptability for short non island, which results in a downward steeper line. The non island line is also similar on new data, albeight also with a steeper downward slope.
+NB: the new data, for the long islands, has a more clearly unacceptable ..form: in the sprouse data, at the end there is a preprositional ..phrase like “in ufficio”.
 
-..
-\subsubsection{Overall}
-..
-\subsubsection{Whether islands}
-..
-\subsubsection{Complex np islands}
-..
-\subsubsection{Subject islands}
-..
-\subsubsection{Adjunct islands}
-..
 
 \subsection{What seems to affect the models acceptability scores}
 ..
 \subsubsection{Whether islands}
-..
+Replacing personal pronouns with proper nouns or .. (like “il parlamentare”, “lo studente”, ..) aligns more the scores with those of humans.
+This might be the reason for the discrepancies in some of the 4 phenomena: some make more use of ..nomen agentis, while others rely more on personal pronuns.
+Try this replacement this in all 4 testsets.
+
+Not much difference seems to derive by using less common (..) verbs .. 
+(examples in which both sentences in a pair also specify the direct object, see how this affects the score? Like long nonisland vs long island ..)
+
 \subsubsection{Complex np islands}
+the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
+
+il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
+in particolare diminuzione della accettabilità delle frasi con long distance wh dependency e struttura non island, che ricevono accettabilità minore di quelle con struttura island:
+Esempio analisi variazioni con verbo “intuire” complex np, ..
+
 ..
+Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
+
+C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
+
+
 \subsubsection{Subject islands}
 ..
+
 \subsubsection{Adjunct islands}
-..
+
+Guardando le short-nonislands, sembra anche qui preponderante il fatto di usare nomi propri di persona (che ha uno score di accettabilità minore) e usare invece di nomi comuni animati/di mestieri/.. (che aumenta l’accettabilità). Ma questo non sembra influenzare il DD score finale (..evidentemente i vari fattori si bilanciano).
+
 
 \subsection{Future work}
 ..
+Analizzare le attivazioni nei vari livelli del modello ..
+Fare un training .”a strati”, in cui in ciascuno strato c’è il target dell’apprendimento di un livello di base della lingua (morfologia, sintassi, semantica, ampiezza del vocabolario, ..), con strati successivi che aumentano la complessità della conoscenza che il modello ha del linguaggio.
+
+
+Confronto percentuali accuratezza (short/long non island, short island) con quelle in Blimp
+(and other works with extraction islands evaluations?)
 
 \subsubsection{This is a sub-subsection}
 ..
