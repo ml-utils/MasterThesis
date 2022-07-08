@@ -136,13 +136,16 @@ In this section we discuss the results and plots with the Gpt-2 model and the Pe
 
 From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the Gtp-2 model, with the PenLP sentence acceptability estimate, gives higher scores for all sentence types. This difference is more pronounced in the scores on the original test suite from \citet{sprouse2016experimental} (middle image). The slope of the lines (both for island and non-island sentence structures) is however quite similar to the human scores. The Gpt-2 scores on the original Sprouse et al. test suite have wider standard error bars, which reduced considerably with the new test suite developed for the present thesis (this might be due to the fact that the number of items increases from 8 to 50).
 
--- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
+..
 -- significant variation in acceptability diff btw short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvemento toward the expected acceptability rate (only 10 out of 50 are .."misclassified"). With the proper noun "Gianni", 18 are misclassified. With the personal pronoun 29 out of 50 are misclassified.
 Try replacing with .. another proper noun, more common like ..
 (tables and examples of these variations to put on the thesis/report?)
 (possible explanation: personal pronouns and proper nouns might be less common in the type/genre of corpora these models were trained on, like wikipedia).
-Observations: the direct objects in the examples are all relatively common words..
+Observations: the direct objects in the examples are all relatively common words..\footnote{\citet{futrell2018rnns} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
 try with rarer ones.
+..
+-- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
+
 
 \subsubsection{Complex np islands}
 
