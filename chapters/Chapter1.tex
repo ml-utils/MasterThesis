@@ -154,7 +154,8 @@ In this section we discuss the results and plots with the Gpt-2 model and the Pe
 
 \subsubsection{Whether islands}
 
-From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the Gtp-2 model, with the PenLP sentence acceptability estimate, gives higher scores for all sentence types. This difference is more pronounced in the scores on the original test suite from \citet{sprouse2016experimental} (middle image). The slope of the lines (both for island and non-island sentence structures) is however quite similar to the human scores. The Gpt-2 scores on the original Sprouse et al. test suite have wider standard error bars, while those reduced considerably with Gpt-2 scores on the new test suite developed for the present thesis.\footnote{This might be due to the fact that the number of items between the two test suites increases from 8 to 50.}
+From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the Gtp-2 model, with the PenLP sentence acceptability estimate, compared with the results from humans gives higher scores for all sentence types. This difference is more pronounced in the scores on the original test suite from \citet{sprouse2016experimental} (middle image). The slope of the lines (both for island and non-island sentence structures) is however quite similar to the human scores. \\
+The Gpt-2 scores on the original Sprouse et al. test suite (middle image) have wider standard error bars, which are considerably smaller for the new test suite developed for the present thesis (right image).\footnote{This might be due to the fact that the number of items between the two test suites increases from 8 to 50.}
 
 \begin{figure}
 	\centering
@@ -186,8 +187,6 @@ From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can s
 
 % TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
 
--- significant variation in acceptability diff between short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvement toward the expected acceptability rate (only 10 out of 50 are .."missclassified"). With the proper noun "Gianni", 18 are missclassified. With the personal pronoun 29 out of 50 are missclassified.
-Try replacing with .. another proper noun, more common like ..
 
 ..
 
@@ -195,13 +194,6 @@ Accuracy results .. (in ch.2, about using sentences from the factorial design to
 
 ..
 
-(tables and examples of these variations to put on the thesis/report?)
-
-(possible explanation: personal pronouns and proper nouns might be less common in the type/genre of corpora these models were trained on, like wikipedia).
-Observations: the direct objects in the examples are all relatively common words..\footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
-try with rarer ones.
-..
--- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
 
 
 \subsubsection{Complex np islands}
@@ -284,6 +276,25 @@ C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misur
 
 Guardando le short-nonislands, sembra anche qui preponderante il fatto di usare nomi propri di persona (che ha uno score di accettabilità minore) e usare invece di nomi comuni animati/di mestieri/.. (che aumenta l’accettabilità). Ma questo non sembra influenzare il DD score finale (..evidentemente i vari fattori si bilanciano).
 
+
+\subsection{Discarded observations on differences between the plots}
+
+\subsubsection{Whether islands}
+NB: note that according to human scores, for this type of whether island sentences, the "correct" scoring is to have an increase in acceptability going from short to long non island sentences.
+Maybe comparing the scores between acceptable sentences (in this case short and long non islands), expecting it to match humans acceptability judgements .. is beside the present ..research question.
+In any case, we noted a reverse in the acceptability difference between this two types of sentences (short and long non islands) when changing the subject of the subordinate sentence from a personal pronoun ("io", 1st pers sg), to a proper noun (i.e. "Gianni"), to a common noun (i.e. "il parlamentare").
+
+-- significant variation in acceptability diff between short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvement toward the expected acceptability rate (only 10 out of 50 are .."missclassified"). With the proper noun "Gianni", 18 are missclassified. With the personal pronoun 29 out of 50 are missclassified.
+Try replacing with .. another proper noun, more common like ..
+
+
+(tables and examples of these variations to put on the thesis/report?)
+
+(possible explanation: personal pronouns and proper nouns might be less common in the type/genre of corpora these models were trained on, like wikipedia).
+Observations: the direct objects in the examples are all relatively common words..\footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
+try with rarer ones.
+..
+-- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
 
 \subsection{Future work}
 ..
