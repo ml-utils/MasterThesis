@@ -1,51 +1,49 @@
-    %   Based on the frontespizio (title page) template by Marco Antonio Corallo.
+%   Based on the frontespizio (title page) template by Marco Antonio Corallo.
 
-% Tipo di documento. L'uso di twoside implica che i capitoli inizino sempre con la prima pagina a sinistra, eventualmente lasciando una pagina vuota nel capitolo precedente. Se questa cosa è fastidiosa, è possibile rimuoverlo. 
+% Document type: the twoside setting makes chapters begin with their first page on the right. 
 \documentclass[a4paper, twoside,openright]{report}
 
-% Dimensione dei margini
+% Page margins options
 \usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm]{geometry} 
 % removes this restriction by allowing font sizes at arbitrary sizes
 \usepackage{lmodern}
-% Dimensione del font
+% font size
 \usepackage[fontsize=13pt]{scrextend}
-% Lingua del testo
+% Language(s) of the document contents
 \usepackage[english]{babel} % ,italian
-% Lingua per la bibliografia
+% Bibliography language
 \usepackage[fixlanguage]{babelbib}
-% pacchetto per la bibliografia
+
+% Bibliography package
 %Includes "References" in the table of contents
 \usepackage[nottoc]{tocbibind}
-% pacchetto natbib per la bibligrafia in formato autore-anno
+% Bibliography package natbib, to have the "author-year" format for citations
 \usepackage[round]{natbib} 
 % \usepackage{biblatex}
-% Codifica del testo
+
+% text encoding
 \usepackage[utf8]{inputenc} 
-% Encoding del testo
 \usepackage[T1]{fontenc}
-% Permette di generare testo fittizio. Mi è stato utile 
-% per capire quale sarebbe stata l'impostazione del 
-% testo nella pagina prima che scrivessi un determinato paragrafo
-\usepackage{lipsum}
-% Per ruotare le immagini
+
+% For rotating images
 \usepackage{rotating}
-% Per modificare l'header delle pagine 
+% To change the header of pages
 \usepackage{fancyhdr}               
 
-% Librerie matematiche
+% Math libraries
 % \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}         
 
-% Uso delle immagini
+% For images
 \usepackage{graphicx}
-% Uso dei colori
+% For colors
 \usepackage[dvipsnames]{xcolor}         
-% Uso dei listing per il codice
+% Listing for code (?)
 \usepackage{listings}          
-% Per inserire gli hyperlinks tra i vari elementi del testo 
+% To insert hyperlinks 
 \usepackage{hyperref}     
-% Diversi tipi di sottolineature
+% For different types of underlinings
 \usepackage[normalem]{ulem}
 
 % \usepackage[superscript,biblabel]{cite}
@@ -66,7 +64,7 @@
 % \usepackage{amsmath,amssymb,amsthm}
 % -----------------------------------------------------------------
 
-% Modifica lo stile dell'header
+% Changes the header style
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{\rightmark}
@@ -74,14 +72,14 @@
 \fancyfoot{}
 \setlength{\headheight}{12.5pt}
 
-% Rimuove il numero di pagina all'inizio dei capitoli
+% Removed the page number on the first page of a chapter
 \fancypagestyle{plain}{
   \fancyfoot{}
   \fancyhead{}
   \renewcommand{\headrulewidth}{0pt}
 }
 
-% Stile del codice
+% Syntax highlighting for programming code examples
 \lstdefinestyle{codeStyle}{
     % Colore dei commenti
     commentstyle=\color{teal},
