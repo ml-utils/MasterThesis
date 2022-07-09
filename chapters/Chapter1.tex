@@ -49,6 +49,9 @@ Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides t
 
 Table with the four sentences of an example item ..
 
+Four phenomena of island effect structures: whether, complex np, subject, and adjunct islands. Wh-dependencies (we leave rc-dependencies to future work.)
+Two factors, dependency distance and presence or absence of an island structure. Each item has four sentences given by the combination of these two factors. We briefly call "short-nonisland" the sentence with a short-distance dependency and the lack of an island structure. For instance, for .. islands, we have these four ..
+
 \subsection{Test suites}
 
 For the present thesis, we develop a new test suite that follows the same paradigm form as the one in \citet{sprouse2016experimental}, but with an increased item number of 50 (from the original 8). As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 items, which in turn are composed by four sentences covering the combinations of two factors: presence or absence of an island structure, and a short or long-distance dependency.
@@ -149,11 +152,18 @@ From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can s
 	\renewcommand{\labelenumii}{\alph{enumii}.}
 	\begin{enumerate}
 		\item \textsc{Short-NonIsland:} \\
-				\textit{Who} \_ thinks that John bought a car?
-		\item \textit{Who} \_ thinks that John bought a car?
+				Chi pensa che io abbia riscosso il pagamento?
+		\item \textsc{Long-NonIsland:} \\
+				Cosa pensi che io abbia riscosso?
+		\item \textsc{Short-Island:} \\
+				Chi si domanda se io abbia riscosso il pagamento?
+		\item \textsc{Long-Island:} \\				
+				Cosa ti domandi se io abbia riscosso?
+				
 	\end{enumerate}
 \end{enumerate}
 
+% TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
 
 -- significant variation in acceptability diff between short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvement toward the expected acceptability rate (only 10 out of 50 are .."missclassified"). With the proper noun "Gianni", 18 are missclassified. With the personal pronoun 29 out of 50 are missclassified.
 Try replacing with .. another proper noun, more common like ..
