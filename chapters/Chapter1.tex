@@ -73,7 +73,7 @@ Two factors, dependency distance and presence or absence of an island structure.
 
 \subsubsection{Using factorial sentences as minimal pairs}
 ..
-Esing sentences from the factorial design to do minimal pairs comparisons and get accuracy scores ..)
+Using sentences from the factorial design to do minimal pairs comparisons and get accuracy scores ..)
 ..
 
 \subsection{Test suites}
@@ -158,6 +158,40 @@ In this section we discuss the results and plots with the Gpt-2 model and the Pe
 
 \subsubsection{Overall}
 ..
+While on human ratings the unacceptable sentences (long nonislands) receive all on average a z-score of about -1, there is more variability in the scores given by the models, in particular for whether islands sentences, which receive much higher acceptability rating on average.
+..
+
+
+\subsubsection{Complex np islands}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-complex.png} 
+	\caption{Comparison of wh-dependencies complex NP islands} 
+	\label{fig:wh_complex} % this internally labels the figure for future referencing.
+\end{figure}
+
+In \autoref{fig:wh_complex} 
+
+-- the non island line is significantly lower in new data (see constructs that increase the score of both long and short)
+
+The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
+
+-- also the short island point is significantly lower
+
+
+\subsubsection{Complex np islands: what seems to affect the models acceptability scores}
+the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
+
+il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
+in particolare diminuzione della accettabilità delle frasi con long distance wh dependency e struttura non island, che ricevono accettabilità minore di quelle con struttura island:
+Esempio analisi variazioni con verbo “intuire” complex np, ..
+
+..
+Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
+
+C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
+
 
 \subsubsection{Whether islands}
 
@@ -193,27 +227,6 @@ The Gpt-2 scores on the original Sprouse et al. test suite (middle image) have w
 \end{enumerate}
 
 % TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
-
-
-
-
-
-\subsubsection{Complex np islands}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-complex.png} 
-	\caption{Comparison of wh-dependencies complex NP islands} 
-	\label{fig:wh_complex} % this internally labels the figure for future referencing.
-\end{figure}
-
-In \autoref{fig:wh_complex} 
-
--- the non island line is significantly lower in new data (see constructs that increase the score of both long and short)
-
-The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
-
--- also the short island point is significantly lower
 
 
 \subsubsection{Subject islands}
@@ -257,18 +270,6 @@ Try this replacement this in all 4 testsets.
 
 Not much difference seems to derive by using less common (..) verbs .. 
 (examples in which both sentences in a pair also specify the direct object, see how this affects the score? Like long nonisland vs long island ..)
-
-\subsubsection{Complex np islands}
-the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
-
-il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
-in particolare diminuzione della accettabilità delle frasi con long distance wh dependency e struttura non island, che ricevono accettabilità minore di quelle con struttura island:
-Esempio analisi variazioni con verbo “intuire” complex np, ..
-
-..
-Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
-
-C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
 
 
 \subsubsection{Subject islands}
