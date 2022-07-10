@@ -181,10 +181,43 @@ The (gpt) model seem not to make much difference in ..acceptability btw “regul
 
 
 \subsubsection{Complex np islands: what seems to affect the models acceptability scores}
+
+% table..
+\begin{table} \scriptsize 
+	\begin{center}
+		\begin{tabular}
+			{p{0.3\linewidth}|p{0.08\linewidth}|p{0.3\linewidth}|p{0.08\linewidth}|p{0.08\linewidth}|} \\
+			\multicolumn{2}{c}{\textbf{Long non-island}} & \multicolumn{2}{c}{\textbf{Long island}}  & \multicolumn{1}{c|}{\textbf{Diff}} \\
+			\textbf{text} & \textbf{PenLP} & \textbf{text} & \textbf{PenLP} &    \\
+			\hline
+			\textit{Cosa hai detto che Gianni avrebbe sollevato?} & -33.74 
+			& \textit{Cosa hai riferito il fatto che Gianni avrebbe sollevato?} & -36.64 & 2.90 \\ 
+			
+			\textit{Cosa hai intuito che Gianni avrebbe sollevato?} & -34.31 
+			& \textit{Cosa hai avuto l'intuizione che Gianni avrebbe sollevato?} & -30.52  & -3.79 \\ 
+
+			\textit{Cosa hai messo in dubbio che io avrei vinto?} & -26.48 & 
+			\textit{Cosa hai messo in dubbio la previsione che io avrei vinto?} & -30.17 & 3.69\\ 	
+				
+			\textit{Cosa hai intuito che che io avrei vinto?} & -29.49 & 
+			\textit{Cosa hai avuto l'intuizione che io avrei vinto?} & -24.45  & -5.04 \\ 				
+				
+				
+		\end{tabular}
+		\caption{Comparing variations ..}
+		\label{tab:compare1}
+	\end{center}
+\end{table}
+
+
+
+% TODO: table with example items with different constructs, and their scores
+% TODO: plots of the whole testsuite for this phenomenon with the same variation for all items (using a different verb)
+
 the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
 
 il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
-in particolare diminuzione della accettabilità delle frasi con long distance wh dependency e struttura non island, che ricevono accettabilità minore di quelle con struttura island:
+in particolare diminuzione della accettabilità delle frasi long nonisland (con long distance wh dependency e struttura non island), che ricevono accettabilità minore di quelle con struttura island:
 Esempio analisi variazioni con verbo “intuire” complex np, ..
 
 ..
