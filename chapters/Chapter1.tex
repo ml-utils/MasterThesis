@@ -191,8 +191,9 @@ In the middle and right images on \autoref{fig:wh_complex}, we see that, for com
 	\label{fig:wh_complex} % this internally labels the figure for future referencing.
 \end{figure}
 
-Doing some variations experiments (see  \autoref{tab:compare1}), we found that by replacing the main clause verbs with "intuire che"/"avere l'intuizione che" ("to sense that" / "to have the intuition that") or "avvertire che"/"avere il sentore che" ("to feel that" / "to have an inkling that") or "percepire che"/"avere la percezione che" ("feel that"/"to have the feeling that"), that is, expressions in which the subject has the semantic role of an \textsc{experiencer} rather than an \textsc{agent}, the island restriction violation seem to have no effect and the Long-Island sentence becomes more acceptable than the same sentence without the island structure (Long-NonIsland).
-Indeed, the sentence \textit{Cosa hai avuto l'intuizione che il portavoce avrebbe confermato?}, seems acceptable despite extracting from a Complex NP.
+Doing some variations experiments (see  \autoref{tab:compare1}), we found that by replacing the main clause verbs with "intuire che"/"avere l'intuizione che" ("to sense that" / "to have the intuition that") or "avvertire che"/"avere il sentore che" ("to feel that" / "to have an inkling that") or "percepire che"/"avere la percezione che" ("feel that"/"to have the feeling that"), the island restriction violation seem to have no effect, and the Long-Island sentence becomes more acceptable than the same sentence without the island structure (Long-NonIsland). \\ 
+An hypothesis, whose demonstration we leave for future work, is that this is due to main clause expressions in which the subject has the semantic role of an \textsc{experiencer} rather than an \textsc{agent}, which could be a condition for Complex NP island restrictions to enter into effect or not. Indeed, the sentence \textit{Cosa hai avuto l'intuizione che il portavoce avrebbe confermato?} (\textit{`What did you have the intuition that the spokeperson had confirmed?'}), seems acceptable despite extracting from a Complex NP construct.
+% "avrebbe ppt" (condizionale passato)
 % In fact, it seems that the Gpt-2 model correctly captures the fact that with these constructs the long nonisland sentences become acceptable.
 
 \begin{table} \scriptsize 
@@ -249,34 +250,16 @@ With other variations experiments, we found that replacing the main clause verb 
 
 % table..
 
+Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
 
-\subsubsection{Complex np islands: what seems to affect the models acceptability scores}
+We refer back to section .., about the interpretation/meaning of the Gpt-2 loss ..output/score.
+% todo: move this in a introduction subsection:
+C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
 
 % TODO: table with example items with different constructs, and their scores
 % TODO: plots of the whole test suite for this phenomenon with the same variation for all items (using a different verb)
 
 
-
-the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
-
-..
-Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
-
-C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
-
-
-\subsubsection{Other notes on  Complex np islands}
-In \autoref{fig:wh_complex} we see that the non-island line (the line connecting the two acceptability scores for short and long distance dependency sentences without an island structure) is significantly lower in new data (todo: see constructs that increase the score of both long and short)
-
-The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
-
--- also the short island point is significantly lower
-
-All the 50 + 8 items of the two test suites (the ones from Sprouse et al and the ones developed for the present thesis), when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. 
-
-il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
-in particolare diminuzione della accettabilità delle frasi long nonisland (con long distance wh dependency e struttura non island), che ricevono accettabilità minore di quelle con struttura island:
-Esempio analisi variazioni con verbo “intuire” complex np, ..
 
 \subsubsection{Whether islands}
 
@@ -371,6 +354,21 @@ Guardando le short-nonislands, sembra anche qui preponderante il fatto di usare 
 
 
 \subsection{Discarded observations on differences between the plots}
+
+\subsubsection{Other notes on  Complex np islands,  what seems to affect the models acceptability scores}
+In \autoref{fig:wh_complex} we see that the non-island line (the line connecting the two acceptability scores for short and long distance dependency sentences without an island structure) is significantly lower in new data (todo: see constructs that increase the score of both long and short)
+
+The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
+
+-- also the short island point is significantly lower
+
+All the 50 + 8 items of the two test suites (the ones from Sprouse et al and the ones developed for the present thesis), when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. 
+
+il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
+in particolare diminuzione della accettabilità delle frasi long nonisland (con long distance wh dependency e struttura non island), che ricevono accettabilità minore di quelle con struttura island:
+Esempio analisi variazioni con verbo “intuire” complex np, ..
+
+the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
 
 \subsubsection{Whether islands}
 NB: note that according to human scores, for this type of whether island sentences, the "correct" scoring is to have an increase in acceptability going from short to long non island sentences.
