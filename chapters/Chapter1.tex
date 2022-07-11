@@ -194,25 +194,7 @@ In the middle and right images on \autoref{fig:wh_complex}, we see that, for com
 
 All the 50 + 8 items of the two testsuites, when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. In fact, it seems that the Gpt-2 model correctly captures the fact that with these constructs the long nonisland sentences become acceptable.
 
-% examples of items before and after the "avuto l'intuizione che" variation: ..
-% show the plots for the items using this construct ("avuto l'intuizione che" ), it seems strange scores are given
-
-% still the problem overall in the orginal plots seems an overly low score for the long non island sentences
-% that is, is the long distance depencency that receives a too loo score .. (lenght effect?)
-% while the structure effect ..
-% albeit it's correct, like humans scores, that the long non island has less acceptability than the short island
-% then how is the long distance dependency (lenght effect) scored for the other island phenomena?
-% the difference with the sentences for the other phenomena seem to be that they have a simpler main clause, like "cosa pensi che" (present) + "abbia ppt"  (congiuntivo passato), while for the complex np, is "cosa hai smentito/annunciato/raccontato/sostenuto che" (passato prossimo) + "avrebbe ppt" (condizionale passato)
-% a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
-% but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
-
-% for future work: automatic generation of examples from templates, like in Blimp, to control and test more easily for more factors (es. verbs modes and tenses)
-% to test for frequency effect: use some rare verb modes/tenses?
-
-% also find an explanation for the other misclassified long non island sentences that use other constructus (with proper agent/patient semantic roles)
-
-% table..
-Variations on  \autoref{tab:compare1}
+Doing some variations experiments (see  \autoref{tab:compare1}), we found that by replacing the main clause verbs with "intuire che"/"avere l'intuizione che" ("to sense that" / "to have the intuition that") or "avvertire che"/"avere il sentore che" ("to feel that" / "to have an inkling that") or "percepire che"/"avere la percezione che" ("feel that"/"to have the feeling that"), that is, expressions in which the subject has the semantic role of an experiencer rather than an agent, the island restriction violation seem to have no effect and the Long-Island sentence becomes more acceptable than the same sentence without the island structure (Long-NonIsland).
 
 \begin{table} \scriptsize 
 	\begin{center}
@@ -221,6 +203,20 @@ Variations on  \autoref{tab:compare1}
 			\multicolumn{2}{c}{\textbf{\textsc{Long-NonIsland}}} & \multicolumn{2}{c}{\textbf{\textsc{Long-Island}}}  & \multicolumn{1}{c}{\textbf{Diff}} \\
 			\textbf{text} & \textbf{PenLP} & \textbf{text} & \textbf{PenLP} &    \\
 			\hline
+			
+			\textit{Cosa hai messo in dubbio che il portavoce avrebbe confermato?} & -31.65
+			& \textit{	Cosa hai messo in dubbio la previsione che il portavoce avrebbe confermato} & -33.21 & 1.56 \\ 
+			\textit{Cosa hai intuito che il portavoce avrebbe confermato?} & -32.36 
+			& \textit{Cosa hai avuto l'intuizione che il portavoce avrebbe confermato? } & -29.99 & -2.37 \\ 
+			
+			
+			\textit{Cosa hai smentito che l'agenzia avrebbe diffuso?} & -33.47 
+			& \textit{Cosa hai smentito la voce che l'agenzia avrebbe diffuso?} & -32.17 & -1.29 \\ 
+			\textit{Cosa hai intuito che l'agenzia avrebbe diffuso?} & -30.24  
+			& \textit{Cosa hai avuto l'intuizione che l'agenzia avrebbe diffuso?} & -27.76 & -2.48 \\ 
+			
+			
+			
 			\textit{Cosa hai detto che Gianni avrebbe sollevato?} & -33.74 
 			& \textit{Cosa hai riferito il fatto che Gianni avrebbe sollevato?} & -36.64 & 2.90 \\ 
 			
@@ -240,10 +236,30 @@ Variations on  \autoref{tab:compare1}
 			\textit{Cosa hai avuto l'intuizione che l'impresa avrebbe pareggiato?} & -26.55  & -2.41 \\ 						
 			
 		\end{tabular}
-		\caption{Comparing variations ..}
+		\caption{Comparing acceptability variations among sentences in the complex NP dataset.}
 		\label{tab:compare1}
 	\end{center}
 \end{table}
+
+
+% examples of items before and after the "avuto l'intuizione che" variation: ..
+% show the plots for the items using this construct ("avuto l'intuizione che" ), it seems strange scores are given
+
+% still the problem overall in the orginal plots seems an overly low score for the long non island sentences
+% that is, is the long distance depencency that receives a too loo score .. (lenght effect?)
+% while the structure effect ..
+% albeit it's correct, like humans scores, that the long non island has less acceptability than the short island
+% then how is the long distance dependency (lenght effect) scored for the other island phenomena?
+% the difference with the sentences for the other phenomena seem to be that they have a simpler main clause, like "cosa pensi che" (present) + "abbia ppt"  (congiuntivo passato), while for the complex np, is "cosa hai smentito/annunciato/raccontato/sostenuto che" (passato prossimo) + "avrebbe ppt" (condizionale passato)
+% a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
+% but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
+
+% for future work: automatic generation of examples from templates, like in Blimp, to control and test more easily for more factors (es. verbs modes and tenses)
+% to test for frequency effect: use some rare verb modes/tenses?
+
+% also find an explanation for the other misclassified long non island sentences that use other constructus (with proper agent/patient semantic roles)
+
+% table..
 
 
 \subsubsection{Complex np islands: what seems to affect the models acceptability scores}
