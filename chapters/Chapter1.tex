@@ -26,6 +26,9 @@ The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet
 
 Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides the \( LP \) estimate by a penalty term which depends on the sentence lenght \( |s| \), measured in number of tokens. Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
 
+For Bert-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
+..
+
 
 \chapter{Experimental setup/design}
 ..
@@ -333,6 +336,8 @@ NB: the new data, for the long islands, has a more clearly unacceptable ..form: 
 ..
 While on human ratings the unacceptable sentences (long nonislands) receive all on average a z-score of about -1, there is more variability in the scores given by the models, in particular for whether islands sentences, which receive much higher acceptability rating on average.
 ..
+
+% TODO: remaining tables with accuracy scores, comparison with Blimp extraction islands scores; compare btw models, scoring measures, and datasets (Blimp, Sprouse, Madeddu)
 
 % todo: all the plots in the appendix (Bert, LP/PenLP, logistic LP/PenLP, .. ) and brief comments 
 % (like limitations of Bert acceptability estimates)
