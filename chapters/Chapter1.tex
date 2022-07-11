@@ -191,59 +191,42 @@ In the middle and right images on \autoref{fig:wh_complex}, we see that, for com
 	\label{fig:wh_complex} % this internally labels the figure for future referencing.
 \end{figure}
 
-
-All the 50 + 8 items of the two testsuites, when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. In fact, it seems that the Gpt-2 model correctly captures the fact that with these constructs the long nonisland sentences become acceptable.
-
-Doing some variations experiments (see  \autoref{tab:compare1}), we found that by replacing the main clause verbs with "intuire che"/"avere l'intuizione che" ("to sense that" / "to have the intuition that") or "avvertire che"/"avere il sentore che" ("to feel that" / "to have an inkling that") or "percepire che"/"avere la percezione che" ("feel that"/"to have the feeling that"), that is, expressions in which the subject has the semantic role of an experiencer rather than an agent, the island restriction violation seem to have no effect and the Long-Island sentence becomes more acceptable than the same sentence without the island structure (Long-NonIsland).
+Doing some variations experiments (see  \autoref{tab:compare1}), we found that by replacing the main clause verbs with "intuire che"/"avere l'intuizione che" ("to sense that" / "to have the intuition that") or "avvertire che"/"avere il sentore che" ("to feel that" / "to have an inkling that") or "percepire che"/"avere la percezione che" ("feel that"/"to have the feeling that"), that is, expressions in which the subject has the semantic role of an \textsc{experiencer} rather than an \textsc{agent}, the island restriction violation seem to have no effect and the Long-Island sentence becomes more acceptable than the same sentence without the island structure (Long-NonIsland).
+Indeed, the sentence \textit{Cosa hai avuto l'intuizione che il portavoce avrebbe confermato?}, seems acceptable despite extracting from a Complex NP.
+% In fact, it seems that the Gpt-2 model correctly captures the fact that with these constructs the long nonisland sentences become acceptable.
 
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}
 			{p{0.3\linewidth} p{0.08\linewidth} p{0.3\linewidth} p{0.08\linewidth} p{0.08\linewidth}|} \\
-			\multicolumn{2}{c}{\textbf{\textsc{Long-NonIsland}}} & \multicolumn{2}{c}{\textbf{\textsc{Long-Island}}}  & \multicolumn{1}{c}{\textbf{Diff}} \\
-			\textbf{text} & \textbf{PenLP} & \textbf{text} & \textbf{PenLP} &    \\
+			\multicolumn{2}{c}{\textbf{\textsc{Long-NonIsland}}} & \multicolumn{2}{c}{\textbf{\textsc{Long-Island}}}  &   \\
+			\textbf{text} & \textbf{PenLP} & \textbf{text} & \textbf{PenLP} &  \textbf{Diff}  \\
 			\hline
-			
 			\textit{Cosa hai messo in dubbio che il portavoce avrebbe confermato?} & -31.65
-			& \textit{	Cosa hai messo in dubbio la previsione che il portavoce avrebbe confermato} & -33.21 & 1.56 \\ 
+			& \textit{Cosa hai messo in dubbio la previsione che il portavoce avrebbe confermato} & -33.21 & 1.56 \\ 
 			\textit{Cosa hai intuito che il portavoce avrebbe confermato?} & -32.36 
-			& \textit{Cosa hai avuto l'intuizione che il portavoce avrebbe confermato? } & -29.99 & -2.37 \\ 
-			
-			
-			\textit{Cosa hai smentito che l'agenzia avrebbe diffuso?} & -33.47 
-			& \textit{Cosa hai smentito la voce che l'agenzia avrebbe diffuso?} & -32.17 & -1.29 \\ 
-			\textit{Cosa hai intuito che l'agenzia avrebbe diffuso?} & -30.24  
-			& \textit{Cosa hai avuto l'intuizione che l'agenzia avrebbe diffuso?} & -27.76 & -2.48 \\ 
-			
-			
-			
+			& \textit{Cosa hai avuto l'intuizione che il portavoce avrebbe confermato?} & -29.99 & -2.37 \\ 	
+			% TODO: use the other verbs too:  "avvertire che"/"avere il sentore che" ,  "percepire che"/"avere la percezione che" 
 			\textit{Cosa hai detto che Gianni avrebbe sollevato?} & -33.74 
 			& \textit{Cosa hai riferito il fatto che Gianni avrebbe sollevato?} & -36.64 & 2.90 \\ 
-			
 			\textit{Cosa hai intuito che Gianni avrebbe sollevato?} & -34.31 
 			& \textit{Cosa hai avuto l'intuizione che Gianni avrebbe sollevato?} & -30.52  & -3.79 \\ 
 			
 			\textit{Cosa hai messo in dubbio che io avrei vinto?} & -26.48 & 
-			\textit{Cosa hai messo in dubbio la previsione che io avrei vinto?} & -30.17 & 3.69\\ 	
-			
+			\textit{Cosa hai messo in dubbio la previsione che io avrei vinto?} & -30.17 & 3.69\\ 				
 			\textit{Cosa hai intuito che che io avrei vinto?} & -29.49 & 
 			\textit{Cosa hai avuto l'intuizione che io avrei vinto?} & -24.45  & -5.04 \\ 				
-			
-			\textit{Cosa hai annunciato che l'impresa avrebbe pareggiato?} & -30.53 & 
-			\textit{Cosa hai fatto l’annuncio che l'impresa avrebbe pareggiato?} & -31.83 & 1.30\\ 	
-			
-			\textit{Cosa hai intuito che l'impresa avrebbe pareggiato?} & -28.95 & 
-			\textit{Cosa hai avuto l'intuizione che l'impresa avrebbe pareggiato?} & -26.55  & -2.41 \\ 						
-			
+
 		\end{tabular}
-		\caption{Comparing acceptability variations among sentences in the complex NP dataset.}
+		\caption{Comparing acceptability variations among sentences in the complex NP dataset. A positive difference indicates that the Long-NonIsland sentence is more acceptable than the Long-NonIsland one, as expected.}
 		\label{tab:compare1}
 	\end{center}
 \end{table}
 
 
-% examples of items before and after the "avuto l'intuizione che" variation: ..
+% examples of complex np items before and after the "avuto l'intuizione che" variation: ..
 % show the plots for the items using this construct ("avuto l'intuizione che" ), it seems strange scores are given
+% (the island line is higher than the non island one, but they are all acceptable sentence and there is no island restriction anymore)
 
 % still the problem overall in the orginal plots seems an overly low score for the long non island sentences
 % that is, is the long distance depencency that receives a too loo score .. (lenght effect?)
@@ -286,6 +269,7 @@ The (gpt) model seem not to make much difference in ..acceptability btw “regul
 
 -- also the short island point is significantly lower
 
+All the 50 + 8 items of the two testsuites (the ones from Sprouse et al and the ones developed for the present thesis), when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. 
 
 
 \subsubsection{Whether islands}
