@@ -1,11 +1,16 @@
 \chapter{Factorial design plots}
 
-Models:
-Bert: Scores obtained from the Huggingface Italian Bert model dbmdz/bert-base-italian-xxl-cased \footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased}
+Scores obtained from the following Huggingface pretrained Italian models:
+
+BERT: dbmdz/bert-base-italian-xxl-cased \footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased}
+GilBERTo: idb-ita/gilberto-uncased-from-camembert \footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}
+GePpeTto: LorenzoDeMattei/GePpeTto \citep{de2020geppetto} \footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}
 
 \clearpage
 \section{Sprouse test suite}
-\subsection{Bert}
+
+\subsection{BERT}
+
 \subsubsection{Measure: PenLP (from softmax model output)}
 \begin{figure}[h]
 	\centering
@@ -19,6 +24,21 @@ Bert: Scores obtained from the Huggingface Italian Bert model dbmdz/bert-base-it
 	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-07-11.png} 
 \end{figure}
 
+\clearpage
+\subsubsection{Measure: PenLP-L (from logistic function model output)}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_PLL-zscores-likert-2022-07-11.png} 
+\end{figure}
+
+\clearpage
+\subsubsection{Measure: LP-L (from logistic function model output)}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LL-zscores-likert-2022-07-11.png} 
+\end{figure}
+
+\subsection{GilBERTo}
 
 \section{Madeddu test suite}
 ..
