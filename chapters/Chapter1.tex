@@ -156,13 +156,29 @@ In this section we discuss the results and plots with the Gpt-2 model and the Pe
 % TODO: also model outputs based on a logistic function, but as a probability (divide for the sum of all the scores, but without the skewed exponential effect of the softmax)
 ..
 
-\subsubsection{Overall}
-..
-While on human ratings the unacceptable sentences (long nonislands) receive all on average a z-score of about -1, there is more variability in the scores given by the models, in particular for whether islands sentences, which receive much higher acceptability rating on average.
-..
-
 
 \subsubsection{Complex np islands}
+
+Here is a sample item from the complex NP island testsuite we developed for this thesis:
+
+\renewcommand{\labelenumi}{(\arabic{enumi})}
+\begin{enumerate}
+	\item \textsc{Complex NP islands}
+	\renewcommand{\labelenumii}{\alph{enumii}.}
+	\begin{enumerate}
+		\item \textsc{Short-NonIsland:} \\
+		Chi ha smentito che l'agenzia avrebbe diffuso il sondaggio?
+		\item \textsc{Long-NonIsland:} \\
+		Cosa hai smentito che l'agenzia avrebbe diffuso?
+		\item \textsc{Short-Island:} \\
+		Chi ha smentito la voce che l'agenzia avrebbe diffuso il sondaggio?
+		\item \textsc{Long-Island:} \\				
+		Cosa hai smentito la voce che l'agenzia avrebbe diffuso?
+		
+	\end{enumerate}
+\end{enumerate}
+
+In the middle and right images on \autoref{fig:wh_complex}, we see that, for complex np items, the long non-island sentences on average get scored by the Gpt-2 model with lower acceptability scores than by the human subjects (left image). This seems to be due to the long distance dependency effect, that gets exacerbated as a sentence increases in lenght (in these testsuites, the complex np islands examples have longer sentences).
 
 \begin{figure}
 	\centering
@@ -192,6 +208,7 @@ All the 50 + 8 items of the two testsuites, when altered to use the following co
 % also find an explanation for the other misclassified long non island sentences that use other constructus (with proper agent/patient semantic roles)
 
 % table..
+Variations on  \autoref{tab:compare1}
 
 \begin{table} \scriptsize 
 	\begin{center}
@@ -316,6 +333,11 @@ In \autoref{fig:wh_adjunct}
 
 the non island line on new data is similar, althoughg with an higer acceptability for short non island, which results in a downward steeper line. The non island line is also similar on new data, albeight also with a steeper downward slope.
 NB: the new data, for the long islands, has a more clearly unacceptable ..form: in the sprouse data, at the end there is a preprositional ..phrase like “in ufficio”.
+
+\subsubsection{Overall}
+..
+While on human ratings the unacceptable sentences (long nonislands) receive all on average a z-score of about -1, there is more variability in the scores given by the models, in particular for whether islands sentences, which receive much higher acceptability rating on average.
+..
 
 
 \subsection{What seems to affect the models acceptability scores}
