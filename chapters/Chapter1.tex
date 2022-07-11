@@ -171,38 +171,84 @@ While on human ratings the unacceptable sentences (long nonislands) receive all 
 	\label{fig:wh_complex} % this internally labels the figure for future referencing.
 \end{figure}
 
-In \autoref{fig:wh_complex} 
 
--- the non island line is significantly lower in new data (see constructs that increase the score of both long and short)
+All the 50 + 8 items of the two testsuites, when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. In fact, it seems that the Gpt-2 model correctly captures the fact that with these constructs the long nonisland sentences become acceptable.
 
-The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
+% examples of items before and after the "avuto l'intuizione che" variation: ..
+% show the plots for the items using this construct ("avuto l'intuizione che" ), it seems strange scores are given
 
--- also the short island point is significantly lower
+% still the problem overall in the orginal plots seems an overly low score for the long non island sentences
+% that is, is the long distance depencency that receives a too loo score .. (lenght effect?)
+% while the structure effect ..
+% albeit it's correct, like humans scores, that the long non island has less acceptability than the short island
+% then how is the long distance dependency (lenght effect) scored for the other island phenomena?
+% the difference with the sentences for the other phenomena seem to be that they have a simpler main clause, like "cosa pensi che" (present) + "abbia ppt"  (congiuntivo passato), while for the complex np, is "cosa hai smentito/annunciato/raccontato/sostenuto che" (passato prossimo) + "avrebbe ppt" (condizionale passato)
+% a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
+% but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
 
+% for future work: automatic generation of examples from templates, like in Blimp, to control and test more easily for more factors (es. verbs modes and tenses)
+% to test for frequency effect: use some rare verb modes/tenses?
 
-\subsubsection{Complex np islands: what seems to affect the models acceptability scores}
+% also find an explanation for the other misclassified long non island sentences that use other constructus (with proper agent/patient semantic roles)
 
 % table..
+\begin{table}
+	\begin{tabular}{p{0.3\linewidth} p{0.08\linewidth} p{0.3\linewidth} p{0.08\linewidth} p{0.08\linewidth}|}
+		\toprule
+		\multicolumn{2}{c}{\textbf{Long non-island}} & \multicolumn{2}{c}{\textbf{Long island}}  & \multicolumn{1}{c}{\textbf{Diff}}     \\  
+		\midrule
+		\text{text} & \text{PenLP} & \text{text} & \text{PenLP} &    \\
+		\hline
+		\textit{Cosa hai detto che Gianni avrebbe sollevato?} & -33.74 
+		& \textit{Cosa hai riferito il fatto che Gianni avrebbe sollevato?} & -36.64 & 2.90 \\ 
+		
+		\textit{Cosa hai intuito che Gianni avrebbe sollevato?} & -34.31 
+		& \textit{Cosa hai avuto l'intuizione che Gianni avrebbe sollevato?} & -30.52  & -3.79 \\ 
+		
+		\textit{Cosa hai messo in dubbio che io avrei vinto?} & -26.48 & 
+		\textit{Cosa hai messo in dubbio la previsione che io avrei vinto?} & -30.17 & 3.69\\ 	
+		
+		\textit{Cosa hai intuito che che io avrei vinto?} & -29.49 & 
+		\textit{Cosa hai avuto l'intuizione che io avrei vinto?} & -24.45  & -5.04 \\ 				
+		
+		\textit{Cosa hai annunciato che l'impresa avrebbe pareggiato?} & -30.53 & 
+		\textit{Cosa hai fatto l’annuncio che l'impresa avrebbe pareggiato?} & -31.83 & 1.30\\ 	
+		
+		\textit{Cosa hai intuito che l'impresa avrebbe pareggiato?} & -28.95 & 
+		\textit{Cosa hai avuto l'intuizione che l'impresa avrebbe pareggiato?} & -26.55  & -2.41 \\ 	
+		\bottomrule
+			
+	
+	\end{tabular}
+	\caption{Comparing variations ..}
+	\label{tab:compare2}
+\end{table}
+
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}
-			{p{0.3\linewidth}|p{0.08\linewidth}|p{0.3\linewidth}|p{0.08\linewidth}|p{0.08\linewidth}|} \\
-			\multicolumn{2}{c}{\textbf{Long non-island}} & \multicolumn{2}{c}{\textbf{Long island}}  & \multicolumn{1}{c|}{\textbf{Diff}} \\
-			\textbf{text} & \textbf{PenLP} & \textbf{text} & \textbf{PenLP} &    \\
+			{p{0.3\linewidth} p{0.08\linewidth} p{0.3\linewidth} p{0.08\linewidth} p{0.08\linewidth}|} \\
+			\multicolumn{2}{c}{\textbf{Long non-island}} & \multicolumn{2}{c}{\textbf{Long island}}  & \multicolumn{1}{c}{\textbf{Diff}} \\
+			\textbf{text} & \textbf{PenLP|} & \textbf{text} & \textbf{PenLP|} &    \\
 			\hline
 			\textit{Cosa hai detto che Gianni avrebbe sollevato?} & -33.74 
 			& \textit{Cosa hai riferito il fatto che Gianni avrebbe sollevato?} & -36.64 & 2.90 \\ 
 			
 			\textit{Cosa hai intuito che Gianni avrebbe sollevato?} & -34.31 
 			& \textit{Cosa hai avuto l'intuizione che Gianni avrebbe sollevato?} & -30.52  & -3.79 \\ 
-
+			
 			\textit{Cosa hai messo in dubbio che io avrei vinto?} & -26.48 & 
 			\textit{Cosa hai messo in dubbio la previsione che io avrei vinto?} & -30.17 & 3.69\\ 	
-				
+			
 			\textit{Cosa hai intuito che che io avrei vinto?} & -29.49 & 
 			\textit{Cosa hai avuto l'intuizione che io avrei vinto?} & -24.45  & -5.04 \\ 				
-				
-				
+			
+			\textit{Cosa hai annunciato che l'impresa avrebbe pareggiato?} & -30.53 & 
+			\textit{Cosa hai fatto l’annuncio che l'impresa avrebbe pareggiato?} & -31.83 & 1.30\\ 	
+			
+			\textit{Cosa hai intuito che l'impresa avrebbe pareggiato?} & -28.95 & 
+			\textit{Cosa hai avuto l'intuizione che l'impresa avrebbe pareggiato?} & -26.55  & -2.41 \\ 						
+			
 		\end{tabular}
 		\caption{Comparing variations ..}
 		\label{tab:compare1}
@@ -210,6 +256,7 @@ The (gpt) model seem not to make much difference in ..acceptability btw “regul
 \end{table}
 
 
+\subsubsection{Complex np islands: what seems to affect the models acceptability scores}
 
 % TODO: table with example items with different constructs, and their scores
 % TODO: plots of the whole testsuite for this phenomenon with the same variation for all items (using a different verb)
@@ -224,6 +271,15 @@ Esempio analisi variazioni con verbo “intuire” complex np, ..
 Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
 
 C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
+
+
+\subsubsection{Other notes on  Complex np islands}
+In \autoref{fig:wh_complex} we see that the non-island line (the line connecting the two acceptability scores for short and long distance dependency sentences without an island structure) is significantly lower in new data (todo: see constructs that increase the score of both long and short)
+
+The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
+
+-- also the short island point is significantly lower
+
 
 
 \subsubsection{Whether islands}
