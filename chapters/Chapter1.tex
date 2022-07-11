@@ -255,9 +255,8 @@ With other variations experiments, we found that replacing the main clause verb 
 
 % table..
 
-Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
-
-We refer back to section .., about the interpretation/meaning of the Gpt-2 loss ..output/score.
+% Mostra una non robustezza del modello nell’apprendimento di strutture sintattiche / or of this use for scoring minimal pairs, non generalizzazione sintattica, in quanto basta una variazione lessicale, anche tra ..parole frequenti, ..per ..alterare ..quale tra due frasi coppie minime sia piu o meno accettabile.
+% However, we refer back to section .., about the interpretation/meaning of the Gpt-2 loss ..output/score.
 
 
 % TODO: table with example items with different constructs, and their scores
@@ -309,8 +308,10 @@ The Gpt-2 scores on the original Sprouse et al. test suite (middle image) have w
 
 In \autoref{fig:wh_subject}
 
-on Sprouse data, island line is significantly lower (check sorting of sentences to see why). On new data, is similar.
-For the non island line, the short point is lower on both sprouse and new data. The long point is similar on new data (around 1.0) but lower on sprouse data. The slope is sismilar on the model, both for sprouse and new data, but steeper compared to acceptability results on human subjects.
+on Sprouse data, island line is significantly lower (check sorting of sentences to see why). On new data, is similar. \\
+For the non island line, the short point is lower on both sprouse and new data. \\ 
+The long point is similar on new data (around 1.0) but lower on sprouse data. \\
+..The slope is similar on the model scores, both for sprouse and new data, but steeper compared to acceptability results on human subjects.
 
 
 \subsubsection{Adjunct islands}
@@ -332,6 +333,22 @@ NB: the new data, for the long islands, has a more clearly unacceptable ..form: 
 ..
 While on human ratings the unacceptable sentences (long nonislands) receive all on average a z-score of about -1, there is more variability in the scores given by the models, in particular for whether islands sentences, which receive much higher acceptability rating on average.
 ..
+
+% todo: all the plots in the appendix (Bert, LP/PenLP, logistic LP/PenLP, .. ) and brief comments 
+% (like limitations of Bert acceptability estimates)
+
+% Italian models:
+% "LorenzoDeMattei/GePpeTto"
+% "dbmdz/bert-base-italian-xxl-cased": ModelTypes.BERT,
+% "idb-ita/gilberto-uncased-from-camembert"
+
+% testsuites/datasources:
+% Sprouse et al.
+% Madeddu
+
+% scoring measures:
+% LP/PenLP (softmax-based)
+% % LP/PenLP (logistic-based)
 
 
 \subsection{What seems to affect the models acceptability scores}
