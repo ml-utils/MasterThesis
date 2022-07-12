@@ -74,6 +74,7 @@ Here is a sample item from the adjunct island phenomenon: % numbered "formula"/T
 
 	\label{test example}
 \end{example}
+
 Reference the above example: \ref{test example}
 
 Two factors, dependency distance and presence or absence of an island structure. Each item has four sentences given by the combination of these two factors. We briefly call "short-nonisland" the sentence with a short-distance dependency and the lack of an island structure. For instance, for .. islands, we have these four ..
@@ -85,6 +86,8 @@ Four phenomena of island effect structures: whether, complex np, subject, and ad
 
 \subsubsection{Using factorial sentences as minimal pairs}
 ..
+In the present thesis, we also use the four sentences of each item of the factorial test design, to draw three minimal pairs, comparing the three acceptable sentences (long and short non-island, and the short-island types) with the unacceptable one (the long-nonisland sentence type). We then score these minimal pairs for accuracy, considering that a model scores accurately a pair of sentences if it gives and higher acceptability score for the grammatical sentence.
+
 Using sentences from the factorial design to do minimal pairs comparisons and get accuracy scores ..)
 ..
 
@@ -126,11 +129,10 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 			  &  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{4}{c|}{\textbf{Bert (it)}}  & \multicolumn{4}{c|}{\textbf{GilBERTo (it)}} \\
 			 \textbf{Pheno-menon} & \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP-L & Pen LP-L & LP & Pen LP & LP-L & Pen LP-L \\
 			\hline
-			\multirow{3}{0.8cm}{Wh-adjunct}  & Short-N.I. & \textbf{96} & 92 & 94 & 90 & \textbf{96} & \textbf{96} & 86 & 70 & 86 & 86 \\ 
-				%	\cline{2-12}
-		  			   & Long-N.I. & \textbf{98} & 86 & 66 & 40 & 60 & 58 & 64 & 34 & 4 & 4 \\ 
-		  		%	   \cline{2-12}
-		  			   & Short-I.S. & 96 & 98 & \textbf{100} & 98 & \textbf{100} & \textbf{100} & 94 & 94 & 84 & 88 \\ 
+			\multirow{3}{0.8cm}{Wh-adjunct}  
+						& Short-N.I. & \textbf{96} & 92 & 94 & 90 & \textbf{96} & \textbf{96} & 86 & 70 & 86 & 86 \\ 
+					   	& Long-N.I. & \textbf{98} & 86 & 66 & 40 & 60 & 58 & 64 & 34 & 4 & 4 \\ 
+		  	 		    & Short-I.S. & 96 & 98 & \textbf{100} & 98 & \textbf{100} & \textbf{100} & 94 & 94 & 84 & 88 \\ 
 		  	\hline
 		  	\multirow{3}{0.8cm}{Wh-complex np} & Short-N.I. & 90 & 92 & \textbf{100} & \textbf{100} & 96 & 96 & 74 & 76 & 88 & 88 \\ 
 		  			  		& Long-N.I. & \textbf{100} & 42 & 96 & 92 & 70 & 64 & 62 & 28 & 32 & 28 \\ 
@@ -144,11 +146,41 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 		  	& Long-N.I. & \textbf{100} & \textbf{100} & 66 & 40 & 60 & 58 & \textbf{100} & 98.3 & 78 & 78 \\ 
 		  	& Short-I.S. & 59.3 & 96.6 & \textbf{100} & 98 & \textbf{100} & \textbf{100} & 37.3 & 69.5 & 93.2 & 93 \\ 		  	
 		\end{tabular}
-		\caption{Accuracy results for Gpt-2 and Bert Italian models, on a test suite of 50 items per phenomenon. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The Bert-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
+		\caption{Accuracy results for Gpt-2 and Bert Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The Bert-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
 		\label{tab:accuracy_it_data}
 	\end{center}
 \end{table}
 
+..
+
+
+\begin{table} \scriptsize 
+	\begin{center}
+		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
+			&  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{4}{c|}{\textbf{Bert (it)}}  & \multicolumn{4}{c|}{\textbf{GilBERTo (it)}} \\
+			\textbf{Pheno-menon} & \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP-L & Pen LP-L & LP & Pen LP & LP-L & Pen LP-L \\
+			\hline
+			\multirow{3}{0.8cm}{Wh-adjunct}  & Short-N.I. & 25  & 75  &  &   &   &   &   &   &   &   \\ 
+			& Long-N.I.  & 75  & 75  &  &   &   &   &   &   &   &   \\ 
+			& Short-I.S.  & 25  &  50 &  &   &   &   &   &   &   &   \\ 
+			\hline
+			\multirow{3}{0.8cm}{Wh-complex np} & Short-N.I. & 100  & 100  &  &   &   &   &   &   &   &   \\ 
+			& Long-N.I.  & 100  & 50  &  &   &   &   &   &   &   &   \\ 
+			& Short-I.S.  & 37.5  & 75  &  &   &   &   &   &   &   &   \\ 	  			 
+			\hline
+			\multirow{3}{0.8cm}{Wh-subject} & Short-N.I.  & 100  & 87.5  &  &   &   &   &   &   &   &   \\ 
+			& Long-N.I.  & 100  & 100  &  &   &   &   &   &   &   &   \\  
+			& Short-I.S.  & 37.5  & 37.5  &  &   &   &   &   &   &   &   \\ 
+			\hline
+			\multirow{3}{0.8cm}{Wh-whether} 
+				& Short-N.I.  & 87.5  & 100  &  &   &   &   &   &   &   &   \\ 
+				& Long-N.I.   & 100  &  100 &  &   &   &   &   &   &   &   \\ 
+				& Short-I.S.  & 62.5  &  100 &  &   &   &   &   &   &   &   \\ 
+		\end{tabular}
+		\caption{Accuracy results for Gpt-2 and Bert Italian models, on the Italian test suite from \citet{sprouse2016experimental}.}
+		\label{tab:accuracy_it_data_sprouse}
+	\end{center}
+\end{table}
 ..
 \subsection{Discussion}
 
