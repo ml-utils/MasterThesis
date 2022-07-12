@@ -164,15 +164,20 @@ The score on the first row are taken from \citet{warstadt2020blimp}
 
 % pivot the table with the phenomena as colums? (since there are just 3 phenomena but many models)
 
-\begin{table} \scriptsize 
+\begin{table} 
 	\begin{center}
-		\begin{tabular}
-			{c|c|c|c} \\
+		\begin{tabular}{c|c|c|c} 
 			Model & \textbf{Wh-adjunct} & \textbf{Wh-complex NP} & \textbf{Wh-subject} \\
 			\hline
-			Gpt2 (Warstadt et al 2020) & 91 & 72 & 77 \\ 
-			Gpt2-large & 90.2 & 72 & 79.1 \\ 
-	  	
+			Gpt2 (Warstadt et al 2020) 	& 91 & 72 & 77 \\ 
+			Gpt2-large 					& 90.2 & 72 & 79.1 \\ 
+	  		Gpt2-medium 				& 91.6 & 72.3 & 77.9 \\
+	  		Gpt2 						& 91.3 & 68.8 & 82.2 \\
+	  		Bert-large-cased (PenLP)	& 86.3 & 67.4 & 69.4 \\
+	  		Bert-base-cased (PenLP)		& 88.1 & 56 & 66.2 \\
+	  		Roberta-large (PenLP)		& 88.6 & 82.2 & 87.5 \\
+	  		Roberta-base(PenLP)			& 82.9 & 62.1 & 79.2 \\   
+	  		 
 		\end{tabular}
 		\caption{}
 		\label{tab:accResultsBLiMP}
