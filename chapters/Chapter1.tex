@@ -13,6 +13,7 @@
 
 \subsection{On the output of Bert-like bidirectional language models}
 ..
+% On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
 \subsection{Sentence acceptability estimates}
 
@@ -405,7 +406,13 @@ While on human ratings the unacceptable sentences (long nonislands) receive all 
 	\label{fig:bert_penlp_l_sprouse}
 \end{figure}
 
-With the BERT model, the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots ( \autoref{fig:bert_penlp_l_sprouse} ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with Bert and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
+In \autoref{fig:bert_penlp_l_sprouse} we see the plots of the scores from the BERT model, the logistic function (rather than the softmax) applied to the outputs, and the PenLP sentence acceptability approximation. Interestingly, it seems that this combination of BERT with the logistic function distinguishes clearly between unacceptable (long-nonisland) and acceptable sentence types, while scores all the acceptable sentences the same.
+
+If we compare this with the accuracy scores from this model (BERT, logistic function, PenLP) in table ..3.1, we see that they are among the best in about half the cases, and quite low for the long-nonisland sentences of all four island phenomena (58\%, 64\%, 74\%, 58\% accuracy), and for the short-nonisland of subject islands (28\% accuracy) 
+
+
+
+With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with Bert and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
 
 
 
