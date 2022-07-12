@@ -148,10 +148,15 @@ The results are shown in \autoref{tab:accResults}.
 
 ..
 \subsection{Discussion}
-..
-Compare with accuracy scores on Blimp (English)
-(also table with accuracy scores on Sprouse test suite)
 
+..
+% TODO: table reproducitng BLiMP accuracy scores, and scoring the same dataset on more model including Bert-linke ones (in English)
+% Compare with accuracy scores on BLiMP (English) and the factorial test suites, on the same phenomena
+
+% (also add table with accuracy scores on Sprouse test suite, 8 items per phenomenon)
+% (? table on DD accuracy? ..)
+
+\subsection{Comparison with BLiMP results on island effects in English}
 
 \section{Factorial tests results}
 
@@ -257,7 +262,7 @@ With other variations experiments, we found that replacing the main clause verb 
 % a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
 % but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
 
-% for future work: automatic generation of examples from templates, like in Blimp, to control and test more easily for more factors (es. verbs modes and tenses)
+% for future work: automatic generation of examples from templates, like in BLiMP, to control and test more easily for more factors (es. verbs modes and tenses)
 % to test for frequency effect: use some rare verb modes/tenses?
 
 % also find an explanation for the other misclassified long non island sentences that use other constructus (with proper agent/patient semantic roles)
@@ -343,7 +348,7 @@ NB: the new data, for the long islands, has a more clearly unacceptable ..form: 
 While on human ratings the unacceptable sentences (long nonislands) receive all on average a z-score of about -1, there is more variability in the scores given by the models, in particular for whether islands sentences, which receive much higher acceptability rating on average.
 ..
 
-% TODO: remaining tables with accuracy scores, comparison with Blimp extraction islands scores; compare btw models, scoring measures, and datasets (Blimp, Sprouse, Madeddu)
+% TODO: remaining tables with accuracy scores, comparison with BLiMP extraction islands scores; compare btw models, scoring measures, and datasets (BLiMP, Sprouse, Madeddu)
 
 % todo: all the plots in the appendix (Bert, LP/PenLP, logistic LP/PenLP, .. ) and brief comments 
 % (like limitations of Bert acceptability estimates)
@@ -422,11 +427,11 @@ Analizzare le attivazioni nei vari livelli del modello ..
 Fare un training .”a strati”, in cui in ciascuno strato c’è il target dell’apprendimento di un livello di base della lingua (morfologia, sintassi, semantica, ampiezza del vocabolario, ..), con strati successivi che aumentano la complessità della conoscenza che il modello ha del linguaggio.
 
 
-Confronto percentuali accuratezza (short/long non island, short island) con quelle in Blimp
+Confronto percentuali accuratezza (short/long non island, short island) con quelle in BLiMP
 (and other works with extraction islands evaluations?)
 
 
-\section{Blimp English dataset}
+\section{BLiMP English dataset}
 ..
 \subsection{English models details}
 ..
