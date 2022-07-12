@@ -42,7 +42,21 @@
 % Listing for code (?)
 \usepackage{listings}          
 % To insert hyperlinks 
+
+% for referencing images and other labels across documents
+\usepackage{xr-hyper}
 \usepackage{hyperref}     
+% \externaldocument{chapters/AppendixA}
+% \begin{reusefigure}[<float spec>]{<ref>}
+	\newenvironment{reusefigure}[2][htbp]
+	{\addtocounter{figure}{-1}%
+		\renewcommand{\theHfigure}{dupe-fig}% If you're using hyperref
+		\renewcommand{\thefigure}{\ref{#2}}% Figure counter is \ref
+		%\renewcommand{\thefigure}{\ref{#2} (repeated)}% Figure counter + "(repeated)"
+		\renewcommand{\addcontentsline}[3]{}% Avoid placing figure in LoF
+		\begin{figure}[#1]}
+		{\end{figure}}
+	
 % For different types of underlinings
 \usepackage[normalem]{ulem}
 
@@ -63,6 +77,8 @@
 
 % \usepackage{fullpage}
 % \usepackage{amsmath,amssymb,amsthm}
+
+
 % -----------------------------------------------------------------
 
 % Changes the header style
