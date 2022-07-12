@@ -116,7 +116,7 @@ The The likert scale discretization and the z-score normalization where done con
 
 Results description: ..
 
-The results are shown in \autoref{tab:accResults}.
+The results are shown in \autoref{tab:accuracy_it_data}.
 
 % todo: also pivot this table with the phenomena as colums (since there are just 4 phenomena but many models)
 
@@ -145,7 +145,7 @@ The results are shown in \autoref{tab:accResults}.
 		  	& Short-I.S. & 59.3 & 96.6 & \textbf{100} & 98 & \textbf{100} & \textbf{100} & 37.3 & 69.5 & 93.2 & 93 \\ 		  	
 		\end{tabular}
 		\caption{Accuracy results for Gpt-2 and Bert Italian models, on a test suite of 50 items per phenomenon. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The Bert-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
-		\label{tab:accResults}
+		\label{tab:accuracy_it_data}
 	\end{center}
 \end{table}
 
@@ -193,9 +193,9 @@ The score on the first row are taken from \citet{warstadt2020blimp}
 % Fig.2 Results of acceptability judgements to the same stimuli from Sprouse et al. 2016 from an Italian Gpt-2 model (GePpeTto) with the PenLP acceptability ..score. 
 % Fig.3
 
-\subsection{Differences between the plots}
+\subsection{Dicussion on plots from Gpt-2, softmax and PenLP}
 
-In this section we discuss the results and plots with the Gpt-2 model and the PenLP sentence acceptability measure, since this combination seems to produce in general more accurate results. We include in the appendix the plots for the Bert models and the other acceptability measures (LP and PenLP based either on the model outputs after softmax of logistic activation functions).
+In this section we discuss the results and plots of the scores obtained from the Gpt-2 model outputs with the softmax activation function and the PenLP sentence acceptability measure. This combination seems to produce in general more accurate results. We include in the appendix the plots for the Bert models and the other acceptability measures (LP and PenLP based either on the model outputs after softmax of logistic activation functions).
 % TODO: also model outputs based on a logistic function, but as a probability (divide for the sum of all the scores, but without the skewed exponential effect of the softmax)
 ..
 
@@ -393,8 +393,8 @@ While on human ratings the unacceptable sentences (long nonislands) receive all 
 % LP/PenLP (softmax-based)
 % % LP/PenLP (logistic-based)
 
+\subsection{Dicussion on plots from BERT, the logistic function, and PenLP}
 
-\subsection{Observation on plots for other models}
 
 % Bert-like models, LP/PenLP scores also based on logistic function scores
 % (comment also on the accuracy scores from other models?)
@@ -406,15 +406,13 @@ While on human ratings the unacceptable sentences (long nonislands) receive all 
 	\label{fig:bert_penlp_l_sprouse}
 \end{figure}
 
-In \autoref{fig:bert_penlp_l_sprouse} we see the plots of the scores from the BERT model, the logistic function (rather than the softmax) applied to the outputs, and the PenLP sentence acceptability approximation. Interestingly, it seems that this combination of BERT with the logistic function distinguishes clearly between unacceptable (long-nonisland) and acceptable sentence types, while scores all the acceptable sentences the same.
+In \autoref{fig:bert_penlp_l_sprouse} we see the plots of the scores from the BERT model, with the logistic function (rather than the softmax) applied to the outputs, and the PenLP sentence acceptability approximation. Interestingly, it seems that this combination of BERT with the logistic function distinguishes clearly between unacceptable sentences (the long-nonisland type) and acceptable sentence types, with minimal, if any, difference in score between acceptable sentences.
 
-If we compare this with the accuracy scores from this model (BERT, logistic function, PenLP) in table ..3.1, we see that they are among the best in about half the cases, and quite low for the long-nonisland sentences of all four island phenomena (58\%, 64\%, 74\%, 58\% accuracy), and for the short-nonisland of subject islands (28\% accuracy) 
-
-
+If we compare this with the accuracy scores from this model (BERT, logistic function, PenLP) in \autoref{tab:accuracy_it_data}, we see that they are among the best in about half the cases, and quite low for the rest: long-nonisland sentences of all four island phenomena are scored with 58\%, 64\%, 74\%, 58\% accuracy, and the short-nonisland of subject islands with 28\% accuracy.
 
 With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with Bert and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
 
-
+\subsection{Observation on plots for other models}
 
 The plots for BERT with PenLP on the Sprouse data are similar to the results on humans from \citet{sprouse2016experimental}, ..with some ..differences..
 In the plots from the Gilberto scores, we see that for complex NP and subject islands, the sentences with the island structure receive a higher acceptability than the non island ones (this is no longer the case when removing the penalty for sentence lenght, using the LP sentence acceptability measure). With the PenLP sentence acceptability approximation, the lines tend to have similar slopes, close to being parallel (indicating a lack of, or small, island effect). Overall, for Gilberto, the plots ..are significantly different from those on human ratings.
