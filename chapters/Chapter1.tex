@@ -38,28 +38,46 @@ For BERT-like models, we use the estimate from \citet{lau2020furiously} of the l
 
 \subsection{Introduction}
 
-Here is a sample item for the adjunct island phenomenon: % numbered "formula"/Table with the four sentences of an example item ..
+Here are two sample items for the adjunct island complex NP island phenomena from the test suite we developed for this thesis:
 
 \begin{example}
 	\textsc{Adjunct islands}
-		\renewcommand{\labelenumi}{\alph{enumi}.}
-		\begin{enumerate}
-			\item \textsc{Short-NonIsland:} \\
-			Chi dice che l’autore avrebbe inviato il libro all’editore? \\
-			(`Who says that the author had sent the book to the publisher?')
-			\item \textsc{Long-NonIsland:} \\
-			Che cosa dici che l'autore avrebbe inviato all’editore? \\
-			(`What do you say that the author had sent to the publisher?')
-			\item \textsc{Short-Island:} \\
-			Chi ha stampato l’illustrazione dopo che l'autore ha inviato il libro all’editore? \\
-			(`Who printed the illustration after the author sent the book to the publisher?')
-			\item \textsc{Long-Island:} \\				
-			Che cosa il disegnatore ha stampato l’illustrazione dopo che l'autore ha inviato all’editore? \\
-			(`What did the designer printe the illustration after the author sent to the publisher?')
-			
-		\end{enumerate}
-
+	\renewcommand{\labelenumi}{\alph{enumi}.}
+	\begin{enumerate}
+		\item \textsc{Short-NonIsland:} \\
+		Chi dice che l’autore avrebbe inviato il libro all’editore? \\
+		(`Who says that the author had sent the book to the publisher?')
+		\item \textsc{Long-NonIsland:} \\
+		Che cosa dici che l'autore avrebbe inviato all’editore? \\
+		(`What do you say that the author had sent to the publisher?')
+		\item \textsc{Short-Island:} \\
+		Chi ha stampato l’illustrazione dopo che l'autore ha inviato il libro all’editore? \\
+		(`Who printed the illustration after the author sent the book to the publisher?')
+		\item \textsc{Long-Island:} \\				
+		Che cosa il disegnatore ha stampato l’illustrazione dopo che l'autore ha inviato all’editore? \\
+		(`What did the designer printe the illustration after the author sent to the publisher?')
+	\end{enumerate}
 	\label{adjunct_item_1}
+\end{example}
+
+\begin{example}
+	\textsc{Complex NP islands}
+	\renewcommand{\labelenumi}{\alph{enumi}.}
+	\begin{enumerate}
+		\item \textsc{Short-NonIsland:} \\
+		Chi ha smentito che l'agenzia avrebbe diffuso il sondaggio? \\
+		(`Who denied that the agency had released the poll?')
+		\item \textsc{Long-NonIsland:} \\
+		Cosa hai smentito che l'agenzia avrebbe diffuso? \\
+		(`What have you denied that the agency had released?')
+		\item \textsc{Short-Island:} \\
+		Chi ha smentito la voce che l'agenzia avrebbe diffuso il sondaggio? \\
+		(`Who denied the rumor that the agency had released the poll?')
+		\item \textsc{Long-Island:} \\				
+		Cosa hai smentito la voce che l'agenzia avrebbe diffuso? \\
+		(`What have you denied the rumor that the agency had released?')
+	\end{enumerate}
+	\label{complex_item_1}
 \end{example}
 
 As in \citet{sprouse2016experimental}, this factorial design is aimed at isolating two factors that could impact the acceptability of a sentence: the effect of having a long-distance dependency (e.g. a wh-dependency), and the effect of having a complex syntactic structure like a syntactic island. Each item as \autoref{adjunct_item_1} has four sentences given by the combination of these two factors. 
@@ -250,29 +268,6 @@ We include in the appendix the plots for the BERT models and the other acceptabi
 
 
 \subsubsection{Complex np islands}
-
-Here is a sample item from the complex NP island test suite we developed for this thesis:
-
-\renewcommand{\labelenumi}{(\arabic{enumi})}
-\begin{enumerate}
-	\item \textsc{Complex NP islands}
-	\renewcommand{\labelenumii}{\alph{enumii}.}
-	\begin{enumerate}
-		\item \textsc{Short-NonIsland:} \\
-		Chi ha smentito che l'agenzia avrebbe diffuso il sondaggio? \\
-		(`Who denied that the agency had released the poll?')
-		\item \textsc{Long-NonIsland:} \\
-		Cosa hai smentito che l'agenzia avrebbe diffuso? \\
-		(`What have you denied that the agency had released?')
-		\item \textsc{Short-Island:} \\
-		Chi ha smentito la voce che l'agenzia avrebbe diffuso il sondaggio? \\
-		(`Who denied the rumor that the agency had released the poll?')
-		\item \textsc{Long-Island:} \\				
-		Cosa hai smentito la voce che l'agenzia avrebbe diffuso? \\
-		(`What have you denied the rumor that the agency had released?')
-		
-	\end{enumerate}
-\end{enumerate}
 
 In the middle and right images on \autoref{fig:wh_complex}, we see that, for complex NP items, the long non-island sentences on average get scored by the Gpt-2 model with a lower acceptability than by the human subjects (left image). This seems to be due to the long distance dependency effect, that gets exacerbated as a sentence increases in lenght (in these test suites, the complex NP islands examples have longer sentences).
 
