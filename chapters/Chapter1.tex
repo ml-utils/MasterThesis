@@ -115,12 +115,8 @@ To be more directly comparable with the results in \citet{sprouse2016experimenta
 Since for humans the likert scale discretization and the z-score normalization were done normalizing all the score of each individual separately, we considered a model (like a Gpt-2 instance) with a particular sentence acceptability approximation (LP or PenLP) as the equivalent of a human subject, normalizing in the same scale all its scores across the four wh-dependency island effects phenomena of a particular test suite.
 
 \chapter{Results}
-..
 
 \section{Accuracy results for island effects minimal pairs in Italian}
-..
-
-\subsection{Results tables}
 
 In \autoref{tab:accuracy_it_data} we see the the accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_item_1}. 
 \\ Each acceptable sentence of an item like \autoref{adjunct_item_1} is compared with the unacceptable sentence, and the score is considered accurate if the acceptable sentence receives an higher score than the unacceptable one.
@@ -131,6 +127,9 @@ For instance, on the first row of results, we see the scores for the adjunct isl
 
 All models seem to struggle with the Short-Island sentence type of the Subject islands phenomenon, with the highest score being 68\%. (TODO: see which of the 50 sentences are scored higher/lower, and why).
 
+On average, the Gpt-2 model with the PenLP scoring measure performs best, with a 86.1\% mean accuracy.
+
+Although it's between different languages (English and Italian), the scores on \autoref{adjunct_item_1} seem to be higher than the ones on the BLiMP benchmark in \autoref{tab:accuracy_blimp}. TODO: compare BLiMP data with accuracies on Sprouse English test suite.
 
 
 \begin{table} \scriptsize 
@@ -201,21 +200,21 @@ All models seem to struggle with the Short-Island sentence type of the Subject i
 		\label{tab:accuracy_it_data_sprouse}
 	\end{center}
 \end{table}
-..
-\subsection{Discussion}
 
 ..
+% \subsection{Discussion}
+% ..
+
 % TODO: table reproducitng BLiMP accuracy scores, and scoring the same dataset on more model including BERT-linke ones (in English)
 % Compare with accuracy scores on BLiMP (English) and the factorial test suites, on the same phenomena
 
 % (also add table with accuracy scores on Sprouse test suite, 8 items per phenomenon)
 % (? table on DD accuracy? ..)
 
-\subsection{Comparison with BLiMP results on island effects in English}
+% \subsection{Comparison with BLiMP results on island effects in English}
+% ..
 
-..
-
-The score on the first row are taken from \citet{warstadt2020blimp}
+% The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
 
 \begin{table} 
 	\begin{center}
@@ -238,7 +237,6 @@ The score on the first row are taken from \citet{warstadt2020blimp}
 		\label{tab:accuracy_blimp}
 	\end{center}
 \end{table}
-
 
 
 \section{Factorial tests results}
