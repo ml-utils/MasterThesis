@@ -18,6 +18,16 @@
 
 The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are:
 
+\subsection{Softmax, logistic function, and other activation functions applied to the models' output}
+\label{sec:softmax}
+We calculated the LP and PenLP measures taking as a basis the models' outputs after the softmax activation function applied to the last layer. 
+
+As an alternative, for BERT-based models, we also experimented with using a logistic function rather then the softmax. We called the resulting scores LP-L and PenLP-L to distinguish them from the softmax based ones. Note that with the logistic function, for the masked word prediction scores, we still obtain a value between [0, 1] for each word in the model vocabulary, but this is not a probability since the sum of all the values is greater than one.
+% TODO: consider normalizing so the sum is equal to 1?.
+% see paper by .. , in which, instead of the top k scores, for predictions they use the ..top-p, that is, the top words that in aggregate reach a probability threshold p. NB: the purpose of such measure is for text generation, and it doesn't seem applyable to the present study (sentence scoring).
+
+The formulas for LP and PenLP (taken from \citep{lau2020furiously})are:
+
 \begin{displaymath}
 	LP = \log P(s)
 \end{displaymath}
@@ -353,8 +363,8 @@ With other variations experiments, we found that replacing the main clause verb 
 % a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
 % but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
 
-% for future work: automatic generation of examples from templates, like in BLiMP, to control and test more easily for more factors (es. verbs modes and tenses)
-% to test for frequency effect: use some rare verb modes/tenses?
+% for future work: automatic generation of examples from templates, like in BLiMP, to control and test more easily for more factors (es. verbs moods and tenses)
+% to test for frequency effect: use some rare verb moods/tenses?
 
 % also find an explanation for the other misclassified long non island sentences that use other constructus (with proper agent/patient semantic roles)
 
@@ -385,8 +395,28 @@ The slope of the lines (both for island and non-island sentence structures) is h
 
 ..
 
-
 % TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
+
+Experimenting with other sentence variations for whether islands, we found that a variation that aligns the plots more to those from the humans' scores, is replacing the personal pronouns (like "io") with proper nouns (like "Gianni") or common nouns (like “il parlamentare”, or “lo studente”)  like in this example: 
+
+\begin{example}	\textsc{Whether islands, Long-Island sentence type}
+	\renewcommand{\labelenumi}{\alph{enumi}.}
+	\begin{enumerate}
+		\item 
+		Cosa ti domandi se io abbia riscosso?
+		\item 
+		Cosa ti domandi se Gianni abbia riscosso?
+		\item 
+		Cosa ti domandi se il parlamentare abbia riscosso?
+	\end{enumerate}
+	\label{variation_2}
+\end{example}
+
+% This might be the reason for the discrepancies in some of the 4 phenomena: some make more use of ..nomen agentis, while others rely more on personal pronuns. Try this replacement this in all 4 test sets.
+TODO: put scores values and/or to quantify the effect of these variations.
+
+TODO: test sentence variations using less common verb tenses and moods  % Not much difference seems to derive by using less common (..) verbs
+% (examples in which both sentences in a pair also specify the direct object, see how this affects the score? Like long nonisland vs long island ..)
 
 
 \subsubsection{Subject islands}
@@ -421,12 +451,12 @@ Note that in the test suite we developed for this thesis, the Long-Island senten
 % in the sprouse data, at the end there is a preprositional ..phrase like “in ufficio”.
 
 
-\subsubsection{Overall}
+\subsubsection{Overall observations across all four island phenomena}
 
 The Gpt-2 scores on the original Sprouse et al. test suite (middle image) have wider standard error bars, which are considerably smaller for the new test suite developed for the present thesis (right image).\footnote{This might be due to the fact that the number of items between the two test suites increases from 8 to 50.}
 
 
-While on human ratings the unacceptable sentences (long nonislands) receive all on average a z-score of about -1, there is more variability in the scores given by the models, in particular for whether islands sentences, which receive much higher acceptability rating on average.
+While on human ratings the unacceptable sentences (Long-NonIslands) receive all on average a z-score of about -1, there is more variability in the scores given by the Gpt model, in particular for whether islands sentences (\autoref{fig:wh_whether}), which receive much higher acceptability rating on average (betwenn 0 and 0.5 the Sprouse test suite and ours).
 ..
 
 % TODO: remaining tables with accuracy scores, comparison with BLiMP extraction islands scores; compare btw models, scoring measures, and datasets (BLiMP, Sprouse, Madeddu)
@@ -453,18 +483,21 @@ While on human ratings the unacceptable sentences (long nonislands) receive all 
 % BERT-like models, LP/PenLP scores also based on logistic function scores
 % (comment also on the accuracy scores from other models?)
 
-\begin{figure}
-\centering
+In \autoref{fig:bert_penlp_l_sprouse} we see the plots of the scores from the BERT model, with the PenLP-L sentence acceptability estimate (using the logistic function rather than the softmax, as described in \autoref{sec:softmax}). Interestingly, it seems that this combination of BERT with the logistic function makes a clear separation between unacceptable sentences (the Long-NonIsland type) and acceptable sentence types, with minimal, if any, difference in score between acceptable sentences.
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=1\textwidth]{images/AppendixA/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_PLL-zscores-likert-2022-07-11.png} 
-	\caption{Plots from BERT and PenLP-L sentence acceptability approximation}
+	\caption{Plots from BERT with the PenLP-L sentence acceptability approximation}
 	\label{fig:bert_penlp_l_sprouse}
 \end{figure}
 
-In \autoref{fig:bert_penlp_l_sprouse} we see the plots of the scores from the BERT model, with the logistic function (rather than the softmax) applied to the outputs, and the PenLP sentence acceptability approximation. Interestingly, it seems that this combination of BERT with the logistic function distinguishes clearly between unacceptable sentences (the long-nonisland type) and acceptable sentence types, with minimal, if any, difference in score between acceptable sentences.
+If we compare these plots with the accuracy scores in \autoref{tab:accuracy_it_data} from this model (BERT, logistic function, PenLP) , we see that they are among the best with an average accuracy of 80.7\%; however, looking at the scores for each phenomenon, the scores are high only in about half the cases, and quite low for the rest: Long-NonIsland sentences of all four island phenomena are scored with 58\%, 64\%, 74\%, 58\% accuracy, and the Short-NonIsland of subject islands with 28\% accuracy.
 
-If we compare this with the accuracy scores from this model (BERT, logistic function, PenLP) in \autoref{tab:accuracy_it_data}, we see that they are among the best in about half the cases, and quite low for the rest: long-nonisland sentences of all four island phenomena are scored with 58\%, 64\%, 74\%, 58\% accuracy, and the short-nonisland of subject islands with 28\% accuracy.
+TODO: check if this is also a skewing effect of the normalization (from the likert scale and the z-scores) and the presence of much negative large values for the unacceptable sentences: in this case the normalization would ..squeeze together the score for the acceptable sentences, if they have a smaller magnitude.
 
-With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with BERT and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
+% With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with BERT and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
+
 
 \subsection{Observation on plots for other models}
 
@@ -486,12 +519,6 @@ We refer to the Appendix for the plots for the other models.
 ..
 
 \subsubsection{Whether islands}
-Replacing personal pronouns with proper nouns or .. (like “il parlamentare”, “lo studente”, ..) aligns more the scores with those of humans.
-This might be the reason for the discrepancies in some of the 4 phenomena: some make more use of ..nomen agentis, while others rely more on personal pronuns.
-Try this replacement this in all 4 test sets.
-
-Not much difference seems to derive by using less common (..) verbs .. 
-(examples in which both sentences in a pair also specify the direct object, see how this affects the score? Like long nonisland vs long island ..)
 
 
 \subsubsection{Subject islands}
