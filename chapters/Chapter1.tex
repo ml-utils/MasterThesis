@@ -477,8 +477,8 @@ While on human ratings the unacceptable sentences (Long-NonIslands) receive all 
 % LP/PenLP (softmax-based)
 % % LP/PenLP (logistic-based)
 
-\subsection{Discussion on plots from BERT, the logistic function, and PenLP}
 
+\subsection{Discussion on plots from BERT, the logistic function, and PenLP}
 
 % BERT-like models, LP/PenLP scores also based on logistic function scores
 % (comment also on the accuracy scores from other models?)
@@ -498,13 +498,28 @@ TODO: check if this is also a skewing effect of the normalization (from the like
 
 % With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with BERT and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
 
+\subsection{Discussion on plots from GilBERTo}
 
+Overall, for GilBERTo, the plots are significantly different from those on human ratings. (..)
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/AppendixA/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-07-11.png} 
+	\caption{Plots from BERT with the PenLP-L sentence acceptability approximation}
+	\label{fig:gilberto_lp_madeddu}
+\end{figure}
+
+\section{Drafts}
 \subsection{Observation on plots for other models}
 
-The plots for BERT with PenLP on the Sprouse data are similar to the results on humans from \citet{sprouse2016experimental}, ..with some ..differences..
-In the plots from the Gilberto scores, we see that for complex NP and subject islands, the sentences with the island structure receive a higher acceptability than the non island ones (this is no longer the case when removing the penalty for sentence lenght, using the LP sentence acceptability measure). With the PenLP sentence acceptability approximation, the lines tend to have similar slopes, close to being parallel (indicating a lack of, or small, island effect). Overall, for Gilberto, the plots ..are significantly different from those on human ratings.
 
 The plots for Geppetto and PenLp are the most similar to the plots on human ratings. However, with the LP measure, the plots differ significantly.
+
+The plots for BERT with PenLP on the Sprouse data are similar to the results on humans from \citet{sprouse2016experimental}, ..with some ..differences..
+
+
+In the plots from the GilBERTo scores, we see that for complex NP and subject islands, the sentences with the island structure receive a higher acceptability than the non island ones (this is no longer the case when removing the penalty for sentence lenght, using the LP sentence acceptability measure). With the PenLP sentence acceptability approximation, the lines tend to have similar slopes, close to being parallel (indicating a lack of, or small, island effect). 
+
 
 Plots on the Madeddu dataset developed for the present thesis:
 
@@ -516,13 +531,7 @@ Using the logistic function scores, again we see the ..binary differentiation bt
 We refer to the Appendix for the plots for the other models.
 
 \subsection{What seems to affect the models acceptability scores}
-..
 
-\subsubsection{Whether islands}
-
-
-\subsubsection{Subject islands}
-..
 
 \subsubsection{Adjunct islands}
 
