@@ -11,7 +11,7 @@
 % C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
 ..
 
-\subsection{On the output of Bert-like bidirectional language models}
+\subsection{On the output of BERT-like bidirectional language models}
 ..
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
@@ -28,7 +28,7 @@ The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet
 
 Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides the \( LP \) estimate by a penalty term which depends on the sentence lenght \( |s| \), measured in number of tokens. Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
 
-For Bert-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
+For BERT-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
 ..
 
 
@@ -40,7 +40,7 @@ For Bert-like models, we use the estimate from \citet{lau2020furiously} of the l
 
 \subsection{Italian models details}
 
-\textbf{Bert} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
+\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
  424 MB.
 
 \textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
@@ -131,7 +131,7 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
-			  &  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{4}{c|}{\textbf{Bert (it)}}  & \multicolumn{4}{c|}{\textbf{GilBERTo (it)}} \\
+			  &  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{4}{c|}{\textbf{BERT (it)}}  & \multicolumn{4}{c|}{\textbf{GilBERTo (it)}} \\
 			 \textbf{Pheno-menon} & \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP-L & Pen LP-L & LP & Pen LP & LP-L & Pen LP-L \\
 			\hline
 			\multirow{3}{0.8cm}{Wh-adjunct}  
@@ -154,7 +154,7 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 					  	& Long-N.I. & \textbf{100} & \textbf{100} & 66 & 40 & 60 & 58 & \textbf{100} & 98.3 & 78 & 78 \\ 
 		  				& Short-I.S. & 59.3 & 96.6 & \textbf{100} & 98 & \textbf{100} & \textbf{100} & 37.3 & 69.5 & 93.2 & 93 \\ 		  	
 		\end{tabular}
-		\caption{Accuracy results for Gpt-2 and Bert Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The Bert-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
+		\caption{Accuracy results for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
 		\label{tab:accuracy_it_data}
 	\end{center}
 \end{table}
@@ -165,7 +165,7 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
-			&  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{4}{c|}{\textbf{Bert (it)}}  & \multicolumn{4}{c|}{\textbf{GilBERTo (it)}} \\
+			&  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{4}{c|}{\textbf{BERT (it)}}  & \multicolumn{4}{c|}{\textbf{GilBERTo (it)}} \\
 			\textbf{Pheno-menon} 
 				& \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP-L & Pen LP-L & LP & Pen LP & LP-L & Pen LP-L \\
 			\hline
@@ -189,7 +189,7 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 				& Long-N.I.   & \textbf{100}  & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 87.5 & 87.5  \\ 
 				& Short-I.S.  & 62.5 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}	& 25  & 62.5 & \textbf{100}  & \textbf{100} \\ 
 		\end{tabular}
-		\caption{Accuracy results for Gpt-2 and Bert Italian models, on the Italian test suite from \citet{sprouse2016experimental}.}
+		\caption{Accuracy results for Gpt-2 and BERT Italian models, on the Italian test suite from \citet{sprouse2016experimental}.}
 		\label{tab:accuracy_it_data_sprouse}
 	\end{center}
 \end{table}
@@ -197,7 +197,7 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 \subsection{Discussion}
 
 ..
-% TODO: table reproducitng BLiMP accuracy scores, and scoring the same dataset on more model including Bert-linke ones (in English)
+% TODO: table reproducitng BLiMP accuracy scores, and scoring the same dataset on more model including BERT-linke ones (in English)
 % Compare with accuracy scores on BLiMP (English) and the factorial test suites, on the same phenomena
 
 % (also add table with accuracy scores on Sprouse test suite, 8 items per phenomenon)
@@ -218,13 +218,15 @@ The score on the first row are taken from \citet{warstadt2020blimp}
 			Gpt2-large 					& 90.2 			& 72 			& 79.1 \\ 
 	  		Gpt2-medium 				& \textbf{91.6} & 72.3			& 77.9 \\
 	  		Gpt2 						& 91.3 			& 68.8 			& 82.2 \\
-	  		Bert-large-cased (PenLP)	& 86.3			& 67.4 			& 69.4 \\
-	  		Bert-base-cased (PenLP)		& 88.1 			& 56 			& 66.2 \\
-	  		Roberta-large (PenLP)		& 88.6			& \textbf{82.2}	& \textbf{87.5} \\
-	  		Roberta-base(PenLP)			& 82.9			& 62.1 			& 79.2 \\   
+	  		BERT-large-cased (PenLP)	& 86.3			& 67.4 			& 69.4 \\
+	  		BERT-base-cased (PenLP)		& 88.1 			& 56 			& 66.2 \\
+	  		RoBERTa-large (PenLP)		& 88.6			& \textbf{82.2}	& \textbf{87.5} \\
+	  		RoBERTa-base(PenLP)			& 82.9			& 62.1 			& 79.2 \\   
 	  		 
 		\end{tabular}
-		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} \\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores}
+		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} 
+			\\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores.
+			\\ TODO: rerun the BLiMP and Sprouse English tests with the RoBERTa model from \citet{bostrom2020byte}, which uses a more linguistically/morphologically plausible subword splitting, to see if performance improves.}
 		\label{tab:accResultsBLiMP}
 	\end{center}
 \end{table}
@@ -241,7 +243,7 @@ The score on the first row are taken from \citet{warstadt2020blimp}
 
 \subsection{Discussion on plots from Gpt-2, softmax and PenLP}
 
-In this section we discuss the results and plots of the scores obtained from the Gpt-2 model outputs with the softmax activation function and the PenLP sentence acceptability measure. This combination seems to produce in general more accurate results. We include in the appendix the plots for the Bert models and the other acceptability measures (LP and PenLP based either on the model outputs after softmax of logistic activation functions).
+In this section we discuss the results and plots of the scores obtained from the Gpt-2 model outputs with the softmax activation function and the PenLP sentence acceptability measure. This combination seems to produce in general more accurate results. We include in the appendix the plots for the BERT models and the other acceptability measures (LP and PenLP based either on the model outputs after softmax of logistic activation functions).
 % TODO: also model outputs based on a logistic function, but as a probability (divide for the sum of all the scores, but without the skewed exponential effect of the softmax)
 ..
 
@@ -423,8 +425,8 @@ While on human ratings the unacceptable sentences (long nonislands) receive all 
 
 % TODO: remaining tables with accuracy scores, comparison with BLiMP extraction islands scores; compare btw models, scoring measures, and datasets (BLiMP, Sprouse, Madeddu)
 
-% todo: all the plots in the appendix (Bert, LP/PenLP, logistic LP/PenLP, .. ) and brief comments 
-% (like limitations of Bert acceptability estimates)
+% todo: all the plots in the appendix (BERT, LP/PenLP, logistic LP/PenLP, .. ) and brief comments 
+% (like limitations of BERT acceptability estimates)
 
 % Italian models:
 % "LorenzoDeMattei/GePpeTto"
@@ -442,7 +444,7 @@ While on human ratings the unacceptable sentences (long nonislands) receive all 
 \subsection{Discussion on plots from BERT, the logistic function, and PenLP}
 
 
-% Bert-like models, LP/PenLP scores also based on logistic function scores
+% BERT-like models, LP/PenLP scores also based on logistic function scores
 % (comment also on the accuracy scores from other models?)
 
 \begin{figure}
@@ -456,7 +458,7 @@ In \autoref{fig:bert_penlp_l_sprouse} we see the plots of the scores from the BE
 
 If we compare this with the accuracy scores from this model (BERT, logistic function, PenLP) in \autoref{tab:accuracy_it_data}, we see that they are among the best in about half the cases, and quite low for the rest: long-nonisland sentences of all four island phenomena are scored with 58\%, 64\%, 74\%, 58\% accuracy, and the short-nonisland of subject islands with 28\% accuracy.
 
-With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with Bert and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
+With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with BERT and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
 
 \subsection{Observation on plots for other models}
 
@@ -467,7 +469,7 @@ The plots for Geppetto and PenLp are the most similar to the plots on human rati
 
 Plots on the Madeddu dataset developed for the present thesis:
 
-Bert, softmax, PenLP and LP
+BERT, softmax, PenLP and LP
 ..
 for adjunct islands, LP seem to work best (without penalizing for sentence lenght).
 Using the logistic function scores, again we see the ..binary differentiation btween unacceptable (long non island) and acceptable (the other 3 types) sentences. However here the plots are more ..flattened, with the scores being very close to the same values.
