@@ -76,10 +76,10 @@ Here is a sample item from the adjunct island phenomenon: % numbered "formula"/T
 			
 		\end{enumerate}
 
-	\label{test example}
+	\label{adjunct_item_1}
 \end{example}
 
-Reference the above example: \ref{test example}
+Reference the above example: \autoref{adjunct_item_1}
 
 Two factors, dependency distance and presence or absence of an island structure. Each item has four sentences given by the combination of these two factors. We briefly call "short-nonisland" the sentence with a short-distance dependency and the lack of an island structure. For instance, for .. islands, we have these four ..
 
@@ -117,16 +117,18 @@ Since for humans the likert scale discretization and the z-score normalization w
 \chapter{Results}
 ..
 
-\section{Accuracy results on island effects minimal pairs in Italian}
+\section{Accuracy results for island effects minimal pairs in Italian}
 ..
 
-\subsection{Results table}
+\subsection{Results tables}
 
-Results description: ..
+In \autoref{tab:accuracy_it_data} we see the the accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_item_1}. 
+\\ Each acceptable sentence of an item like \autoref{adjunct_item_1} is compared with the unacceptable sentence, and the score is considered accurate if the acceptable sentence receives an higher score than the unacceptable one.
 
-The results are shown in \autoref{tab:accuracy_it_data}.
+For instance, on the first row of results, we see the scores for the adjunct island phenomenon (with wh-dependencies), where the acceptable Short-NonIsland sentence gets scored higher than the unacceptable sentence (Long-Island) 96 \% of the times by the Gpt-2 model with the LP sentence acceptability estimate.
 
-% todo: also pivot this table with the phenomena as colums (since there are just 4 phenomena but many models)
+..
+
 
 \begin{table} \scriptsize 
 	\begin{center}
@@ -154,12 +156,12 @@ The results are shown in \autoref{tab:accuracy_it_data}.
 					  	& Long-N.I. & \textbf{100} & \textbf{100} & 66 & 40 & 60 & 58 & \textbf{100} & 98.3 & 78 & 78 \\ 
 		  				& Short-I.S. & 59.3 & 96.6 & \textbf{100} & 98 & \textbf{100} & \textbf{100} & 37.3 & 69.5 & 93.2 & 93 \\ 		  	
 		\end{tabular}
-		\caption{Accuracy results for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
+		\caption{Accuracy percentages for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
 		\label{tab:accuracy_it_data}
 	\end{center}
 \end{table}
 
-..
+
 
 
 \begin{table} \scriptsize 
@@ -227,7 +229,7 @@ The score on the first row are taken from \citet{warstadt2020blimp}
 		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} 
 			\\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores.
 			\\ TODO: rerun the BLiMP and Sprouse English tests with the RoBERTa model from \citet{bostrom2020byte}, which uses a more linguistically/morphologically plausible subword splitting, to see if performance improves.}
-		\label{tab:accResultsBLiMP}
+		\label{tab:accuracy_blimp}
 	\end{center}
 \end{table}
 
