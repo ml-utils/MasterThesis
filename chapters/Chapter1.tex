@@ -1,21 +1,18 @@
 \chapter{Introduction}
 
-..
 
-\section{Introduction}
-
-\subsection{On the output of Gpt unidirectional language models}
+\section{On the output of Gpt unidirectional language models}
 % TODO: intended meaning of the loss measure, sentence likelihood, contrast with sentence acceptability, .., ungrammatical sentences that are more likely than rarer grammatical ones, ..)
 % (math formulas of Gpt output, activation functions..)
 
 % C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
-..
+(TODO)
 
-\subsection{On the output of BERT-like bidirectional language models}
-..
+\section{On the output of BERT-like bidirectional language models}
+(TODO)
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
-\subsection{Sentence acceptability estimates}
+\section{Sentence acceptability estimates}
 
 The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are:
 
@@ -29,33 +26,19 @@ The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet
 Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides the \( LP \) estimate by a penalty term which depends on the sentence lenght \( |s| \), measured in number of tokens. Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
 
 For BERT-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
-..
+\\ ..
+
+\section{Overview on island effects}
+(TODO)
 
 
 \chapter{Experimental design}
-..
-
-\subsection{Test description}
-..
-
-\subsection{Italian models details}
-
-\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
- 424 MB.
-
-\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
-
-\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
-
 
 \section{Factorial test design}
-..
-
-
 
 \subsection{Introduction}
 
-Here is a sample item from the adjunct island phenomenon: % numbered "formula"/Table with the four sentences of an example item ..
+Here is a sample item for the adjunct island phenomenon: % numbered "formula"/Table with the four sentences of an example item ..
 
 \begin{example}
 	\textsc{Adjunct islands}
@@ -79,40 +62,47 @@ Here is a sample item from the adjunct island phenomenon: % numbered "formula"/T
 	\label{adjunct_item_1}
 \end{example}
 
-Reference the above example: \autoref{adjunct_item_1}
+As in \citet{sprouse2016experimental}, this factorial design is aimed at isolating two factors that could impact the acceptability of a sentence: the effect of having a long-distance dependency (e.g. a wh-dependency), and the effect of having a complex syntactic structure like a syntactic island. Each item as \autoref{adjunct_item_1} has four sentences given by the combination of these two factors. 
 
-Two factors, dependency distance and presence or absence of an island structure. Each item has four sentences given by the combination of these two factors. We briefly call "short-nonisland" the sentence with a short-distance dependency and the lack of an island structure. For instance, for .. islands, we have these four ..
+In \autoref{adjunct_item_1}, the Short-NonIsland sentence has a short distance dependency, because the arguments of the main clause verb "dice" are next to it. The Long-NonIsland sentence, on the other hand, has a long-distance dependency, because the interrogative "Che cosa" depends to the verb of the subordinate clause "avrebbe inviato", as a direct object "gap".
+..
 
+% describe / introduce wh-dependencies
 
-Four phenomena of island effect structures: whether, complex np, subject, and adjunct islands. Wh-dependencies (we leave rc-dependencies to future work.)
+In the present thesis, we focus on four phenomena of island effect structures: whether islands, complex np islands, subject islands, and adjunct islands, all based on wh-dependencies (we leave rc-dependencies like those treated in \citet{sprouse2016experimental}, for future work.)
 
 
 
 \subsubsection{Using factorial sentences as minimal pairs}
-..
-In the present thesis, we also use the four sentences of each item of the factorial test design, to draw three minimal pairs, comparing the three acceptable sentences (long and short non-island, and the short-island types) with the unacceptable one (the long-nonisland sentence type). We then score these minimal pairs for accuracy, considering that a model scores accurately a pair of sentences if it gives and higher acceptability score for the grammatical sentence.
 
-Using sentences from the factorial design to do minimal pairs comparisons and get accuracy scores ..)
+
+In the present thesis, we also use the four sentences of each item of the factorial test design, to draw three minimal pairs, comparing the three acceptable sentences (long and short non-island, and the short-island types) with the unacceptable one (the long-nonisland sentence type). We then score these minimal pairs for accuracy, considering that a model scores accurately a pair of sentences if it gives an higher acceptability score to the acceptable sentence rather than the unacceptable one.
+
 ..
 
 \subsection{Test suites}
 
-For the present thesis, we develop a new test suite that follows the same paradigm form as the one in \citet{sprouse2016experimental}, but with an increased item number of 50 (from the original 8). As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 items, which in turn are composed by four sentences covering the combinations of two factors: presence or absence of an island structure, and a short or long-distance dependency.
+For the present thesis, we develop a new test suite that follows the same paradigm form as the one in \citet{sprouse2016experimental}, but with an increased item number of 50 (from the original 8). As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 items, which in turn are composed by four sentences as in \autoref{adjunct_item_1}, covering the combinations of two factors: presence or absence of an island structure, and a short or long-distance dependency.
 
-In the present work we treat only wh-dependencies and leave relative clause dependencies for future work.
 
-Here is a sample item for whether islands:
-..
-
-Descritpion: ..
-
-Here follows a sample item for the other 3 island structure types
 
 \subsubsection{Scores normalization}
 
 To be more directly comparable with the results in \citet{sprouse2016experimental}, the scores (LP or PenLP) were then discretized into a 7-point likert scale (using bins rather than quantiles) and normalized into z-scores.
 
 Since for humans the likert scale discretization and the z-score normalization were done normalizing all the score of each individual separately, we considered a model (like a Gpt-2 instance) with a particular sentence acceptability approximation (LP or PenLP) as the equivalent of a human subject, normalizing in the same scale all its scores across the four wh-dependency island effects phenomena of a particular test suite.
+
+
+\subsection{Italian models details}
+
+\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
+424 MB.
+
+\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
+
+\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
+
+
 
 \chapter{Results}
 
@@ -249,7 +239,12 @@ Although it's between different languages (English and Italian), the scores on \
 
 \subsection{Discussion on plots from Gpt-2, softmax and PenLP}
 
-In this section we discuss the results and plots of the scores obtained from the Gpt-2 model outputs with the softmax activation function and the PenLP sentence acceptability measure. This combination seems to produce in general more accurate results. We include in the appendix the plots for the BERT models and the other acceptability measures (LP and PenLP based either on the model outputs after softmax of logistic activation functions).
+In this section we discuss the results and plots of the scores obtained from the Gpt-2 model outputs with the softmax activation function and the PenLP sentence acceptability measure. 
+
+We choose to focus on this combination because it seems to produce in general more accurate results as seen in \autoref{tab:accuracy_it_data}. 
+
+We include in the appendix the plots for the BERT models and the other acceptability measures (LP and PenLP based either on the model outputs after softmax of logistic activation functions).
+
 % TODO: also model outputs based on a logistic function, but as a probability (divide for the sum of all the scores, but without the skewed exponential effect of the softmax)
 ..
 
