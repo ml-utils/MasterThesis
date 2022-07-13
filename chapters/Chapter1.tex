@@ -286,7 +286,7 @@ We include in the appendix the plots for the BERT models and the other acceptabi
 
 In the middle and right images on \autoref{fig:wh_complex}, we see that, for complex NP items, the long non-island sentences on average get scored by the Gpt-2 model with a lower acceptability than by the human subjects (left image). This seems to be due to the long distance dependency effect, that gets exacerbated as a sentence increases in lenght (in these test suites, the complex NP islands examples have longer sentences).
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-complex.png} 
 	\caption{Comparison of plots for wh-dependencies complex NP islands} 
@@ -335,8 +335,8 @@ An hypothesis, whose demonstration we leave for future work, is that this is due
 
 \bigskip
 % TODO: insert plot of variations
-With other variations experiments, we found that replacing the main clause verb with "sapeva che"/"conosceva che" ("he knew that", see examples in table ..TODO), increases the acceptability of the long-non island sentences; on the other hand, this variation results in a lower acceptability to the short island sentence, compared to the scores from human subjects, and by this way the non-island and island line end up being almost parallel, with the DD score close to zero, which indicates an almost absent island effect when subracting the effect of the other factors.
-
+With other variations experiments, we found that replacing the main clause verb with "sapeva che"/"conosceva che" ("he knew that", see examples in table ..TODO), increases the acceptability of the long-non island sentences; on the other hand, this variation results in a lower acceptability to the short island sentence, compared to the scores from human subjects, and by this way the non-island and island line end up being almost parallel, with the DD score close to zero (which indicates an almost absent island effect).
+\\ TODO: add table and plots of senteces with  "sapeva che"/"conosceva che" 
 % todo: show tables with examples "sapeva che" % todo: numbered examples like formulas
 % todo: show the plots for "intuizione che", "sapeva che" (two subfigures, each numbered/lettered to be referenced)
 
@@ -376,7 +376,7 @@ From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can s
 The slope of the lines (both for island and non-island sentence structures) is however quite similar to the human scores. \\
 
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-whether.png} % width= 0.8\textwidth
 	\caption{Comparison of wh-dependency whether islands} 
@@ -391,24 +391,23 @@ The slope of the lines (both for island and non-island sentence structures) is h
 
 \subsubsection{Subject islands}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-subject.png} 
 	\caption{Comparison of wh-dependencies subject islands} 
 	\label{fig:wh_subject} % this internally labels the figure for future referencing.
 \end{figure}
 
-In \autoref{fig:wh_subject}
+In \autoref{fig:wh_subject}, the middle image of Gpt scores on Sprouse data shows significantly lower scores (compared to the human scores on the left image) for the sentences with an island structure (dotted line). % check the sorting of sentences to see why). 
+However, on the right image (Gpt scores on our test suite) they are similar to the human scores. \\
 
-on Sprouse data, island line is significantly lower (check sorting of sentences to see why). On new data, is similar. \\
-For the non island line, the short point is lower on both sprouse and new data. \\ 
-The long point is similar on new data (around 1.0) but lower on sprouse data. \\
-..The slope is similar on the model scores, both for sprouse and new data, but steeper compared to acceptability results on human subjects.
+For the non island line, the Short-NonIsland is scored lower then on human subject by Gpt for both testsuites. The Long-NonIsland scores instead are similar  (around 1.0). % but lower on sprouse data. \\
+The slope of the lines on the right image is similar to the one for the human scores (left image). %  oneon the model scores, both for sprouse and new data, but steeper compared to acceptability results on human subjects.
 
 
 \subsubsection{Adjunct islands}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-adjunct.png} 
 	\caption{Comparison of wh-dependencies adjunct islands} 
