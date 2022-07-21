@@ -45,7 +45,14 @@
 
 % for referencing images and other labels across documents
 \usepackage{xr-hyper}
-\usepackage{hyperref}     
+
+\usepackage[pdftex,
+pdfauthor={Mauro Madeddu},
+pdftitle={Assessing Island Effects in Italian Transformer-based Language Models},
+pdfsubject={Natural Language Processing},
+pdfkeywords={NLP IslandEffects},
+pdfcreator={TexStudio}]{hyperref} 
+
 % \externaldocument{chapters/AppendixA}
 % \begin{reusefigure}[<float spec>]{<ref>}
 	\newenvironment{reusefigure}[2][htbp]
@@ -80,6 +87,8 @@
 
 % for image positioning
 \usepackage{float}
+
+
 
 % -----------------------------------------------------------------
 
@@ -189,6 +198,7 @@
 \newtheorem{example}[thm]{Example}
 
 % -----------------------------------------------------------------
+
 \begin{document}
 
 \include{chapters/Frontespizio}
