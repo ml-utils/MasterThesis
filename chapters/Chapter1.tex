@@ -3,21 +3,165 @@
 \section{Overview on island effects}
 (TODO)
 
+\pagebreak
+
 \section{Transformers and the Attention Mechanism}
 ..
+a non-recurrent architecture, called the Transformer \citep{vaswani2017attention} 
+The lack of recurrence enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length  \citep{liu2018generating} 
+..
+Jurasfy book (draft new 3rd edition), ch.10 ..
+\citep[ch.9-10]{jurafsky2021speech} 
+
+..
+"the terminology used to describe the Transformer, the attention is a function of a query (Q) and set of key (K) and value (V ) pairs" \citep{liu2018generating} 
+multi-head self-attention of the Transformer
+
+to reduce memory usage, limiting the dot products between Q and K
+..
+"projecting the tokens into the query, key, and value embeddings"
+..
+decoder-only vs encoder-decoder
+what is an attention head? See "explorable transformers" 
+
+\href{https://huggingface.co/exbert/?model=gpt2&modelKind=bidirectional&sentence=The%20girl%20ran%20to%20a%20local%20pub%20to%20escape%20the%20din%20of%20her%20city.&layer=0&heads=..0,1,2,3,4,5,6,7,8,9,10,11&threshold=0.7&tokenInd=null&tokenSide=null&maskInds=..&hideClsSep=true}{exbert}
+..
+give detailed description of each layer dimensions (eg vocab x ..)
+compare bert and gpt architecture
+explain output of gpt and bert
+..
+save the checkpoints of gpt and bert with pythorch inspect the layers
+..
+(from machine learning course lectures: name of "augmenting" the input ..)(..appropriate name for semantic info addition?)(LBE, linear basis expansion)(..equivalent to semantic augmentation of the input?)
+..
+..
+schema of the self-attention mechanism (multipling on prev inputs)
+(horizontal vs vertical attention?)
+criticism of attention mechanism (refs)
+alternative attention mechanism
+attention mechanism more efficient for NLP
+auto pruning of attention heads?
+..
+cross-entropy loss
+Jurasfky 3rd ed. ch.9: "During training, the probability assigned to the correct word is used to calculate the cross-entropy loss for each item in the sequence. As with RNNs, the loss for a training sequence is the average cross-entropy loss over the entire sequence." 
+(figure 9.21)
+..
+query, key, value
+
+
+\pagebreak
 
 \section{On the output of Gpt unidirectional language models}
 
-The GPT architecture \citet{radford2018improving} ..
+The GPT architecture \citep{radford2018improving} ..
 % TODO: intended meaning of the loss measure, sentence likelihood, contrast with sentence acceptability, .., ungrammatical sentences that are more likely than rarer grammatical ones, ..)
 % (math formulas of Gpt output, activation functions..)
 
 % C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
 (TODO)
 
+
+..
+recap: average cross entropy loss should be how the gpt2 output loss is calculated (add img with Jurafsky figures)
+..check with transformers code how it's actually calculated
+(calls torch CrossEntropyLoss, which "computes the cross entropy loss between input and target")
+
+
+gpt forward method:
+
+% https://www.overleaf.com/learn/latex/Code_listing
+\begin{lstlisting}[language=Python]
+
+# modeling_gpt2.py
+
+class GPT2Model(GPT2PreTrainedModel):
+    def __init__(self, config):
+    	..
+    def forward(
+	    self,
+	    input_ids=None,	
+	    ..
+	 ):
+	 	..
+	 	return BaseModelOutputWithPastAndCrossAttentions(
+		 	last_hidden_state=hidden_states,
+		 	past_key_values=presents,
+		 	hidden_states=all_hidden_states,
+		 	attentions=all_self_attentions,
+		 	cross_attentions=all_cross_attentions,
+	 	)
+
+class GPT2LMHeadModel(GPT2PreTrainedModel):	
+
+	def __init__(self, config):
+		self.transformer = GPT2Model(config)
+		self.lm_head = nn.Linear(
+			config.n_embd, 
+			config.vocab_size, bias=False
+		)
+	
+	def forward(input_ids=None, ..	labels=None, ..):
+		r"""labels (`torch.LongTensor` of shape 
+		`(batch_size, sequence_length)`, *optional*):
+		Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set
+		`labels = input_ids` Indices are selected in 
+		`[-100, 0, ..., config.vocab_size]` 
+		All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
+		"""
+		
+		transformer_outputs = self.transformer(input_ids, ..)
+		hidden_states = transformer_outputs[0]  # last_hidden_state or hidden_states?
+		lm_logits = self.lm_head(hidden_states)
+		shift_logits = lm_logits[..., :-1, :].contiguous()
+		shift_labels = labels[..., 1:].contiguous()
+		
+		loss_fct = CrossEntropyLoss()
+		loss = loss_fct(
+			shift_logits.view(-1, shift_logits.size(-1)), 
+			shift_labels.view(-1)
+		)
+	
+		return CausalLMOutputWithCrossAttentions(
+			loss=loss,
+			..
+		)
+\end{lstlisting}
+
+% todo, clarify: cross entropy fun takes (input, target), but gpt2 calls it with (logits, labels), which are both the sentence_ids (the ids of the tokens in the sentence)
+
+pytorch CrossEntropyLoss formula:
+
+\begin{lstlisting}
+	
+class CrossEntropyLoss(_WeightedLoss):
+	def forward(self, input: Tensor, target: Tensor) -> Tensor:
+		return F.cross_entropy(input, target, ..)
+		
+		lm_logits = self.lm_head(hidden_states)
+\end{lstlisting}
+
+usage:
+\begin{lstlisting}
+model_output = model(
+sentence_ids_in_batch_as_tensor,
+labels=sentence_ids_in_batch_as_tensor,
+)
+loss = model_output.loss
+\end{lstlisting}
+
+From the pytorch cross entropy documentation, about the two parameters input and labels:
+
+"The input is expected to contain raw, unnormalized scores for each class. input has to be a Tensor of size (C)(C) for unbatched input, (minibatch, C)(minibatch,C) "
+
+
+
+\pagebreak
+
 \section{On the output of BERT-like bidirectional language models}
 (TODO)
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
+
+\pagebreak
 
 \section{Sentence acceptability estimates}
 
@@ -591,8 +735,31 @@ Confronto percentuali accuratezza (short/long non island, short island) con quel
 ..
 \subsection{English models details}
 ..
+\section{misc ideas with notes}
+
+..
+(misc ideas with notes)
+using multiple POS taggers and semantic role taggers etc.
+one, the default, for most common (..more prototypical) sentences/structures
+the other ones, used in ..garden path scenarios, when multiple indicators show that some POS tags or semantic role or other category might be wrong.
+the second set of taggers should do a ..full parsing analysis.. combining and ranking different parsing hypotheses)
+
+
+(on perplexity: the target of "low perplexity" in a language model, should not be in the ..words themselves, because language has informative/comunicative goals that are to introduce new, less predictable, information; it should be at other levels, like that of correctedness/acceptability; target of low perplexity of POS tags, semantic role tags, etc.) \\
+\citet{von2018pos} use perplexity on POS tags as a measure of syntactic complexity;
+"working on POS sequences avoids having to deal with data sparsity issues." \citep{von2018pos}
+
+what about using perplexity on POS tags as a measure/estimation of syntactic well formedness?
+discriminate btw complex/rare vs unacceptable? a threshold (linearly separable) on perplexity? Or multiple dimensions, non linearly, should be used?
+(but if there is a wrong/mispelled word.. the pos tagger might misclassify it)
+(distinguishing ..sentence unacceptability by linguistic level: morphological mistakes/typos, ..word order errors, ..)
+(also: perplexity uses a markov model of language? no, but multiplication the perplexity of each word to obtain the perplexity of the whole sequence.. a "less linear" formula might be needed..)
+(montemagni et al paper on profileU on linguistic profiling? use for sentence acceptability estimates? use for ..style detection/automated analysis ..
+
 
 \section{Misc notes with refs}
+
+
 
 “NATURAL LANGUAGE DOES NOT MAXIMIZE PROBABILITY” 
 “Why is human-written text not the most probable text? We conjecture that this is an intrinsic property of human language. Language models that assign probabilities one word at a time without a global model of the text will have trouble capturing this effect. Grice’s Maxims of Communication (Grice, 1975) show that people optimize against stating the obvious. Thus, making every word as predictable as possible will be disfavored. This makes solving the problem simply by training larger models or improving neural architectures using standard per-word learning objectives unlikely: such models are forced to favor the lowest common denominator, rather than informative language.” 
@@ -604,5 +771,14 @@ Repeated exposure to a type of island construct will increase its perceived acce
 First work with targeted syntactic tests on modern language models (RNNs or transformers) is \citet{linzen2016assessing}, while first use of psycholinguistic tests for modern LM is from \citet{futrell2018rnns}.
 
 "Auxiliary training objectives Adding auxiliary unsupervised training objectives is an alternative form of semi-supervised learning. Early work by Collobert and Weston [10] used a wide variety of auxiliary NLP tasks such as POS tagging, chunking, named entity recognition, and language modeling to improve semantic role labeling. More recently, Rei [50] added an auxiliary language modeling objective to their target task objective and demonstrated performance gains on sequence labeling tasks. Our experiments also use an auxiliary objective, but as we show, unsupervised pre-training already learns several linguistic aspects relevant to target tasks." (Radford Gpt)
+
+"QUALITATIVE ANALYSIS" (REASONING ABOUT ENTAILMENT WITH NEURAL ATTENTION, Tim Rocktaschel et al. 2016)
+
+"Efficiency considerations are important when building language models that use
+such large sets of n-grams. Rather than store each word as a string, it is generally
+represented in memory as a 64-bit hash number, with the words themselves stored
+on disk. Probabilities are generally quantized using only 4-8 bits (instead of 8-byte floats), and n-grams are stored in reverse tries." (Jurafsky 2021 3rd ef ch.3)
+
+"the standard information theory textbook Cover and Thomas (1991). "
 
 \nocite{wei2021frequency, hu2020systematic, lau2020furiously, bostrom2020byte, futrell-etal-2019-neural}

@@ -37,10 +37,36 @@
 
 % For images
 \usepackage{graphicx}
+
 % For colors
-\usepackage[dvipsnames]{xcolor}         
-% Listing for code (?)
+\usepackage[dvipsnames]{xcolor}        
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+% to display programming code
 \usepackage{listings}          
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+
 % To insert hyperlinks 
 
 % for referencing images and other labels across documents
@@ -197,6 +223,8 @@ pdfcreator={TexStudio}]{hyperref}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{example}[thm]{Example}
 
+
+
 % -----------------------------------------------------------------
 
 \begin{document}
@@ -210,7 +238,15 @@ pdfcreator={TexStudio}]{hyperref}
 \tableofcontents
 
 \listoffigures
+\pagebreak
+\thispagestyle{empty}
 % \listoftables
+%\usepackage{etoolbox}%
+%\patchcmd{\cleardoublepage}
+{\hbox{}}
+{\centerline{This page unintentionally left blank}}
+{}{}
+
 
 \include{chapters/Chapter1}
 
