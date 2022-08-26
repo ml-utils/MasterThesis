@@ -224,6 +224,199 @@ following sentences schema from sprouse et al.
 quote umberto eco at the beginning on the section on methodology
 (translate it)
 
+\subsection{ItaCola from Trotta et al. 2021}
+
+the meaning of cross entropy (average?)
+even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
+or is this problematic/a ..forzatura
+only in the case of minimal pairs (in the strict sense of differing by 1 word), ..
+otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood, and still, in natural language use, some frequenty incorrect sentences are more likely than rare ones
+
+Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
+
+finetune the models for acceptability? (already existin italian models for this, like from Trotta et al. 2021?)
+finetuning is very fast anyway 
+
+domande per Lenci:
+possibili obiezioni sui dati raccolti, il dataset creato:
+differenze rispetto a paper che controllano per certi fattori, escludono certe frasi, ..ripuliscono il dataset secondo vari criteri
+
+"An additional check was performed to manually
+control for typos and transcription errors."
+
+out contributions wrt to trotta et al 2021:
+comparable number of examples (50), but for more phenomena (4 instead of 1)
+difference in the wh-islands phenomena
+NB in fig.1 (right) trotta et al also omit the wh islands results
+problem in trotta et al for sentences with multiple phenomena
+(check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
+
+"The fact that classification of sentences containing only one phenomenon yields better results holds for all categories except for Questions and Auxiliary"
+
+"Interestingly, Wh-islands violation
+does not appear in the chart on the right because
+this phenomenon is always accompanied with at
+least another annotation"
+
+
+(fine tune also for english the Bostrom models?)
+
+"(Gao et al., 2020) shows that pre-trained LM performs worse in some tasks such
+as linguistic acceptability task and natural language inference task since pre-trained LM barely saw
+this data distribution." (Wang et al 2021 Entailment as few shot learner)
+
+Alternative training tasks:
+"Task reformulation: Language model is usually pre-trained with a Masked Language Modeling
+(MLM) objective, which is motivated by Cloze task in (Taylor, 1953). There have been several
+works reformulating few-shot learning tasks as cloze questions to reuse pre-trained LM such as
+LM prompt (Jiang et al., 2020), PET (Radford et al., 2019; Schick \& Schutze, 2020a), and recent ¨
+LM-BFF (Gao et al., 2020). It shows a pre-trained LM can achieve non-trivial performance with few annotated samples. There are also some other works transforming NLP tasks as generative QA tasks (Puri \& Catanzaro, 2019)."
+but low performance on CoLA (possible beacuse of "different data distribution"):
+"The only exception is the CoLA (the linguistic acceptability task). It
+is might due to that MLM pre-trainng and entailment training did not see this type of data distribution before"
+
+enriched training data (with supervised tasks):
+"Intermediate training: The work by (Phang et al., 2018) shows that supplementing pre-trained LMs with further training on data-rich supervised tasks can obtain additional performance improvements on the GLUE benchmark."
+
+"Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. " "research paradigms" (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
+
+A particular interest of language in AI, is that it ..measures AI models with ..different concepts ..phenomena for which some of the standard ..alghoritmic/statistical or teory of information ..metrics, approaches, .. , don't work (eg. perplexity, ..probability estimation of next word, ..)
+
+"Prior work has demonstrated that heads
+induce grammar formalisms and structural knowledge (Zhou and Zhao, 2019; Lin et al., 2019; Luo,
+2021), and linguistic features motivate attention
+patterns (Kovaleva et al., 2019; Clark et al., 2019)."
+"Recent studies also show that certain heads can
+have multiple functional roles (Pande et al., 2021)
+and even perform syntactic functions for distant
+languages (Ravishankar et al., 2021)."
+(Cherniavskii et al. 2022)
+
+Freezing / Frozen Layers:
+"The results align with Lee et al. (2019), who discuss the performance degradation of BERT-based models depending upon the number of frozen layers." (Cherniavskii et al. 2022)
+
+note on thesis:
+our contributions are as follows:
+a dataset for some specific island effects phenomena in italian
+experiments
+..
+(as in the ItaCoLA paper)
+
+
+Minimal pairs vs sentence acceptability (with CoLA)
+study for lau et al is ..intermediate in comparing sentences that are not strictly minimal pairs
+acceptability: absolute score
+minimal pairs: relative score, compared btw two sentences
+Follow study from Trotta et al, and the original CoLA paper 
+also minimal pairs scoring is done with the pretrained models, while CoLA involves finetuning
+
+"Our results identify specific syntactic features
+that make sentences harder to classify, such as
+long distance dependencies (What do you think I
+ate?), and others that have little effect on difficulty, such as non-canonical argument structures
+like passives (The book was read)." (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
+
+exemplary analysis acceptability results from the cola paper:
+"Our results identify specific syntactic features
+that make sentences harder to classify, such as
+long distance dependencies (What do you think I
+ate?), and others that have little effect on difficulty, such as non-canonical argument structures
+like passives (The book was read). Furthermore,
+some constructions highlight or minimize the differences between models. For example, GPT and
+BERT far out perform the BiLSTM on movement
+phenomena such as clefts (It is Bo that left), yet
+have no advantage on sentences with adjuncts (Sue
+exercises in the morning). We wish to exercise
+caution in interpreting these results since it is not
+clear to what extent an encoder’s failure on a particular phenomenon is due to a weakness of the
+encoder rather than the training data or probing
+classifier. However, this caveat applies to varying
+degrees to all probing resources. In this context of
+other similar linguistically informed datasets, our
+analysis set addresses the critical need for a evaluation task with wide coverage of linguistic phenomena"
+
+"Hence, unacceptable sentences in CoLA tend to
+be maximally similar to acceptable sentences and
+are unacceptable for a single identifiable reason."   (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
+
+on the alternative of minimal pairs:
+"This task is often employed
+to evaluate language models because the outputted
+probabilities for a pair of minimally different sentences are directly comparable, while the output
+for a single sentence cannot be taken as a measure
+of acceptability without some kind of normalization (Lau et al., 2016)"
+
+"Accordingly, CoLA, but not datasets based
+solely on preferences between minimal pairs, may
+be used to evaluate models’ ability to make judgments that align with both native speaker judgments and the predictions of generative theories."
+
+note the processing that was done for CoLA and ItaCoLA, ie editing less common words by checking their occurence, respectively, in the BNC and .. (a tool .. for it), noting that we ..did not check that ..for time constraints ..
+
+" Our large sentence encoders are limited
+to 100-200 million tokens of training data, which
+is within a factor of ten of the number of tokens
+human learners are exposed to during language
+acquisition (Hart and Risley, 1992).11 
+11Hart and Risley (1992) find that children in affluent families are exposed to about 45 million tokens by age 4.
+" (Warstadt et al 2019 Neural Network Acceptability Judgments)
+Hart and Todd R. Risley. 1992. American
+parenting of language-learning children: Persisting differences in family-child interactions
+observed in natural home environments. Developmental Psychology, 28(6):1096.
+
+
+"Addressing this problem will likely involve new forms of regularization to mitigate this
+overfitting and, more importantly, new pretraining
+strategies that can help the model better learn the fundamental ingredients of grammaticality from
+unlabeled data" 
+
+"The poor performance of our models on contrasts involving agreement (Singular/Pl and Reflexive) is surprising in light of findings by (Linzen
+et al., 2016) that LSTMs can identify agreement
+errors easily even without access to sub-word information. We speculate that this is due to underrepresentation of the relevant examples in CoLA.
+"
+"We see two chief motivations that guide work
+on acceptability classification with ANNs by us
+and by others: First, more fine-grained evaluation tools may accelerate work on general-purpose
+neural network modules for sentence understanding. "
+
+"Second, studying the linguistic competence
+of ANNs bears on foundational questions in linguistics about the learnability of grammar."
+
+"The influential argument from the poverty of the stimulus (APS) ..  has been subject to much
+criticism (Pullum and Scholz, 2002)" 
+Geoffrey K. Pullum and Barbara C. Scholz. 2002.
+Empirical assessment of stimulus poverty arguments. The Linguistic Review, 18(1-2):9–50.
+
+"more work is needed to
+find methods for extracting reliable Boolean acceptability judgments from unsupervised language
+models. Our approach of fitting a threshold to the
+models of Lau et al. (2016) gives encouraging results, but these models are ultimately not as effective as supervised models. An alternative adopted
+by Linzen et al. (2016) and Marvin and Linzen
+(2018) is to evaluate whether language models’ assign higher probability to the acceptable sentence
+in a minimal pair. However, this forced choice
+minimal pair task, as discussed in Section 2.3, cannot be applied to CoLA, which does not exclusively contain minimal pairs"
+
+"Interrogatives are quite challenging in general (major feature=QUESTION). Sentences with questionlike syntax may be difficult because they usually
+involve extraction of a wh-word, creating a longdistance dependency between the wh-word and its
+extraction site, which may be difficult for models
+to recognize." ()
+
+(also to the plor on acceptability score by sentence lenght?)
+
+"Our results are purely
+correlational, and do not mark whether a particular construction is crucial for the acceptability of
+the sentence. Future experiments following Ettinger et al. (2018) and Kann et al. (2019) can
+semi-automatically generate datasets by manipulating, for example, length of long-distance dependencies, inflectional violations, or the presence
+of interrogatives, while controlling for factors like
+sentence length and word choice, in order to determine the extent to which these features impact the
+quality of sentence representations."
+
+what about a follow up analysis on the thesis, based on the results? like manipulating data to check the effect of somee factors, ..
+
+(observation: a problem with perplexities is that it mixes knowledge of language with actually studying a domain to be able to predict the content; studiare a memoria il testset)
+(learning language and having good domain adaptability, learning a new domain)
+(as for adding semantic structure, learning a new domaind involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learining.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself)
+(the ability to perform certain reasoning patterns, that can be used in multiple domains)
+
 \chapter{Experimental design}
 
 \section{Factorial test design}
@@ -784,6 +977,11 @@ the second set of taggers should do a ..full parsing analysis.. combining and ra
 "working on POS sequences avoids having to deal with data sparsity issues." \citep{von2018pos}
 
 what about using perplexity on POS tags as a measure/estimation of syntactic well formedness?
+": Lawrence et al. (2000) train RNNs to do
+acceptability classification over sequences of POS
+tags corresponding to example sentences from a
+syntax textbook."
+
 discriminate btw complex/rare vs unacceptable? a threshold (linearly separable) on perplexity? Or multiple dimensions, non linearly, should be used?
 (but if there is a wrong/mispelled word.. the pos tagger might misclassify it)
 (distinguishing ..sentence unacceptability by linguistic level: morphological mistakes/typos, ..word order errors, ..)
