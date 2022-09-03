@@ -1,5 +1,13 @@
 \chapter{Introduction}
 
+\section{Motivation}
+% shadow references (in comments) for thesis structure, approach, ..
+(TODO)
+
+\section{Research on linguistic tests on language models}
+(review previous studies, state of the art, chronicle history, ..)
+(TODO)
+
 \section{Overview on island effects}
 (TODO)
 
@@ -164,6 +172,11 @@ From the pytorch cross entropy documentation, about the two parameters input and
 \pagebreak
 
 \section{Sentence acceptability estimates}
+
+Refs/Lit review:
+Salazar et al. ..
+2016 paper
+..
 
 The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are:
 
@@ -414,10 +427,14 @@ what about a follow up analysis on the thesis, based on the results? like manipu
 
 (observation: a problem with perplexities is that it mixes knowledge of language with actually studying a domain to be able to predict the content; studiare a memoria il testset)
 (learning language and having good domain adaptability, learning a new domain)
-(as for adding semantic structure, learning a new domaind involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learining.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself)
+(as for adding semantic structure, learning a new domain involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learning.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself)
 (the ability to perform certain reasoning patterns, that can be used in multiple domains)
 
 \chapter{Experimental design}
+
+\section{Methodology}
+..
+data gathering, creating dataset, balancing minimal pairs / control factors, usefulness of factorial design, ..
 
 \section{Factorial test design}
 
@@ -521,6 +538,11 @@ Since for humans the likert scale discretization and the z-score normalization w
 
 \textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
 
+\section{Token surprisal analysis}
+
+We found the most informative analysis (rather than the factorial test design) was looking at the token surprisals for the Bert-like models (do it also on the Gpt2 logits?).
+..
+(even more informative, or complementary, would be to look at the activations in the model layers)
 
 
 \chapter{Results}
@@ -636,20 +658,76 @@ Although it's between different languages (English and Italian), the scores on \
 	  		Gpt2 						& 91.3 			& 68.8 			& 82.2 \\
 	  		BERT-large-cased (PenLP)	& 86.3			& 67.4 			& 69.4 \\
 	  		BERT-base-cased (PenLP)		& 88.1 			& 56 			& 66.2 \\
-	  		RoBERTa-large (PenLP)		& 88.6			& \textbf{82.2}	& \textbf{87.5} \\
-	  		RoBERTa-base(PenLP)			& 82.9			& 62.1 			& 79.2 \\   
+	  		RoBERTa-large (PenLP)		& 86.9			& \textbf{82.3}	& \textbf{88.2} \\
+	  		RoBERTa-base(PenLP)			& 84.9			& 75.3 			& 76.2 \\  
+	  		RoBERTa-base(PLL)			& 80			& 47.7 			& 83.3 \\  
 	  		 
 		\end{tabular}
 		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} 
+			\\ NB: RoBERTa-base with alpha = 0.8 in the penalty term  as in Lau et al
+			\\ with with alpha = 1 ..
 			\\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores.
 			\\ TODO: rerun the BLiMP and Sprouse English tests with the RoBERTa model from \citet{bostrom2020byte}, which uses a more linguistically/morphologically plausible subword splitting, to see if performance improves.}
 		\label{tab:accuracy_blimp}
 	\end{center}
 \end{table}
 
+Results, for comparison, on Blimp dataset (island effects only), for BERT models (..), as in paper from Salazar et al 2021.
+
+Results average (over .. phenomena), from Salazar et al:
+Bert base (cased) 73.6
+Bert large (cased) 77.0
+roberta base (cased) 80.7
+roberta large (cased) 83.4
+gpt2: 71.7 (higher than Blimp paper; different acceptability formula or model?)
+
+(NB. these are cased models: "We compute PLLs on the sentences of each pair using cased BERT and RoBERTa")
+
+From Blimp paper:
+overall
+Gpt2: 70.6
+Human: 84.9
+
+detailed:
+phenomenon											gpt2	human
+adjunct island 										91		94
+complex NP island									72		80
+coordinate structure constraint complex left branch	42		90
+coordinate structure constraint object extraction 	88		91
+left branch island echo question 					77 		91 
+left branch island simple question 					82 		99 
+sentential subject island 							35 		61 
+wh island											77		73
+
+our detailed accuracy results on cased BERT-like models (with PLL without sentence lenght penalty term)(NB. In most cases, we don't find any difference in accuracy btw using the penalty term or not. Among the below phenomena, only for the left branch island echo question there is a difference, of 2.6 perc points lower, when using the penalty term):
+phenomenon											bert (base)	bert(large)	roberta (base) 	roberta (large)
+adjunct island 										88.1		86.3		84.9			86.9		
+complex NP island									56			67.4		75.3			82.3
+coordinate structure constraint complex left branch	81.4		91.1		91.2			92.0
+coordinate structure constraint object extraction 	92.1		89.0		88.4			90.5
+left branch island echo question 				 	56.8 		61.5(59.5)	71.8(71.1)		72.3 (72.9)
+left branch island simple question 					96.5		97.6		98.7			97.5
+sentential subject island 							51.5		53.7		58.9			57.6
+wh island											66.2		69.4		76.2			88.2
+average												73.575		77			80.675			83.4
+
+compare with our results for similar phenomena on italian bert-like models:
+
+
+(what about adjusting the testsset, or better, creating a copy, where sentences are more balanced for lenght, token frequency, semantic saliency/..)
+
+(possibly a way to estimate token frequency in corpus, is to get the model output for a sentence made of a single word, mask it, and see its softmax. Althought this is in fact context-less, or estimating the probability of finding that word by itself.. check for common words to see if this seems actually rapresentative of word/token frequency)
+
+also tweak the sentence scoring method, to check when a subword is split, and mask the whole word (all the word tokens)..
+(problem: we are still indicating how many tokens we expect in the masked position.. it would be ideal to just have a special token for "masked word", and the model also has to guess how many tokens is made of)
+\begin{lstlisting}[language=Python]
+
+tokenizer.backend_tokenizer.pre_tokenizer.pre_tokenize_str("Hello, how are  you?")
+[('Hello', (0, 5)), (',', (5, 6)), ('how', (7, 10)), ('are', (11, 14)), ('you', (16, 19)), ('?', (19, 20))]
+\end{lstlisting}
 
 \section{Factorial tests results}
-
+surprisal ( $\displaystyle\-log P_{MLM} (w_t | W_{\setminus t}) $)
 % todo: regenerate Sprouse's plots from the published score data?
 
 % Fig.1 Results from Sprouse et al (2016)
