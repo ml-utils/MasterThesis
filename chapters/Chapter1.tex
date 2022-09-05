@@ -8,6 +8,10 @@
 With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a  are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. 
 % better models: more performant, more efficient. Detect which linguistic phenomena they learn and which they don't.
 
+% transformer SotA :
+% "transformer-based models, as they have become the benchmark for many NLP tasks in recent years (Vaswani et al., 2017; Devlin et al., 2019; Yang et al., 2019)"  \citep{lau2020furiously}. 
+% transformers: much larger models, much more training data
+
 % the above section should be renamed also "introduction"
 % then have a more specific motitvation section on the motivation of this thesis within its line of research (targeted linguistic tests for language models)
 
@@ -332,6 +336,8 @@ poverty of the stimulous argument:
 
 "BERT is a Transformer model (21), a neural network archi-tecture,  without  any  recurrent  connections  (22),  which  takes  asequence  of  words  (or  other  symbols)  as  input  and  producesa contextualized vector representation of each word as its out-put (Fig. 3). It contains many millions of trainable parametersin  a  number  of  layers,  typically  requiring  massive  amounts  ofdata  and  computation  to  train.  This  makes  Transformers  dif-ficult  to  train,  but  also  highly  expressive  models  that  can  out-perform  other  contemporary  neural  networks  when  properlyoptimized" \citep{manning2020emergent}
 
+% "attention is a kind of generalized dot product" (Manning Lecture) https://www.youtube.com/watch?v=aKO1Yok6e4Q&list=PLGJm1x3XQeK0gmqfRkP-VmrEf4UYx5IDW&index=4
+
 "The key mechanism by which Transformers contextualize rep-resentations  is  multiheaded  attention  (see  Fig.  5).  Attention(23) dynamically assigns a weight to every pair of words in thesequence, indicating how much the model should “pay attentionto” the first word when computing the representation of the sec-ond one. Transformers use multiple attention heads in parallel,where  each  head  can  potentially  capture  a  completely  differ-ent word–word relation. Transformers aggregate the informationfrom each head to produce a single output vector representationfor each word in the sequence. We provide more mathematicaldetail below" \citep{manning2020emergent}
 
 ..
@@ -376,10 +382,27 @@ Jurasfky 3rd ed. ch.9: "During training, the probability assigned to the correct
 ..
 query, key, value
 
+Gpt2:
+"the input is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and
+fed to multiple layers of ‘‘transformer blocks’’
+before the target word is predicted" \citep{lau2020furiously}
+"Much of its power resides in these transformer blocks: Each
+provides a multi-headed self-attention unit over all input words, allowing it to capture multiple dependencies between words, while avoiding the need for recurrence. With no need to process a sentence in sequence, the model parallelizes more efficiently, and scales in a way that RNNs cannot" \citep{lau2020furiously}
 
 \pagebreak
 
 \section{On the output of Gpt unidirectional language models}
+
+"Given a unidirectional language model, we can
+infer the probability of a sentence by multiplying
+the estimated probabilities of each token using
+previously seen (left) words as context (Bengio
+et al., 2003):" \citep{lau2020furiously}
+% →P (s) = |s| Y i =0 P(wi|w<i)
+"where s is the sentence, and wi a token in s.
+LSTM, TDLM, and GPT2 are unidirectional models,
+so they all compute sentence probability as
+described" \citep{lau2020furiously}
 
 The GPT architecture \citep{radford2018improving} ..
 % TODO: intended meaning of the loss measure, sentence likelihood, contrast with sentence acceptability, .., ungrammatical sentences that are more likely than rarer grammatical ones, ..)
@@ -489,9 +512,40 @@ From the pytorch cross entropy documentation, about the two parameters input and
 (TODO)
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
+\citet{lau2020furiously} formula for BERT sentence acceptability:
+"It is important to note, however, that
+sentence probability computed this way is not
+a true probability value: These probabilities do
+not sum to 1.0 over all sentences. Equation (1),
+in contrast, does guarantee true probabilities" \citep{lau2020furiously}
+(do they really guarantee true probabilities, summing up to 1.0 over all sentences?)
+On BERT formula:
+"Intuitively, the sentence probability computed
+with this bidirectional formulation is a measure of the model’s confidence in the likelihood of the
+sentence"\citep{lau2020furiously}
+"To compute the true probability, Wang and
+Cho (2019) show that we need to sum the
+pre-softmax weights for each token to score a
+sentence, and then divide the score by the total
+score of all sentences. As it is impractical to
+compute the total score of all sentences (an
+infinite set), the true sentence probabilities for
+these bidirectional models are intractable. We use
+our non-normalized confidence scores as stand-ins
+for these probabilities."\citep{lau2020furiously}
+ 
+"Sentence probability (estimated either using
+unidirectional or bidirectional context) is affected
+by its length (e.g., longer sentences have lower
+probabilities), and word frequency (e.g., the cat is
+big vs. the yak is big)" \citep{lau2020furiously}
+
+%(normalizing by dividing the sentence probability given by a unigram language model) - log P(S) / log P_u(S)   \citep{lau2020furiously}
+
 \pagebreak
 
 \section{Evaluations of Language models}
+
 
 
 % "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
@@ -539,7 +593,29 @@ Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-
 
 \subsection{Sentence acceptability estimates}
 
-Acceptability judgments: 
+Linguists concerned with acceptability judgements, while "Computational language processing has traditionally been more
+concerned with \textit{likelihood}—the probability of a
+sentence being produced or encountered" \cite{lau2020furiously}
+"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
+
+"To understand the relationship between sentence acceptability and probability, we conduct experiments with unsupervised language models
+to predict acceptability. " \citep{lau2020furiously}
+
+"Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic wellformedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence
+length. It is gradient, rather than binary, in nature
+(Denison, 2004; Sorace and Keller, 2005; Sprouse,
+2007)" \citep{lau2020furiously}
+
+% "Most of these [Psycholinguistic] studies suggest that coherent or natural contexts should increase acceptability ratings, given that the linguistic expressions used in processing become more activated. "  \citep{lau2020furiously}
+% "Warner and Glass (1987) show that such syntactic contexts can indeed affect grammaticality judgments in the expected way for garden path sentences. " \citep{lau2020furiously}
+
+\citet{lau2020furiously}, try to normalize by sentence length and lexical frequency .. but actually shorter sentences can have lower likelihood. And this normalization adds nothing really to convert likelihood (..probability) to acceptability (a rare acceptable sentence might still have lower likelihood than a frequent sentence with a common mistake)
+(see ..Wilcox et al arguments on this; in particular, the fact that unifirectional models like Gpt, see a lowering curve in token surprisal as more of the sentence is revealed, and this might explain the effectiveness of the exponential normalization by sentence lenght; confound of sentence lenght with ..internal consistency of the sentence)(TODO: show the two plots by ..Wilcox for bert and gpt, with flat vs descending curves)
+"To accommodate sentence length and lexical frequency we experiment with several simple normalization methods, converting probabilities
+to acceptability measures (Section 3.2)." \citep{lau2020furiously}
+
+"Lau et al. (2017b) experiment with unsupervised language models to predict acceptability, and they obtained an encouraging correlation with human ratings" \cite{lau2020furiously}
+
 "Lau et al. (2017) compared the ability of different LMs to predict graded human acceptability judgments. The forced-choice approach used in the current paper has been shown to be effective in human
 acceptability judgment experiments (Sprouse and Almeida, 2017)." \citep{marvin2018targeted}
 % "Warstadt et al. (2018) use a transfer learning approach, where an unsupervised model is finetuned on acceptability prediction."  \citep{marvin2018targeted}
@@ -581,6 +657,20 @@ For BERT-like models, we use the estimate from \citet{lau2020furiously} of the l
 % it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
 % for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
 
+\subsection{Related works}
+
+
+"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
+cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
+
+"Some recent computational work explores the
+relation of acceptability judgments to sentence
+probabilities. Lau et al. (2015, 2017b) show that
+the output of unsupervised language models
+can correlate with human acceptability ratings.
+Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier
+on top of a pre-trained sentence encoder to
+predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
 
 \section{Research questions}
 
@@ -946,6 +1036,25 @@ Frequency effects
 % "our results show that LSTM language models are far from matching naive annotators’ performance on this task, let alone performing at 100% accuracy."  \citep{marvin2018targeted}
 
 % "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
+
+"Compression effect" of acceptability (by humans) from presence or absence of contect:
+"Tworecentstudiesthat explorethe impact of document context on acceptability judgments both
+identify a compression effect (Bernardy et al.,
+2018; Bizzoni and Lappin, 2019). Sentences perceived to be low in acceptability when judged
+without context receive a boost in acceptability
+when judged within context. Conversely, those
+with high out-of-context acceptability see a reduction in acceptability when context is presented. It
+is unclear what causes this compression effect" 
+(this is related to the fact that shorter sentences, with less semantic cues, receive lower likelihood/more surprisal)
+
+..
+
+% "To summarize, our first important result is the exceptional performance of bidirectional models." \citep{lau2020furiously}
+% "Our second result is more tentative. Our experiments seem to indicate that model architecture is more important than training or model size. " \citep{lau2020furiously}
+
+% but Lau et al results on acceptability correlate much less with human ones when using a testset of lingusitically crafted pairs of contrasts (instead of rountrim machine translation) "Although the correlations are generally lower, we want to highlight that these linguists’ examples are artificially constructed to illustrate specific syntactic phenomena, and so this constitutes a particularly strong case of outof-domain prediction. " \citep{lau2020furiously}
+% althoug the linguistic examples are much shorter "—less than 7 words on average—than the natural texts" \citep{lau2020furiously} , and this might confirm ..our finding on difficulty of shorter sentences. 
+% 
 
 \section{Accuracy results for island effects minimal pairs in Italian}
 
