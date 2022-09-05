@@ -5,6 +5,35 @@
 
 \section{Motivation}
 
+With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a  are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. 
+% better models: more performant, more efficient. Detect which linguistic phenomena they learn and which they don't.
+
+% the above section should be renamed also "introduction"
+% then have a more specific motitvation section on the motivation of this thesis within its line of research (targeted linguistic tests for language models)
+
+% a  self-supervisedlearning approach. In self-supervised learning, a system is given no  explicit  labeling  of  raw  data,  but  it  is  able  to  construct  its own supervised learning problems by choosing to interpret someof  the  data  as  a  “label”  to  be  predicted \citep{manning2020emergent}
+% The  canonical  casefor  human  language  is  the  language-modeling  task  of  tryingto  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
+% (that unsupervised models could not develop interesting knowledge of language) this  has  been  the  dominant  perspective  in  linguistics, where language models have long been seen as inadequateand having no scientific interest, even when their usefulness inpractical engineering applications is grudgingly accepted (15, 16). \citep{manning2020emergent}
+
+% "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
+% "Recent technological advances have led to an explosion of neural network-based LM architectures. The most popular ones are based on recurrent neural networks (RNNs) .. , LSTMs are still highly competitive (Melis et al., 2018)" \citep{marvin2018targeted}
+
+
+
+
+% "building better models": more performant and more data/computataion efficient
+% The purpose of assessing which linguistic knowledge is acquired by language models based on neural networks: 
+% - finding how/where/on what to improve the model, ..guiding research on further developing them for better performance, more data efficiency and computational efficiency
+% - ..explainability, 
+% - having a complementary measure of model performance, explaining performance (good or bad) in downstream application benchmarks, 
+ 
+% BERT " implicitly learns to recover the rich latent struc-ture of human language. "   (manning2020emergent)
+ 
+% section on overview of NN language models, DL language models, transformers based language models
+
+
+
+
 Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
 "the nature of the representations learned by these models is not properly understood." \citep{wilcox2018rnn}
 "One promising line of research aims to crack open these ‘black boxes’ by investigating how" "language models perform on specially controlled sentences designed to draw out behavior that indicates representation of" "a syntactic dependency." \citep{wilcox2018rnn}
@@ -298,6 +327,13 @@ poverty of the stimulous argument:
 \pagebreak
 
 \section{Transformers and the Attention Mechanism}
+
+"The self-supervision task used to train BERT is the maskedlanguage-modeling  or  cloze  task,  where  one  is  given  a  text  inwhich  some  of  the  original  words  have  been  replaced  with  aspecial  mask  symbol.  The  goal  is  to  predict,  for  each  maskedposition,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage thesurrounding context to infer what that word could be." \citep{manning2020emergent}
+
+"BERT is a Transformer model (21), a neural network archi-tecture,  without  any  recurrent  connections  (22),  which  takes  asequence  of  words  (or  other  symbols)  as  input  and  producesa contextualized vector representation of each word as its out-put (Fig. 3). It contains many millions of trainable parametersin  a  number  of  layers,  typically  requiring  massive  amounts  ofdata  and  computation  to  train.  This  makes  Transformers  dif-ficult  to  train,  but  also  highly  expressive  models  that  can  out-perform  other  contemporary  neural  networks  when  properlyoptimized" \citep{manning2020emergent}
+
+"The key mechanism by which Transformers contextualize rep-resentations  is  multiheaded  attention  (see  Fig.  5).  Attention(23) dynamically assigns a weight to every pair of words in thesequence, indicating how much the model should “pay attentionto” the first word when computing the representation of the sec-ond one. Transformers use multiple attention heads in parallel,where  each  head  can  potentially  capture  a  completely  differ-ent word–word relation. Transformers aggregate the informationfrom each head to produce a single output vector representationfor each word in the sequence. We provide more mathematicaldetail below" \citep{manning2020emergent}
+
 ..
 a non-recurrent architecture, called the Transformer \citep{vaswani2017attention} 
 The lack of recurrence enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length  \citep{liu2018generating} 
@@ -455,7 +491,60 @@ From the pytorch cross entropy documentation, about the two parameters input and
 
 \pagebreak
 
-\section{Sentence acceptability estimates}
+\section{Evaluations of Language models}
+
+
+% "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
+% Perplexity issues: 
+% ". In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
+
+%"This measure conflates multiple sources of success (or failure) in predicting the next word: common collocations, semantics, pragmatics, syntax, and so on. The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions." \citep{marvin2018targeted}
+
+% (Factorial design as a supplement to minimal pairs assessment)
+% Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
+% "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
+
+
+" targeted syntactic evaluation of language models" \citep{marvin2018targeted}
+
+% Related work
+% "Targeted evaluation: LM evaluation data sets using challenging prediction tasks have been proposed in the context of semantics and discourse comprehension (Zweig and Burges, 2011; Paperno et al., 2016). " \citep{marvin2018targeted}
+% "Evaluation sets consisting of chalenging syntactic constructions have been constructed for parser evaluation (Rimell et al., 2009; Nivre et al., 2010; Bender et al., 2011),"  \citep{marvin2018targeted}
+% "and minimal pair approaches have been proposed for evaluating image captioning (Shekhar et al., 2017) and machine translation systems (Sennrich, 2017), but no data sets exist that target a range of syntactic constructions for language model evaluation." \citep{marvin2018targeted}
+
+Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-only model: "learned more robust syntactic representations, but this advantage was not reflected in its average perplexity on the corpus, since syntactically challenging sentences are relatively infrequent." \citep{marvin2018targeted}
+
+"naturalistic approach vs a constructed dataset"
+ "syntactically challenging examples are sparsely represented in a corpus" "naturally occurring sentences are difficult to control for confounds" \citep{marvin2018targeted}
+
+"Overview of the approach"
+"Grammaticality and LM probability" \citep{marvin2018targeted}
+
+"How should grammaticality be captured in the probability distribution defined by an LM? The most extreme position would be that a language model should assign a probability of zero to ungrammatical sentences. For most applications, some degree of error tolerance is desirable, and  it is not practical to assign a sentence a probability of exactly zero.1 " "1Nor is it possible to have a threshold episilon such that all grammatical sentences have probability higher than episilon and all ungrammatical sentences have probability lower than episilon, for the simple reason that there is an infinite number of grammatical sentences (Lau et al., 2017)."  \citep{marvin2018targeted}
+
+"Following Linzen et al. (2016) and Gulordava et al. (2018), our desideratum for the language model is more modest: if two closely matched sentence differ only in their grammaticality, the probability of the grammatical sentence should be higher than the probability of the ungrammatical one. "  \citep{marvin2018targeted}
+
+% limits, compare whole sentences: "The prediction setting is only applicable when the locus of ungrammaticality is a single word, rather than, say, the interaction between two words; moreover, the information needed to make the grammaticality decision needs to be available in the left context of the locus of grammaticality. These conditions do not always hold. Negative polarity items (NPIs), for example,.."  \citep{marvin2018targeted}
+
+% section "Data set construction"   \citep{marvin2018targeted}
+
+% \citet{marvin2018targeted} "use templates to automatically construct a large number of English sentence pairs (∼350,000)."
+
+% "phenomena that linguists consider to be sensitive to hierarchical syntactic structure (Everaert et al., 2015; Xiang et al., 2009): subjectverb agreement (described in detail in Sections 4.1 and 4.2), reflexive anaphora (Section 4.3) and negative polarity items (Section 4.4)."   \citep{marvin2018targeted}
+
+
+% "The Supplementary Materials provide a full description of all our templates.3" 3The code, the data set and the Supplementary Materials can be found at https://github.com/ BeckyMarvin/LM_syneval.  \citep{marvin2018targeted}
+
+
+
+\subsection{Sentence acceptability estimates}
+
+Acceptability judgments: 
+"Lau et al. (2017) compared the ability of different LMs to predict graded human acceptability judgments. The forced-choice approach used in the current paper has been shown to be effective in human
+acceptability judgment experiments (Sprouse and Almeida, 2017)." \citep{marvin2018targeted}
+% "Warstadt et al. (2018) use a transfer learning approach, where an unsupervised model is finetuned on acceptability prediction."  \citep{marvin2018targeted}
+
+"Our work differs from those studies in that we do not advocate providing any explicit grammaticality signal to the LM at any point (“no negative evidence”)." \citep{marvin2018targeted}
 
 Refs/Lit review:
 Salazar et al. ..
@@ -464,7 +553,7 @@ Salazar et al. ..
 
 The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are:
 
-\subsection{Softmax, logistic function, and other activation functions applied to the models' output}
+\subsubsection{Softmax, logistic function, and other activation functions applied to the models' output}
 \label{sec:softmax}
 We calculated the LP and PenLP measures taking as a basis the models' outputs after the softmax activation function applied to the last layer. 
 
@@ -485,6 +574,12 @@ Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides t
 
 For BERT-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
 \\ ..
+
+\subsection{Minimal pairs approach}
+
+% "One limitation of our approach is that 
+% it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
+% for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
 
 
 \section{Research questions}
@@ -714,7 +809,12 @@ what about a follow up analysis on the thesis, based on the results? like manipu
 (as for adding semantic structure, learning a new domain involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learning.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself)
 (the ability to perform certain reasoning patterns, that can be used in multiple domains)
 
-\chapter{Experimental design}
+\chapter{Experimental setup}
+
+% "Experimental setup" with list of models, details/description  \citep{marvin2018targeted}
+
+\section{Models}
+..
 
 \section{Methodology}
 ..
@@ -830,6 +930,22 @@ We found the most informative analysis (rather than the factorial test design) w
 
 
 \chapter{Results}
+
+\section{Review of results from previous/related works}
+
+Frequency effects
+% "Even on simple cases, however, the RNN’s accuracy was sensitive to the particular lexical items that occurred in the sentence; this would not be expected if its syntactic representations were fully abstract."  \citep{marvin2018targeted}
+
+% "Lexical variation and frequency: There was considerable lexical variation in the results; we have mentioned the surprising asymmetry between himself and herself above" \citep{marvin2018targeted}
+
+% "an asymmetry in accuracy between himself and themselves on the one hand (100% accuracy in the multi-task RNN) and herself on the other hand (49% accuracy).5 This may be because himself and themselves are significantly more frequent than herself, and consequently the number representation learned for herself was not robust. Another possibility is that gender bias reduces the probability of an anaphoric relation between herself and words such as surgeon (Rudinger et al., 2018)." \citep{marvin2018targeted}
+% "Accuracy varied by verb, ranging from is and are, which had 100% accuracy, to swims, where accuracy was only 60% (recall that average accuracy was 94%). This may be a frequency effect: either the LM is learning less robust number representations for infrequent verbs, or the tail of the distribution over the vocabulary is more fragile during word prediction" \citep{marvin2018targeted}
+
+%  on normalizations by token frequency : "such corrections should arguably not be necessary in an LM that adequately captures grammaticality"  \citep{marvin2018targeted}
+
+% "our results show that LSTM language models are far from matching naive annotators’ performance on this task, let alone performing at 100% accuracy."  \citep{marvin2018targeted}
+
+% "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
 
 \section{Accuracy results for island effects minimal pairs in Italian}
 
@@ -1381,5 +1497,13 @@ on disk. Probabilities are generally quantized using only 4-8 bits (instead of 8
 "It uses the output of a character-level
 Convolutional Neural Network (CNN) as input to
 the LSTM. This model has the best published perplexity for English text." \citep{wilcox2018rnn}
+
+\section{Notes and refs on incorporating explicit semantic info}
+
+% "Syntax in LMs: There have been several proposals over the years to incorporate explicit syntax into LMs" ", in practice it can still be beneficial to inject syntax into the model. This can be done by combining it with a supervised parser (Dyer et al., 2016) or other multi-task learning objectives (Enguehard et al., 2017)" \citep{marvin2018targeted}
+
+% "Multi-task training with a syntactic objective (CCG supertagging) mitigated this drop in performance for some but not all of the dependencies we tested. We conjecture that the benefits of the inductive bias conferred by multi-task learning will be amplified when the amount of training data is limited"  \citep{marvin2018targeted}
+% (that is, incorporating linguitic signals could be effective in lowering the amount of training data needed)
+
 
 \nocite{wei2021frequency, hu2020systematic, lau2020furiously, bostrom2020byte, futrell-etal-2019-neural}
