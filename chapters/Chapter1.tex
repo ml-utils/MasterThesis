@@ -329,8 +329,8 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 \chapter{Related work}
 
-TODO: brief summary of each of the main prev studies:
-wilcox, warstadt, linzen, marvin, salazar, Hu, ..
+% TODO: brief summary of each of the main prev studies:
+% wilcox, warstadt, linzen, marvin, salazar, Hu, ..
 
 "Some recent computational work explores the relation of acceptability judgments to sentence probabilities." \citep{lau2020furiously} 
 "Lau et al. (2015, 2017b) show that the output of unsupervised language models can correlate with human acceptability ratings. Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier on top of a pre-trained sentence encoder to predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
@@ -370,6 +370,7 @@ Linguists concerned with acceptability judgements, while "Computational language
 "The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
 
 
+
 "Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic wellformedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence length. It is gradient, rather than binary, in nature (Denison, 2004; Sorace and Keller, 2005; Sprouse, 2007)" \citep{lau2020furiously}
 
 "Overview of the approach"
@@ -379,6 +380,9 @@ Linguists concerned with acceptability judgements, while "Computational language
 
 the Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}
 "CoLA), has a training set and asks to label sentences as “acceptable” or not in isolation \citet{warstadt2019neural}"  \citet{salazar2020masked}
+
+% "naturalistic approach vs a constructed dataset"
+% acceptability judgements vs minimal pairs
 
 Minimal pairs vs sentence acceptability (with CoLA)
 acceptability: absolute score
@@ -485,7 +489,7 @@ Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018t
 
 
 On minimal pairs and necessity of controlling factors btw the two sentences:
-"Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP"
+"Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP" \citep{warstadt2020blimp}
 
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
 % "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
@@ -496,19 +500,13 @@ On minimal pairs and necessity of controlling factors btw the two sentences:
 
 % general note on grammaticality notation: "Following and building on linguistic traditions, we annotate examples as follows. Examples marked with a * violate a well-established grammatical constraint, and are ungrammatical. Examples marked with ? or ?? are not necessarily ungrammatical, but are marginal: for example, they may require an unusual interpretation of a word in order for the sentence to be grammatical. (More ?’s is roughly intended to indicate more severe marginality). Examples marked with ! are not ungrammatical, but induce severe processing difficulty that is measurable in real-time human sentence processing" \citep{hu2020systematic} 
 
-BLiMP
+
 % "One limitation of our approach is that 
 % it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
 % for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
 
-"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
-challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
-"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less
-negative) score." \citep{salazar2020masked} 
-% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
-"Since most minimal pairs only differ by a single
-word, the effect of length on log probabilities and
-PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
+
+"Since most minimal pairs [in BLiMP] only differ by a single word, the effect of length on log probabilities and PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
 \subsection{Factorial approaches}
 ..
@@ -613,8 +611,7 @@ Surprisals "are independently well-established to predict human incremental proc
 called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
 " pseudo-loglikelihood scores (PLLs) from MLMs (Wang and Cho, 2019), " \citep{salazar2020masked}
 
-"PLL’s unsupervised expression of linguistic acceptability without a
-left-to-right bias, greatly improving on scores from GPT-2 (+10 points on island effects, NPI licensing in BLiMP) " \citep{salazar2020masked}
+"PLL’s unsupervised expression of linguistic acceptability without a left-to-right bias, greatly improving on scores from GPT-2 (+10 points on island effects, NPI licensing in BLiMP) " \citep{salazar2020masked}
 % PLLs and their associated pseudo-perplexities (PPPLs)   \citep{salazar2020masked}
 
 "To score a sentence, one creates copies with each token masked out. The log probability for each missing token is summed over copies to give the
@@ -747,15 +744,13 @@ all t. Meanwhile -log PLM(wt j W<t) decreases as t ! jWj, the rate of which was 
 the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked}
 
 
-
-
 \section{Test suites}
 
 % section "Data set construction"   \citep{marvin2018targeted}
 
 % \citet{marvin2018targeted} "use templates to automatically construct a large number of English sentence pairs (∼350,000)."
 
-\subsection{CoLA, ItaCoLA}
+\subsection{CoLA}
 
 On test suite development:
 "investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
@@ -763,24 +758,29 @@ On test suite development:
 "naturalistic approach vs a constructed dataset"
 "syntactically challenging examples are sparsely represented in a corpus" "naturally occurring sentences are difficult to control for confounds" \citep{marvin2018targeted}
 
-Corpora of sentences and their grammaticality. "The most recent
-and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
+Corpora of sentences and their grammaticality. 
+"The most recent and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
 CoLA is included in the GLUE benchmark (Wang et al., 2018)
 
-..
-the meaning of cross entropy (average?)
-even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
-or is this problematic/a ..forzatura
-only in the case of minimal pairs (in the strict sense of differing by 1 word), ..
-otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood, and still, in natural language use, some frequenty incorrect sentences are more likely than rare ones
-
-Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
+%..
+%the meaning of cross entropy (average?)
+%even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
+%or is this problematic/a ..forzatura
+%only in the case of minimal pairs (in the strict sense of differing by 1 word), ..
+%otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood, and still, in natural language use, some frequenty incorrect sentences are more likely than rare ones
+%
+%Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
 
 %"An additional check was performed to manually control for typos and transcription errors."
 ..
 
 \subsection{BLiMP}
-..
+
+"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
+challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
+"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less negative) score." \citep{salazar2020masked} 
+% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
+
 \subsection{Other (Hu et al, Wilcox et al, ..)}
 ..
 
@@ -794,17 +794,12 @@ Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the
 
 "We show that PLLs outperform scores from autoregressive language models like GPT-2 in a variety of tasks. " \citep{salazar2020masked}
 
-" Section 4 investigates whether
-LSTM language models are sensitive to various
-constraints: wh-islands, adjunct islands, complex
-NP islands, and subject islands. We find that the
-language models are sensitive to some but not all
+% " Section 4 investigates whether LSTM language models are sensitive to " 
+"various constraints: wh-islands, adjunct islands, complex NP islands, and subject islands. We find that the [LSTM] language models are sensitive to some but not all
 of these constraints. " \citep{wilcox2018rnn}
 
-\citet{warstadt2020blimp} (which did not test BERT): "current neural LMs appear to acquire robust
-knowledge of morphological agreement and some syntactic phenomena such as ellipsis and control/raising. They show weaker evidence of knowledge about argument structure, negative polarity item licensing, and the semantic properties of quantifiers. \textbf{All models perform at or near chance on extraction islands}. Overall, every model we evaluate falls short of human performance by a wide margin"
-"ISLANDS are the hardest phenomenon by a wide margin. Only GPT-2 performs well above
-chance, and it remains 14 points below humans." \citet{warstadt2020blimp}
+\citet{warstadt2020blimp} (which did not test BERT): "current neural LMs appear to acquire robust knowledge of morphological agreement and some syntactic phenomena such as ellipsis and control/raising. They show weaker evidence of knowledge about argument structure, negative polarity item licensing, and the semantic properties of quantifiers. \textbf{All models perform at or near chance on extraction islands}. Overall, every model we evaluate falls short of human performance by a wide margin"
+"ISLANDS are the hardest phenomenon by a wide margin. Only GPT-2 performs well above chance, and it remains 14 points below humans." \citet{warstadt2020blimp}
 
 "Some semantic phenomena, specifically those involving NPI LICENSING and QUANTIFIERS, are also challenging overall"
 
@@ -812,13 +807,8 @@ what might the reason for lower perf on island effects: lower frequency of the p
 
 "evidence that increased dependency length and the presence of agreement attractors of the kind investigated by Linzen et al. (2016) and Gulordava et al. (2019) reduce performance on agreement phenomena." (on LSTM) \citet{warstadt2020blimp}
 
-"We find, in accordance with Wilcox et al.
-(2018), that LMs do represent long-distance
-wh-dependencies, but we also conclude that
-their representations differ fundamentally from humans’." \citet{warstadt2020blimp}
-"Although some models approach human
-performance in ordinary filler-gap dependencies,
-they are exceptionally poor at identifying island
+"We find, in accordance with Wilcox et al. (2018), that LMs do represent long-distance wh-dependencies, but we also conclude that their representations differ fundamentally from humans’." \citet{warstadt2020blimp}
+"Although some models approach human performance in ordinary filler-gap dependencies, they are exceptionally poor at identifying island
 violations overall" \citet{warstadt2020blimp}
 
 "strong conclusions about how these models represent wh-dependencies are not possible using the forced-choice task compatible with BLiMP, and
@@ -1076,43 +1066,43 @@ errors easily even without access to sub-word information. We speculate that thi
 
 % (separate chapter, or section of other chapter?)}
 
-Context, lit review ..
-the literature on syntactic tests.. intrinsic tests
-the purpose of syntactic/linguistic fine-grained tests
+%Context, lit review ..
+%the literature on syntactic tests.. intrinsic tests
+%the purpose of syntactic/linguistic fine-grained tests
+%
+%research question it might ask:
+%
+%..use of a factorial design
+%is that a complementary way to test language models?
+%
+%does these tests in particular tells us something more/new/.. about ..what these models learn about language/how they learn it?
 
-research question it might ask:
+%how does these tests compare to previous ones? on similar phenomena (english)
+%between languages (english vs italian)
+%in phenomena present in both english and italian vs new phenomena present in italian but not english
+%(some of these might not be .."research questions", but ..ways to analyse/interpret our results.. therefore belonging more to methodology than research questions)
+%
+%(todo: run the english tests, using the Sprouse english datasets, seeing the accuracy results for these models (bert, roberta, gpt)
+%
+%(about the tests on Bert, and the question if it's getting cues from other words in the sentence, because it's a bidirectional LM unlike gpt..)
+%
+%TODO: add methodology section .. find refs on "methodology", gathering and analyzing data
 
-..use of a factorial design
-is that a complementary way to test language models?
-
-does these tests in particular tells us something more/new/.. about ..what these models learn about language/how they learn it?
-
-how does these tests compare to previous ones? on similar phenomena (english)
-between languages (english vs italian)
-in phenomena present in both english and italian vs new phenomena present in italian but not english
-(some of these might not be .."research questions", but ..ways to analyse/interpret our results.. therefore belonging more to methodology than research questions)
-
-(todo: run the english tests, using the Sprouse english datasets, seeing the accuracy results for these models (bert, roberta, gpt)
-
-(about the tests on Bert, and the question if it's getting cues from other words in the sentence, because it's a bidirectional LM unlike gpt..)
-
-TODO: add methodology section .. find refs on "methodology", gathering and analyzing data
-
-explain the decision of building a manual test set
-compare with blimp autogenerated test set
-detail ..which factor are controlled in our example
-following sentences schema from sprouse et al.
+%explain the decision of building a manual test set
+%compare with blimp autogenerated test set
+%detail ..which factor are controlled in our example
+%following sentences schema from sprouse et al.
 
 % quote umberto eco at the beginning on the section on methodology (translate it)
 
-our contributions wrt to trotta et al 2021:
-comparable number of examples (50), but for more phenomena (4 instead of 1)
-difference in the wh-islands phenomena
-NB in fig.1 (right) trotta et al also omit the wh islands results
-problem in trotta et al for sentences with multiple phenomena
-(check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
+%our contributions wrt to trotta et al 2021:
+%comparable number of examples (50), but for more phenomena (4 instead of 1)
+%difference in the wh-islands phenomena
+%NB in fig.1 (right) trotta et al also omit the wh islands results
+%problem in trotta et al for sentences with multiple phenomena
+%(check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
 
-
+(TODO)
 
 \chapter{Experimental setup}
 
