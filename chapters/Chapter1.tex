@@ -651,8 +651,7 @@ by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomen
 MLMs in a supervision-free manner"
 
 
-\section{Evaluations of Language models}
-
+\section{Linguistic evaluation measures for language models}
 
 
 % "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
@@ -915,7 +914,16 @@ word, the effect of length on log probabilities and
 PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
 
-\section{Conclusions from previous papers}
+\section{Test suites}
+\subsection{CoLA, ItaCoLA}
+..
+\subsection{BLiMP}
+..
+\subsection{Other (Hu et al, Wilcox et al, ..)}
+..
+
+
+\section{Review of results from previous related work}
 
 " Section 4 investigates whether
 LSTM language models are sensitive to various
@@ -1103,8 +1111,59 @@ and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et
 "Our work shows these dependencies and their constraints can be learned to some extent by a generic sequence model with no obvious inductive bias for hierarchical structures. This is evidence against the idea that such an inductive bias is necessary for language learning, although the amount of data these models are trained on is much larger
 than the typical input to a child learner." \citep{wilcox2018rnn}
 
-(TODO: sintetizzare i virgolettati)
 
+Frequency effects
+% "Even on simple cases, however, the RNN’s accuracy was sensitive to the particular lexical items that occurred in the sentence; this would not be expected if its syntactic representations were fully abstract."  \citep{marvin2018targeted}
+
+% "Lexical variation and frequency: There was considerable lexical variation in the results; we have mentioned the surprising asymmetry between himself and herself above" \citep{marvin2018targeted}
+
+% "an asymmetry in accuracy between himself and themselves on the one hand (100% accuracy in the multi-task RNN) and herself on the other hand (49% accuracy).5 This may be because himself and themselves are significantly more frequent than herself, and consequently the number representation learned for herself was not robust. Another possibility is that gender bias reduces the probability of an anaphoric relation between herself and words such as surgeon (Rudinger et al., 2018)." \citep{marvin2018targeted}
+% "Accuracy varied by verb, ranging from is and are, which had 100% accuracy, to swims, where accuracy was only 60% (recall that average accuracy was 94%). This may be a frequency effect: either the LM is learning less robust number representations for infrequent verbs, or the tail of the distribution over the vocabulary is more fragile during word prediction" \citep{marvin2018targeted}
+
+%  on normalizations by token frequency : "such corrections should arguably not be necessary in an LM that adequately captures grammaticality"  \citep{marvin2018targeted}
+
+% "our results show that LSTM language models are far from matching naive annotators’ performance on this task, let alone performing at 100% accuracy."  \citep{marvin2018targeted}
+
+% "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
+
+"Compression effect" of acceptability (by humans) from presence or absence of contect:
+"Tworecentstudiesthat explorethe impact of document context on acceptability judgments both
+identify a compression effect (Bernardy et al.,
+2018; Bizzoni and Lappin, 2019). Sentences perceived to be low in acceptability when judged
+without context receive a boost in acceptability
+when judged within context. Conversely, those
+with high out-of-context acceptability see a reduction in acceptability when context is presented. It
+is unclear what causes this compression effect" 
+(this is related to the fact that shorter sentences, with less semantic cues, receive lower likelihood/more surprisal)
+
+..
+
+% "To summarize, our first important result is the exceptional performance of bidirectional models." \citep{lau2020furiously}
+% "Our second result is more tentative. Our experiments seem to indicate that model architecture is more important than training or model size. " \citep{lau2020furiously}
+
+% but Lau et al results on acceptability correlate much less with human ones when using a testset of lingusitically crafted pairs of contrasts (instead of rountrim machine translation) "Although the correlations are generally lower, we want to highlight that these linguists’ examples are artificially constructed to illustrate specific syntactic phenomena, and so this constitutes a particularly strong case of outof-domain prediction. " \citep{lau2020furiously}
+% althoug the linguistic examples are much shorter "—less than 7 words on average—than the natural texts" \citep{lau2020furiously} , and this might confirm ..our finding on difficulty of shorter sentences. 
+% 
+
+Salazar scoring Bert on Blimp, Table 7 \citep{salazar2020masked}: "Unsupervised performance (forced choice accuracy) on BLiMP using log probabilities (GPT-2) or PLLs. Human scores from Warstadt et al. (2020). " \citep{salazar2020masked}
+
+\citet{salazar2020masked} found that, on the Blimp testset, Roberta large learns island effects close to a human level (accuracy scores are 83.4\% from Roberta and 84.9\% by humans). But as pointed out in the original Blimp paper \citep{warstadt2020blimp}, phenomena effects are probably better tested with a factorial design like \citep{wilcox2018rnn} that ..controls/.. 
+
+Salazar on the improvement of Berta over Gpt on island effects (which \citep{warstadt2020blimp} scored at ..near chance level) " This
+suggests that the difficulty of these BLiMP categories was due to PLM decomposing autoregressively, and not intrinsic to unsupervised language
+model training, as the original results may suggest
+\citep{warstadt2020blimp}." \citep{salazar2020masked}
+"For some intuition, we include examples in Table 8. In the subject-verb
+agreement example, BERT sees The pamphlets and resembled those photographs when scoring have vs. has, whereas GPT-2 only sees The pamphlets, which may not be enough to counter the misleading adjacent entity Winston Churchill at scoring time" \citep{salazar2020masked}
+"Who does Amanda find while thinking about Lucille?
+Who does Amanda find Lucille while thinking about?"
+"GPT-2 and BERT both promote fluency, but GPT-2’s left-to-right biased
+scores appear to cause it to \textbf{overweigh common word sequences} at the expense of adequacy" \citep{salazar2020masked}
+
+"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by log PLM(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
+% in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
+
+% ensembling not effective for PLL and LP, they overlap: "Given the differences between PLLs and log probabilities, we explore whether ensembling both improves performance in Appendix D. Similar to the largely-dominant results of MLMs on BLiMP over GPT-2 (Section 4.1), we find that as the MLM gets stronger, adding GPT-2 scores has negligible effect, suggesting that their roles overlap."  \citep{salazar2020masked}
 
 \chapter{Experimental setup}
 
@@ -1233,60 +1292,6 @@ acceptable sentences overall increases with performance, separating the two sent
 
 \chapter{Results}
 
-\section{Review of results from previous/related works}
-
-Frequency effects
-% "Even on simple cases, however, the RNN’s accuracy was sensitive to the particular lexical items that occurred in the sentence; this would not be expected if its syntactic representations were fully abstract."  \citep{marvin2018targeted}
-
-% "Lexical variation and frequency: There was considerable lexical variation in the results; we have mentioned the surprising asymmetry between himself and herself above" \citep{marvin2018targeted}
-
-% "an asymmetry in accuracy between himself and themselves on the one hand (100% accuracy in the multi-task RNN) and herself on the other hand (49% accuracy).5 This may be because himself and themselves are significantly more frequent than herself, and consequently the number representation learned for herself was not robust. Another possibility is that gender bias reduces the probability of an anaphoric relation between herself and words such as surgeon (Rudinger et al., 2018)." \citep{marvin2018targeted}
-% "Accuracy varied by verb, ranging from is and are, which had 100% accuracy, to swims, where accuracy was only 60% (recall that average accuracy was 94%). This may be a frequency effect: either the LM is learning less robust number representations for infrequent verbs, or the tail of the distribution over the vocabulary is more fragile during word prediction" \citep{marvin2018targeted}
-
-%  on normalizations by token frequency : "such corrections should arguably not be necessary in an LM that adequately captures grammaticality"  \citep{marvin2018targeted}
-
-% "our results show that LSTM language models are far from matching naive annotators’ performance on this task, let alone performing at 100% accuracy."  \citep{marvin2018targeted}
-
-% "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
-
-"Compression effect" of acceptability (by humans) from presence or absence of contect:
-"Tworecentstudiesthat explorethe impact of document context on acceptability judgments both
-identify a compression effect (Bernardy et al.,
-2018; Bizzoni and Lappin, 2019). Sentences perceived to be low in acceptability when judged
-without context receive a boost in acceptability
-when judged within context. Conversely, those
-with high out-of-context acceptability see a reduction in acceptability when context is presented. It
-is unclear what causes this compression effect" 
-(this is related to the fact that shorter sentences, with less semantic cues, receive lower likelihood/more surprisal)
-
-..
-
-% "To summarize, our first important result is the exceptional performance of bidirectional models." \citep{lau2020furiously}
-% "Our second result is more tentative. Our experiments seem to indicate that model architecture is more important than training or model size. " \citep{lau2020furiously}
-
-% but Lau et al results on acceptability correlate much less with human ones when using a testset of lingusitically crafted pairs of contrasts (instead of rountrim machine translation) "Although the correlations are generally lower, we want to highlight that these linguists’ examples are artificially constructed to illustrate specific syntactic phenomena, and so this constitutes a particularly strong case of outof-domain prediction. " \citep{lau2020furiously}
-% althoug the linguistic examples are much shorter "—less than 7 words on average—than the natural texts" \citep{lau2020furiously} , and this might confirm ..our finding on difficulty of shorter sentences. 
-% 
-
-Salazar scoring Bert on Blimp, Table 7 \citep{salazar2020masked}: "Unsupervised performance (forced choice accuracy) on BLiMP using log probabilities (GPT-2) or PLLs. Human scores from Warstadt et al. (2020). " \citep{salazar2020masked}
-
-\citet{salazar2020masked} found that, on the Blimp testset, Roberta large learns island effects close to a human level (accuracy scores are 83.4\% from Roberta and 84.9\% by humans). But as pointed out in the original Blimp paper \citep{warstadt2020blimp}, phenomena effects are probably better tested with a factorial design like \citep{wilcox2018rnn} that ..controls/.. 
-
-Salazar on the improvement of Berta over Gpt on island effects (which \citep{warstadt2020blimp} scored at ..near chance level) " This
-suggests that the difficulty of these BLiMP categories was due to PLM decomposing autoregressively, and not intrinsic to unsupervised language
-model training, as the original results may suggest
-\citep{warstadt2020blimp}." \citep{salazar2020masked}
-"For some intuition, we include examples in Table 8. In the subject-verb
-agreement example, BERT sees The pamphlets and resembled those photographs when scoring have vs. has, whereas GPT-2 only sees The pamphlets, which may not be enough to counter the misleading adjacent entity Winston Churchill at scoring time" \citep{salazar2020masked}
-"Who does Amanda find while thinking about Lucille?
-Who does Amanda find Lucille while thinking about?"
-"GPT-2 and BERT both promote fluency, but GPT-2’s left-to-right biased
-scores appear to cause it to \textbf{overweigh common word sequences} at the expense of adequacy" \citep{salazar2020masked}
-
-"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by log PLM(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
-% in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
-
-% ensembling not effective for PLL and LP, they overlap: "Given the differences between PLLs and log probabilities, we explore whether ensembling both improves performance in Appendix D. Similar to the largely-dominant results of MLMs on BLiMP over GPT-2 (Section 4.1), we find that as the MLM gets stronger, adding GPT-2 scores has negligible effect, suggesting that their roles overlap."  \citep{salazar2020masked}
 
 \section{Accuracy results for island effects minimal pairs in Italian}
 
