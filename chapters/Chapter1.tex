@@ -344,15 +344,41 @@ MLMs in a supervision-free manner"
 % "Evaluation sets consisting of chalenging syntactic constructions have been constructed for parser evaluation (Rimell et al., 2009; Nivre et al., 2010; Bender et al., 2011),"  \citep{marvin2018targeted}
 % "and minimal pair approaches have been proposed for evaluating image captioning (Shekhar et al., 2017) and machine translation systems (Sennrich, 2017), but no data sets exist that target a range of syntactic constructions for language model evaluation." \citep{marvin2018targeted}
 
+\citet{salazar2020masked} "studied scoring with MLM pseudo-loglikelihood scores in a variety of settings" and found that "rescoring with PLLs can match or outperform comparable scores from large unidirectional language models (GPT-2)" They "attributed this to PLL’s promotion of fluency via self-consistency, as demonstrated by improvement on unsupervised acceptability judgements and by qualitative analysis."
+They also examined the numerical properties of PLLs \citep{salazar2020masked}.
+
+% \citet{lau2020furiously}, try to normalize by sentence length and lexical frequency .. but actually shorter sentences can have lower likelihood. And this normalization adds nothing really to convert likelihood (..probability) to acceptability (a rare acceptable sentence might still have lower likelihood than a frequent sentence with a common mistake)
+% (see ..salazar2020masked or Wilcox et al arguments on this; in particular, the fact that unifirectional models like Gpt, see a lowering curve in token surprisal as more of the sentence is revealed, and this might explain the effectiveness of the exponential normalization by sentence lenght; confound of sentence lenght with ..internal consistency of the sentence)(TODO: show the two plots by ..salazar2020masked  for bert and gpt, with flat vs descending curves)
+
+"Lau et al. (2017b) experiment with unsupervised language models to predict acceptability, and they obtained an encouraging correlation with human ratings" \cite{lau2020furiously}
+
+"Lau et al. (2017) compared the ability of different LMs to predict graded human acceptability judgments. The forced-choice approach used in the current paper has been shown to be effective in human
+acceptability judgment experiments (Sprouse and Almeida, 2017)." \citep{marvin2018targeted}
+% "Warstadt et al. (2018) use a transfer learning approach, where an unsupervised model is finetuned on acceptability prediction."  \citep{marvin2018targeted}
+
+"Our work differs from those studies in that we do not advocate providing any explicit grammaticality signal to the LM at any point (“no negative evidence”)." \citep{marvin2018targeted}
+
+(masked rescoring)
+"Our work extends the closest previous works (Wang and Cho, 2019; Shin et al., 2019) with regards to experiments and tasks, as outlined in Section 2.1." \citet{salazar2020masked}
+
 \section{Approaches for targeted linguistic evaluation of language models}
 
 % "targeted linguistic evaluation" \citep{hu2020systematic}
 % " targeted syntactic evaluation of language models" \citep{marvin2018targeted}
 
+Linguists concerned with acceptability judgements, while "Computational language processing has traditionally been more concerned with \textit{likelihood}—the probability of a sentence being produced or encountered" \cite{lau2020furiously}
+"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
+
+
+"Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic wellformedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence length. It is gradient, rather than binary, in nature (Denison, 2004; Sorace and Keller, 2005; Sprouse, 2007)" \citep{lau2020furiously}
+
 "Overview of the approach"
 "Grammaticality and LM probability" \citep{marvin2018targeted}
 
 "How should grammaticality be captured in the probability distribution defined by an LM? The most extreme position would be that a language model should assign a probability of zero to ungrammatical sentences. For most applications, some degree of error tolerance is desirable, and  it is not practical to assign a sentence a probability of exactly zero.1 " "1Nor is it possible to have a threshold episilon such that all grammatical sentences have probability higher than episilon and all ungrammatical sentences have probability lower than episilon, for the simple reason that there is an infinite number of grammatical sentences (Lau et al., 2017)."  \citep{marvin2018targeted}
+
+the Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}
+"CoLA), has a training set and asks to label sentences as “acceptable” or not in isolation \citet{warstadt2019neural}"  \citet{salazar2020masked}
 
 Minimal pairs vs sentence acceptability (with CoLA)
 acceptability: absolute score
@@ -403,6 +429,7 @@ Tenney et al., 2019). "  \citep{warstadt2020blimp}
 ..
 CoLA, ItaCoLA
 
+% "To understand the relationship between sentence acceptability and probability, we conduct experiments with unsupervised language models to predict acceptability. " \citep{lau2020furiously}
 
 On acceptability judgments
 "Acceptability judgments are the main form of behavioral data used in generative linguistics to measure human linguistic competence (Chomsky, 1965; Schutze, 1996)." \citep{warstadt2020blimp}	
@@ -456,7 +483,6 @@ Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018t
 % limits, compare whole sentences: "The prediction setting is only applicable when the locus of ungrammaticality is a single word, rather than, say, the interaction between two words; moreover, the information needed to make the grammaticality decision needs to be available in the left context of the locus of grammaticality. These conditions do not always hold. Negative polarity items (NPIs), for example,.."  \citep{marvin2018targeted}
 
 
-BLiMP
 
 On minimal pairs and necessity of controlling factors btw the two sentences:
 "Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP"
@@ -469,6 +495,20 @@ On minimal pairs and necessity of controlling factors btw the two sentences:
 % (more extensive list of linguistic phenomena, and how they can be ..encoded in a Blimp format, and which can't. Each phenomena has more complementaty forms in which is tested in Blimp; phenomena need to be more fine grained, ie, for island effects, all subtypes; even subtypes of phenomena might even multiple aspects/linguistic facts..)
 
 % general note on grammaticality notation: "Following and building on linguistic traditions, we annotate examples as follows. Examples marked with a * violate a well-established grammatical constraint, and are ungrammatical. Examples marked with ? or ?? are not necessarily ungrammatical, but are marginal: for example, they may require an unusual interpretation of a word in order for the sentence to be grammatical. (More ?’s is roughly intended to indicate more severe marginality). Examples marked with ! are not ungrammatical, but induce severe processing difficulty that is measurable in real-time human sentence processing" \citep{hu2020systematic} 
+
+BLiMP
+% "One limitation of our approach is that 
+% it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
+% for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
+
+"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
+challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
+"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less
+negative) score." \citep{salazar2020masked} 
+% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
+"Since most minimal pairs only differ by a single
+word, the effect of length on log probabilities and
+PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
 \subsection{Factorial approaches}
 ..
@@ -552,41 +592,34 @@ In \citet{hu2020systematic}, "Test suites are written using a standard format th
 
 % move to appropriate section: "off-the-shelf models."  \citep{hu2020systematic} 
 
+% move to appropriate section:
+"To accommodate sentence length and lexical frequency we experiment with several simple normalization methods, converting probabilities to acceptability measures (Section 3.2)." \citep{lau2020furiously}
 
-\subsection{Measures}
+% acceptability judgements, LM probability of a sentence, likelihood, ..
 
-acceptability judgements, LM probability of a sentence, likelihood, ..
-
+Perplexity: 
 "perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
-" the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
+"the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
 "Standard language models are trained to predict the next token given a context of previous tokens. Language models are typically assessed by their perplexity, the inverse geometric mean of the joint probability of words w1; : : : ; wN in a held-out test corpus C:" \citep{hu2020systematic}
 % perplexity has been found to correlate with human gaze duration while reading  \citep{hu2020systematic}
 
-\subsubsection{Surprisal}
+\subsection{Surprisal}
 
-In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): S(wjC) = -log2 p(wjC), " \citep{hu2020systematic}
+In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -log2 p(w|C)$, " \citep{hu2020systematic}
 Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
 
 
-"evaluate MLMs out of the box via their
-pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
+"evaluate MLMs out of the box via their pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
 called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
-" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and
-Cho, 2019), " \citep{salazar2020masked}
+" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and Cho, 2019), " \citep{salazar2020masked}
 
 "PLL’s unsupervised expression of linguistic acceptability without a
-left-to-right bias, greatly improving on scores
-from GPT-2 (+10 points on island effects, NPI
-licensing in BLiMP) " \citep{salazar2020masked}
+left-to-right bias, greatly improving on scores from GPT-2 (+10 points on island effects, NPI licensing in BLiMP) " \citep{salazar2020masked}
 % PLLs and their associated pseudo-perplexities (PPPLs)   \citep{salazar2020masked}
 
-"To score a sentence, one creates copies
-with each token masked out. The log probability for
-each missing token is summed over copies to give the
+"To score a sentence, one creates copies with each token masked out. The log probability for each missing token is summed over copies to give the
 pseudo-log-likelihood score (PLL)." (Figure from \citet{salazar2020masked})
-"given by summing the conditional log
-probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced
-in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
+"given by summing the conditional log probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
 
 PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
 "Log probabilities model the joint distribution; PLL does so as well, albeit implicitly (Appendix B)"  \citep{salazar2020masked}
@@ -599,7 +632,7 @@ PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
 are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 
-\subsubsection{Issues with perplexity}
+\subsection{Issues with perplexity}
 
 % "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
 % Perplexity issues: 
@@ -624,62 +657,31 @@ are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-only model: the LSTM "learned more robust syntactic representations, but this advantage was not reflected in its average perplexity on the corpus, since syntactically challenging sentences are relatively infrequent." \citep{marvin2018targeted}
 
 
-\subsection{Sentence acceptability estimates}
+% \subsection{Sentence acceptability estimates}
 
-Linguists concerned with acceptability judgements, while "Computational language processing has traditionally been more
-concerned with \textit{likelihood}—the probability of a
-sentence being produced or encountered" \cite{lau2020furiously}
-"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
-
-"To understand the relationship between sentence acceptability and probability, we conduct experiments with unsupervised language models
-to predict acceptability. " \citep{lau2020furiously}
-
-"Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic wellformedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence
-length. It is gradient, rather than binary, in nature
-(Denison, 2004; Sorace and Keller, 2005; Sprouse,
-2007)" \citep{lau2020furiously}
 
 % "Most of these [Psycholinguistic] studies suggest that coherent or natural contexts should increase acceptability ratings, given that the linguistic expressions used in processing become more activated. "  \citep{lau2020furiously}
 % "Warner and Glass (1987) show that such syntactic contexts can indeed affect grammaticality judgments in the expected way for garden path sentences. " \citep{lau2020furiously}
 
-\citet{salazar2020masked} "studied scoring with MLM pseudo-loglikelihood scores in a variety of settings" and found that "rescoring with PLLs can match or outperform comparable scores from large unidirectional language models (GPT-2)" They "attributed this to PLL’s promotion of fluency via self-consistency, as demonstrated by improvement on unsupervised acceptability judgements and by qualitative analysis."
-They also examined the numerical properties of PLLs \citep{salazar2020masked}.
 
-\citet{lau2020furiously}, try to normalize by sentence length and lexical frequency .. but actually shorter sentences can have lower likelihood. And this normalization adds nothing really to convert likelihood (..probability) to acceptability (a rare acceptable sentence might still have lower likelihood than a frequent sentence with a common mistake)
-(see ..salazar2020masked or Wilcox et al arguments on this; in particular, the fact that unifirectional models like Gpt, see a lowering curve in token surprisal as more of the sentence is revealed, and this might explain the effectiveness of the exponential normalization by sentence lenght; confound of sentence lenght with ..internal consistency of the sentence)(TODO: show the two plots by ..salazar2020masked  for bert and gpt, with flat vs descending curves)
-
-"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-toright bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
-
-
-"To accommodate sentence length and lexical frequency we experiment with several simple normalization methods, converting probabilities
-to acceptability measures (Section 3.2)." \citep{lau2020furiously}
-
-"Lau et al. (2017b) experiment with unsupervised language models to predict acceptability, and they obtained an encouraging correlation with human ratings" \cite{lau2020furiously}
-
-"Lau et al. (2017) compared the ability of different LMs to predict graded human acceptability judgments. The forced-choice approach used in the current paper has been shown to be effective in human
-acceptability judgment experiments (Sprouse and Almeida, 2017)." \citep{marvin2018targeted}
-% "Warstadt et al. (2018) use a transfer learning approach, where an unsupervised model is finetuned on acceptability prediction."  \citep{marvin2018targeted}
-
-"Our work differs from those studies in that we do not advocate providing any explicit grammaticality signal to the LM at any point (“no negative evidence”)." \citep{marvin2018targeted}
-
-Refs/Lit review:
-Salazar et al. ..
-2016 paper
-..
-
-The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are:
-
-the Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}
-"CoLA), has a training set and asks to label sentences as “acceptable” or not in isolation \citet{warstadt2019neural}"  \citet{salazar2020masked}
+% Refs/Lit review:
+% Salazar et al. ..
+% 2016 paper
+% ..
 
 
 
+\subsection{Pseudo-log-likelihood scores (PLLs)}
 
-\subsubsection{Pseudo-log-likelihood scores (PLLs)}
-
+The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are: (..)
 
 "pseudo-log-likelihood scores (PLLs)" "are computed by masking tokens one by one" \citep{salazar2020masked}
 % (link with \citet{lau2020furiously} article, and the prev one for circa 2016, that use this same score/formula, but with different names?)
+
+
+
+"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-toright bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
+
 
 \citet{lau2020furiously} formula for BERT sentence acceptability:
 "It is important to note, however, that sentence probability computed this way is not a true probability value: These probabilities do
@@ -705,11 +707,11 @@ big vs. the yak is big)" \citep{lau2020furiously}
 
 %(normalizing by dividing the sentence probability given by a unigram language model) - log P(S) / log P_u(S)   \citep{lau2020furiously}
 
-\subsubsection{Softmax, logistic function, and other activation functions applied to the models' output}
-\label{sec:softmax}
+%\subsubsection{Softmax, logistic function, and other activation functions applied to the models' output}
+% \label{sec:softmax}
 We calculated the LP and PenLP measures taking as a basis the models' outputs after the softmax activation function applied to the last layer. 
 
-As an alternative, for BERT-based models, we also experimented with using a logistic function rather then the softmax. We called the resulting scores LP-L and PenLP-L to distinguish them from the softmax based ones. Note that with the logistic function, for the masked word prediction scores, we still obtain a value between [0, 1] for each word in the model vocabulary, but this is not a probability since the sum of all the values is greater than one.
+% As an alternative, for BERT-based models, we also experimented with using a logistic function rather then the softmax. We called the resulting scores LP-L and PenLP-L to distinguish them from the softmax based ones. Note that with the logistic function, for the masked word prediction scores, we still obtain a value between [0, 1] for each word in the model vocabulary, but this is not a probability since the sum of all the values is greater than one.
 % TODO: consider normalizing so the sum is equal to 1?.
 % see paper by .. , in which, instead of the top k scores, for predictions they use the ..top-p, that is, the top words that in aggregate reach a probability threshold p. NB: the purpose of such measure is for text generation, and it doesn't seem applyable to the present study (sentence scoring).
 
@@ -744,23 +746,7 @@ all t. Meanwhile -log PLM(wt j W<t) decreases as t ! jWj, the rate of which was 
 
 the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked}
 
-(masked rescoring)
-"Our work extends the closest previous works (Wang and Cho, 2019; Shin et al., 2019) with regards to experiments and tasks, as outlined in Section 2.1." \citet{salazar2020masked}
 
-\subsection{Minimal pairs approach}
-
-% "One limitation of our approach is that 
-% it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
-% for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
-
-"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
-challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
-"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less
-negative) score." \citep{salazar2020masked} 
-% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
-"Since most minimal pairs only differ by a single
-word, the effect of length on log probabilities and
-PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
 
 \section{Test suites}
