@@ -113,7 +113,7 @@ Argument from the poverty of the stimulus (APS):
 Transformers  are "a neural network architecture,  without  any  recurrent  connections  (22),  which  takes  a sequence  of  words  (or  other  symbols)  as  input  and  produces a contextualized vector representation of each word as its out-put (Fig. 3). It contains many millions of trainable parameters in  a  number  of  layers,  typically  requiring  massive  amounts  of data  and  computation  to  train.  This  makes  Transformers  difficult  to  train,  but  also  highly  expressive  models  that  can  out-perform  other  contemporary  neural  networks  when  properly optimized" \citep{manning2020emergent}
 
 "The key mechanism by which Transformers contextualize representations  is  multi-headed  attention  (see  Fig.  5)."  \citep{manning2020emergent} 
-"attention is a kind of generalized dot product" % (Manning Lecture) https://www.youtube.com/watch?v=aKO1Yok6e4Q&list=PLGJm1x3XQeK0gmqfRkP-VmrEf4UYx5IDW&index=4
+"attention is a kind of \textbf{generalized dot product}" % (Manning Lecture) https://www.youtube.com/watch?v=aKO1Yok6e4Q&list=PLGJm1x3XQeK0gmqfRkP-VmrEf4UYx5IDW&index=4
 which models all pairwise interactions between words.
 
 "Attention(23) dynamically assigns a weight to every pair of words in the sequence, indicating how much the model should “pay attention to” the first word when computing the representation of the second one."  \citep{manning2020emergent}
@@ -172,136 +172,129 @@ Training objective function, cross-entropy loss:
 
 % query, key, value
 
-Gpt2:
-"the input is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and fed to multiple layers of ‘‘transformer blocks’’
-before the target word is predicted" \citep{lau2020furiously}
-"Much of its power resides in these transformer blocks: Each
-provides a multi-headed self-attention unit over all input words, allowing it to capture multiple dependencies between words, while avoiding the need for recurrence. With no need to process a sentence in sequence, the model parallelizes more efficiently, and scales in a way that RNNs cannot" \citep{lau2020furiously}
+transformer blocks "Each provides a multi-headed self-attention unit over all input words, allowing it to capture multiple dependencies between words, while avoiding the need for recurrence. With no need to process a sentence in sequence, the model parallelizes more efficiently, and scales in a way that RNNs cannot" \citep{lau2020furiously}
 
-\pagebreak
 
 \subsection{Traditional unidirectional language models (Gpt2)}
 
-Traditional LM can "produce sentence probabilities (density estimation) " \citep{salazar2020masked}
+% Traditional LM can "produce sentence probabilities (density estimation) " \citep{salazar2020masked}
 
-"conventional language models (LMs) predict wt using only past tokens W<t := (w1; : : : ; wt-1). However, this allows LMs to estimate log probabilities for a sentence W via the chain rule (log PLM(W ) = Pj tW=1j log PLM(wt j W<t)), which can be used out of the box to rescore hypotheses in end-to-end speech recognition and machine translation (Chan et al., 2016; Gulcehre
-et al., 2015), and to evaluate sentences for linguistic
-acceptability (Lau et al., 2017)."  \citep{salazar2020masked}
+% todo: definition of token, distinction from words
+% todo: definition/mention of tokenizations, and subword units
 
-"Given a unidirectional language model, we can
-infer the probability of a sentence by multiplying
-the estimated probabilities of each token using
-previously seen (left) words as context (Bengio
-et al., 2003):" \citep{lau2020furiously}
+Conventional language models, like LSTM, TDLM, and GPT2, are unidirectional, they predict the probability of a token using only past tokens
+% "conventional language models (LMs) predict wt using only past tokens W<t := (w1; : : : ; wt-1)." 
+"the input [to GPT2] is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and fed to multiple layers of ‘‘transformer blocks’’ before the target word is predicted" ""Much of its power resides in these transformer blocks" \citep{lau2020furiously}
+
+
+The unidirectionality of conventional LMs allows to estimate log probabilities for a sentence W via the chain rule \citep{salazar2020masked} \\
+$log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$" 
+% "which can be used out of the box to rescore hypotheses in end-to-end speech recognition and machine translation (Chan et al., 2016; Gulcehre et al., 2015), and to evaluate sentences for linguistic acceptability (Lau et al., 2017)."  \citep{salazar2020masked}
+
+"Given a unidirectional language model, we can infer the probability of a sentence by multiplying the estimated probabilities of each token using
+previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020furiously}
 % →P (s) = |s| Y i =0 P(wi|w<i)
-"where s is the sentence, and wi a token in s.
-LSTM, TDLM, and GPT2 are unidirectional models,
-so they all compute sentence probability as
-described" \citep{lau2020furiously}
+% "where s is the sentence, and wi a token in s. LSTM, TDLM, and GPT2 are unidirectional models, so they all compute sentence probability as described" \citep{lau2020furiously}
 
-The GPT architecture \citep{radford2018improving} ..
+% The GPT architecture \citep{radford2018improving} ..
 % TODO: intended meaning of the loss measure, sentence likelihood, contrast with sentence acceptability, .., ungrammatical sentences that are more likely than rarer grammatical ones, ..)
 % (math formulas of Gpt output, activation functions..)
 
+
+
 % C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
-(TODO)
 
+% recap: average cross entropy loss should be how the gpt2 output loss is calculated (add img with Jurafsky figures)
+% ..check with transformers code how it's actually calculated
+% (calls torch CrossEntropyLoss, which "computes the cross entropy loss between input and target")
 
-..
-recap: average cross entropy loss should be how the gpt2 output loss is calculated (add img with Jurafsky figures)
-..check with transformers code how it's actually calculated
-(calls torch CrossEntropyLoss, which "computes the cross entropy loss between input and target")
-
-
-gpt forward method:
+% gpt forward method:
 
 % https://www.overleaf.com/learn/latex/Code_listing
-\begin{lstlisting}[language=Python]
-
-# modeling_gpt2.py
-
-class GPT2Model(GPT2PreTrainedModel):
-    def __init__(self, config):
-    	..
-    def forward(
-	    self,
-	    input_ids=None,	
-	    ..
-	 ):
-	 	..
-	 	return BaseModelOutputWithPastAndCrossAttentions(
-		 	last_hidden_state=hidden_states,
-		 	past_key_values=presents,
-		 	hidden_states=all_hidden_states,
-		 	attentions=all_self_attentions,
-		 	cross_attentions=all_cross_attentions,
-	 	)
-
-class GPT2LMHeadModel(GPT2PreTrainedModel):	
-
-	def __init__(self, config):
-		self.transformer = GPT2Model(config)
-		self.lm_head = nn.Linear(
-			config.n_embd, 
-			config.vocab_size, bias=False
-		)
-	
-	def forward(input_ids=None, ..	labels=None, ..):
-		r"""labels (`torch.LongTensor` of shape 
-		`(batch_size, sequence_length)`, *optional*):
-		Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set
-		`labels = input_ids` Indices are selected in 
-		`[-100, 0, ..., config.vocab_size]` 
-		All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
-		"""
-		
-		transformer_outputs = self.transformer(input_ids, ..)
-		hidden_states = transformer_outputs[0]  # last_hidden_state or hidden_states?
-		lm_logits = self.lm_head(hidden_states)
-		shift_logits = lm_logits[..., :-1, :].contiguous()
-		shift_labels = labels[..., 1:].contiguous()
-		
-		loss_fct = CrossEntropyLoss()
-		loss = loss_fct(
-			shift_logits.view(-1, shift_logits.size(-1)), 
-			shift_labels.view(-1)
-		)
-	
-		return CausalLMOutputWithCrossAttentions(
-			loss=loss,
-			..
-		)
-\end{lstlisting}
+%\begin{lstlisting}[language=Python]
+%
+%# modeling_gpt2.py
+%
+%class GPT2Model(GPT2PreTrainedModel):
+%    def __init__(self, config):
+%    	..
+%    def forward(
+%	    self,
+%	    input_ids=None,	
+%	    ..
+%	 ):
+%	 	..
+%	 	return BaseModelOutputWithPastAndCrossAttentions(
+%		 	last_hidden_state=hidden_states,
+%		 	past_key_values=presents,
+%		 	hidden_states=all_hidden_states,
+%		 	attentions=all_self_attentions,
+%		 	cross_attentions=all_cross_attentions,
+%	 	)
+%
+%class GPT2LMHeadModel(GPT2PreTrainedModel):	
+%
+%	def __init__(self, config):
+%		self.transformer = GPT2Model(config)
+%		self.lm_head = nn.Linear(
+%			config.n_embd, 
+%			config.vocab_size, bias=False
+%		)
+%	
+%	def forward(input_ids=None, ..	labels=None, ..):
+%		r"""labels (`torch.LongTensor` of shape 
+%		`(batch_size, sequence_length)`, *optional*):
+%		Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set
+%		`labels = input_ids` Indices are selected in 
+%		`[-100, 0, ..., config.vocab_size]` 
+%		All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
+%		"""
+%		
+%		transformer_outputs = self.transformer(input_ids, ..)
+%		hidden_states = transformer_outputs[0]  # last_hidden_state or hidden_states?
+%		lm_logits = self.lm_head(hidden_states)
+%		shift_logits = lm_logits[..., :-1, :].contiguous()
+%		shift_labels = labels[..., 1:].contiguous()
+%		
+%		loss_fct = CrossEntropyLoss()
+%		loss = loss_fct(
+%			shift_logits.view(-1, shift_logits.size(-1)), 
+%			shift_labels.view(-1)
+%		)
+%	
+%		return CausalLMOutputWithCrossAttentions(
+%			loss=loss,
+%			..
+%		)
+%\end{lstlisting}
 
 % todo, clarify: cross entropy fun takes (input, target), but gpt2 calls it with (logits, labels), which are both the sentence_ids (the ids of the tokens in the sentence)
 
-pytorch CrossEntropyLoss formula:
+% pytorch CrossEntropyLoss formula:
 
-\begin{lstlisting}
-	
-class CrossEntropyLoss(_WeightedLoss):
-	def forward(self, input: Tensor, target: Tensor) -> Tensor:
-		return F.cross_entropy(input, target, ..)
-		
-		lm_logits = self.lm_head(hidden_states)
-\end{lstlisting}
+%\begin{lstlisting}
+%	
+%class CrossEntropyLoss(_WeightedLoss):
+%	def forward(self, input: Tensor, target: Tensor) -> Tensor:
+%		return F.cross_entropy(input, target, ..)
+%		
+%		lm_logits = self.lm_head(hidden_states)
+%\end{lstlisting}
+%
+%usage:
+%\begin{lstlisting}
+%model_output = model(
+%sentence_ids_in_batch_as_tensor,
+%labels=sentence_ids_in_batch_as_tensor,
+%)
+%loss = model_output.loss
+%\end{lstlisting}
 
-usage:
-\begin{lstlisting}
-model_output = model(
-sentence_ids_in_batch_as_tensor,
-labels=sentence_ids_in_batch_as_tensor,
-)
-loss = model_output.loss
-\end{lstlisting}
+%From the pytorch cross entropy documentation, about the two parameters input and labels:
+%
+%"The input is expected to contain raw, unnormalized scores for each class. input has to be a Tensor of size (C)(C) for unbatched input, (minibatch, C)(minibatch,C) "
 
-From the pytorch cross entropy documentation, about the two parameters input and labels:
-
-"The input is expected to contain raw, unnormalized scores for each class. input has to be a Tensor of size (C)(C) for unbatched input, (minibatch, C)(minibatch,C) "
-
-
-
-\pagebreak
+..
 
 \subsection{Bidirectional language models (BERT)}
 
