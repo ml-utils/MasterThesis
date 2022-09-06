@@ -110,62 +110,70 @@ Argument from the poverty of the stimulus (APS):
 
 \subsection{Transformers and the Attention Mechanism}
 
-"The self-supervision task used to train BERT is the maskedlanguage-modeling  or  cloze  task,  where  one  is  given  a  text  inwhich  some  of  the  original  words  have  been  replaced  with  aspecial  mask  symbol.  The  goal  is  to  predict,  for  each  maskedposition,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage thesurrounding context to infer what that word could be." \citep{manning2020emergent}
+Transformers  are "a neural network architecture,  without  any  recurrent  connections  (22),  which  takes  a sequence  of  words  (or  other  symbols)  as  input  and  produces a contextualized vector representation of each word as its out-put (Fig. 3). It contains many millions of trainable parameters in  a  number  of  layers,  typically  requiring  massive  amounts  of data  and  computation  to  train.  This  makes  Transformers  difficult  to  train,  but  also  highly  expressive  models  that  can  out-perform  other  contemporary  neural  networks  when  properly optimized" \citep{manning2020emergent}
 
-"BERT is a Transformer model (21), a neural network archi-tecture,  without  any  recurrent  connections  (22),  which  takes  asequence  of  words  (or  other  symbols)  as  input  and  producesa contextualized vector representation of each word as its out-put (Fig. 3). It contains many millions of trainable parametersin  a  number  of  layers,  typically  requiring  massive  amounts  ofdata  and  computation  to  train.  This  makes  Transformers  dif-ficult  to  train,  but  also  highly  expressive  models  that  can  out-perform  other  contemporary  neural  networks  when  properlyoptimized" \citep{manning2020emergent}
+"The key mechanism by which Transformers contextualize representations  is  multi-headed  attention  (see  Fig.  5)."  \citep{manning2020emergent} 
+"attention is a kind of generalized dot product" % (Manning Lecture) https://www.youtube.com/watch?v=aKO1Yok6e4Q&list=PLGJm1x3XQeK0gmqfRkP-VmrEf4UYx5IDW&index=4
+which models all pairwise interactions between words.
 
-% "attention is a kind of generalized dot product" (Manning Lecture) https://www.youtube.com/watch?v=aKO1Yok6e4Q&list=PLGJm1x3XQeK0gmqfRkP-VmrEf4UYx5IDW&index=4
+"Attention(23) dynamically assigns a weight to every pair of words in the sequence, indicating how much the model should “pay attention to” the first word when computing the representation of the second one."  \citep{manning2020emergent}
+"Transformers use multiple attention heads in parallel, where  each  head  can  potentially  capture  a  completely  different word–word relation. Transformers aggregate the information from each head to produce a single output vector representation for each word in the sequence." \citep{manning2020emergent}
+% "We provide more mathematical detail below" \citep{manning2020emergent}
 
-"The key mechanism by which Transformers contextualize rep-resentations  is  multiheaded  attention  (see  Fig.  5).  Attention(23) dynamically assigns a weight to every pair of words in thesequence, indicating how much the model should “pay attentionto” the first word when computing the representation of the sec-ond one. Transformers use multiple attention heads in parallel,where  each  head  can  potentially  capture  a  completely  differ-ent word–word relation. Transformers aggregate the informationfrom each head to produce a single output vector representationfor each word in the sequence. We provide more mathematicaldetail below" \citep{manning2020emergent}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/attention-manning-pnas.png} 
+	\caption{Overview of the attention mechanism, taken from \citet{manning2020emergent} (TODO: request permission, pnas licence is CC ND)} 
+	\label{fig:manning_attention} 
+	\medskip
+	\small
+	..
+\end{figure}
+
+% a non-recurrent architecture, called the Transformer \citep{vaswani2017attention} 
+The lack of recurrence in the transformers architecture "enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length" \citep{liu2018generating} 
+
+% Jurasfy book (draft new 3rd edition), ch.10 .. \citep[ch.9-10]{jurafsky2021speech} 
+
+the terminology used to describe the Transformer: "the attention is a function of a query (Q) and set of key (K) and value (V ) pairs" \citep{liu2018generating} 
+% multi-head self-attention of the Transformer
+
+% to reduce memory usage, limiting the dot products between Q and K
+
+% "projecting the tokens into the query, key, and value embeddings"
+
+% decoder-only vs encoder-decoder
+% what is an attention head? See "explorable transformers" 
+
+% explorable Bert (online javascript demo): \href{https://huggingface.co/exbert/?model=gpt2&modelKind=bidirectional&sentence=The%20girl%20ran%20to%20a%20local%20pub%20to%20escape%20the%20din%20of%20her%20city.&layer=0&heads=..0,1,2,3,4,5,6,7,8,9,10,11&threshold=0.7&tokenInd=null&tokenSide=null&maskInds=..&hideClsSep=true}{exbert}
+
+% possible TODOs: 
+% -give detailed description of each layer dimensions (eg vocab x ..) 
+% -compare bert and gpt architecture
+% -explain output of gpt and bert
+
+% save the checkpoints of gpt and bert with pythorch inspect the layers
+
+% is dot product in attention a form of linear basis expansion?
+% (from machine learning course lectures: name of "augmenting" the input ..)(..appropriate name for semantic info addition?)(LBE, linear basis expansion)(..equivalent to semantic augmentation of the input?)
+
+% schema of the self-attention mechanism (multipling on prev inputs)
+
+% (horizontal vs vertical attention?)
+
+% criticism of attention mechanism (refs)
+% alternative attention mechanism
+% attention mechanism more efficient for NLP
+% auto pruning of attention heads?
 
 
-"MLMs model all pairwise interactions $w_s$ and $w_{s'}$ via dotproduct attention" "conditioned on past and future context" \citep{salazar2020masked}
-% PLLs of models like EMLO would have different properties from [BERT] (e.g., their cross-entropies in Figure 4 may be convex instead of flat)  \citep{salazar2020masked}
-..
-a non-recurrent architecture, called the Transformer \citep{vaswani2017attention} 
-The lack of recurrence enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length  \citep{liu2018generating} 
-..
-Jurasfy book (draft new 3rd edition), ch.10 ..
-\citep[ch.9-10]{jurafsky2021speech} 
+Training objective function, cross-entropy loss:
+ "During training, the probability assigned to the correct word is used to calculate the cross-entropy loss for each item in the sequence. As with RNNs, the loss for a training sequence is the average cross-entropy loss over the entire sequence." (Jurasfky 3rd ed. ch.9)(figure 9.21)
 
-..
-"the terminology used to describe the Transformer, the attention is a function of a query (Q) and set of key (K) and value (V ) pairs" \citep{liu2018generating} 
-multi-head self-attention of the Transformer
-
-to reduce memory usage, limiting the dot products between Q and K
-..
-"projecting the tokens into the query, key, and value embeddings"
-..
-decoder-only vs encoder-decoder
-what is an attention head? See "explorable transformers" 
-
-\href{https://huggingface.co/exbert/?model=gpt2&modelKind=bidirectional&sentence=The%20girl%20ran%20to%20a%20local%20pub%20to%20escape%20the%20din%20of%20her%20city.&layer=0&heads=..0,1,2,3,4,5,6,7,8,9,10,11&threshold=0.7&tokenInd=null&tokenSide=null&maskInds=..&hideClsSep=true}{exbert}
-..
-give detailed description of each layer dimensions (eg vocab x ..)
-compare bert and gpt architecture
-explain output of gpt and bert
-..
-save the checkpoints of gpt and bert with pythorch inspect the layers
-..
-(from machine learning course lectures: name of "augmenting" the input ..)(..appropriate name for semantic info addition?)(LBE, linear basis expansion)(..equivalent to semantic augmentation of the input?)
-..
-..
-schema of the self-attention mechanism (multipling on prev inputs)
-(horizontal vs vertical attention?)
-criticism of attention mechanism (refs)
-alternative attention mechanism
-attention mechanism more efficient for NLP
-auto pruning of attention heads?
-..
-cross-entropy loss
-Jurasfky 3rd ed. ch.9: "During training, the probability assigned to the correct word is used to calculate the cross-entropy loss for each item in the sequence. As with RNNs, the loss for a training sequence is the average cross-entropy loss over the entire sequence." 
-(figure 9.21)
-..
-query, key, value
+% query, key, value
 
 Gpt2:
-"the input is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and
-fed to multiple layers of ‘‘transformer blocks’’
+"the input is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and fed to multiple layers of ‘‘transformer blocks’’
 before the target word is predicted" \citep{lau2020furiously}
 "Much of its power resides in these transformer blocks: Each
 provides a multi-headed self-attention unit over all input words, allowing it to capture multiple dependencies between words, while avoiding the need for recurrence. With no need to process a sentence in sequence, the model parallelizes more efficiently, and scales in a way that RNNs cannot" \citep{lau2020furiously}
@@ -297,9 +305,12 @@ From the pytorch cross entropy documentation, about the two parameters input and
 
 \subsection{Bidirectional language models (BERT)}
 
-"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more
-involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
+"The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
 
+"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
+
+% "MLMs model all pairwise interactions $w_s$ and $w_{s'}$ via dot product attention" "conditioned on past and future context" \citep{salazar2020masked}
+% PLLs of models like EMLO would have different properties from [BERT] (e.g., their cross-entropies in Figure 4 may be convex instead of flat)  \citep{salazar2020masked}
 
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
