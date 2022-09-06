@@ -101,6 +101,11 @@ Argument from the poverty of the stimulus (APS):
 
 % psycholinguistic studies (Sprouse)
 
+Wh-Island Constraint definition: 
+"A gap cannot appear inside doubly nested clauses headed by wh-complementizers. This phenomenon is called the Wh-Island Constraint (WHC). "  \citep{wilcox2018rnn}
+
+%Adjunct Island Constraint
+%"We used three different prepositions to construct temporal adjuncts: ‘while’, ‘after’ and ‘before’." \citep{wilcox2018rnn}
 
 \subsection{Island effects assessment in language models}
 
@@ -338,6 +343,8 @@ However, the phenomena tested by \citet{hu2020systematic} can be formulated in t
 \citet{wilcox2018rnn} circumvents this issue by scoring separately items with different construct (i.e. one with and one without an island structure) which are lexically very similar but differ more than a minimal pair. For both items, they measure the effect of the filler-gap dependency phenomena, whose effect is expected to drop in the presence of an island construct, which blocks it. If the drop in the effect is statistically significant, they can conclude that the model has "learned" the island constraint. \\
 Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-right unidirectional language models, none tested on bidirectional language models like BERT.
 
+%NB: the minimal pairs on Wilcox et al 2018, designed for  language model, are controlled for lexical content (indentical, basically), unlike those for human subjects in Sprouse et al. (..)
+
 % then mention: minimal pairs, surprisal summands (PLL) for sentence scoring, .. Sprouse, ..
 % mention methodological difference and problems
 
@@ -450,6 +457,19 @@ Another fundamental difference is that  minimal pairs scoring is usually done wi
 %"using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al., 2017; Conneau et al., 2018; Ettinger et al., 2018;
 %Tenney et al., 2019). "  \citep{warstadt2020blimp}	
 
+%
+%"Although our method can indicate whether there is a link between fillers and gaps, \textbf{the relationship between language model probability and grammaticality is complex} (Lau et al., 2017) and\textbf{ interpreting our patterns in terms of grammaticality judgments would require auxiliary assumptions} that we don’t pursue here. To be clear: our goal is to investigate whether RNNs model the probabilistic dependencies between fillers and gaps \textit{at all}, not whether the outputs of such models can be used to \textbf{classify sentences as ‘grammatical’ or not}" \citep{wilcox2018rnn}
+
+%"Assessing grammaticality judgments in a task which is not binary like number agreement raises\textbf{ important methodological questions}. We want the network to discriminate between (1a) and (1b). The acceptable Wh-question in (1a) might end with a question mark right at the gap (the object position of catch), but also continue with an adverbial, or even (at the coast of decreasing acceptability) a nominal containing a gap (the tail of). The ungrammatical case (1b) ends with a normal verb argument (the tail). 
+%(1) a. Which mouse did the cat catch {? / last night ? / the tail of ? }
+%b. *Which mouse did the cat catch the tail? The question is which NN measure best corresponds to the speaker’s perception of ungrammaticality in (1b), keeping into account that even in the theoretical and psycholinguistic literature there are no established metrics to measure ‘degrees of ungrammaticality’ (see Cowart 1997; Sorace and Keller 2005 for discussion)." \citep{chowdhury2018rnn}
+%
+%"Evaluation measures: We explored various possibilities, from global measures like perplexity (PPL) and non-normalized sentence cross-entropy loss (CEL), to local measures like the normalized log probability of a full stop LogPn(F S) or question mark LogPn(QM) after the current word." \citep{chowdhury2018rnn}
+%
+%"Perplexity and total cross-entropy loss: Both measures are based on the intuition that an ungrammatical sentence should ‘confuse’ the NN more than a corresponding grammatical one, and that this confusion will translate in a decreased ability to make correct predictions"  \citep{chowdhury2018rnn}
+%"As it turns out, neither PPL or CEL are perfect ways to evaluate a language model for ungrammaticality, since they do not locate it at a specific point in the sentences. Yet, this could also be an advantage, since global measures like PPL/CEL can potentially catch parsing problems that arise earlier than expected, and record a perturbation in the NN’s later predictions as it recovers from an ungrammatical point earlier in the text. Therefore, these methods seem appropriate for a first exploration of this task." \citep{chowdhury2018rnn}
+%
+%The disadvantage of local measures: "as example (1a) shows, a sentence can always continue in unexpected ways. Moreover, in some cases of ungrammaticality the presence of individual words might not be a significant predictor." \citep{chowdhury2018rnn}
 
 \subsection{Acceptability judgments (absolute scores)}
 %..
@@ -605,6 +625,31 @@ In \citet{hu2020systematic}, "Test suites are written using a standard format th
 
 % "There is also a semantic relationship between the filler and the gap, in the sense that “what” is semantically the direct object of “devoured”. In this work, we study the behavior of language models, and so we treat the filler–gap dependency purely as a licensing relationship." \citep{wilcox2018rnn}
 
+
+"In this paper, we look for cases where the surprisal associated with an an unusual construction—such as a gap—is ameliorated by the presence of a licensor, such as a wh-word." \citep{wilcox2018rnn}
+"If the models learn that syntactic gaps require licensing, then sentences with licensors should exhibit lower surprisal than minimally different pairs that lack a proper licensor." \citep{wilcox2018rnn}
+
+"We test whether the LSTM language models have learned filler–gap dependencies by looking for a 2x2 interaction between the presence of a gap and the presence of a wh-licensor"
+
+"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
+"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
+
+%"We \textbf{measure surprisal in two places}: at the word immediately following a (filled) gap and summed over the whole region from the gap to the end of the embedded clause. We look at immediate word surprisal because a gap’s licitness should have \textbf{local effects} on network \textbf{expectation}. We look at whole-region surprisal because the presence of a filler also changes expectations about overall well-formedness of the sentence—\textbf{a global phenomenon}. Until the final punctuation is reached in (2b) there are \textbf{potential gap-containing continuations that render the sentence syntactically licit} (e.g. ‘with .’). Therefore, we might expect no large spike in surprisal at any one point, but small increases in surprisal when the network encounters filled argument-structure roles and at the end of the sentence. Measuring summed surprisal captures these distributed, global effects."  \citep{wilcox2018rnn}
+
+"In the following experiments, we examine whether RNN language models have learned constraints on filler–gap dependencies by comparing the wh-licensing interaction in non-islands to that within islands. The strongest evidence for an island constraint would be if the wh-licensing interaction goes to zero for a gap in island position, implying that, in the distribution over strings implied by the network, the appearance of a whlicensor is totally unrelated to the appearance of a gap in the island position"
+\citep{wilcox2018rnn}
+
+"More generally, we can look for a weakened wh-licensing interaction for island vs. non-island positions, which would mean
+that the network believes a relationship between
+the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
+"A positive but nonzero wh-licensing interaction
+would be in line with human acceptability judgments, which do not always categorically rule out gaps in island positions (Ambridge and Goldberg, 2008), and with human online processing experiments, which have shown that gap expectation is
+attenuated during processing of areas where gaps
+cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering,
+1996; Phillips, 2006). Therefore, in this section we
+take a significant reduction in the island relative to
+the non-island case to constitute evidence that the
+model has ‘learned’ the constraint." \citep{wilcox2018rnn}
 
 \section{Linguistic evaluation measures for language models}
 
@@ -809,61 +854,46 @@ challenge set of 67k pairs which isolate contrasts in syntax, morphology, and se
 
 \section{Review of results from previous related work}
 
-"Our circuit-level analysis reveals consistent failure on Licensing but inconsistent behavior on other circuits, suggesting that different syntactic circuits make use of different underlying processing capacities."  \citep{hu2020systematic} 
-
 
 "Current models like BERT (Devlin et al., 2019) and T5 (Raffel et al., 2019) now learn to give acceptability judgments that approach or even exceed individual human agreement with CoLA." \citep{warstadt2020blimp}	
 
 "We show that PLLs outperform scores from autoregressive language models like GPT-2 in a variety of tasks. " \citep{salazar2020masked}
 
+
+"Our circuit-level analysis reveals consistent failure on Licensing but inconsistent behavior on other circuits, suggesting that different syntactic circuits make use of different underlying processing capacities."  \citep{hu2020systematic} 
 % " Section 4 investigates whether LSTM language models are sensitive to " 
-"various constraints: wh-islands, adjunct islands, complex NP islands, and subject islands. We find that the [LSTM] language models are sensitive to some but not all
-of these constraints. " \citep{wilcox2018rnn}
+%"various constraints: wh-islands, adjunct islands, complex NP islands, and subject islands. We find that the [LSTM] language models are sensitive to some but not all
+%of these constraints. " \citep{wilcox2018rnn}
 
 \citet{warstadt2020blimp} (which did not test BERT): "current neural LMs appear to acquire robust knowledge of morphological agreement and some syntactic phenomena such as ellipsis and control/raising. They show weaker evidence of knowledge about argument structure, negative polarity item licensing, and the semantic properties of quantifiers. \textbf{All models perform at or near chance on extraction islands}. Overall, every model we evaluate falls short of human performance by a wide margin"
 "ISLANDS are the hardest phenomenon by a wide margin. Only GPT-2 performs well above chance, and it remains 14 points below humans." \citet{warstadt2020blimp}
 
-"Some semantic phenomena, specifically those involving NPI LICENSING and QUANTIFIERS, are also challenging overall"
+%"Some semantic phenomena, specifically those involving NPI LICENSING and QUANTIFIERS, are also challenging overall"
+%
+%what might the reason for lower perf on island effects: lower frequency of the phenomena, ..
 
-what might the reason for lower perf on island effects: lower frequency of the phenomena, ..
-
-"evidence that increased dependency length and the presence of agreement attractors of the kind investigated by Linzen et al. (2016) and Gulordava et al. (2019) reduce performance on agreement phenomena." (on LSTM) \citet{warstadt2020blimp}
 
 "We find, in accordance with Wilcox et al. (2018), that LMs do represent long-distance wh-dependencies, but we also conclude that their representations differ fundamentally from humans’." \citet{warstadt2020blimp}
-"Although some models approach human performance in ordinary filler-gap dependencies, they are exceptionally poor at identifying island
-violations overall" \citet{warstadt2020blimp}
+"evidence that increased dependency length and the presence of agreement attractors of the kind investigated by Linzen et al. (2016) and Gulordava et al. (2019) reduce performance on agreement phenomena." (on LSTM) \citet{warstadt2020blimp}
+"Although some models approach human performance in ordinary filler-gap dependencies, they are exceptionally poor at identifying island violations overall" \citet{warstadt2020blimp}
 
-"strong conclusions about how these models represent wh-dependencies are not possible using the forced-choice task compatible with BLiMP, and
-a \textbf{complete assessment of syntactic islands} is \textbf{best
-	addressed using a factorial} design that manipulates
-both the presence of an island and an attempt to
-extract from it, as in \citet{kush2018investigating} or  \citet{wilcox2018rnn}" \citep{warstadt2020blimp}
+\citet{warstadt2020blimp} : "strong conclusions about how these models represent wh-dependencies are not possible using the forced-choice task compatible with BLiMP, and a \textbf{complete assessment of syntactic islands} is \textbf{best addressed using a factorial} design that manipulates both the presence of an island and an attempt to extract from it, as in \citet{kush2018investigating} or \citet{wilcox2018rnn}" 
 
-"2.2 Dependent variable: Surprisal" \citep{wilcox2018rnn}
-"surprisal values that an RNN assigns to words and sentences" \citep{wilcox2018rnn}
+%"2.2 Dependent variable: Surprisal" \citep{wilcox2018rnn}
+%"surprisal values that an RNN assigns to words and sentences" \citep{wilcox2018rnn}
+%
+%"Surprisal is log inverse probability:
+%S(xi) = -log2
+%p(xi
+%|hi-1)," \citep{wilcox2018rnn}
+%"the probability is calculated from the RNN’s softmax activation. The logarithm is taken in base 2,
+%so that surprisal is measured in bits." \citep{wilcox2018rnn}
+%"The degree of surprisal for a word or sentence
+%tells us the extent to which that word or sentence
+%is unexpected under the language model’s probability distribution"
+%". It is known to correlate directly with human sentence processing difficulty (Hale, 2001; Levy, 2008; Smith and Levy, 2013)" \citep{wilcox2018rnn}
+%(rather than, also also as, correlating with acceptability, or likelihood of finding such a word/sentence)
 
-"Surprisal is log inverse probability:
-S(xi) = -log2
-p(xi
-|hi-1)," \citep{wilcox2018rnn}
-"the probability is calculated from the RNN’s softmax activation. The logarithm is taken in base 2,
-so that surprisal is measured in bits." \citep{wilcox2018rnn}
-"The degree of surprisal for a word or sentence
-tells us the extent to which that word or sentence
-is unexpected under the language model’s probability distribution"
-". It is known to correlate directly with human sentence processing difficulty (Hale, 2001; Levy, 2008; Smith and Levy, 2013)" \citep{wilcox2018rnn}
-(rather than, also also as, correlating with acceptability, or likelihood of finding such a word/sentence)
-
-"In this paper, we look for cases where the surprisal associated with an an unusual construction—such as a gap—is ameliorated by the presence of a licensor, such as a wh-word." \citep{wilcox2018rnn}
-"If the models learn that syntactic gaps require licensing, then sentences with licensors should exhibit lower surprisal than minimally different pairs that lack a proper licensor." \citep{wilcox2018rnn}
-
-"We test whether the LSTM language models have
-learned filler–gap dependencies by looking for a
-2x2 interaction between the presence of a gap and
-the presence of a wh-licensor"
-
-"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
-"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
 
 % ? riformulare il testset usando, invece di domande ("bare wh-questions"), "complement clauses" come 
 % "So che il leone ha divorato una gazella all'alba." [no wh-licensor, no gap]
@@ -871,60 +901,18 @@ the presence of a wh-licensor"
 % *"So che il leone ha divorato __ all'alba" [no wh-licensor, gap]
 % "So cosa il leone ha divorato __ all'alba." [wh-licensor, gap]
 
-"We \textbf{measure surprisal in two places}: at the word immediately following a (filled) gap and summed over the whole region from the gap to the end of the embedded clause. We look at immediate word surprisal because a gap’s licitness should have \textbf{local effects} on network \textbf{expectation}. We look at whole-region surprisal because the presence of a filler also changes expectations about overall well-formedness of the sentence—\textbf{a global phenomenon}. Until the final punctuation is reached in (2b) there are \textbf{potential gap-containing continuations that render the sentence syntactically licit} (e.g. ‘with .’). Therefore, we might expect no large spike in surprisal at any one point, but small increases in surprisal when the network encounters filled argument-structure roles and at the end of the sentence. Measuring summed surprisal captures these distributed, global effects."  \citep{wilcox2018rnn}
 
 % differenza per un modello bidirezionale come BERT: ..sorpresa minore laddove una delle parole mascherate può rendere la frase lecita/accettabile se sostituita con un'altra parola..
 % difficoltà di controllare questo per tutte le parole della frase.. a meno che la struttura delle frasi sia molto standardizzata e la cosa sia uguale per tutte
 % l'italiano inoltre introduce maggiore complessità per la maggiore libertà possibile nell'ordine delle parole
 
-"Although our method can indicate whether there is a link between fillers and gaps, \textbf{the relationship between language model probability and grammaticality is complex} (Lau et al., 2017) and\textbf{ interpreting our patterns in terms of grammaticality judgments would require auxiliary assumptions} that we don’t pursue here. To be clear: our goal is to investigate whether RNNs model the probabilistic dependencies between fillers and gaps \textit{at all}, not whether the outputs of such models can be used to \textbf{classify sentences as ‘grammatical’ or not}" \citep{wilcox2018rnn}
 
-"Assessing grammaticality judgments in a task which is not binary like number agreement raises important methodological questions. We want the network to discriminate between (1a) and (1b). The acceptable Wh-question in (1a) might end with a question mark right at the gap (the object position of catch), but also continue with an adverbial, or even (at the coast of decreasing acceptability) a nominal containing a gap (the tail of). The ungrammatical case (1b) ends with a normal verb argument (the tail). 
-(1) a. Which mouse did the cat catch {? / last night ? / the tail of ? }
-b. *Which mouse did the cat catch the tail? The question is which NN measure best corresponds to the speaker’s perception of ungrammaticality in (1b), keeping into account that even in the theoretical and psycholinguistic literature there are no established metrics to measure ‘degrees of ungrammaticality’ (see Cowart 1997; Sorace and Keller 2005 for discussion)." \citep{chowdhury2018rnn}
 
-"Evaluation measures: We explored various possibilities, from global measures like perplexity (PPL) and non-normalized sentence cross-entropy loss (CEL), to local measures like the normalized log probability of a full stop
-LogPn(F S) or question mark LogPn(QM) after the current word." \citep{chowdhury2018rnn}
-
-"Perplexity and total cross-entropy loss: Both measures are based on the intuition that an ungrammatical sentence should ‘confuse’ the NN more than a corresponding grammatical one, and that this confusion will translate in a decreased ability to make correct predictions"  \citep{chowdhury2018rnn}
-"As it turns out, neither PPL or CEL are perfect ways to evaluate a language model for ungrammaticality, since they do not locate it at a specific point in the sentences. Yet, this could also be an advantage,
-since global measures like PPL/CEL can potentially catch parsing problems that arise earlier than expected, and record a perturbation in the NN’s later predictions as it recovers from an ungrammatical point
-earlier in the text. Therefore, these methods seem appropriate for a first exploration of this task." \citep{chowdhury2018rnn}
-
-The disadvantage of local measures: "as example (1a) shows, a sentence can always continue in unexpected ways. Moreover, in some cases of ungrammaticality the presence of individual words might not be a significant predictor." \citep{chowdhury2018rnn}
-
-"In the following experiments, we examine whether RNN language models have learned constraints on filler–gap dependencies by comparing the wh-licensing interaction in non-islands to that within islands. The strongest evidence for an island constraint would be if the wh-licensing interaction goes to zero for a gap in island position, implying that, in the distribution over strings implied by the network, the appearance of a whlicensor is totally unrelated to the appearance of a gap in the island position"
-\citep{wilcox2018rnn}
-"More generally, we can
-look for a weakened wh-licensing interaction for
-island vs. non-island positions, which would mean
-that the network believes a relationship between
-the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
-"A positive but nonzero wh-licensing interaction
-would be in line with human acceptability judgments, which do not always categorically rule out
-gaps in island positions (Ambridge and Goldberg,
-2008), and with human online processing experiments, which have shown that gap expectation is
-attenuated during processing of areas where gaps
-cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering,
-1996; Phillips, 2006). Therefore, in this section we
-take a significant reduction in the island relative to
-the non-island case to constitute evidence that the
-model has ‘learned’ the constraint." \citep{wilcox2018rnn}
-
-Wh-Island Constraint
-"A gap cannot appear inside doubly nested clauses headed by wh-complementizers. This phenomenon is called the Wh-Island Constraint (WHC). "  \citep{wilcox2018rnn}
-
-Adjunct Island Constraint
-"We used three different prepositions to construct temporal adjuncts: ‘while’, ‘after’ and ‘before’." \citep{wilcox2018rnn}
-
-NB: the minimal pairs on Wilcox et al 2018, designed for  language model, are controlled for lexical content (indentical, basically), unlike those for human subjects in Sprouse et al. (..)
-
-"These results demonstrate
-that neither model has learned the subject constraint, categorizing PPs as either licit extraction
+"These results demonstrate that neither [RNN] model has learned the subject constraint, categorizing PPs as either licit extraction
 domains in all positions (the Google model) or
 treating them like islands (the Gulordava model)"  \citep{wilcox2018rnn}
 
-"Both models failed to correctly generalize island constraints in two conditions: The Google model failed to learn that-headed Complex-NP Islands, the Gulordava model to learn Wh-Islands, and both failed to learn Subject Islands."\citep{wilcox2018rnn}
+"Both [RNN] models failed to correctly generalize island constraints in two conditions: The Google model failed to learn that-headed Complex-NP Islands, the Gulordava model to learn Wh-Islands, and both failed to learn Subject Islands."\citep{wilcox2018rnn}
 
 % comparison with Wilcox experimental design:
 % the sentences were split into chuncks ("wh-licensing interaction summed across all words within each region"), and the surprisal was calculated per chunck not word or token. This suggest we should split the sentences into succh cunchs (also making them more uniform), and mask a whole chunk at a time.
@@ -963,25 +951,21 @@ treating them like islands (the Gulordava model)"  \citep{wilcox2018rnn}
 % in wilcox filler gap dependency on off (2 esempi) si può usare al posto di long e short distance non island. ..
 
 
-diminishing returns also found \citep{wilcox2018rnn}, the two compared models have a 10x size difference for params and training data.
+%diminishing returns also found \citep{wilcox2018rnn}, the two compared models have a 10x size difference for params and training data.
 
-"In other recent work, \citet{chowdhury2018rnn} tested the ability of neural networks
-to separate grammatical from ungrammatical extractions using similar metrics to ours, finding that their neural networks do not represent the unboundedness of filler–gap dependencies nor certain strong island constraints. We believe the difference between our results and theirs is due to experimental design: They choose to measure the probability of the question mark punctuation as a proxy for the RNNs gap expectation, and use sentence schemata instead of hand-engineered experimental items. While \citet{chowdhury2018rnn} conclude that the networks are not learning island-like constraints, but rather displaying sensitivity to syntactic complexity plus order, we demonstrate island-like effects where both the island and the non-island item are equally complex (in e.g. wh-islands). " \citep{wilcox2018rnn}
+"In other recent work, \citet{chowdhury2018rnn} tested the ability of neural networks to separate grammatical from ungrammatical extractions using similar metrics to ours, finding that their neural networks do not represent the unboundedness of filler–gap dependencies nor certain strong island constraints." 
+"We believe the difference between our results and theirs is \textbf{due to experimental design}: They choose to measure the probability of the question mark punctuation as a proxy for the RNNs gap expectation, and use \textbf{sentence schemata} instead of hand-engineered experimental items." 
 
-"Note also that our work is focused on finding evidence that networks represent the probabilistic contingencies implied by island constraints, without attempting to directly model grammaticality judgments."  \citep{wilcox2018rnn}
+"While \citet{chowdhury2018rnn} conclude that the networks are not learning island-like constraints, but rather displaying sensitivity to syntactic complexity plus order, we demonstrate island-like effects where both the island and the non-island item are equally complex (in e.g. wh-islands). " \citep{wilcox2018rnn}
 
-All experimental materials and scripts are available at https://osf.io/zpfxm/. \citep{wilcox2018rnn}
+%"Note also that our work is focused on finding evidence that networks represent the probabilistic contingencies implied by island constraints, without attempting to directly model grammaticality judgments."  \citep{wilcox2018rnn}
+%
+%All experimental materials and scripts are available at https://osf.io/zpfxm/. \citep{wilcox2018rnn}
 
-..
 
-"Overall, these experiments provide strong
-evidence that both models are learning the filler–
-gap dependency. Furthermore, both RNN models
-are learning the flexibility of the dependency, as
-they exhibit similar wh-licensing effects for all
-three argument roles tested." \citep{wilcox2018rnn}
+%"Overall, these experiments provide strong evidence that both models are learning the filler–gap dependency. Furthermore, both RNN models
+%are learning the flexibility of the dependency, as they exhibit similar wh-licensing effects for all three argument roles tested." \citep{wilcox2018rnn}
 
-SotA
 
 % section name "2. Methods" \citep{wilcox2018rnn}
 % also in \citep{wilcox2018rnn}, "Experimental design" section, where they motivate the choice of sentence paradigms, and what results are expected if the model learns the respective linguistic phenomena.
@@ -989,11 +973,11 @@ SotA
 "While inconsistent with the formal linguistic literature on filler–gap dependencies, the negative values of all but one of the correlations are consistent with known effects in human sentence processing, where increasing distance between fillers
 and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et al., 2011)."  \citep{wilcox2018rnn}
 
-"Our work shows these dependencies and their constraints can be learned to some extent by a generic sequence model with no obvious inductive bias for hierarchical structures. This is evidence against the idea that such an inductive bias is necessary for language learning, although the amount of data these models are trained on is much larger
-than the typical input to a child learner." \citep{wilcox2018rnn}
+"Our work shows these dependencies and their constraints can be learned to some extent by a generic sequence model with no obvious inductive bias for hierarchical structures. This is evidence against the idea that such an inductive bias is necessary for language learning, although the amount of data these models are trained on is much larger than the typical input to a child learner." \citep{wilcox2018rnn}
 
 
-Frequency effects
+%Frequency effects
+
 % "Even on simple cases, however, the RNN’s accuracy was sensitive to the particular lexical items that occurred in the sentence; this would not be expected if its syntactic representations were fully abstract."  \citep{marvin2018targeted}
 
 % "Lexical variation and frequency: There was considerable lexical variation in the results; we have mentioned the surprising asymmetry between himself and herself above" \citep{marvin2018targeted}
@@ -1007,17 +991,17 @@ Frequency effects
 
 % "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
 
-"Compression effect" of acceptability (by humans) from presence or absence of contect:
-"Tworecentstudiesthat explorethe impact of document context on acceptability judgments both
-identify a compression effect (Bernardy et al.,
-2018; Bizzoni and Lappin, 2019). Sentences perceived to be low in acceptability when judged
-without context receive a boost in acceptability
-when judged within context. Conversely, those
-with high out-of-context acceptability see a reduction in acceptability when context is presented. It
-is unclear what causes this compression effect" 
-(this is related to the fact that shorter sentences, with less semantic cues, receive lower likelihood/more surprisal)
+%"Compression effect" of acceptability (by humans) from presence or absence of contect: 
+%"Tworecentstudiesthat explorethe impact of document context on acceptability judgments both
+%identify a compression effect (Bernardy et al.,
+%2018; Bizzoni and Lappin, 2019). Sentences perceived to be low in acceptability when judged
+%without context receive a boost in acceptability
+%when judged within context. Conversely, those
+%with high out-of-context acceptability see a reduction in acceptability when context is presented. It
+%is unclear what causes this compression effect" 
+%(this is related to the fact that shorter sentences, with less semantic cues, receive lower likelihood/more surprisal)
 
-..
+
 
 % "To summarize, our first important result is the exceptional performance of bidirectional models." \citep{lau2020furiously}
 % "Our second result is more tentative. Our experiments seem to indicate that model architecture is more important than training or model size. " \citep{lau2020furiously}
@@ -1026,60 +1010,53 @@ is unclear what causes this compression effect"
 % althoug the linguistic examples are much shorter "—less than 7 words on average—than the natural texts" \citep{lau2020furiously} , and this might confirm ..our finding on difficulty of shorter sentences. 
 % 
 
-Salazar scoring Bert on Blimp, Table 7 \citep{salazar2020masked}: "Unsupervised performance (forced choice accuracy) on BLiMP using log probabilities (GPT-2) or PLLs. Human scores from Warstadt et al. (2020). " \citep{salazar2020masked}
+%Salazar scoring Bert on Blimp, Table 7 \citep{salazar2020masked}: "Unsupervised performance (forced choice accuracy) on BLiMP using log probabilities (GPT-2) or PLLs. Human scores from Warstadt et al. (2020). " \citep{salazar2020masked}
 
-\citet{salazar2020masked} found that, on the Blimp testset, Roberta large learns island effects close to a human level (accuracy scores are 83.4\% from Roberta and 84.9\% by humans). But as pointed out in the original Blimp paper \citep{warstadt2020blimp}, phenomena effects are probably better tested with a factorial design like \citep{wilcox2018rnn} that ..controls/.. 
+\citet{salazar2020masked} found that, on the Blimp testset, Roberta large learns island effects close to a human level (accuracy scores are 83.4\% from Roberta and 84.9\% by humans). But as pointed out in the original Blimp paper \citep{warstadt2020blimp}, island effects phenomena are probably better tested with a factorial design like \citep{wilcox2018rnn} % that ..controls/.. for lexical differences
 
-Salazar on the improvement of Berta over Gpt on island effects (which \citep{warstadt2020blimp} scored at ..near chance level) " This
-suggests that the difficulty of these BLiMP categories was due to PLM decomposing autoregressively, and not intrinsic to unsupervised language
-model training, as the original results may suggest
-\citep{warstadt2020blimp}." \citep{salazar2020masked}
-"For some intuition, we include examples in Table 8. In the subject-verb
-agreement example, BERT sees The pamphlets and resembled those photographs when scoring have vs. has, whereas GPT-2 only sees The pamphlets, which may not be enough to counter the misleading adjacent entity Winston Churchill at scoring time" \citep{salazar2020masked}
+% Salazar on the improvement of Berta over Gpt on island effects (which \citep{warstadt2020blimp} scored at ..near chance level) 
+the improvement of RoBerta over Gpt on island effect, approaching human levels "suggests that the difficulty of these BLiMP categories was due to PLM decomposing autoregressively, and not intrinsic to unsupervised language model training, as the original results may suggest \citep{warstadt2020blimp}." \citep{salazar2020masked}
+
+"For some intuition, we include examples in Table 8. In the subject-verb agreement example, BERT sees The pamphlets and resembled those photographs when scoring have vs. has, whereas GPT-2 only sees The pamphlets, which may not be enough to counter the misleading adjacent entity Winston Churchill at scoring time" \citep{salazar2020masked}
 "Who does Amanda find while thinking about Lucille?
 Who does Amanda find Lucille while thinking about?"
-"GPT-2 and BERT both promote fluency, but GPT-2’s left-to-right biased
-scores appear to cause it to \textbf{overweigh common word sequences} at the expense of adequacy" \citep{salazar2020masked}
+"GPT-2 and BERT both promote fluency, but GPT-2’s left-to-right biased scores appear to cause it to \textbf{overweigh common word sequences} at the expense of adequacy" \citep{salazar2020masked}
 
-"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by log PLM(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
+%"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by log PLM(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
 % in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
 
 % ensembling not effective for PLL and LP, they overlap: "Given the differences between PLLs and log probabilities, we explore whether ensembling both improves performance in Appendix D. Similar to the largely-dominant results of MLMs on BLiMP over GPT-2 (Section 4.1), we find that as the MLM gets stronger, adding GPT-2 scores has negligible effect, suggesting that their roles overlap."  \citep{salazar2020masked}
 
 
-"The fact that classification of sentences containing only one phenomenon yields better results holds for all categories except for Questions and Auxiliary"
+%"The fact that classification of sentences containing only one phenomenon yields better results holds for all categories except for Questions and Auxiliary"
+%
+%"Interestingly, Wh-islands violation
+%does not appear in the chart on the right because
+%this phenomenon is always accompanied with at
+%least another annotation"
+%
+%"(Gao et al., 2020) shows that pre-trained LM performs worse in some tasks such as linguistic acceptability task and natural language inference task since pre-trained LM barely saw his data distribution." (Wang et al 2021 Entailment as few shot learner)
 
-"Interestingly, Wh-islands violation
-does not appear in the chart on the right because
-this phenomenon is always accompanied with at
-least another annotation"
-
-"(Gao et al., 2020) shows that pre-trained LM performs worse in some tasks such
-as linguistic acceptability task and natural language inference task since pre-trained LM barely saw
-this data distribution." (Wang et al 2021 Entailment as few shot learner)
-
-"Prior work has demonstrated that heads induce grammar formalisms and structural knowledge (Zhou and Zhao, 2019; Lin et al., 2019; Luo,
-2021), and linguistic features motivate attention
-patterns (Kovaleva et al., 2019; Clark et al., 2019)."
-"Recent studies also show that certain heads can
-have multiple functional roles (Pande et al., 2021)
-and even perform syntactic functions for distant
-languages (Ravishankar et al., 2021)."
-(Cherniavskii et al. 2022)
+%"Prior work has demonstrated that heads induce grammar formalisms and structural knowledge (Zhou and Zhao, 2019; Lin et al., 2019; Luo,
+%2021), and linguistic features motivate attention
+%patterns (Kovaleva et al., 2019; Clark et al., 2019)."
+%"Recent studies also show that certain heads can
+%have multiple functional roles (Pande et al., 2021)
+%and even perform syntactic functions for distant
+%languages (Ravishankar et al., 2021)."
+%(Cherniavskii et al. 2022)
 
 
-note on thesis:
-our contributions are as follows:
-a dataset for some specific island effects phenomena in italian
-experiments
-..
-(as in the ItaCoLA paper)
+%note on thesis:
+%our contributions are as follows:
+%a dataset for some specific island effects phenomena in italian
+%experiments
+%..
+%(as in the ItaCoLA paper)
 
 
-"The poor performance of our models on contrasts involving agreement (Singular/Pl and Reflexive) is surprising in light of findings by (Linzen
-et al., 2016) that LSTMs can identify agreement
-errors easily even without access to sub-word information. We speculate that this is due to underrepresentation of the relevant examples in CoLA.
-"
+%"The poor performance of our models on contrasts involving agreement (Singular/Pl and Reflexive) is surprising in light of findings by (Linzen et al., 2016) that LSTMs can identify agreement
+%errors easily even without access to sub-word information. We speculate that this is due to underrepresentation of the relevant examples in CoLA."
 
 % "Our results are purely correlational, and do not mark whether a particular construction is crucial for the acceptability of the sentence. Future experiments following Ettinger et al. (2018) and Kann et al. (2019) can semi-automatically generate datasets by manipulating, for example, length of long-distance dependencies, inflectional violations, or the presence of interrogatives, while controlling for factors like sentence length and word choice, in order to determine the extent to which these features impact the quality of sentence representations."
 
@@ -1131,11 +1108,17 @@ errors easily even without access to sub-word information. We speculate that thi
 % "Experimental setup" with list of models, details/description  \citep{marvin2018targeted}
 
 \section{Tested models}
-..
+
+\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
+424 MB.
+
+\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
+
+\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
 
 \section{Methodology}
-..
-data gathering, creating dataset, balancing minimal pairs / control factors, usefulness of factorial design, ..
+
+%data gathering, creating dataset, balancing minimal pairs / control factors, usefulness of factorial design, ..
 
 \section{Factorial test design}
 
@@ -1230,38 +1213,20 @@ To be more directly comparable with the results in \citet{sprouse2016experimenta
 Since for humans the likert scale discretization and the z-score normalization were done normalizing all the score of each individual separately, we considered a model (like a Gpt-2 instance) with a particular sentence acceptability approximation (LP or PenLP) as the equivalent of a human subject, normalizing in the same scale all its scores across the four wh-dependency island effects phenomena of a particular test suite.
 
 
-\subsection{Italian models details}
-
-\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
-424 MB.
-
-\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
-
-\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
-
-\section{Token surprisal analysis}
-
-We found the most informative analysis (rather than the factorial test design) was looking at the token surprisals for the Bert-like models (do it also on the Gpt2 logits?).
-..
-(even more informative, or complementary, would be to look at the activations in the model layers)
 
 
-
-"The ratio of token-level PPPLs between unacceptable and
-acceptable sentences overall increases with performance, separating the two sentence sets" \citep{salazar2020masked}
-% plot token surprisal on Blimp sentences, compare spikes of minimal pairs differing for just one word
 
 \chapter{Results}
 
 
 \section{Accuracy results for island effects minimal pairs in Italian}
 
-In \autoref{tab:accuracy_it_data} we see the the accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_item_1}. 
+In \autoref{tab:accuracy_it_data} we see the accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_item_1}. 
 \\ Each acceptable sentence of an item like \autoref{adjunct_item_1} is compared with the unacceptable sentence, and the score is considered accurate if the acceptable sentence receives an higher score than the unacceptable one.
 
 For instance, on the first row of results, we see the scores for the adjunct island phenomenon (with wh-dependencies), where the acceptable Short-NonIsland sentence gets scored higher than the unacceptable sentence (Long-Island) 96 \% of the times by the Gpt-2 model with the LP sentence acceptability estimate.
 
-..
+
 
 All models seem to struggle with the Short-Island sentence type of the Subject islands phenomenon, with the highest score being 68\%. (TODO: see which of the 50 sentences are scored higher/lower, and why).
 
@@ -1379,54 +1344,54 @@ Although it's between different languages (English and Italian), the scores on \
 	\end{center}
 \end{table}
 
-Results, for comparison, on Blimp dataset (island effects only), for BERT models (..), as in paper from Salazar et al 2021.
+%Results, for comparison, on Blimp dataset (island effects only), for BERT models (..), as in paper from Salazar et al 2021.
+%
+%Results average (over .. phenomena), from Salazar et al:
+%Bert base (cased) 73.6
+%Bert large (cased) 77.0
+%roberta base (cased) 80.7
+%roberta large (cased) 83.4
+%gpt2: 71.7 (higher than Blimp paper; different acceptability formula or model?)
+%
+%(NB. these are cased models: "We compute PLLs on the sentences of each pair using cased BERT and RoBERTa")
 
-Results average (over .. phenomena), from Salazar et al:
-Bert base (cased) 73.6
-Bert large (cased) 77.0
-roberta base (cased) 80.7
-roberta large (cased) 83.4
-gpt2: 71.7 (higher than Blimp paper; different acceptability formula or model?)
+%From Blimp paper:
+%overall
+%Gpt2: 70.6
+%Human: 84.9
+%
+%detailed:
+%phenomenon											gpt2	human
+%adjunct island 										91		94
+%complex NP island									72		80
+%coordinate structure constraint complex left branch	42		90
+%coordinate structure constraint object extraction 	88		91
+%left branch island echo question 					77 		91 
+%left branch island simple question 					82 		99 
+%sentential subject island 							35 		61 
+%wh island											77		73
 
-(NB. these are cased models: "We compute PLLs on the sentences of each pair using cased BERT and RoBERTa")
+%our detailed accuracy results on cased BERT-like models (with PLL without sentence lenght penalty term)(NB. In most cases, we don't find any difference in accuracy btw using the penalty term or not. Among the below phenomena, only for the left branch island echo question there is a difference, of 2.6 perc points lower, when using the penalty term):
+%phenomenon											bert (base)	bert(large)	roberta (base) 	roberta (large)
+%adjunct island 										88.1		86.3		84.9			86.9		
+%complex NP island									56			67.4		75.3			82.3
+%coordinate structure constraint complex left branch	81.4		91.1		91.2			92.0
+%coordinate structure constraint object extraction 	92.1		89.0		88.4			90.5
+%left branch island echo question 				 	56.8 		61.5(59.5)	71.8(71.1)		72.3 (72.9)
+%left branch island simple question 					96.5		97.6		98.7			97.5
+%sentential subject island 							51.5		53.7		58.9			57.6
+%wh island											66.2		69.4		76.2			88.2
+%average												73.575		77			80.675			83.4
 
-From Blimp paper:
-overall
-Gpt2: 70.6
-Human: 84.9
-
-detailed:
-phenomenon											gpt2	human
-adjunct island 										91		94
-complex NP island									72		80
-coordinate structure constraint complex left branch	42		90
-coordinate structure constraint object extraction 	88		91
-left branch island echo question 					77 		91 
-left branch island simple question 					82 		99 
-sentential subject island 							35 		61 
-wh island											77		73
-
-our detailed accuracy results on cased BERT-like models (with PLL without sentence lenght penalty term)(NB. In most cases, we don't find any difference in accuracy btw using the penalty term or not. Among the below phenomena, only for the left branch island echo question there is a difference, of 2.6 perc points lower, when using the penalty term):
-phenomenon											bert (base)	bert(large)	roberta (base) 	roberta (large)
-adjunct island 										88.1		86.3		84.9			86.9		
-complex NP island									56			67.4		75.3			82.3
-coordinate structure constraint complex left branch	81.4		91.1		91.2			92.0
-coordinate structure constraint object extraction 	92.1		89.0		88.4			90.5
-left branch island echo question 				 	56.8 		61.5(59.5)	71.8(71.1)		72.3 (72.9)
-left branch island simple question 					96.5		97.6		98.7			97.5
-sentential subject island 							51.5		53.7		58.9			57.6
-wh island											66.2		69.4		76.2			88.2
-average												73.575		77			80.675			83.4
-
-compare with our results for similar phenomena on italian bert-like models:
-
-
-(what about adjusting the testsset, or better, creating a copy, where sentences are more balanced for lenght, token frequency, semantic saliency/..)
-
-(possibly a way to estimate token frequency in corpus, is to get the model output for a sentence made of a single word, mask it, and see its softmax. Althought this is in fact context-less, or estimating the probability of finding that word by itself.. check for common words to see if this seems actually rapresentative of word/token frequency)
-
-also tweak the sentence scoring method, to check when a subword is split, and mask the whole word (all the word tokens)..
-(problem: we are still indicating how many tokens we expect in the masked position.. it would be ideal to just have a special token for "masked word", and the model also has to guess how many tokens is made of)
+%compare with our results for similar phenomena on italian bert-like models:
+%
+%
+%(what about adjusting the testsset, or better, creating a copy, where sentences are more balanced for lenght, token frequency, semantic saliency/..)
+%
+%(possibly a way to estimate token frequency in corpus, is to get the model output for a sentence made of a single word, mask it, and see its softmax. Althought this is in fact context-less, or estimating the probability of finding that word by itself.. check for common words to see if this seems actually rapresentative of word/token frequency)
+%
+%also tweak the sentence scoring method, to check when a subword is split, and mask the whole word (all the word tokens)..
+%(problem: we are still indicating how many tokens we expect in the masked position.. it would be ideal to just have a special token for "masked word", and the model also has to guess how many tokens is made of)
 \begin{lstlisting}[language=Python]
 
 tokenizer.backend_tokenizer.pre_tokenizer.pre_tokenize_str("Hello, how are  you?")
@@ -1507,7 +1472,9 @@ An hypothesis, whose demonstration we leave for future work, is that this is due
 \bigskip
 % TODO: insert plot of variations
 With other variations experiments, we found that replacing the main clause verb with "sapeva che"/"conosceva che" ("he knew that", see examples in table ..TODO), increases the acceptability of the long-non island sentences; on the other hand, this variation results in a lower acceptability to the short island sentence, compared to the scores from human subjects, and by this way the non-island and island line end up being almost parallel, with the DD score close to zero (which indicates an almost absent island effect).
-\\ TODO: add table and plots of senteces with  "sapeva che"/"conosceva che" 
+\\ 
+%TODO: add table and plots of senteces with  "sapeva che"/"conosceva che" 
+
 % todo: show tables with examples "sapeva che" % todo: numbered examples like formulas
 % todo: show the plots for "intuizione che", "sapeva che" (two subfigures, each numbered/lettered to be referenced)
 
@@ -1574,9 +1541,10 @@ Experimenting with other sentence variations for whether islands, we found that 
 \end{example}
 
 % This might be the reason for the discrepancies in some of the 4 phenomena: some make more use of ..nomen agentis, while others rely more on personal pronuns. Try this replacement this in all 4 test sets.
-TODO: put scores values and/or to quantify the effect of these variations.
+%TODO: put scores values and/or to quantify the effect of these variations.
 
-TODO: test sentence variations using less common verb tenses and moods  % Not much difference seems to derive by using less common (..) verbs
+TODO: test sentence variations using less common verb tenses and moods (but consistently across an item or even all items of a suite)
+% Not much difference seems to derive by using less common (..) verbs
 % (examples in which both sentences in a pair also specify the direct object, see how this affects the score? Like long nonisland vs long island ..)
 
 
@@ -1655,7 +1623,7 @@ In \autoref{fig:bert_penlp_l_sprouse} we see the plots of the scores from the BE
 
 If we compare these plots with the accuracy scores in \autoref{tab:accuracy_it_data} from this model (BERT, logistic function, PenLP) , we see that they are among the best with an average accuracy of 80.7\%; however, looking at the scores for each phenomenon, the scores are high only in about half the cases, and quite low for the rest: Long-NonIsland sentences of all four island phenomena are scored with 58\%, 64\%, 74\%, 58\% accuracy, and the Short-NonIsland of subject islands with 28\% accuracy.
 
-TODO: check if this is also a skewing effect of the normalization (from the likert scale and the z-scores) and the presence of much negative large values for the unacceptable sentences: in this case the normalization would ..squeeze together the score for the acceptable sentences, if they have a smaller magnitude.
+%TODO: check if this is also a skewing effect of the normalization (from the likert scale and the z-scores) and the presence of much negative large values for the unacceptable sentences: in this case the normalization would ..squeeze together the score for the acceptable sentences, if they have a smaller magnitude.
 
 % With the , the use of the logistic function scores as a basis for LP/PenLP instead results in much ..worse plots (  ). Whether, complex and subject islands get almost identical plots, due to the ..skewing/normalization effect of the discretization and the zscores, because the adjunct islands have much higher magnitude negative values (low acceptability) for the unacceptable sentence (long island.) (? so it seems that with BERT and logistic function scores emerge more clearly a distinction between acceptable and unacceptable sentences, without much differenciation within these two groups).
 
@@ -1671,24 +1639,24 @@ Overall, for GilBERTo, the plots are significantly different from those on human
 \end{figure}
 
 
-\section{Drafts}
+\section{Draft notes on the results}
 \subsection{Observation on plots for other models}
 
 
 The plots for Geppetto and PenLp are the most similar to the plots on human ratings. However, with the LP measure, the plots differ significantly.
 
-The plots for BERT with PenLP on the Sprouse data are similar to the results on humans from \citet{sprouse2016experimental}, ..with some ..differences..
+The plots for BERT with PenLP on the Sprouse data are similar to the results on humans from \citet{sprouse2016experimental}, %..with some ..differences..
 
 
 In the plots from the GilBERTo scores, we see that for complex NP and subject islands, the sentences with the island structure receive a higher acceptability than the non island ones (this is no longer the case when removing the penalty for sentence lenght, using the LP sentence acceptability measure). With the PenLP sentence acceptability approximation, the lines tend to have similar slopes, close to being parallel (indicating a lack of, or small, island effect). 
 
-
-Plots on the Madeddu dataset developed for the present thesis:
-
-BERT, softmax, PenLP and LP
-..
-for adjunct islands, LP seem to work best (without penalizing for sentence lenght).
-Using the logistic function scores, again we see the ..binary differentiation btween unacceptable (long non island) and acceptable (the other 3 types) sentences. However here the plots are more ..flattened, with the scores being very close to the same values.
+%
+%Plots on the Madeddu dataset developed for the present thesis:
+%
+%BERT, softmax, PenLP and LP
+%..
+%for adjunct islands, LP seem to work best (without penalizing for sentence lenght).
+%Using the logistic function scores, again we see the ..binary differentiation btween unacceptable (long non island) and acceptable (the other 3 types) sentences. However here the plots are more ..flattened, with the scores being very close to the same values.
 
 We refer to the Appendix for the plots for the other models.
 
@@ -1697,7 +1665,7 @@ We refer to the Appendix for the plots for the other models.
 
 \subsubsection{Adjunct islands}
 
-Guardando le short-nonislands, sembra anche qui preponderante il fatto di usare nomi propri di persona (che ha uno score di accettabilità minore) e usare invece di nomi comuni animati/di mestieri/.. (che aumenta l’accettabilità). Ma questo non sembra influenzare il DD score finale (..evidentemente i vari fattori si bilanciano).
+Guardando le short-nonislands, sembra anche qui preponderante il fatto di usare nomi propri di persona (che ha uno score di accettabilità minore) e usare invece di nomi comuni animati/di mestieri/.. (che aumenta l’accettabilità). Ma questo non sembra influenzare il DD score finale % (..evidentemente i vari fattori si bilanciano).
 
 
 \subsection{Discarded observations on differences between the plots}
@@ -1722,17 +1690,17 @@ NB: note that according to human scores, for this type of whether island sentenc
 Maybe comparing the scores between acceptable sentences (in this case short and long non islands), expecting it to match humans acceptability judgements .. is beside the present ..research question.
 In any case, we noted a reverse in the acceptability difference between this two types of sentences (short and long non islands) when changing the subject of the subordinate sentence from a personal pronoun ("io", 1st pers sg), to a proper noun (i.e. "Gianni"), to a common noun (i.e. "il parlamentare").
 
--- significant variation in acceptability diff between short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvement toward the expected acceptability rate (only 10 out of 50 are .."missclassified"). With the proper noun "Gianni", 18 are missclassified. With the personal pronoun 29 out of 50 are missclassified.
-Try replacing with .. another proper noun, more common like ..
-
-
-(tables and examples of these variations to put on the thesis/report?)
-
-(possible explanation: personal pronouns and proper nouns might be less common in the type/genre of corpora these models were trained on, like wikipedia).
-Observations: the direct objects in the examples are all relatively common words..\footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
-try with rarer ones.
-..
--- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
+%-- significant variation in acceptability diff between short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvement toward the expected acceptability rate (only 10 out of 50 are .."missclassified"). With the proper noun "Gianni", 18 are missclassified. With the personal pronoun 29 out of 50 are missclassified.
+%Try replacing with .. another proper noun, more common like ..
+%
+%
+%(tables and examples of these variations to put on the thesis/report?)
+%
+%(possible explanation: personal pronouns and proper nouns might be less common in the type/genre of corpora these models were trained on, like wikipedia).
+%Observations: the direct objects in the examples are all relatively common words..\footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
+%try with rarer ones.
+%..
+%-- both on sprouse and new data, gpt "incorrectly" increases the accceptability from short to long non island (check constructs that instead decrease the acceptability?)
 
 
 \section{BLiMP English dataset}
@@ -1741,11 +1709,22 @@ try with rarer ones.
 ..
 
 \section{Token surprisal analysis}
-..
 
-\section{Follow ups and future work}
+(TODO)
+%We found the most informative analysis (rather than the factorial test design) was looking at the token surprisals for the Bert-like models (do it also on the Gpt2 logits?).
+%..
+%(even more informative, or complementary, would be to look at the activations in the model layers)
+%
+%
+%
+%"The ratio of token-level PPPLs between unacceptable and
+%acceptable sentences overall increases with performance, separating the two sentence sets" \citep{salazar2020masked}
+% plot token surprisal on Blimp sentences, compare spikes of minimal pairs differing for just one word
 
 
+\section{Follow up experiments and future work}
+
+(..)
 % finetune the models for acceptability? (already existin italian models for this, like from Trotta et al. 2021?)
 % finetuning is very fast anyway 
 % (fine tune also for english the Bostrom models?)
@@ -1754,13 +1733,13 @@ try with rarer ones.
 
 % what about a follow up analysis on the thesis, based on the results? like manipulating data to check the effect of somee factors, ..
 
-..
-Analizzare le attivazioni nei vari livelli del modello ..
-Fare un training .”a strati”, in cui in ciascuno strato c’è il target dell’apprendimento di un livello di base della lingua (morfologia, sintassi, semantica, ampiezza del vocabolario, ..), con strati successivi che aumentano la complessità della conoscenza che il modello ha del linguaggio.
 
-
-Confronto percentuali accuratezza (short/long non island, short island) con quelle in BLiMP
-(and other works with extraction islands evaluations?)
+%Analizzare le attivazioni nei vari livelli del modello ..
+%Fare un training .”a strati”, in cui in ciascuno strato c’è il target dell’apprendimento di un livello di base della lingua (morfologia, sintassi, semantica, ampiezza del vocabolario, ..), con strati successivi che aumentano la complessità della conoscenza che il modello ha del linguaggio.
+%
+%
+%Confronto percentuali accuratezza (short/long non island, short island) con quelle in BLiMP
+%(and other works with extraction islands evaluations?)
 
 \chapter{Conclusions}
 ..
