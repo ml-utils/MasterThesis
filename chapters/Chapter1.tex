@@ -323,64 +323,83 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 \chapter{Related work}
 
+TODO: brief summary of each of the main prev studies:
+wilcox, warstadt, linzen, marvin, salazar, Hu, ..
 
-"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
-cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
-
-"Some recent computational work explores the
-relation of acceptability judgments to sentence
-probabilities. Lau et al. (2015, 2017b) show that
-the output of unsupervised language models
-can correlate with human acceptability ratings.
-Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier
-on top of a pre-trained sentence encoder to
-predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
+"Some recent computational work explores the relation of acceptability judgments to sentence probabilities." \citep{lau2020furiously} 
+"Lau et al. (2015, 2017b) show that the output of unsupervised language models can correlate with human acceptability ratings. Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier on top of a pre-trained sentence encoder to predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
 
 \citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
 by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
 MLMs in a supervision-free manner"
 
 
-\section{Targeted linguistic evaluation of language models}
-
-Methodologies for evaluation a Language Model linguistic knowledge:
-* Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
-% TODO: review marvin2018targeted, wilcox2018rnn
-* "using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al.,
-2017; Conneau et al., 2018; Ettinger et al., 2018;
-Tenney et al., 2019). "  \citep{warstadt2020blimp}	
-
-On minimal pairs and necessity of controlling factors btw the two sentences:
-"Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP"
-
-(question/doubt/objection: BLIMP format might not be suitable for testing some phenomena.. ie chunking, some aspects of island effects..: "Our implementation of these phenomena is often
-narrower than the linguistic definition because of the particular constraints described above."  \citep{warstadt2020blimp}	
-(more extensive list of linguistic phenomena, and how they can be ..encoded in a Blimp format, and which can't. Each phenomena has more complementaty forms in which is tested in Blimp; phenomena need to be more fine grained, ie, for island effects, all subtypes; even subtypes of phenomena might even multiple aspects/linguistic facts..)
-
-(pros and cons of different approaches)
-
-
-On acceptability judgments
-"Acceptability judgments are the main form of
-behavioral data used in generative linguistics to
-measure human linguistic competence (Chomsky,
-1965; Schutze, 1996)." \citep{warstadt2020blimp}	
-
-inclusion, in LM testing, of "well-studied phenomena in linguistics such as control and
-raising, ellipsis, quantification, and countless others"  \citep{warstadt2020blimp}	
-
-"labor-intensive nature of collecting such targeted minimal pairs." \citep{warstadt2020blimp}	
+\section{Approaches for targeted linguistic evaluation of language models}
 
 % "targeted linguistic evaluation" \citep{hu2020systematic}
+% " targeted syntactic evaluation of language models" \citep{marvin2018targeted}
 
-" targeted syntactic evaluation of language models" \citep{marvin2018targeted}
-"a language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
+"A language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
 "The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments,
 designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
 
 % "For example, given the two strings The keys to the cabinet are on the table and *The keys to the cabinet is on the table, a model that has learned the proper subject–verb number agreement rules for English should assign a higher probability to the grammatical plural verb in the first sentence than to the ungrammatical singular verb in the second (Linzen et al., 2016)." \citep{hu2020systematic}
 
-"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex. We can demonstrate this with an evaluation of models’ “\textbf{garden-pathing}” behavior (Futrell et al., 2019)." \citep{hu2020systematic}
+"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex." \citep{hu2020systematic}
+
+Methodologies for evaluation a Language Model linguistic knowledge:
+* Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
+% TODO: review marvin2018targeted, wilcox2018rnn
+* "using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al., 2017; Conneau et al., 2018; Ettinger et al., 2018; Tenney et al., 2019). "  \citep{warstadt2020blimp}	
+
+
+% TODO: pros and cons of different approaches; currently open issues ..
+
+
+"labor-intensive nature of collecting such targeted minimal pairs." \citep{warstadt2020blimp}	
+
+
+
+% inclusion, in LM testing, of "well-studied phenomena in linguistics such as control and raising, ellipsis, quantification, and countless others"  \citep{warstadt2020blimp}	
+
+% ? also MDL (min descr lenght approaches?)
+
+\subsection{Probing tasks}
+
+"using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al.,
+2017; Conneau et al., 2018; Ettinger et al., 2018;
+Tenney et al., 2019). "  \citep{warstadt2020blimp}	
+
+
+\subsection{Estimating LM acceptability scores}
+..
+CoLA, ItaCoLA
+
+
+On acceptability judgments
+"Acceptability judgments are the main form of behavioral data used in generative linguistics to measure human linguistic competence (Chomsky, 1965; Schutze, 1996)." \citep{warstadt2020blimp}	
+
+% binary vs graded measurement used in psycholinguistic studies
+..
+
+\subsection{Approaches based on minimal pairs}
+Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
+
+BLiMP
+
+On minimal pairs and necessity of controlling factors btw the two sentences:
+"Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP"
+
+% (as noted in the BLIMP paper itself, the minimal pairs format might not be suitable for testing some phenomena.. ie chunking, some aspects of island effects..: "Our implementation of these phenomena is often
+% narrower than the linguistic definition because of the particular constraints described above."  \citep{warstadt2020blimp}	
+% (more extensive list of linguistic phenomena, and how they can be ..encoded in a Blimp format, and which can't. Each phenomena has more complementaty forms in which is tested in Blimp; phenomena need to be more fine grained, ie, for island effects, all subtypes; even subtypes of phenomena might even multiple aspects/linguistic facts..)
+
+\subsection{Factorial approaches}
+..
+Sprouse, Wilcox, Hu, ..
+
+
+% "other evaluations are more complex. We can demonstrate this with an evaluation of models’ “\textbf{garden-pathing}” behavior (Futrell et al., 2019)." \citep{hu2020systematic}
 
 % "In this paper, we broaden and deepen this line of inquiry by examining what LSTMs learn about an unexplored syntactic relationship: the filler–gap dependency." \citep{wilcox2018rnn}
 % "The filler–gap dependency is novel, insofar as learning it requires the network to generalize about the absence of material." \citep{wilcox2018rnn}
@@ -584,7 +603,7 @@ Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-
 
 \subsection{Measures}
 
-
+acceptability judgements, LM probability of a sentence, likelihood, ..
 
 "perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
 " the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
@@ -787,6 +806,10 @@ PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked}
 
 \section{Test suites}
 \subsection{CoLA, ItaCoLA}
+
+On test suite development:
+"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
+% cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
 
 
 Corpora of sentences and their grammaticality. "The most recent
@@ -1749,6 +1772,9 @@ try with rarer ones.
 \section{BLiMP English dataset}
 ..
 \subsection{English models details}
+..
+
+\section{Token surprisal analysis}
 ..
 
 \section{Follow ups and future work}
