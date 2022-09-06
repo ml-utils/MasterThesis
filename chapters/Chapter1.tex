@@ -135,26 +135,38 @@ on acceptability data." \citep{warstadt2020blimp}
 
 
 \section{Research on linguistic tests on language models}
-(review previous studies, state of the art, chronicle history, ..)
 (TODO)
+%(review previous studies, state of the art, chronicle history, ..)
 
-\section{Overview on island effects}
-(TODO)
+
+\section{Island Effects and their assessment}
+
+\subsection{Overview on island effects}
+
+(TODO: sintetizzare i virgolettati)
 
 "filler–gap dependencies are subject to numerous complex island constraints (Ross, 1967)." \citep{wilcox2018rnn}
-"Even though the filler–gap dependency is flexible
-and potentially unbounded, it is not entirely unconstrained. Ross (1967) identified five syntactic
-positions in which gaps are illicit, dubbing them
+"Even though the filler–gap dependency is flexible and potentially unbounded, it is not entirely unconstrained. Ross (1967) identified five syntactic positions in which gaps are illicit, dubbing them
 syntactic islands. " \citep{wilcox2018rnn} 
 
-poverty of the stimulous argument:
+poverty of the stimulus argument:
 "Because of their complexity and ubiquity, these dependencies have figured prominently in arguments that natural language would be unlearnable by children without a great deal of innate knowledge (Phillips, 2013) (cf. Pearl and Sprouse, 2013; Ellefson and Christiansen, 2000)" \citep{wilcox2018rnn} 
 
 "open question whether these “island constraints” are true grammatical constraints, or whether they are effects of processing difficulty or discourse-structural factors (Ambridge and Goldberg, 2008; Hofmeister and Sag, 2010; Sprouse and Hornstein, 2014)" \citep{wilcox2018rnn} 
 
+% psycholinguistic studies (Sprouse)
+
+\subsection{Island effects assessment in language models}
+
+(TODO)
+
+% Wilcox, Blimp, ..
+
 \pagebreak
 
-\section{Transformers and the Attention Mechanism}
+\section{Transformer-based language models}
+
+\subsection{Transformers and the Attention Mechanism}
 
 "The self-supervision task used to train BERT is the maskedlanguage-modeling  or  cloze  task,  where  one  is  given  a  text  inwhich  some  of  the  original  words  have  been  replaced  with  aspecial  mask  symbol.  The  goal  is  to  predict,  for  each  maskedposition,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage thesurrounding context to infer what that word could be." \citep{manning2020emergent}
 
@@ -218,7 +230,7 @@ provides a multi-headed self-attention unit over all input words, allowing it to
 
 \pagebreak
 
-\section{On the output of Gpt unidirectional language models}
+\subsection{Traditional unidirectional language models (Gpt2)}
 
 Traditional LM can "produce sentence probabilities (density estimation) " \citep{salazar2020masked}
 
@@ -341,7 +353,7 @@ From the pytorch cross entropy documentation, about the two parameters input and
 
 \pagebreak
 
-\section{On the output of BERT-like bidirectional language models}
+\subsection{Bidirectional language models (BERT)}
 
 "BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more
 involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
