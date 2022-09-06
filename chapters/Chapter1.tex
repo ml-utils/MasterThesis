@@ -201,7 +201,6 @@ previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020fu
 % (math formulas of Gpt output, activation functions..)
 
 
-
 % C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
 
 % recap: average cross entropy loss should be how the gpt2 output loss is calculated (add img with Jurafsky figures)
@@ -298,55 +297,27 @@ previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020fu
 
 \subsection{Bidirectional language models (BERT)}
 
-"The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
 
 "BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
+
+"The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
+
 
 % "MLMs model all pairwise interactions $w_s$ and $w_{s'}$ via dot product attention" "conditioned on past and future context" \citep{salazar2020masked}
 % PLLs of models like EMLO would have different properties from [BERT] (e.g., their cross-entropies in Figure 4 may be convex instead of flat)  \citep{salazar2020masked}
 
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
-\citet{lau2020furiously} formula for BERT sentence acceptability:
-"It is important to note, however, that
-sentence probability computed this way is not
-a true probability value: These probabilities do
-not sum to 1.0 over all sentences. Equation (1),
-in contrast, does guarantee true probabilities" \citep{lau2020furiously}
-(do they really guarantee true probabilities, summing up to 1.0 over all sentences?)
-On BERT formula:
-"Intuitively, the sentence probability computed
-with this bidirectional formulation is a measure of the model’s confidence in the likelihood of the
-sentence"\citep{lau2020furiously}
-"To compute the true probability, Wang and
-Cho (2019) show that we need to sum the
-pre-softmax weights for each token to score a
-sentence, and then divide the score by the total
-score of all sentences. As it is impractical to
-compute the total score of all sentences (an
-infinite set), the true sentence probabilities for
-these bidirectional models are intractable. We use
-our non-normalized confidence scores as stand-ins
-for these probabilities."\citep{lau2020furiously}
- 
-"Sentence probability (estimated either using
-unidirectional or bidirectional context) is affected
-by its length (e.g., longer sentences have lower
-probabilities), and word frequency (e.g., the cat is
-big vs. the yak is big)" \citep{lau2020furiously}
-
-%(normalizing by dividing the sentence probability given by a unigram language model) - log P(S) / log P_u(S)   \citep{lau2020furiously}
-
-"pseudo-log-likelihood scores (PLLs)" "which are computed by masking tokens one by one" \citep{salazar2020masked}
-(link with \citet{lau2020furiously} article, and the prev one for circa 2016, that use this same score/formula, but with different names?)
 
 "BERT’s MLM objective can be viewed as stochastic maximum pseudolikelihood estimation (MPLE) \citet{wang2019bert}(Besag, 1975) on a training set  .. " \citep{salazar2020masked}
-"In this way, MLMs learn an underlying joint distribution whose conditional distributions wt j Wnt are modeled by masking at position t. We include
-a further discussion in Appendix B" \citep{salazar2020masked}
+"In this way, MLMs learn an underlying joint distribution whose conditional distributions 
+$w_t | W_{\setminus t}$ 
+are modeled by masking at position $t$."  \citep{salazar2020masked}
+% We include a further discussion in Appendix B" \citep{salazar2020masked}
 
-"We show that PLLs outperform scores from autoregressive language models like GPT-2 in a variety of tasks. " \citep{salazar2020masked}
 
-\pagebreak
+
+% \pagebreak
 
 
 
@@ -723,6 +694,39 @@ The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet
 the Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}
 "CoLA), has a training set and asks to label sentences as “acceptable” or not in isolation \citet{warstadt2019neural}"  \citet{salazar2020masked}
 
+
+
+
+\subsubsection{Pseudo-log-likelihood scores (PLLs)}
+
+
+"pseudo-log-likelihood scores (PLLs)" "are computed by masking tokens one by one" \citep{salazar2020masked}
+% (link with \citet{lau2020furiously} article, and the prev one for circa 2016, that use this same score/formula, but with different names?)
+
+\citet{lau2020furiously} formula for BERT sentence acceptability:
+"It is important to note, however, that sentence probability computed this way is not a true probability value: These probabilities do
+not sum to 1.0 over all sentences. Equation (1), in contrast, does guarantee true probabilities" \citep{lau2020furiously}
+% (do they really guarantee true probabilities, summing up to 1.0 over all sentences?)
+On BERT formula:
+"Intuitively, the sentence probability computed with this bidirectional formulation is a measure of the model’s confidence in the likelihood of the
+sentence"\citep{lau2020furiously}
+"To compute the true probability, Wang and Cho (2019) show that we need to sum the pre-softmax weights for each token to score a
+sentence, and then divide the score by the total
+score of all sentences. As it is impractical to
+compute the total score of all sentences (an
+infinite set), the true sentence probabilities for
+these bidirectional models are intractable. We use
+our non-normalized confidence scores as stand-ins
+for these probabilities."\citep{lau2020furiously}
+
+"Sentence probability (estimated either using
+unidirectional or bidirectional context) is affected
+by its length (e.g., longer sentences have lower
+probabilities), and word frequency (e.g., the cat is
+big vs. the yak is big)" \citep{lau2020furiously}
+
+%(normalizing by dividing the sentence probability given by a unigram language model) - log P(S) / log P_u(S)   \citep{lau2020furiously}
+
 \subsubsection{Softmax, logistic function, and other activation functions applied to the models' output}
 \label{sec:softmax}
 We calculated the LP and PenLP measures taking as a basis the models' outputs after the softmax activation function applied to the last layer. 
@@ -810,6 +814,8 @@ Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the
 \section{Review of results from previous related work}
 
 "Current models like BERT (Devlin et al., 2019) and T5 (Raffel et al., 2019) now learn to give acceptability judgments that approach or even exceed individual human agreement with CoLA." \citep{warstadt2020blimp}	
+
+"We show that PLLs outperform scores from autoregressive language models like GPT-2 in a variety of tasks. " \citep{salazar2020masked}
 
 " Section 4 investigates whether
 LSTM language models are sensitive to various
