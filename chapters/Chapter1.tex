@@ -329,37 +329,61 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 \chapter{Related work}
 
+The previous works closest to ours are those by \citet{wilcox2018rnn, hu2020systematic, sprouse2016experimental}, which use a factorial test design and test on island effects, on neural language models for \citet{wilcox2018rnn, hu2020systematic}, and on human subjects for \citet{sprouse2016experimental}
+
+\citet{hu2020systematic} uses a factorial design with minimal pairs and obtains a percentage accuracy score. %, without the need for statistical significance
+An item is considered to have been scored by the models when multiple conditions are met (eg. the unacceptable sentence is scored lower than the others, and a factorial effect measurement is greater than zero).
+However, the phenomena tested by \citet{hu2020systematic} can be formulated in the stringent way of minimal pairs differing for just one word; which is not well-suited for island effects. \\
+\citet{wilcox2018rnn, sprouse2016experimental} instead obtain a measure of statistical significance and a confidence interval. In the case of Sprouse, however, the format of sentences employed is not suitable for scoring language models, which require that all the sentences in an item are minimally different in terms of lexical content, and ideally should differ in just one word.
+\citet{wilcox2018rnn} circumvents this issue by scoring separately items with different construct (i.e. one with and one without an island structure) which are lexically very similar but differ more than a minimal pair. For both items, they measure the effect of the filler-gap dependency phenomena, whose effect is expected to drop in the presence of an island construct, which blocks it. If the drop in the effect is statistically significant, they can conclude that the model has "learned" the island constraint. \\
+Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-right unidirectional language models, none tested on bidirectional language models like BERT.
+
+% then mention: minimal pairs, surprisal summands (PLL) for sentence scoring, .. Sprouse, ..
+% mention methodological difference and problems
+
+
+% wilcox instead uses a factorial design and a score of statistical significance for the measured effects (cross ..)
+% (problem: we don't have training in the complex measurement they use).
+% also Sprouse, in a psycholinguistic study, uses a test for statistical significance (..)
+
+% problem: test item like those designed for humans by Sprouse, are not feasible to be used with current approaches of LM scoring.. they are not minimal pairs, which need to be controlled for lexical variation (basically they need to use the same words, or at least the same content words, with some variation in functional words)
+
+% our test suites are problematic because they follow SProuse format, hence they are not suitable minimal pairs for LM scoring.
+% that is, confound emerges, due to lexical differencies (and also variation in verbal tense and mood).
+% Wilcox examples avoid raw wh questions ..
+
+
 % TODO: brief summary of each of the main prev studies:
 % wilcox, warstadt, linzen, marvin, salazar, Hu, ..
 
-"Some recent computational work explores the relation of acceptability judgments to sentence probabilities." \citep{lau2020furiously} 
-"Lau et al. (2015, 2017b) show that the output of unsupervised language models can correlate with human acceptability ratings. Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier on top of a pre-trained sentence encoder to predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
-
-\citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
-by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
-MLMs in a supervision-free manner"
+%"Some recent computational work explores the relation of acceptability judgments to sentence probabilities." \citep{lau2020furiously} 
+%"Lau et al. (2015, 2017b) show that the output of unsupervised language models can correlate with human acceptability ratings. Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier on top of a pre-trained sentence encoder to predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
+%
+%\citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
+%by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
+%MLMs in a supervision-free manner"
 
 % Related work
 % "Targeted evaluation: LM evaluation data sets using challenging prediction tasks have been proposed in the context of semantics and discourse comprehension (Zweig and Burges, 2011; Paperno et al., 2016)." \citep{marvin2018targeted}
 % "Evaluation sets consisting of chalenging syntactic constructions have been constructed for parser evaluation (Rimell et al., 2009; Nivre et al., 2010; Bender et al., 2011),"  \citep{marvin2018targeted}
 % "and minimal pair approaches have been proposed for evaluating image captioning (Shekhar et al., 2017) and machine translation systems (Sennrich, 2017), but no data sets exist that target a range of syntactic constructions for language model evaluation." \citep{marvin2018targeted}
 
-\citet{salazar2020masked} "studied scoring with MLM pseudo-loglikelihood scores in a variety of settings" and found that "rescoring with PLLs can match or outperform comparable scores from large unidirectional language models (GPT-2)" They "attributed this to PLL’s promotion of fluency via self-consistency, as demonstrated by improvement on unsupervised acceptability judgements and by qualitative analysis."
-They also examined the numerical properties of PLLs \citep{salazar2020masked}.
+%\citet{salazar2020masked} "studied scoring with MLM pseudo-loglikelihood scores in a variety of settings" and found that "rescoring with PLLs can match or outperform comparable scores from large unidirectional language models (GPT-2)" They "attributed this to PLL’s promotion of fluency via self-consistency, as demonstrated by improvement on unsupervised acceptability judgements and by qualitative analysis."
+%They also examined the numerical properties of PLLs \citep{salazar2020masked}.
 
 % \citet{lau2020furiously}, try to normalize by sentence length and lexical frequency .. but actually shorter sentences can have lower likelihood. And this normalization adds nothing really to convert likelihood (..probability) to acceptability (a rare acceptable sentence might still have lower likelihood than a frequent sentence with a common mistake)
 % (see ..salazar2020masked or Wilcox et al arguments on this; in particular, the fact that unifirectional models like Gpt, see a lowering curve in token surprisal as more of the sentence is revealed, and this might explain the effectiveness of the exponential normalization by sentence lenght; confound of sentence lenght with ..internal consistency of the sentence)(TODO: show the two plots by ..salazar2020masked  for bert and gpt, with flat vs descending curves)
 
-"Lau et al. (2017b) experiment with unsupervised language models to predict acceptability, and they obtained an encouraging correlation with human ratings" \cite{lau2020furiously}
-
-"Lau et al. (2017) compared the ability of different LMs to predict graded human acceptability judgments. The forced-choice approach used in the current paper has been shown to be effective in human
-acceptability judgment experiments (Sprouse and Almeida, 2017)." \citep{marvin2018targeted}
+%"Lau et al. (2017b) experiment with unsupervised language models to predict acceptability, and they obtained an encouraging correlation with human ratings" \cite{lau2020furiously}
+%
+%"Lau et al. (2017) compared the ability of different LMs to predict graded human acceptability judgments. The forced-choice approach used in the current paper has been shown to be effective in human
+%acceptability judgment experiments (Sprouse and Almeida, 2017)." \citep{marvin2018targeted}
 % "Warstadt et al. (2018) use a transfer learning approach, where an unsupervised model is finetuned on acceptability prediction."  \citep{marvin2018targeted}
 
-"Our work differs from those studies in that we do not advocate providing any explicit grammaticality signal to the LM at any point (“no negative evidence”)." \citep{marvin2018targeted}
-
-(masked rescoring)
-"Our work extends the closest previous works (Wang and Cho, 2019; Shin et al., 2019) with regards to experiments and tasks, as outlined in Section 2.1." \citet{salazar2020masked}
+%"Our work differs from those studies in that we do not advocate providing any explicit grammaticality signal to the LM at any point (“no negative evidence”)." \citep{marvin2018targeted}
+%
+%(masked rescoring)
+%"Our work extends the closest previous works (Wang and Cho, 2019; Shin et al., 2019) with regards to experiments and tasks, as outlined in Section 2.1." \citet{salazar2020masked}
 
 \section{Approaches for targeted linguistic evaluation of language models}
 
@@ -378,64 +402,62 @@ Linguists concerned with acceptability judgements, while "Computational language
 
 "How should grammaticality be captured in the probability distribution defined by an LM? The most extreme position would be that a language model should assign a probability of zero to ungrammatical sentences. For most applications, some degree of error tolerance is desirable, and  it is not practical to assign a sentence a probability of exactly zero.1 " "1Nor is it possible to have a threshold episilon such that all grammatical sentences have probability higher than episilon and all ungrammatical sentences have probability lower than episilon, for the simple reason that there is an infinite number of grammatical sentences (Lau et al., 2017)."  \citep{marvin2018targeted}
 
-the Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}
-"CoLA), has a training set and asks to label sentences as “acceptable” or not in isolation \citet{warstadt2019neural}"  \citet{salazar2020masked}
+The Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}, it has a training set and asks to label sentences as “acceptable” or not in isolation, with an absolute score \citet{warstadt2019neural}"  \citet{salazar2020masked}.
 
 % "naturalistic approach vs a constructed dataset"
 % acceptability judgements vs minimal pairs
 
-Minimal pairs vs sentence acceptability (with CoLA)
-acceptability: absolute score
-minimal pairs: relative score, compared btw two sentences
-also minimal pairs scoring is done with the pretrained models, while CoLA involves finetuning
+In minimal pairs approaches, on the other hand, there is a relative comparison bewtween two sentences, and the model is considered to have given the right answer if it gives an higher score to the acceptable sentence than the unacceptable (or more marginal) one.
+
+Another fundamental difference is that  minimal pairs scoring is usually done with the pretrained models out of the box, while acceptability judgments datasets like CoLA require the models to be finetuned on an additional dataset on an acceptability detection task.
+
+
+%Minimal pairs vs sentence acceptability (with CoLA)
+%acceptability: absolute score
+%minimal pairs: relative score, compared btw two sentences
+%also
 % study by Lau et al is ..intermediate in comparing sentences that are not strictly minimal pairs
 % Follow study from Trotta et al, and the original CoLA paper 
-on the alternative of minimal pairs:
-"This task is often employed to evaluate language models because the outputted
-probabilities for a pair of minimally different sentences are directly comparable, while the output for a single sentence cannot be taken as a measure
-of acceptability without some kind of normalization (Lau et al., 2016)"
+
+"This task is often employed to evaluate language models because the outputted probabilities for a pair of minimally different sentences are directly comparable, while the output for a single sentence cannot be taken as a measure of acceptability without some kind of normalization (Lau et al., 2016)"
 
 "Accordingly, CoLA, but not datasets based solely on preferences between minimal pairs, may be used to evaluate models’ ability to make judgments that align with both native speaker judgments and the predictions of generative theories."
 
-"A language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
-"The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments,
-designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
+%"A language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
+
+
+%"The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments, designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
 
 % "For example, given the two strings The keys to the cabinet are on the table and *The keys to the cabinet is on the table, a model that has learned the proper subject–verb number agreement rules for English should assign a higher probability to the grammatical plural verb in the first sentence than to the ungrammatical singular verb in the second (Linzen et al., 2016)." \citep{hu2020systematic}
 
-"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex." \citep{hu2020systematic}
+%"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex." \citep{hu2020systematic}
 
-Methodologies for evaluation a Language Model linguistic knowledge:
-* Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
-% TODO: review marvin2018targeted, wilcox2018rnn
-* "using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al., 2017; Conneau et al., 2018; Ettinger et al., 2018; Tenney et al., 2019). "  \citep{warstadt2020blimp}	
+%Methodologies for evaluation a Language Model linguistic knowledge:
+%* Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
+%% TODO: review marvin2018targeted, wilcox2018rnn
+%* "using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al., 2017; Conneau et al., 2018; Ettinger et al., 2018; Tenney et al., 2019). "  \citep{warstadt2020blimp}	
 
 
 % TODO: pros and cons of different approaches; currently open issues ..
-
-
-"labor-intensive nature of collecting such targeted minimal pairs." \citep{warstadt2020blimp}	
-
-
+%"labor-intensive nature of collecting such targeted minimal pairs." \citep{warstadt2020blimp}	
 
 % inclusion, in LM testing, of "well-studied phenomena in linguistics such as control and raising, ellipsis, quantification, and countless others"  \citep{warstadt2020blimp}	
 
 % ? also MDL (min descr lenght approaches?)
 
-\subsection{Probing classifiers}
-
-"using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al.,
-2017; Conneau et al., 2018; Ettinger et al., 2018;
-Tenney et al., 2019). "  \citep{warstadt2020blimp}	
+% brefly mention:
+%Probing classifiers
+%"using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al., 2017; Conneau et al., 2018; Ettinger et al., 2018;
+%Tenney et al., 2019). "  \citep{warstadt2020blimp}	
 
 
 \subsection{Acceptability judgments (absolute scores)}
-..
-CoLA, ItaCoLA
+%..
+%CoLA, ItaCoLA
 
 % "To understand the relationship between sentence acceptability and probability, we conduct experiments with unsupervised language models to predict acceptability. " \citep{lau2020furiously}
 
-On acceptability judgments
+% On acceptability judgments
 "Acceptability judgments are the main form of behavioral data used in generative linguistics to measure human linguistic competence (Chomsky, 1965; Schutze, 1996)." \citep{warstadt2020blimp}	
 
 % binary vs graded measurement used in psycholinguistic studies
@@ -479,17 +501,17 @@ On acceptability judgments
 
 
 \subsection{Minimal pairs (relative scores)}
-Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
 
+% Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
 
-"Following Linzen et al. (2016) and Gulordava et al. (2018), our desideratum for the language model is more modest [rather then absolute LM probabilities reflecting grammaticality]: if two closely matched sentence differ only in their grammaticality, the probability of the grammatical sentence should be higher than the probability of the ungrammatical one. "  \citep{marvin2018targeted}
+%"Following Linzen et al. (2016) and Gulordava et al. (2018), our desideratum for the language model is more modest [rather then absolute LM probabilities reflecting grammaticality]: if two closely matched sentence differ only in their grammaticality, the probability of the grammatical sentence should be higher than the probability of the ungrammatical one. "  \citep{marvin2018targeted}
 
 % limits, compare whole sentences: "The prediction setting is only applicable when the locus of ungrammaticality is a single word, rather than, say, the interaction between two words; moreover, the information needed to make the grammaticality decision needs to be available in the left context of the locus of grammaticality. These conditions do not always hold. Negative polarity items (NPIs), for example,.."  \citep{marvin2018targeted}
 
 
-
-On minimal pairs and necessity of controlling factors btw the two sentences:
-"Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP" \citep{warstadt2020blimp}
+% On minimal pairs and necessity of controlling factors btw the two sentences:
+% "Evaluating LMs on minimal pairs .. the caveat that " 
+"the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP" \citep{warstadt2020blimp}
 
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
 % "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
@@ -509,27 +531,27 @@ On minimal pairs and necessity of controlling factors btw the two sentences:
 "Since most minimal pairs [in BLiMP] only differ by a single word, the effect of length on log probabilities and PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
 \subsection{Factorial approaches}
-..
-Sprouse, Wilcox, Hu, ..
+
+% Sprouse, Wilcox, Hu, ..
 
 
 % (Factorial design as a supplement to minimal pairs assessment)
-Factorial experimental setup example:
-" A targeted syntactic evaluation for garden-pathing is provided by comparing surprisals at the disambiguating word found in the set of four examples below (Futrell et al., 2019):"\citep{hu2020systematic}
-"(A) The child kicked in the chaos found ..."
-(B) The child forgotten in the chaos found . . .
-(C) The child who was kicked in the chaos found . . .
-(D) The child who was forgotten in the chaos found . . .
-
-"Successful human-like generalization involves \textbf{three criteria}: 
-(i) found should be less surprising
-(i.e., more probable) in B than A; 
-(ii) found should be more probable in C than A; 
-(iii) the C–D surprisal difference should be smaller than the A-B surprisal difference--a 2 × 2 \textit{interaction effect} on surprisal--because the syntactic disambiguation effect of not reducing the relative clause was achieved by using a part-of-speech unambiguous verb"\citep{hu2020systematic}
+Factorial experimental setup example: (..)
+%" A targeted syntactic evaluation for garden-pathing is provided by comparing surprisals at the disambiguating word found in the set of four examples below (Futrell et al., 2019):"\citep{hu2020systematic}
+%"(A) The child kicked in the chaos found ..."
+%(B) The child forgotten in the chaos found . . .
+%(C) The child who was kicked in the chaos found . . .
+%(D) The child who was forgotten in the chaos found . . .
+%
+%"Successful human-like generalization involves \textbf{three criteria}: 
+%(i) found should be less surprising
+%(i.e., more probable) in B than A; 
+%(ii) found should be more probable in C than A; 
+%(iii) the C–D surprisal difference should be smaller than the A-B surprisal difference--a 2 × 2 \textit{interaction effect} on surprisal--because the syntactic disambiguation effect of not reducing the relative clause was achieved by using a part-of-speech unambiguous verb"\citep{hu2020systematic}
 
 \citet{hu2020systematic} use these controlled tests to "describe and test for human-like syntactic knowledge in language models"
 The testing paradigm presented  by \citet{hu2020systematic} "\textbf{compare critical sentence regions instead of full-sentence probabilities}, and employ a 2 × 2 paradigm with a strict, multi-fold success criterion inspired by psycholinguistics methodology"  \citep{hu2020systematic}
-"This allows us to factor out as many confounds as possible, such as the lexical frequency of individual tokens and low-level n-gram statistics."  \citep{hu2020systematic}
+This allows them "to factor out as many confounds as possible, such as the lexical frequency of individual tokens and low-level n-gram statistics."  \citep{hu2020systematic}
 
 "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
 "Each test suite contains at least one PREDICTION, which specifies inequalities between \textbf{surprisal} values at \textbf{pairs of regions/conditions} that should hold if a model has learned the appropriate syntactic generalization. We expect language models which have learned the appropriate syntactic generalizations from their input to \textbf{satisfy these inequalities} without further fine-tuning. We compute \textbf{accuracy} on a test suite as
@@ -538,36 +560,34 @@ the proportion of items for which the model’s behavior conforms to the predict
 % NB: our test suites are not designed to avoid that 5-gram models could score well in some items ..
 % Material and code from  \citet{hu2020systematic} https://github. com/cpllab/syntactic-generalization
 
-Description of factorial test suites by \citet{hu2020systematic} 
-"In this work we have assembled a large number of test suites inspired by the methodology of experimental sentence-processing and psycholinguistic research." \citep{hu2020systematic} 
-"Each test suite contains a number of \textbf{ITEMS}, and each item appears in several \textbf{CONDITIONS}: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical  knowledge. For each suite we define a \textbf{SUCCESS
-	CRITERION}, which stipulates inequalities among conditional probabilities of sentence substrings."\citep{hu2020systematic} 
-(TODO: code refactoring and thesis renamings to follow this terminology)
-"In the main paper, a model’s accuracy for a test
-suite is computed as the percentage of the test
-suite’s items for which it satisfies the criterion. In
-this appendix, we briefly describe each test suite
-and the criterion used to determine whether a given
-model succeeds on each item of the test suite." \citep{hu2020systematic} 
+%Description of factorial test suites by \citet{hu2020systematic} 
+%"In this work we have assembled a large number of test suites inspired by the methodology of experimental sentence-processing and psycholinguistic research." \citep{hu2020systematic} 
+%"Each test suite contains a number of \textbf{ITEMS}, and each item appears in several \textbf{CONDITIONS}: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical  knowledge. For each suite we define a \textbf{SUCCESS CRITERION}, which stipulates inequalities among conditional probabilities of sentence substrings."\citep{hu2020systematic} 
+%
+%(TODO: code refactoring and thesis renamings to follow this terminology by hu2020systematic: item, conditions, success criterion)
 
-Success criteria
-"Criteria involve inequalities among \textbf{conditional probabilities} of \textbf{sentence substrings} given the complete sentence context \textbf{preceding} the substring."  \citep{hu2020systematic} 
+In \citet{hu2020systematic}  "a model’s accuracy for a test
+suite is computed as the percentage of the test suite’s items for which it satisfies the criterion." 
+% "In this appendix, we briefly describe each test suite and the criterion used to determine whether a given model succeeds on each item of the test suite." \citep{hu2020systematic} 
+
+%Success criteria
+%"Criteria involve inequalities among \textbf{conditional probabilities} of \textbf{sentence substrings} given the complete sentence context \textbf{preceding} the substring."  \citep{hu2020systematic} 
 % sentence substrings alludes to masking more than one token, ..syntactic regions: "\textbf{surprisal} values at \textbf{pairs of regions/conditions} that should hold if a model has learned the appropriate syntactic generalization."
 % for BERT it would be different (left and right contexts)
 
-"In describing criteria, we use P(·) for raw probabilities and S(·) for surprisals (negative logprobabilities), and leave the conditioning on preceding context implicit. For concision, we use subscripts on P and S to indicate the variant of the sentence within the test suite that we are referring to."   \citep{hu2020systematic} 
+%"In describing criteria, we use P(·) for raw probabilities and S(·) for surprisals (negative logprobabilities), and leave the conditioning on preceding context implicit. For concision, we use subscripts on P and S to indicate the variant of the sentence within the test suite that we are referring to."   \citep{hu2020systematic} 
 
-"We provide \textbf{chance accuracy} on the assumption that the order of probabilities among conditions for a given item is random. In some cases, exactly determining chance accuracy may require further assumptions about the distribution of these probabilities; in this case we provide an upper bound on
-chance accuracy. "  \citep{hu2020systematic} 
+%"We provide \textbf{chance accuracy} on the assumption that the order of probabilities among conditions for a given item is random. In some cases, exactly determining chance accuracy may require further assumptions about the distribution of these probabilities; in this case we provide an upper bound on
+%chance accuracy. "  \citep{hu2020systematic} 
 
 % (A) The paintingN1 that the artistN2 who lived long ago paintedV2 deterioratedV1. [correct]
 % (B) #The paintingN1 that the artistN2 who lived long ago deterioratedV1 paintedV2. [incorrect]
 % PA(V2V1) > PB(V1V2) References Miller and Chomsky (1963);Wilcox et al. (2019a) Ethan Wilcox, Roger P. Levy, and Richard Futrell.2019a. Hierarchical representation in neural language models: Suppression and recovery of expectations. In Proceedings of the 2019 EMNLP Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP
 
 In \citet{hu2020systematic}, "Test suites are written using a standard format that allows for flexible predictions which more \textbf{closely resemble those used in psycholinguistic studies}, specifically allowing for predictions about \textbf{interactions among multiple testing conditions}."
-"Performance on each test suite is reported as a Syntactic Generalization (SG) score." \citep{hu2020systematic}
-% "We group test suites into six syntactic circuits based on the linguistic representations needed to achieve high performance on each suite"  \citep{hu2020systematic}
 
+%"Performance on each test suite is reported as a Syntactic Generalization (SG) score." \citep{hu2020systematic}
+% "We group test suites into six syntactic circuits based on the linguistic representations needed to achieve high performance on each suite"  \citep{hu2020systematic}
 
 
 % when evaluations of some phenomena are more complex. Example of this with an evaluation of models’ “\textbf{garden-pathing}” behavior (Futrell et al., 2019) by \citet{hu2020systematic}
@@ -595,11 +615,7 @@ In \citet{hu2020systematic}, "Test suites are written using a standard format th
 
 % acceptability judgements, LM probability of a sentence, likelihood, ..
 
-Perplexity: 
-"perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
-"the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
-"Standard language models are trained to predict the next token given a context of previous tokens. Language models are typically assessed by their perplexity, the inverse geometric mean of the joint probability of words w1; : : : ; wN in a held-out test corpus C:" \citep{hu2020systematic}
-% perplexity has been found to correlate with human gaze duration while reading  \citep{hu2020systematic}
+
 
 \subsection{Surprisal}
 
@@ -631,27 +647,33 @@ are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 \subsection{Issues with perplexity}
 
+Perplexity: 
+"perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
+"the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
+%"Standard language models are trained to predict the next token given a context of previous tokens. Language models are typically assessed by their perplexity, the inverse geometric mean of the joint probability of words w1; : : : ; wN in a held-out test corpus C:" \citep{hu2020systematic}
+% perplexity has been found to correlate with human gaze duration while reading  \citep{hu2020systematic}
+
 % "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
 % Perplexity issues: 
-% ". In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
+"In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
+\citet{hu2020systematic} found a dissociation between perplexity and syntactic generalization performance.
+% "we find a substantial dissociation between perplexity and SG score." \citep{hu2020systematic}
+%"information-theoretic metrics, such as perplexity, "  \citep{hu2020systematic}
 
-%"This measure conflates multiple sources of success (or failure) in predicting the next word: common collocations, semantics, pragmatics, syntax, and so on. The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions." \citep{marvin2018targeted}
+%"This measure conflates multiple sources of success (or failure) in predicting the next word: common collocations, semantics, pragmatics, syntax, and so on." 
+"The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions." \citep{marvin2018targeted}
 
 % (observation: a problem with perplexities is that it mixes knowledge of language with actually studying a domain to be able to predict the content; studiare a memoria il testset)
 
 % (learning language and having good domain adaptability, learning a new domain) (as for adding semantic structure, learning a new domain involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learning.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself) (the ability to perform certain reasoning patterns, that can be used in multiple domains)
 
 
-
 "a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons. In principle, a sentence can appear with vanishingly low probability but still be grammatically wellformed, such as \textit{Colorless green ideas sleep furiously} (Chomsky, 1957).  "  \citep{hu2020systematic}
 "While perplexity remains an integral part of language model evaluation, fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
 
 
-\citet{hu2020systematic} found a dissociation between perplexity and syntactic generalization performance.
-% "we find a substantial dissociation between perplexity and SG score." \citep{hu2020systematic}
-"information-theoretic metrics, such as perplexity, "  \citep{hu2020systematic}
 
-Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-only model: the LSTM "learned more robust syntactic representations, but this advantage was not reflected in its average perplexity on the corpus, since syntactically challenging sentences are relatively infrequent." \citep{marvin2018targeted}
+%Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-only model: the LSTM "learned more robust syntactic representations, but this advantage was not reflected in its average perplexity on the corpus, since syntactically challenging sentences are relatively infrequent." \citep{marvin2018targeted}
 
 
 % \subsection{Sentence acceptability estimates}
