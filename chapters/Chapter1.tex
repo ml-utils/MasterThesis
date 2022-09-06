@@ -121,6 +121,19 @@ on acceptability data." \citep{warstadt2020blimp}
 
 
 "perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
+" the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
+"Standard language models are trained to predict the next token given a context of previous tokens. Language models are typically assessed by their perplexity, the inverse geometric mean of the joint probability of words w1; : : : ; wN in a held-out test corpus C:" \citep{hu2020systematic}
+% perplexity has been found to correlate with human gaze duration while reading  \citep{hu2020systematic}
+
+"a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons. In principle, a sentence can appear with vanishingly low probability but still be grammatically wellformed, such as \textit{Colorless green ideas sleep furiously} (Chomsky, 1957).  "  \citep{hu2020systematic}
+"While perplexity remains an integral part of language model evaluation, fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
+
+
+\citet{hu2020systematic} found a dissociation between perplexity and syntactic generalization performance.
+% "we find a substantial dissociation between perplexity and SG score." \citep{hu2020systematic}
+"information-theoretic metrics, such as perplexity, "  \citep{hu2020systematic}
+
+
 
 \subsection{Conclusions from previous papers}
 
@@ -340,6 +353,9 @@ poverty of the stimulous argument:
 
 "The key mechanism by which Transformers contextualize rep-resentations  is  multiheaded  attention  (see  Fig.  5).  Attention(23) dynamically assigns a weight to every pair of words in thesequence, indicating how much the model should “pay attentionto” the first word when computing the representation of the sec-ond one. Transformers use multiple attention heads in parallel,where  each  head  can  potentially  capture  a  completely  differ-ent word–word relation. Transformers aggregate the informationfrom each head to produce a single output vector representationfor each word in the sequence. We provide more mathematicaldetail below" \citep{manning2020emergent}
 
+
+"MLMs model all pairwise interactions $w_s$ and $w_{s'}$ via dotproduct attention" "conditioned on past and future context" \citep{salazar2020masked}
+% PLLs of models like EMLO would have different properties from [BERT] (e.g., their cross-entropies in Figure 4 may be convex instead of flat)  \citep{salazar2020masked}
 ..
 a non-recurrent architecture, called the Transformer \citep{vaswani2017attention} 
 The lack of recurrence enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length  \citep{liu2018generating} 
@@ -392,6 +408,12 @@ provides a multi-headed self-attention unit over all input words, allowing it to
 \pagebreak
 
 \section{On the output of Gpt unidirectional language models}
+
+Traditional LM can "produce sentence probabilities (density estimation) " \citep{salazar2020masked}
+
+"conventional language models (LMs) predict wt using only past tokens W<t := (w1; : : : ; wt-1). However, this allows LMs to estimate log probabilities for a sentence W via the chain rule (log PLM(W ) = Pj tW=1j log PLM(wt j W<t)), which can be used out of the box to rescore hypotheses in end-to-end speech recognition and machine translation (Chan et al., 2016; Gulcehre
+et al., 2015), and to evaluate sentences for linguistic
+acceptability (Lau et al., 2017)."  \citep{salazar2020masked}
 
 "Given a unidirectional language model, we can
 infer the probability of a sentence by multiplying
@@ -509,7 +531,11 @@ From the pytorch cross entropy documentation, about the two parameters input and
 \pagebreak
 
 \section{On the output of BERT-like bidirectional language models}
-(TODO)
+
+"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more
+involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
+
+
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
 \citet{lau2020furiously} formula for BERT sentence acceptability:
@@ -542,6 +568,15 @@ big vs. the yak is big)" \citep{lau2020furiously}
 
 %(normalizing by dividing the sentence probability given by a unigram language model) - log P(S) / log P_u(S)   \citep{lau2020furiously}
 
+"pseudo-log-likelihood scores (PLLs)" "which are computed by masking tokens one by one" \citep{salazar2020masked}
+(link with \citet{lau2020furiously} article, and the prev one for circa 2016, that use this same score/formula, but with different names?)
+
+"BERT’s MLM objective can be viewed as stochastic maximum pseudolikelihood estimation (MPLE) \citet{wang2019bert}(Besag, 1975) on a training set  .. " \citep{salazar2020masked}
+"In this way, MLMs learn an underlying joint distribution whose conditional distributions wt j Wnt are modeled by masking at position t. We include
+a further discussion in Appendix B" \citep{salazar2020masked}
+
+"We show that PLLs outperform scores from autoregressive language models like GPT-2 in a variety of tasks. " \citep{salazar2020masked}
+
 \pagebreak
 
 \section{Evaluations of Language models}
@@ -558,8 +593,84 @@ big vs. the yak is big)" \citep{lau2020furiously}
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
 % "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
 
-
+"targeted linguistic evaluation" \citep{hu2020systematic}
 " targeted syntactic evaluation of language models" \citep{marvin2018targeted}
+"a language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
+"The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments,
+designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
+
+% "For example, given the two strings The keys to the cabinet are on the table and *The keys to the cabinet is on the table, a model that has learned the proper subject–verb number agreement rules for English should assign a higher probability to the grammatical plural verb in the first sentence than to the ungrammatical singular verb in the second (Linzen et al., 2016)." \citep{hu2020systematic}
+
+"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex. We can demonstrate this with an evaluation of models’ “\textbf{garden-pathing}” behavior (Futrell et al., 2019)." \citep{hu2020systematic}
+
+Factorial experimental setup example:
+" A targeted syntactic evaluation for gardenpathing is provided by comparing surprisals at the disambiguating word found in the set of four examples below (Futrell et al., 2019):"\citep{hu2020systematic}
+"(A) The child kicked in the chaos found ..."
+(B) The child forgotten in the chaos found . . .
+(C) The child who was kicked in the chaos found . . .
+(D) The child who was forgotten in the chaos found . . .
+
+"Successful human-like generalization involves \textbf{three criteria}: 
+(i) found should be less surprising
+(i.e., more probable) in B than A; 
+(ii) found should be more probable in C than A; 
+(iii) the C–D surprisal difference should be smaller than the A-B surprisal difference--a 2 × 2 \textit{interaction effect} on surprisal--because the syntactic disambiguation effect of not reducing the relative clause was achieved by using a part-of-speech unambiguous verb"\citep{hu2020systematic}
+
+\citet{hu2020systematic} use these controlled tests to "describe and test for human-like syntactic knowledge in language models"
+The testing paradigm presented  by \citet{hu2020systematic} "\textbf{compare critical sentence regions instead of full-sentence probabilities}, and employ a 2 × 2 paradigm with a strict, multi-fold success criterion inspired by psycholinguistics methodology"  \citep{hu2020systematic}
+"This allows us to factor out as many confounds as possible, such as the lexical frequency of individual tokens and low-level n-gram statistics."  \citep{hu2020systematic}
+
+"Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
+"Each test suite contains at least one PREDICTION, which specifies inequalities between \textbf{surprisal} values at \textbf{pairs of regions/conditions} that should hold if a model has learned the appropriate syntactic generalization. We expect language models which have learned the appropriate syntactic generalizations from their input to \textbf{satisfy these inequalities} without further fine-tuning. We compute \textbf{accuracy} on a test suite as
+the proportion of items for which the model’s behavior conforms to the prediction "  \citep{hu2020systematic}
+% "Most of our test suites involve 2×2 designs and a success criterion consisting of a conjunction of inequalities across conditions, as in the garden-pathing example described in Section 2.2.1 Random baseline accuracy varies by test suite and is ∼25\% overall. Most of these test suites and criteria are designed so that n-gram models cannot perform above chance for n = 5 (sometimes greater)" \citep{hu2020systematic}
+% NB: our test suites are not designed to avoid that 5-gram models could score well in some items ..
+% Material and code from  \citet{hu2020systematic} https://github. com/cpllab/syntactic-generalization
+
+% "off-the-shelf models."  \citep{hu2020systematic} 
+
+move to appropriate section: "Our circuit-level analysis reveals consistent failure on Licensing but inconsistent behavior on other
+circuits, suggesting that different syntactic circuits
+make use of different underlying processing capacities."  \citep{hu2020systematic} 
+
+move to appropriate section: "In addition to the insight these results provide
+about neural NLP systems, they also bear on questions central to cognitive science and linguistics, putting lower bounds on what syntactic knowledge
+can be acquired from string input alone"  \citep{hu2020systematic} 
+
+"Description of test suites In this work we have assembled a large number of
+test suites inspired by the methodology of experimental sentence-processing and psycholinguistic research." \citep{hu2020systematic} 
+"Each test suite contains a number of \textbf{ITEMS}, and each item appears in several \textbf{CONDITIONS}: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical  knowledge. For each suite we define a \textbf{SUCCESS
+CRITERION}, which stipulates inequalities among conditional probabilities of sentence substrings."\citep{hu2020systematic} 
+(TODO: code refactoring and thesis renamings to follow this terminology)
+"In the main paper, a model’s accuracy for a test
+suite is computed as the percentage of the test
+suite’s items for which it satisfies the criterion. In
+this appendix, we briefly describe each test suite
+and the criterion used to determine whether a given
+model succeeds on each item of the test suite." \citep{hu2020systematic} 
+
+Success criteria
+"Criteria involve inequalities among \textbf{conditional probabilities} of \textbf{sentence substrings} given the complete sentence context \textbf{preceding} the substring."  \citep{hu2020systematic} 
+% sentence substrings alludes to masking more than one token, ..syntactic regions: "\textbf{surprisal} values at \textbf{pairs of regions/conditions} that should hold if a model has learned the appropriate syntactic generalization."
+% for BERT it would be different (left and right contexts)
+
+"In describing criteria, we use P(·) for raw probabilities and S(·) for surprisals (negative logprobabilities), and leave the conditioning on preceding context implicit. For concision, we use subscripts on P and S to indicate the variant of the sentence within the test suite that we are referring to."   \citep{hu2020systematic} 
+
+"We provide \textbf{chance accuracy} on the assumption that the order of probabilities among conditions for a given item is random. In some cases, exactly determining chance accuracy may require further assumptions about the distribution of these probabilities; in this case we provide an upper bound on
+chance accuracy. "  \citep{hu2020systematic} 
+
+% (A) The paintingN1 that the artistN2 who lived long ago paintedV2 deterioratedV1. [correct]
+% (B) #The paintingN1 that the artistN2 who lived long ago deterioratedV1 paintedV2. [incorrect]
+% PA(V2V1) > PB(V1V2) References Miller and Chomsky (1963);Wilcox et al. (2019a) Ethan Wilcox, Roger P. Levy, and Richard Futrell.2019a. Hierarchical representation in neural language models: Suppression and recovery of expectations. In Proceedings of the 2019 EMNLP Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP
+
+% move to appropriate section: grammaticality notation: "Following and building on linguistic traditions, we annotate examples as follows. Examples marked with a * violate a well-established grammatical constraint, and are ungrammatical. Examples marked with ? or ?? are not necessarily ungrammatical, but are marginal: for example, they may require an unusual interpretation of a word in order for the sentence to be grammatical. (More ?’s is roughly intended to indicate more severe marginality). Examples marked with ! are not ungrammatical, but induce severe processing difficulty that is measurable in real-time human sentence processing" \citep{hu2020systematic} 
+
+"Targeted syntactic evaluations have shown that these models [neural language models ] also implicitly capture many syntactic generalizations, ranging from subject–verb agreement to long-distance filler–gap dependencies (Linzen et al., 2016; Marvin and Linzen, 2018; Futrell et al., 2018; Wilcox et al., 2019b)" \citep{hu2020systematic}
+"similar developments in semantic evaluation (McCoy et al., 2019)" \citep{hu2020systematic}
+
+In \citet{hu2020systematic}, "Test suites are written using a standard format that allows for flexible predictions which more \textbf{closely resemble those used in psycholinguistic studies}, specifically allowing for predictions about \textbf{interactions among multiple testing conditions}."
+"Performance on each test suite is reported as a Syntactic Generalization (SG) score." \citep{hu2020systematic}
+% "We group test suites into six syntactic circuits based on the linguistic representations needed to achieve high performance on each suite"  \citep{hu2020systematic}
 
 % Related work
 % "Targeted evaluation: LM evaluation data sets using challenging prediction tasks have been proposed in the context of semantics and discourse comprehension (Zweig and Burges, 2011; Paperno et al., 2016). " \citep{marvin2018targeted}
@@ -589,7 +700,42 @@ Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-
 
 % "The Supplementary Materials provide a full description of all our templates.3" 3The code, the data set and the Supplementary Materials can be found at https://github.com/ BeckyMarvin/LM_syneval.  \citep{marvin2018targeted}
 
+\subsection{Measures}
 
+SURPRISAL
+In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): S(wjC) = -log2 p(wjC), " \citep{hu2020systematic}
+Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
+
+
+"evaluate MLMs out of the box via their
+pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
+called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
+" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and
+Cho, 2019), " \citep{salazar2020masked}
+
+"PLL’s unsupervised expression of linguistic acceptability without a
+left-to-right bias, greatly improving on scores
+from GPT-2 (+10 points on island effects, NPI
+licensing in BLiMP) " \citep{salazar2020masked}
+% PLLs and their associated pseudo-perplexities (PPPLs)   \citep{salazar2020masked}
+
+"To score a sentence, one creates copies
+with each token masked out. The log probability for
+each missing token is summed over copies to give the
+pseudo-log-likelihood score (PLL)." (Figure from \citet{salazar2020masked})
+"given by summing the conditional log
+probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced
+in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
+
+PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
+"Log probabilities model the joint distribution; PLL does so as well, albeit implicitly (Appendix B)"  \citep{salazar2020masked}
+% one could use PLL as a “prior” or regularizer for scores given by discriminatively-finetuned BERT models in tasks like passage re-ranking (Nogueira and Cho, 2019) 
+
+" domain shifts can be visibly observed from the positionwise scores log PMLM(wt j Wnt)" \citep{salazar2020masked}
+
+" by learning g(W ) first. They argue \textit{g} expresses \textbf{fluency}; fixing\textit{g} early allows f(W ; X) to focus its capacity on \textbf{adequacy} in encoding the source, and thus specializing the two models. With this perspective in mind, we compare log PLM and PLL as candidates for log g."  \citep{salazar2020masked}
+"In this work we interpret fluency as linguistic acceptability ..  informally, the syntactic and semantic validity of a sentence according to human judgments (Schutze ¨ , 1996)" \citep{salazar2020masked} "Its graded form is well-proxied by neural language model scores (log PLM) once length and lexical frequency
+are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 \subsection{Sentence acceptability estimates}
 
@@ -609,8 +755,15 @@ length. It is gradient, rather than binary, in nature
 % "Most of these [Psycholinguistic] studies suggest that coherent or natural contexts should increase acceptability ratings, given that the linguistic expressions used in processing become more activated. "  \citep{lau2020furiously}
 % "Warner and Glass (1987) show that such syntactic contexts can indeed affect grammaticality judgments in the expected way for garden path sentences. " \citep{lau2020furiously}
 
+\citet{salazar2020masked} "studied scoring with MLM pseudo-loglikelihood scores in a variety of settings" and found that "rescoring with PLLs can match or outperform comparable scores from large unidirectional language models (GPT-2)" They "attributed this to PLL’s promotion of fluency via self-consistency, as demonstrated by improvement on unsupervised acceptability judgements and by qualitative analysis."
+They also examined the numerical properties of PLLs \citep{salazar2020masked}.
+
 \citet{lau2020furiously}, try to normalize by sentence length and lexical frequency .. but actually shorter sentences can have lower likelihood. And this normalization adds nothing really to convert likelihood (..probability) to acceptability (a rare acceptable sentence might still have lower likelihood than a frequent sentence with a common mistake)
-(see ..Wilcox et al arguments on this; in particular, the fact that unifirectional models like Gpt, see a lowering curve in token surprisal as more of the sentence is revealed, and this might explain the effectiveness of the exponential normalization by sentence lenght; confound of sentence lenght with ..internal consistency of the sentence)(TODO: show the two plots by ..Wilcox for bert and gpt, with flat vs descending curves)
+(see ..salazar2020masked or Wilcox et al arguments on this; in particular, the fact that unifirectional models like Gpt, see a lowering curve in token surprisal as more of the sentence is revealed, and this might explain the effectiveness of the exponential normalization by sentence lenght; confound of sentence lenght with ..internal consistency of the sentence)(TODO: show the two plots by ..salazar2020masked  for bert and gpt, with flat vs descending curves)
+
+"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-toright bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
+
+
 "To accommodate sentence length and lexical frequency we experiment with several simple normalization methods, converting probabilities
 to acceptability measures (Section 3.2)." \citep{lau2020furiously}
 
@@ -628,6 +781,9 @@ Salazar et al. ..
 ..
 
 The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are:
+
+the Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}
+"CoLA), has a training set and asks to label sentences as “acceptable” or not in isolation \citet{warstadt2019neural}"  \citet{salazar2020masked}
 
 \subsubsection{Softmax, logistic function, and other activation functions applied to the models' output}
 \label{sec:softmax}
@@ -651,13 +807,42 @@ Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides t
 For BERT-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
 \\ ..
 
+Numerical properties of PLL
+fixing |W|, flat graph for Bert, descending curve for Gpt  
+"given fixed jWj one expects -log PMLM(wt j Wnt) to be in the same range for
+all t. Meanwhile -log PLM(wt j W<t) decreases as t ! jWj, the rate of which was studied in recurrent language models (Takahashi and Tanaka-Ishii, 2018)." \citet{salazar2020masked}
+"the outsized cost of the unconditional first unigram in Figure 3. "
+% "This also explains why bi-SANLM was more robust than uni-SANLM at shorter and earlier positions (Shin et al., 2019); the difference is intrinsic to log probabilities versus PLLs, and is not due to model or data size" \citet{salazar2020masked}
+% " domain adaptation (Section 3.5) affects PLL’s positionwise cross-entropies. Cased BERT spikes at position 1, as it observes a lowercase word where a capitalized word is expected. "  \citet{salazar2020masked}
+"All MLMs spike at the final token of an utterance, before our appended period “.”. Terminal words are difficult to predict in general, " "Otherwise, the averaged cross-entropies are flat." \citet{salazar2020masked}
+(TODO: insert the 2 figures from salazar et al.)
+
+"averaged cross-entropies are flat.": "This, plus our success on BLiMP, suggest positionwise scores as a way of detecting “disfluencies” (at least, those in the form of domain mismatches) by observing spikes in cross-entropy; "  \citet{salazar2020masked}
+"with log PLM, spikes are confounded by the curve in Figure 3."  \citet{salazar2020masked}
+"In Appendix C, we plot sentence-level PLLs versus jWj and observe linearity as jWj ! 1, with spikes from the last word and lowercase first word smoothing out." "This behavior motivates our choice of $\alpha = 1:0$ when applying the Google NMT-style length penalty (Wu et al., 2016)  to PLLs, which corresponds to the asymptoticallylinear LPMLM = (5 + jWj)=(5 + 1). " \citet{salazar2020masked}
+% "In contrast, autoregressive scores like PLM(W) integrate over the inverse power-law curve in Figure 3. We speculate that this explains the effectiveness of their hyperparameter α = 0:6, widely used in NMT baselines like ours, " \citet{salazar2020masked}
+
+the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked}
+
+(masked rescoring)
+"Our work extends the closest previous works (Wang and Cho, 2019; Shin et al., 2019) with regards to experiments and tasks, as outlined in Section 2.1." \citet{salazar2020masked}
+
 \subsection{Minimal pairs approach}
 
 % "One limitation of our approach is that 
 % it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
 % for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
 
-\subsection{Related works}
+"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
+challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
+"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less
+negative) score." \citep{salazar2020masked} 
+% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
+"Since most minimal pairs only differ by a single
+word, the effect of length on log probabilities and
+PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
+
+\section{Related works}
 
 
 "investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
@@ -671,6 +856,10 @@ can correlate with human acceptability ratings.
 Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier
 on top of a pre-trained sentence encoder to
 predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
+
+\citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
+by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
+MLMs in a supervision-free manner"
 
 \section{Research questions}
 
@@ -1019,6 +1208,11 @@ We found the most informative analysis (rather than the factorial test design) w
 (even more informative, or complementary, would be to look at the activations in the model layers)
 
 
+
+"The ratio of token-level PPPLs between unacceptable and
+acceptable sentences overall increases with performance, separating the two sentence sets" \citep{salazar2020masked}
+% plot token surprisal on Blimp sentences, compare spikes of minimal pairs differing for just one word
+
 \chapter{Results}
 
 \section{Review of results from previous/related works}
@@ -1055,6 +1249,26 @@ is unclear what causes this compression effect"
 % but Lau et al results on acceptability correlate much less with human ones when using a testset of lingusitically crafted pairs of contrasts (instead of rountrim machine translation) "Although the correlations are generally lower, we want to highlight that these linguists’ examples are artificially constructed to illustrate specific syntactic phenomena, and so this constitutes a particularly strong case of outof-domain prediction. " \citep{lau2020furiously}
 % althoug the linguistic examples are much shorter "—less than 7 words on average—than the natural texts" \citep{lau2020furiously} , and this might confirm ..our finding on difficulty of shorter sentences. 
 % 
+
+Salazar scoring Bert on Blimp, Table 7 \citep{salazar2020masked}: "Unsupervised performance (forced choice accuracy) on BLiMP using log probabilities (GPT-2) or PLLs. Human scores from Warstadt et al. (2020). " \citep{salazar2020masked}
+
+\citet{salazar2020masked} found that, on the Blimp testset, Roberta large learns island effects close to a human level (accuracy scores are 83.4\% from Roberta and 84.9\% by humans). But as pointed out in the original Blimp paper \citep{warstadt2020blimp}, phenomena effects are probably better tested with a factorial design like \citep{wilcox2018rnn} that ..controls/.. 
+
+Salazar on the improvement of Berta over Gpt on island effects (which \citep{warstadt2020blimp} scored at ..near chance level) " This
+suggests that the difficulty of these BLiMP categories was due to PLM decomposing autoregressively, and not intrinsic to unsupervised language
+model training, as the original results may suggest
+\citep{warstadt2020blimp}." \citep{salazar2020masked}
+"For some intuition, we include examples in Table 8. In the subject-verb
+agreement example, BERT sees The pamphlets and resembled those photographs when scoring have vs. has, whereas GPT-2 only sees The pamphlets, which may not be enough to counter the misleading adjacent entity Winston Churchill at scoring time" \citep{salazar2020masked}
+"Who does Amanda find while thinking about Lucille?
+Who does Amanda find Lucille while thinking about?"
+"GPT-2 and BERT both promote fluency, but GPT-2’s left-to-right biased
+scores appear to cause it to \textbf{overweigh common word sequences} at the expense of adequacy" \citep{salazar2020masked}
+
+"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by log PLM(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
+% in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
+
+% ensembling not effective for PLL and LP, they overlap: "Given the differences between PLLs and log probabilities, we explore whether ensembling both improves performance in Appendix D. Similar to the largely-dominant results of MLMs on BLiMP over GPT-2 (Section 4.1), we find that as the MLM gets stronger, adding GPT-2 scores has negligible effect, suggesting that their roles overlap."  \citep{salazar2020masked}
 
 \section{Accuracy results for island effects minimal pairs in Italian}
 
@@ -1614,5 +1828,6 @@ the LSTM. This model has the best published perplexity for English text." \citep
 % "Multi-task training with a syntactic objective (CCG supertagging) mitigated this drop in performance for some but not all of the dependencies we tested. We conjecture that the benefits of the inductive bias conferred by multi-task learning will be amplified when the amount of training data is limited"  \citep{marvin2018targeted}
 % (that is, incorporating linguitic signals could be effective in lowering the amount of training data needed)
 
+% "Second, we find a larger effect of model inductive bias than training data size on SG score, a result that accords with van Schijndel et al. (2019). Models afforded explicit structural supervision during training outperform other models: One structurally supervised model is able to achieve the same SG scores as a purely sequence-based model trained on ∼100 times the number of tokens. Furthermore, several Transformer models achieve the same SG score as a Transformer trained on ∼200 times the amount of data. " \citep{hu2020systematic}
 
 \nocite{wei2021frequency, hu2020systematic, lau2020furiously, bostrom2020byte, futrell-etal-2019-neural}
