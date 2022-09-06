@@ -134,195 +134,6 @@ on acceptability data." \citep{warstadt2020blimp}
 "information-theoretic metrics, such as perplexity, "  \citep{hu2020systematic}
 
 
-
-\subsection{Conclusions from previous papers}
-
-" Section 4 investigates whether
-LSTM language models are sensitive to various
-constraints: wh-islands, adjunct islands, complex
-NP islands, and subject islands. We find that the
-language models are sensitive to some but not all
-of these constraints. " \citep{wilcox2018rnn}
-
-\citet{warstadt2020blimp} (which did not test BERT): "current neural LMs appear to acquire robust
-knowledge of morphological agreement and some syntactic phenomena such as ellipsis and control/raising. They show weaker evidence of knowledge about argument structure, negative polarity item licensing, and the semantic properties of quantifiers. \textbf{All models perform at or near chance on extraction islands}. Overall, every model we evaluate falls short of human performance by a wide margin"
-"ISLANDS are the hardest phenomenon by a wide margin. Only GPT-2 performs well above
-chance, and it remains 14 points below humans." \citet{warstadt2020blimp}
-
-"Some semantic phenomena, specifically those involving NPI LICENSING and QUANTIFIERS, are also challenging overall"
-
-what might the reason for lower perf on island effects: lower frequency of the phenomena, ..
-
-"evidence that increased dependency length and the presence of agreement attractors of the kind investigated by Linzen et al. (2016) and Gulordava et al. (2019) reduce performance on agreement phenomena." (on LSTM) \citet{warstadt2020blimp}
-
-"We find, in accordance with Wilcox et al.
-(2018), that LMs do represent long-distance
-wh-dependencies, but we also conclude that
-their representations differ fundamentally from humans’." \citet{warstadt2020blimp}
-"Although some models approach human
-performance in ordinary filler-gap dependencies,
-they are exceptionally poor at identifying island
-violations overall" \citet{warstadt2020blimp}
-
-"strong conclusions about how these models represent wh-dependencies are not possible using the forced-choice task compatible with BLiMP, and
-a \textbf{complete assessment of syntactic islands} is \textbf{best
-addressed using a factorial} design that manipulates
-both the presence of an island and an attempt to
-extract from it, as in \citet{kush2018investigating} or  \citet{wilcox2018rnn}" \citep{warstadt2020blimp}
-
-"2.2 Dependent variable: Surprisal" \citep{wilcox2018rnn}
-"surprisal values that an RNN assigns to words and sentences" \citep{wilcox2018rnn}
-
-"Surprisal is log inverse probability:
-S(xi) = -log2
-p(xi
-|hi-1)," \citep{wilcox2018rnn}
-"the probability is calculated from the RNN’s softmax activation. The logarithm is taken in base 2,
-so that surprisal is measured in bits." \citep{wilcox2018rnn}
-"The degree of surprisal for a word or sentence
-tells us the extent to which that word or sentence
-is unexpected under the language model’s probability distribution"
-". It is known to correlate directly with human sentence processing difficulty (Hale, 2001; Levy, 2008; Smith and Levy, 2013)" \citep{wilcox2018rnn}
-(rather than, also also as, correlating with acceptability, or likelihood of finding such a word/sentence)
-
-"In this paper, we look for cases where the surprisal associated with an an unusual construction—such as a gap—is ameliorated by the presence of a licensor, such as a wh-word." \citep{wilcox2018rnn}
-"If the models learn that syntactic gaps require licensing, then sentences with licensors should exhibit lower surprisal than minimally different pairs that lack a proper licensor." \citep{wilcox2018rnn}
-
-"We test whether the LSTM language models have
-learned filler–gap dependencies by looking for a
-2x2 interaction between the presence of a gap and
-the presence of a wh-licensor"
-
-"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
-"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
-
-% ? riformulare il testset usando, invece di domande ("bare wh-questions"), "complement clauses" come 
-% "So che il leone ha divorato una gazella all'alba." [no wh-licensor, no gap]
-% *"So cosa il leone ha divorato una gazella all'alba"  [wh-licensor, no gap]
-% *"So che il leone ha divorato __ all'alba" [no wh-licensor, gap]
-% "So cosa il leone ha divorato __ all'alba." [wh-licensor, gap]
-
-"We \textbf{measure surprisal in two places}: at the word immediately following a (filled) gap and summed over the whole region from the gap to the end of the embedded clause. We look at immediate word surprisal because a gap’s licitness should have \textbf{local effects} on network \textbf{expectation}. We look at whole-region surprisal because the presence of a filler also changes expectations about overall well-formedness of the sentence—\textbf{a global phenomenon}. Until the final punctuation is reached in (2b) there are \textbf{potential gap-containing continuations that render the sentence syntactically licit} (e.g. ‘with .’). Therefore, we might expect no large spike in surprisal at any one point, but small increases in surprisal when the network encounters filled argument-structure roles and at the end of the sentence. Measuring summed surprisal captures these distributed, global effects."  \citep{wilcox2018rnn}
-
-% differenza per un modello bidirezionale come BERT: ..sorpresa minore laddove una delle parole mascherate può rendere la frase lecita/accettabile se sostituita con un'altra parola..
-% difficoltà di controllare questo per tutte le parole della frase.. a meno che la struttura delle frasi sia molto standardizzata e la cosa sia uguale per tutte
-% l'italiano inoltre introduce maggiore complessità per la maggiore libertà possibile nell'ordine delle parole
-
-"Although our method can indicate whether there is a link between fillers and gaps, \textbf{the relationship between language model probability and grammaticality is complex} (Lau et al., 2017) and\textbf{ interpreting our patterns in terms of grammaticality judgments would require auxiliary assumptions} that we don’t pursue here. To be clear: our goal is to investigate whether RNNs model the probabilistic dependencies between fillers and gaps \textit{at all}, not whether the outputs of such models can be used to \textbf{classify sentences as ‘grammatical’ or not}" \citep{wilcox2018rnn}
-
-"Assessing grammaticality judgments in a task which is not binary like number agreement raises important methodological questions. We want the network to discriminate between (1a) and (1b). The acceptable Wh-question in (1a) might end with a question mark right at the gap (the object position of catch), but also continue with an adverbial, or even (at the coast of decreasing acceptability) a nominal containing a gap (the tail of). The ungrammatical case (1b) ends with a normal verb argument (the tail). 
-(1) a. Which mouse did the cat catch {? / last night ? / the tail of ? }
-b. *Which mouse did the cat catch the tail? The question is which NN measure best corresponds to the speaker’s perception of ungrammaticality in (1b), keeping into account that even in the theoretical and psycholinguistic literature there are no established metrics to measure ‘degrees of ungrammaticality’ (see Cowart 1997; Sorace and Keller 2005 for discussion)." \citep{chowdhury2018rnn}
-
-"Evaluation measures: We explored various possibilities, from global measures like perplexity (PPL) and non-normalized sentence cross-entropy loss (CEL), to local measures like the normalized log probability of a full stop
-LogPn(F S) or question mark LogPn(QM) after the current word." \citep{chowdhury2018rnn}
-
-"Perplexity and total cross-entropy loss: Both measures are based on the intuition that an ungrammatical sentence should ‘confuse’ the NN more than a corresponding grammatical one, and that this confusion will translate in a decreased ability to make correct predictions"  \citep{chowdhury2018rnn}
-"As it turns out, neither PPL or CEL are perfect ways to evaluate a language model for ungrammaticality, since they do not locate it at a specific point in the sentences. Yet, this could also be an advantage,
-since global measures like PPL/CEL can potentially catch parsing problems that arise earlier than expected, and record a perturbation in the NN’s later predictions as it recovers from an ungrammatical point
-earlier in the text. Therefore, these methods seem appropriate for a first exploration of this task." \citep{chowdhury2018rnn}
-
-The disadvantage of local measures: "as example (1a) shows, a sentence can always continue in unexpected ways. Moreover, in some cases of ungrammaticality the presence of individual words might not be a significant predictor." \citep{chowdhury2018rnn}
-
-"In the following experiments, we examine whether RNN language models have learned constraints on filler–gap dependencies by comparing the wh-licensing interaction in non-islands to that within islands. The strongest evidence for an island constraint would be if the wh-licensing interaction goes to zero for a gap in island position, implying that, in the distribution over strings implied by the network, the appearance of a whlicensor is totally unrelated to the appearance of a gap in the island position"
- \citep{wilcox2018rnn}
-"More generally, we can
- look for a weakened wh-licensing interaction for
- island vs. non-island positions, which would mean
- that the network believes a relationship between
- the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
-"A positive but nonzero wh-licensing interaction
-would be in line with human acceptability judgments, which do not always categorically rule out
-gaps in island positions (Ambridge and Goldberg,
-2008), and with human online processing experiments, which have shown that gap expectation is
-attenuated during processing of areas where gaps
-cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering,
-1996; Phillips, 2006). Therefore, in this section we
-take a significant reduction in the island relative to
-the non-island case to constitute evidence that the
-model has ‘learned’ the constraint." \citep{wilcox2018rnn}
-
-Wh-Island Constraint
-"A gap cannot appear inside doubly nested clauses headed by wh-complementizers. This phenomenon is called the Wh-Island Constraint (WHC). "  \citep{wilcox2018rnn}
-
-Adjunct Island Constraint
-"We used three different prepositions to construct temporal adjuncts: ‘while’, ‘after’ and ‘before’." \citep{wilcox2018rnn}
-
-NB: the minimal pairs on Wilcox et al 2018, designed for  language model, are controlled for lexical content (indentical, basically), unlike those for human subjects in Sprouse et al. (..)
-
-"These results demonstrate
-that neither model has learned the subject constraint, categorizing PPs as either licit extraction
-domains in all positions (the Google model) or
-treating them like islands (the Gulordava model)"  \citep{wilcox2018rnn}
-
-"Both models failed to correctly generalize island constraints in two conditions: The Google model failed to learn that-headed Complex-NP Islands, the Gulordava model to learn Wh-Islands, and both failed to learn Subject Islands."\citep{wilcox2018rnn}
-
-% comparison with Wilcox experimental design:
-% the sentences were split into chuncks ("wh-licensing interaction summed across all words within each region"), and the surprisal was calculated per chunck not word or token. This suggest we should split the sentences into succh cunchs (also making them more uniform), and mask a whole chunk at a time.
-% "by syntactic position"
-
-% our contributions:
-% see if our examples can be adapted to Wilcox format, complementing it, or giving more examples
-% the translation into italian of Wilcox test set
-% the experiments
-% applicazione ai modelli BERT bidirezionali (Wilcox non aveva testato neanche Gpt2 mi pare, solo LSTM)
-
-% todo: possibly avoid OOV words ("outliers")
-% masking by syntactic chunk/region (try both, word/token based, and chunk based)
-
-% problema rispetto all'inglese, variando tra le coppie minime:
-% si è accorto che .. (that)
-% si è accordo di che cosa .. (what)
-% composto di 3 parole invece che 1 sola
-
-% note analisi by Wilcox:
-% "error bars represent 95% confidence intervals of the contrasts between conditions"
-% "Following standard practice in psycholinguistics, we derive the statistical significance of the interaction from a mixed-effects linear regression model predicting surprisal given sum-coded conditions (Baayen et al., 2008). We include random intercepts by item"
-% Baayen, R.H., D.J. Davidson, and D.M. Bates. 2008. Mixedeffects modeling with crossed random effects for subjects and items. Journal of memory and language 59(4):390–412.
-
-%- evitano frasi with "bare whquestions because it eliminates do-support and tense manipulation of the main verb, resulting in higher similarity across conditions." Provare a riformulare le frasi precedendole con "So che..", ad es. per evitare cambiamenti verbali condizionale/presente
-
-% - crossed random effects, make use of the lmer() function in R, 
-
-% - are the values normalized?
-% yes, subtracting the per item means:
-% " computed by subtracting out the by-item means before calculating the intervals as advocated in Masson and Loftus (2003). 2"
-
-% sinificatività statistica, come derivarla dai test col formato sprouse
-% (test con R, ..)
-% confronto design fattoriale wilcox e sprouse:
-% in wilcox filler gap dependency on off (2 esempi) si può usare al posto di long e short distance non island. ..
-
-
-diminishing returns also found \citep{wilcox2018rnn}, the two compared models have a 10x size difference for params and training data.
-
-"In other recent work, \citet{chowdhury2018rnn} tested the ability of neural networks
-to separate grammatical from ungrammatical extractions using similar metrics to ours, finding that their neural networks do not represent the unboundedness of filler–gap dependencies nor certain strong island constraints. We believe the difference between our results and theirs is due to experimental design: They choose to measure the probability of the question mark punctuation as a proxy for the RNNs gap expectation, and use sentence schemata instead of hand-engineered experimental items. While \citet{chowdhury2018rnn} conclude that the networks are not learning island-like constraints, but rather displaying sensitivity to syntactic complexity plus order, we demonstrate island-like effects where both the island and the non-island item are equally complex (in e.g. wh-islands). " \citep{wilcox2018rnn}
-
-"Note also that our work is focused on finding evidence that networks represent the probabilistic contingencies implied by island constraints, without attempting to directly model grammaticality judgments."  \citep{wilcox2018rnn}
-
-All experimental materials and scripts are available at https://osf.io/zpfxm/. \citep{wilcox2018rnn}
-
-..
-
-"Overall, these experiments provide strong
-evidence that both models are learning the filler–
-gap dependency. Furthermore, both RNN models
-are learning the flexibility of the dependency, as
-they exhibit similar wh-licensing effects for all
-three argument roles tested." \citep{wilcox2018rnn}
-
-SotA
-
-% section name "2. Methods" \citep{wilcox2018rnn}
-% also in \citep{wilcox2018rnn}, "Experimental design" section, where they motivate the choice of sentence paradigms, and what results are expected if the model learns the respective linguistic phenomena.
-
-"While inconsistent with the formal linguistic literature on filler–gap dependencies, the negative values of all but one of the correlations are consistent with known effects in human sentence processing, where increasing distance between fillers
-and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et al., 2011)."  \citep{wilcox2018rnn}
-
-"Our work shows these dependencies and their constraints can be learned to some extent by a generic sequence model with no obvious inductive bias for hierarchical structures. This is evidence against the idea that such an inductive bias is necessary for language learning, although the amount of data these models are trained on is much larger
-than the typical input to a child learner." \citep{wilcox2018rnn}
-
 \section{Research on linguistic tests on language models}
 (review previous studies, state of the art, chronicle history, ..)
 (TODO)
@@ -842,24 +653,6 @@ negative) score." \citep{salazar2020masked}
 word, the effect of length on log probabilities and
 PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
-\section{Related works}
-
-
-"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
-cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
-
-"Some recent computational work explores the
-relation of acceptability judgments to sentence
-probabilities. Lau et al. (2015, 2017b) show that
-the output of unsupervised language models
-can correlate with human acceptability ratings.
-Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier
-on top of a pre-trained sentence encoder to
-predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
-
-\citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
-by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
-MLMs in a supervision-free manner"
 
 \section{Research questions}
 
@@ -1087,6 +880,218 @@ what about a follow up analysis on the thesis, based on the results? like manipu
 (learning language and having good domain adaptability, learning a new domain)
 (as for adding semantic structure, learning a new domain involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learning.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself)
 (the ability to perform certain reasoning patterns, that can be used in multiple domains)
+
+
+\chapter{Related work}
+
+
+"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
+cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
+
+"Some recent computational work explores the
+relation of acceptability judgments to sentence
+probabilities. Lau et al. (2015, 2017b) show that
+the output of unsupervised language models
+can correlate with human acceptability ratings.
+Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier
+on top of a pre-trained sentence encoder to
+predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
+
+\citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
+by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
+MLMs in a supervision-free manner"
+
+
+\section{Conclusions from previous papers}
+
+" Section 4 investigates whether
+LSTM language models are sensitive to various
+constraints: wh-islands, adjunct islands, complex
+NP islands, and subject islands. We find that the
+language models are sensitive to some but not all
+of these constraints. " \citep{wilcox2018rnn}
+
+\citet{warstadt2020blimp} (which did not test BERT): "current neural LMs appear to acquire robust
+knowledge of morphological agreement and some syntactic phenomena such as ellipsis and control/raising. They show weaker evidence of knowledge about argument structure, negative polarity item licensing, and the semantic properties of quantifiers. \textbf{All models perform at or near chance on extraction islands}. Overall, every model we evaluate falls short of human performance by a wide margin"
+"ISLANDS are the hardest phenomenon by a wide margin. Only GPT-2 performs well above
+chance, and it remains 14 points below humans." \citet{warstadt2020blimp}
+
+"Some semantic phenomena, specifically those involving NPI LICENSING and QUANTIFIERS, are also challenging overall"
+
+what might the reason for lower perf on island effects: lower frequency of the phenomena, ..
+
+"evidence that increased dependency length and the presence of agreement attractors of the kind investigated by Linzen et al. (2016) and Gulordava et al. (2019) reduce performance on agreement phenomena." (on LSTM) \citet{warstadt2020blimp}
+
+"We find, in accordance with Wilcox et al.
+(2018), that LMs do represent long-distance
+wh-dependencies, but we also conclude that
+their representations differ fundamentally from humans’." \citet{warstadt2020blimp}
+"Although some models approach human
+performance in ordinary filler-gap dependencies,
+they are exceptionally poor at identifying island
+violations overall" \citet{warstadt2020blimp}
+
+"strong conclusions about how these models represent wh-dependencies are not possible using the forced-choice task compatible with BLiMP, and
+a \textbf{complete assessment of syntactic islands} is \textbf{best
+	addressed using a factorial} design that manipulates
+both the presence of an island and an attempt to
+extract from it, as in \citet{kush2018investigating} or  \citet{wilcox2018rnn}" \citep{warstadt2020blimp}
+
+"2.2 Dependent variable: Surprisal" \citep{wilcox2018rnn}
+"surprisal values that an RNN assigns to words and sentences" \citep{wilcox2018rnn}
+
+"Surprisal is log inverse probability:
+S(xi) = -log2
+p(xi
+|hi-1)," \citep{wilcox2018rnn}
+"the probability is calculated from the RNN’s softmax activation. The logarithm is taken in base 2,
+so that surprisal is measured in bits." \citep{wilcox2018rnn}
+"The degree of surprisal for a word or sentence
+tells us the extent to which that word or sentence
+is unexpected under the language model’s probability distribution"
+". It is known to correlate directly with human sentence processing difficulty (Hale, 2001; Levy, 2008; Smith and Levy, 2013)" \citep{wilcox2018rnn}
+(rather than, also also as, correlating with acceptability, or likelihood of finding such a word/sentence)
+
+"In this paper, we look for cases where the surprisal associated with an an unusual construction—such as a gap—is ameliorated by the presence of a licensor, such as a wh-word." \citep{wilcox2018rnn}
+"If the models learn that syntactic gaps require licensing, then sentences with licensors should exhibit lower surprisal than minimally different pairs that lack a proper licensor." \citep{wilcox2018rnn}
+
+"We test whether the LSTM language models have
+learned filler–gap dependencies by looking for a
+2x2 interaction between the presence of a gap and
+the presence of a wh-licensor"
+
+"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
+"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
+
+% ? riformulare il testset usando, invece di domande ("bare wh-questions"), "complement clauses" come 
+% "So che il leone ha divorato una gazella all'alba." [no wh-licensor, no gap]
+% *"So cosa il leone ha divorato una gazella all'alba"  [wh-licensor, no gap]
+% *"So che il leone ha divorato __ all'alba" [no wh-licensor, gap]
+% "So cosa il leone ha divorato __ all'alba." [wh-licensor, gap]
+
+"We \textbf{measure surprisal in two places}: at the word immediately following a (filled) gap and summed over the whole region from the gap to the end of the embedded clause. We look at immediate word surprisal because a gap’s licitness should have \textbf{local effects} on network \textbf{expectation}. We look at whole-region surprisal because the presence of a filler also changes expectations about overall well-formedness of the sentence—\textbf{a global phenomenon}. Until the final punctuation is reached in (2b) there are \textbf{potential gap-containing continuations that render the sentence syntactically licit} (e.g. ‘with .’). Therefore, we might expect no large spike in surprisal at any one point, but small increases in surprisal when the network encounters filled argument-structure roles and at the end of the sentence. Measuring summed surprisal captures these distributed, global effects."  \citep{wilcox2018rnn}
+
+% differenza per un modello bidirezionale come BERT: ..sorpresa minore laddove una delle parole mascherate può rendere la frase lecita/accettabile se sostituita con un'altra parola..
+% difficoltà di controllare questo per tutte le parole della frase.. a meno che la struttura delle frasi sia molto standardizzata e la cosa sia uguale per tutte
+% l'italiano inoltre introduce maggiore complessità per la maggiore libertà possibile nell'ordine delle parole
+
+"Although our method can indicate whether there is a link between fillers and gaps, \textbf{the relationship between language model probability and grammaticality is complex} (Lau et al., 2017) and\textbf{ interpreting our patterns in terms of grammaticality judgments would require auxiliary assumptions} that we don’t pursue here. To be clear: our goal is to investigate whether RNNs model the probabilistic dependencies between fillers and gaps \textit{at all}, not whether the outputs of such models can be used to \textbf{classify sentences as ‘grammatical’ or not}" \citep{wilcox2018rnn}
+
+"Assessing grammaticality judgments in a task which is not binary like number agreement raises important methodological questions. We want the network to discriminate between (1a) and (1b). The acceptable Wh-question in (1a) might end with a question mark right at the gap (the object position of catch), but also continue with an adverbial, or even (at the coast of decreasing acceptability) a nominal containing a gap (the tail of). The ungrammatical case (1b) ends with a normal verb argument (the tail). 
+(1) a. Which mouse did the cat catch {? / last night ? / the tail of ? }
+b. *Which mouse did the cat catch the tail? The question is which NN measure best corresponds to the speaker’s perception of ungrammaticality in (1b), keeping into account that even in the theoretical and psycholinguistic literature there are no established metrics to measure ‘degrees of ungrammaticality’ (see Cowart 1997; Sorace and Keller 2005 for discussion)." \citep{chowdhury2018rnn}
+
+"Evaluation measures: We explored various possibilities, from global measures like perplexity (PPL) and non-normalized sentence cross-entropy loss (CEL), to local measures like the normalized log probability of a full stop
+LogPn(F S) or question mark LogPn(QM) after the current word." \citep{chowdhury2018rnn}
+
+"Perplexity and total cross-entropy loss: Both measures are based on the intuition that an ungrammatical sentence should ‘confuse’ the NN more than a corresponding grammatical one, and that this confusion will translate in a decreased ability to make correct predictions"  \citep{chowdhury2018rnn}
+"As it turns out, neither PPL or CEL are perfect ways to evaluate a language model for ungrammaticality, since they do not locate it at a specific point in the sentences. Yet, this could also be an advantage,
+since global measures like PPL/CEL can potentially catch parsing problems that arise earlier than expected, and record a perturbation in the NN’s later predictions as it recovers from an ungrammatical point
+earlier in the text. Therefore, these methods seem appropriate for a first exploration of this task." \citep{chowdhury2018rnn}
+
+The disadvantage of local measures: "as example (1a) shows, a sentence can always continue in unexpected ways. Moreover, in some cases of ungrammaticality the presence of individual words might not be a significant predictor." \citep{chowdhury2018rnn}
+
+"In the following experiments, we examine whether RNN language models have learned constraints on filler–gap dependencies by comparing the wh-licensing interaction in non-islands to that within islands. The strongest evidence for an island constraint would be if the wh-licensing interaction goes to zero for a gap in island position, implying that, in the distribution over strings implied by the network, the appearance of a whlicensor is totally unrelated to the appearance of a gap in the island position"
+\citep{wilcox2018rnn}
+"More generally, we can
+look for a weakened wh-licensing interaction for
+island vs. non-island positions, which would mean
+that the network believes a relationship between
+the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
+"A positive but nonzero wh-licensing interaction
+would be in line with human acceptability judgments, which do not always categorically rule out
+gaps in island positions (Ambridge and Goldberg,
+2008), and with human online processing experiments, which have shown that gap expectation is
+attenuated during processing of areas where gaps
+cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering,
+1996; Phillips, 2006). Therefore, in this section we
+take a significant reduction in the island relative to
+the non-island case to constitute evidence that the
+model has ‘learned’ the constraint." \citep{wilcox2018rnn}
+
+Wh-Island Constraint
+"A gap cannot appear inside doubly nested clauses headed by wh-complementizers. This phenomenon is called the Wh-Island Constraint (WHC). "  \citep{wilcox2018rnn}
+
+Adjunct Island Constraint
+"We used three different prepositions to construct temporal adjuncts: ‘while’, ‘after’ and ‘before’." \citep{wilcox2018rnn}
+
+NB: the minimal pairs on Wilcox et al 2018, designed for  language model, are controlled for lexical content (indentical, basically), unlike those for human subjects in Sprouse et al. (..)
+
+"These results demonstrate
+that neither model has learned the subject constraint, categorizing PPs as either licit extraction
+domains in all positions (the Google model) or
+treating them like islands (the Gulordava model)"  \citep{wilcox2018rnn}
+
+"Both models failed to correctly generalize island constraints in two conditions: The Google model failed to learn that-headed Complex-NP Islands, the Gulordava model to learn Wh-Islands, and both failed to learn Subject Islands."\citep{wilcox2018rnn}
+
+% comparison with Wilcox experimental design:
+% the sentences were split into chuncks ("wh-licensing interaction summed across all words within each region"), and the surprisal was calculated per chunck not word or token. This suggest we should split the sentences into succh cunchs (also making them more uniform), and mask a whole chunk at a time.
+% "by syntactic position"
+
+% our contributions:
+% see if our examples can be adapted to Wilcox format, complementing it, or giving more examples
+% the translation into italian of Wilcox test set
+% the experiments
+% applicazione ai modelli BERT bidirezionali (Wilcox non aveva testato neanche Gpt2 mi pare, solo LSTM)
+
+% todo: possibly avoid OOV words ("outliers")
+% masking by syntactic chunk/region (try both, word/token based, and chunk based)
+
+% problema rispetto all'inglese, variando tra le coppie minime:
+% si è accorto che .. (that)
+% si è accordo di che cosa .. (what)
+% composto di 3 parole invece che 1 sola
+
+% note analisi by Wilcox:
+% "error bars represent 95% confidence intervals of the contrasts between conditions"
+% "Following standard practice in psycholinguistics, we derive the statistical significance of the interaction from a mixed-effects linear regression model predicting surprisal given sum-coded conditions (Baayen et al., 2008). We include random intercepts by item"
+% Baayen, R.H., D.J. Davidson, and D.M. Bates. 2008. Mixedeffects modeling with crossed random effects for subjects and items. Journal of memory and language 59(4):390–412.
+
+%- evitano frasi with "bare whquestions because it eliminates do-support and tense manipulation of the main verb, resulting in higher similarity across conditions." Provare a riformulare le frasi precedendole con "So che..", ad es. per evitare cambiamenti verbali condizionale/presente
+
+% - crossed random effects, make use of the lmer() function in R, 
+
+% - are the values normalized?
+% yes, subtracting the per item means:
+% " computed by subtracting out the by-item means before calculating the intervals as advocated in Masson and Loftus (2003). 2"
+
+% sinificatività statistica, come derivarla dai test col formato sprouse
+% (test con R, ..)
+% confronto design fattoriale wilcox e sprouse:
+% in wilcox filler gap dependency on off (2 esempi) si può usare al posto di long e short distance non island. ..
+
+
+diminishing returns also found \citep{wilcox2018rnn}, the two compared models have a 10x size difference for params and training data.
+
+"In other recent work, \citet{chowdhury2018rnn} tested the ability of neural networks
+to separate grammatical from ungrammatical extractions using similar metrics to ours, finding that their neural networks do not represent the unboundedness of filler–gap dependencies nor certain strong island constraints. We believe the difference between our results and theirs is due to experimental design: They choose to measure the probability of the question mark punctuation as a proxy for the RNNs gap expectation, and use sentence schemata instead of hand-engineered experimental items. While \citet{chowdhury2018rnn} conclude that the networks are not learning island-like constraints, but rather displaying sensitivity to syntactic complexity plus order, we demonstrate island-like effects where both the island and the non-island item are equally complex (in e.g. wh-islands). " \citep{wilcox2018rnn}
+
+"Note also that our work is focused on finding evidence that networks represent the probabilistic contingencies implied by island constraints, without attempting to directly model grammaticality judgments."  \citep{wilcox2018rnn}
+
+All experimental materials and scripts are available at https://osf.io/zpfxm/. \citep{wilcox2018rnn}
+
+..
+
+"Overall, these experiments provide strong
+evidence that both models are learning the filler–
+gap dependency. Furthermore, both RNN models
+are learning the flexibility of the dependency, as
+they exhibit similar wh-licensing effects for all
+three argument roles tested." \citep{wilcox2018rnn}
+
+SotA
+
+% section name "2. Methods" \citep{wilcox2018rnn}
+% also in \citep{wilcox2018rnn}, "Experimental design" section, where they motivate the choice of sentence paradigms, and what results are expected if the model learns the respective linguistic phenomena.
+
+"While inconsistent with the formal linguistic literature on filler–gap dependencies, the negative values of all but one of the correlations are consistent with known effects in human sentence processing, where increasing distance between fillers
+and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et al., 2011)."  \citep{wilcox2018rnn}
+
+"Our work shows these dependencies and their constraints can be learned to some extent by a generic sequence model with no obvious inductive bias for hierarchical structures. This is evidence against the idea that such an inductive bias is necessary for language learning, although the amount of data these models are trained on is much larger
+than the typical input to a child learner." \citep{wilcox2018rnn}
+
+(TODO: sintetizzare i virgolettati)
+
 
 \chapter{Experimental setup}
 
