@@ -5,7 +5,7 @@
 
 \section{Motivation}
 
-With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a  are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. \\
+With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. \\
 Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}.  \\
 
 (TODO: virgolettati da sintetizzare di seguito) \\
@@ -739,7 +739,7 @@ Perplexity:
 
 The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are: (..)
 
-"pseudo-log-likelihood scores (PLLs)" "are computed by masking tokens one by one" \citep{salazar2020masked}
+"pseudo-log-likelihood scores (PLLs)" "are computed by masking tokens one by one" and summing up the resulting log probabilities of each masked token \citep{salazar2020masked}
 % (link with \citet{lau2020furiously} article, and the prev one for circa 2016, that use this same score/formula, but with different names?)
 
 
@@ -1232,7 +1232,8 @@ All models seem to struggle with the Short-Island sentence type of the Subject i
 
 On average, the Gpt-2 model with the PenLP scoring measure performs best, with a 86.1\% mean accuracy.
 
-Although it's between different languages (English and Italian), the scores on \autoref{adjunct_item_1} seem to be higher than the ones on the BLiMP benchmark in \autoref{tab:accuracy_blimp}. TODO: compare BLiMP data with accuracies on Sprouse English test suite.
+Although it's between different languages (English and Italian), the scores on \autoref{adjunct_item_1} seem to be higher than the ones on the BLiMP benchmark in \autoref{tab:accuracy_blimp}. 
+% TODO: compare BLiMP data with accuracies on Sprouse English test suite.
 
 
 \begin{table} \scriptsize 
@@ -1338,8 +1339,9 @@ Although it's between different languages (English and Italian), the scores on \
 		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} 
 			\\ NB: RoBERTa-base with alpha = 0.8 in the penalty term  as in Lau et al
 			\\ with with alpha = 1 ..
-			\\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores.
-			\\ TODO: rerun the BLiMP and Sprouse English tests with the RoBERTa model from \citet{bostrom2020byte}, which uses a more linguistically/morphologically plausible subword splitting, to see if performance improves.}
+%			\\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores.
+%			\\ TODO: rerun the BLiMP and Sprouse English tests with the RoBERTa model from \citet{bostrom2020byte}, which uses a more linguistically/morphologically plausible subword splitting, to see if performance improves.
+		}
 		\label{tab:accuracy_blimp}
 	\end{center}
 \end{table}
@@ -1392,14 +1394,17 @@ Although it's between different languages (English and Italian), the scores on \
 %
 %also tweak the sentence scoring method, to check when a subword is split, and mask the whole word (all the word tokens)..
 %(problem: we are still indicating how many tokens we expect in the masked position.. it would be ideal to just have a special token for "masked word", and the model also has to guess how many tokens is made of)
-\begin{lstlisting}[language=Python]
 
-tokenizer.backend_tokenizer.pre_tokenizer.pre_tokenize_str("Hello, how are  you?")
-[('Hello', (0, 5)), (',', (5, 6)), ('how', (7, 10)), ('are', (11, 14)), ('you', (16, 19)), ('?', (19, 20))]
-\end{lstlisting}
+%\begin{lstlisting}[language=Python]
+%
+%tokenizer.backend_tokenizer.pre_tokenizer.pre_tokenize_str("Hello, how are  you?")
+%[('Hello', (0, 5)), (',', (5, 6)), ('how', (7, 10)), ('are', (11, 14)), ('you', (16, 19)), ('?', (19, 20))]
+%\end{lstlisting}
 
 \section{Factorial tests results}
-surprisal ( $\displaystyle\-log P_{MLM} (w_t | W_{\setminus t}) $)
+
+% Surprisal ( $\displaystyle\-log P_{MLM} (w_t | W_{\setminus t}) $)
+
 % todo: regenerate Sprouse's plots from the published score data?
 
 % Fig.1 Results from Sprouse et al (2016)
