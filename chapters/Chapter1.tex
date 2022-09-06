@@ -8,6 +8,12 @@
 With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a  are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. 
 % better models: more performant, more efficient. Detect which linguistic phenomena they learn and which they don't.
 
+% "We see two chief motivations that guide work on acceptability classification with ANNs by us and by others: First, more fine-grained evaluation tools may accelerate work on general-purpose neural network modules for sentence understanding. "
+
+% "Second, studying the linguistic competence of ANNs bears on foundational questions in linguistics about the learnability of grammar."
+
+% A particular interest of language in AI, is that it ..measures AI models with ..different concepts ..phenomena for which some of the standard ..alghoritmic/statistical or teory of information ..metrics, approaches, .. , don't work (eg. perplexity, ..probability estimation of next word, ..)
+
 % transformer SotA :
 % "transformer-based models, as they have become the benchmark for many NLP tasks in recent years (Vaswani et al., 2017; Devlin et al., 2019; Yang et al., 2019)"  \citep{lau2020furiously}. 
 % transformers: much larger models, much more training data
@@ -122,20 +128,6 @@ from what is learned through supervised training
 on acceptability data." \citep{warstadt2020blimp}
 
 
-"perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
-" the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
-"Standard language models are trained to predict the next token given a context of previous tokens. Language models are typically assessed by their perplexity, the inverse geometric mean of the joint probability of words w1; : : : ; wN in a held-out test corpus C:" \citep{hu2020systematic}
-% perplexity has been found to correlate with human gaze duration while reading  \citep{hu2020systematic}
-
-"a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons. In principle, a sentence can appear with vanishingly low probability but still be grammatically wellformed, such as \textit{Colorless green ideas sleep furiously} (Chomsky, 1957).  "  \citep{hu2020systematic}
-"While perplexity remains an integral part of language model evaluation, fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
-
-
-\citet{hu2020systematic} found a dissociation between perplexity and syntactic generalization performance.
-% "we find a substantial dissociation between perplexity and SG score." \citep{hu2020systematic}
-"information-theoretic metrics, such as perplexity, "  \citep{hu2020systematic}
-
-
 \section{Research on linguistic tests on language models}
 (TODO)
 %(review previous studies, state of the art, chronicle history, ..)
@@ -157,6 +149,8 @@ poverty of the stimulus argument:
 "open question whether these “island constraints” are true grammatical constraints, or whether they are effects of processing difficulty or discourse-structural factors (Ambridge and Goldberg, 2008; Hofmeister and Sag, 2010; Sprouse and Hornstein, 2014)" \citep{wilcox2018rnn} 
 
 % psycholinguistic studies (Sprouse)
+
+% "The influential argument from the poverty of the stimulus (APS) ..  has been subject to much criticism (Pullum and Scholz, 2002)"  Geoffrey K. Pullum and Barbara C. Scholz. 2002. Empirical assessment of stimulus poverty arguments. The Linguistic Review, 18(1-2):9–50.
 
 \subsection{Island effects assessment in language models}
 
@@ -438,8 +432,7 @@ following sentences schema from sprouse et al.
 
 
 
-quote umberto eco at the beginning on the section on methodology
-(translate it)
+% quote umberto eco at the beginning on the section on methodology (translate it)
 
 our contributions wrt to trotta et al 2021:
 comparable number of examples (50), but for more phenomena (4 instead of 1)
@@ -448,20 +441,29 @@ NB in fig.1 (right) trotta et al also omit the wh islands results
 problem in trotta et al for sentences with multiple phenomena
 (check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
 
-\subsection{ItaCola from Trotta et al. 2021}
-
-% finetune the models for acceptability? (already existin italian models for this, like from Trotta et al. 2021?)
-% finetuning is very fast anyway 
-% (fine tune also for english the Bostrom models?)
-
-%"An additional check was performed to manually control for typos and transcription errors."
 
 
-
-% A particular interest of language in AI, is that it ..measures AI models with ..different concepts ..phenomena for which some of the standard ..alghoritmic/statistical or teory of information ..metrics, approaches, .. , don't work (eg. perplexity, ..probability estimation of next word, ..)
-
+\chapter{Related work}
 
 
+"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
+cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
+
+"Some recent computational work explores the
+relation of acceptability judgments to sentence
+probabilities. Lau et al. (2015, 2017b) show that
+the output of unsupervised language models
+can correlate with human acceptability ratings.
+Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier
+on top of a pre-trained sentence encoder to
+predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
+
+\citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
+by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
+MLMs in a supervision-free manner"
+
+
+\section{Linguistic evaluation measures for language models}
 
 
 
@@ -472,11 +474,8 @@ minimal pairs: relative score, compared btw two sentences
 Follow study from Trotta et al, and the original CoLA paper 
 also minimal pairs scoring is done with the pretrained models, while CoLA involves finetuning
 
-"Our results identify specific syntactic features
-that make sentences harder to classify, such as
-long distance dependencies (What do you think I
-ate?), and others that have little effect on difficulty, such as non-canonical argument structures
-like passives (The book was read)." (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
+"Our results identify specific syntactic features that make sentences harder to classify, such as long distance dependencies (What do you think I
+ate?), and others that have little effect on difficulty, such as non-canonical argument structures like passives (The book was read)." (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
 
 exemplary analysis acceptability results from the cola paper:
 "Our results identify specific syntactic features
@@ -487,15 +486,11 @@ like passives (The book was read). Furthermore,
 some constructions highlight or minimize the differences between models. For example, GPT and
 BERT far out perform the BiLSTM on movement
 phenomena such as clefts (It is Bo that left), yet
-have no advantage on sentences with adjuncts (Sue
-exercises in the morning). We wish to exercise
-caution in interpreting these results since it is not
-clear to what extent an encoder’s failure on a particular phenomenon is due to a weakness of the
-encoder rather than the training data or probing
+have no advantage on sentences with adjuncts (Sue exercises in the morning). We wish to exercise caution in interpreting these results since it is not
+clear to what extent an encoder’s failure on a particular phenomenon is due to a weakness of the encoder rather than the training data or probing
 classifier. However, this caveat applies to varying
 degrees to all probing resources. In this context of
-other similar linguistically informed datasets, our
-analysis set addresses the critical need for a evaluation task with wide coverage of linguistic phenomena"
+other similar linguistically informed datasets, our analysis set addresses the critical need for a evaluation task with wide coverage of linguistic phenomena"
 
 "Hence, unacceptable sentences in CoLA tend to
 be maximally similar to acceptable sentences and
@@ -521,87 +516,11 @@ human learners are exposed to during language
 acquisition (Hart and Risley, 1992).11 
 11Hart and Risley (1992) find that children in affluent families are exposed to about 45 million tokens by age 4.
 " (Warstadt et al 2019 Neural Network Acceptability Judgments)
-Hart and Todd R. Risley. 1992. American
-parenting of language-learning children: Persisting differences in family-child interactions
-observed in natural home environments. Developmental Psychology, 28(6):1096.
+Hart and Todd R. Risley. 1992. American parenting of language-learning children: Persisting differences in family-child interactions observed in natural home environments. Developmental Psychology, 28(6):1096.
 
 
-"Addressing this problem will likely involve new forms of regularization to mitigate this
-overfitting and, more importantly, new pretraining
-strategies that can help the model better learn the fundamental ingredients of grammaticality from
-unlabeled data" 
-
-"The poor performance of our models on contrasts involving agreement (Singular/Pl and Reflexive) is surprising in light of findings by (Linzen
-et al., 2016) that LSTMs can identify agreement
-errors easily even without access to sub-word information. We speculate that this is due to underrepresentation of the relevant examples in CoLA.
-"
-"We see two chief motivations that guide work
-on acceptability classification with ANNs by us
-and by others: First, more fine-grained evaluation tools may accelerate work on general-purpose
-neural network modules for sentence understanding. "
-
-"Second, studying the linguistic competence
-of ANNs bears on foundational questions in linguistics about the learnability of grammar."
-
-"The influential argument from the poverty of the stimulus (APS) ..  has been subject to much
-criticism (Pullum and Scholz, 2002)" 
-Geoffrey K. Pullum and Barbara C. Scholz. 2002.
-Empirical assessment of stimulus poverty arguments. The Linguistic Review, 18(1-2):9–50.
-
-"more work is needed to
-find methods for extracting reliable Boolean acceptability judgments from unsupervised language
-models. Our approach of fitting a threshold to the
-models of Lau et al. (2016) gives encouraging results, but these models are ultimately not as effective as supervised models. An alternative adopted
-by Linzen et al. (2016) and Marvin and Linzen
-(2018) is to evaluate whether language models’ assign higher probability to the acceptable sentence
-in a minimal pair. However, this forced choice
-minimal pair task, as discussed in Section 2.3, cannot be applied to CoLA, which does not exclusively contain minimal pairs"
-
-"Interrogatives are quite challenging in general (major feature=QUESTION). Sentences with questionlike syntax may be difficult because they usually
-involve extraction of a wh-word, creating a longdistance dependency between the wh-word and its
-extraction site, which may be difficult for models
-to recognize." ()
-
-(also to the plor on acceptability score by sentence lenght?)
-
-"Our results are purely
-correlational, and do not mark whether a particular construction is crucial for the acceptability of
-the sentence. Future experiments following Ettinger et al. (2018) and Kann et al. (2019) can
-semi-automatically generate datasets by manipulating, for example, length of long-distance dependencies, inflectional violations, or the presence
-of interrogatives, while controlling for factors like
-sentence length and word choice, in order to determine the extent to which these features impact the
-quality of sentence representations."
-
-what about a follow up analysis on the thesis, based on the results? like manipulating data to check the effect of somee factors, ..
-
-(observation: a problem with perplexities is that it mixes knowledge of language with actually studying a domain to be able to predict the content; studiare a memoria il testset)
-(learning language and having good domain adaptability, learning a new domain)
-(as for adding semantic structure, learning a new domain involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learning.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself)
-(the ability to perform certain reasoning patterns, that can be used in multiple domains)
-
-
-\chapter{Related work}
-
-
-"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
-cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
-
-"Some recent computational work explores the
-relation of acceptability judgments to sentence
-probabilities. Lau et al. (2015, 2017b) show that
-the output of unsupervised language models
-can correlate with human acceptability ratings.
-Warstadt et al. (2018) treat this as a semisupervised problem, training a binary classifier
-on top of a pre-trained sentence encoder to
-predict acceptability ratings with greater accuracy"\citep{lau2020furiously} 
-
-\citet{salazar2020masked}  "use PLLs to perform unsupervised acceptability judgments on the BLiMP minimal pairs set (Warstadt et al., 2020); BERT and RoBERTa models improve the state of the art (GPT-2 probabilities)
-by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomena. Hence, PLLs can be used to assess the linguistic competence of
-MLMs in a supervision-free manner"
-
-
-\section{Linguistic evaluation measures for language models}
-
+"Addressing this problem will likely involve new forms of regularization to mitigate this overfitting and, more importantly, new pretraining
+strategies that can help the model better learn the fundamental ingredients of grammaticality from unlabeled data" 
 
 % "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
 % Perplexity issues: 
@@ -720,9 +639,21 @@ Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-
 
 % "The Supplementary Materials provide a full description of all our templates.3" 3The code, the data set and the Supplementary Materials can be found at https://github.com/ BeckyMarvin/LM_syneval.  \citep{marvin2018targeted}
 
+% "more work is needed to find methods for extracting reliable Boolean acceptability judgments from unsupervised language models. Our approach of fitting a threshold to the models of Lau et al. (2016) gives encouraging results, but these models are ultimately not as effective as supervised models. An alternative adopted by Linzen et al. (2016) and Marvin and Linzen (2018) is to evaluate whether language models’ assign higher probability to the acceptable sentence in a minimal pair. However, this forced choice minimal pair task, as discussed in Section 2.3, cannot be applied to CoLA, which does not exclusively contain minimal pairs"
+
+% "Interrogatives are quite challenging in general (major feature=QUESTION). Sentences with questionlike syntax may be difficult because they usually involve extraction of a wh-word, creating a longdistance dependency between the wh-word and its extraction site, which may be difficult for models to recognize." ()
+
 \subsection{Measures}
 
-SURPRISAL
+
+
+"perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
+" the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
+"Standard language models are trained to predict the next token given a context of previous tokens. Language models are typically assessed by their perplexity, the inverse geometric mean of the joint probability of words w1; : : : ; wN in a held-out test corpus C:" \citep{hu2020systematic}
+% perplexity has been found to correlate with human gaze duration while reading  \citep{hu2020systematic}
+
+\subsubsection{Surprisal}
+
 In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): S(wjC) = -log2 p(wjC), " \citep{hu2020systematic}
 Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
 
@@ -756,6 +687,25 @@ PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
 " by learning g(W ) first. They argue \textit{g} expresses \textbf{fluency}; fixing\textit{g} early allows f(W ; X) to focus its capacity on \textbf{adequacy} in encoding the source, and thus specializing the two models. With this perspective in mind, we compare log PLM and PLL as candidates for log g."  \citep{salazar2020masked}
 "In this work we interpret fluency as linguistic acceptability ..  informally, the syntactic and semantic validity of a sentence according to human judgments (Schutze ¨ , 1996)" \citep{salazar2020masked} "Its graded form is well-proxied by neural language model scores (log PLM) once length and lexical frequency
 are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
+
+
+\subsubsection{Issues with perplexity}
+
+
+% (observation: a problem with perplexities is that it mixes knowledge of language with actually studying a domain to be able to predict the content; studiare a memoria il testset)
+
+% (learning language and having good domain adaptability, learning a new domain) (as for adding semantic structure, learning a new domain involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learning.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself) (the ability to perform certain reasoning patterns, that can be used in multiple domains)
+
+
+
+"a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons. In principle, a sentence can appear with vanishingly low probability but still be grammatically wellformed, such as \textit{Colorless green ideas sleep furiously} (Chomsky, 1957).  "  \citep{hu2020systematic}
+"While perplexity remains an integral part of language model evaluation, fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
+
+
+\citet{hu2020systematic} found a dissociation between perplexity and syntactic generalization performance.
+% "we find a substantial dissociation between perplexity and SG score." \citep{hu2020systematic}
+"information-theoretic metrics, such as perplexity, "  \citep{hu2020systematic}
+
 
 \subsection{Sentence acceptability estimates}
 
@@ -874,6 +824,7 @@ otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood
 
 Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
 
+%"An additional check was performed to manually control for typos and transcription errors."
 ..
 
 \subsection{BLiMP}
@@ -1152,6 +1103,14 @@ a dataset for some specific island effects phenomena in italian
 experiments
 ..
 (as in the ItaCoLA paper)
+
+
+"The poor performance of our models on contrasts involving agreement (Singular/Pl and Reflexive) is surprising in light of findings by (Linzen
+et al., 2016) that LSTMs can identify agreement
+errors easily even without access to sub-word information. We speculate that this is due to underrepresentation of the relevant examples in CoLA.
+"
+
+% "Our results are purely correlational, and do not mark whether a particular construction is crucial for the acceptability of the sentence. Future experiments following Ettinger et al. (2018) and Kann et al. (2019) can semi-automatically generate datasets by manipulating, for example, length of long-distance dependencies, inflectional violations, or the presence of interrogatives, while controlling for factors like sentence length and word choice, in order to determine the extent to which these features impact the quality of sentence representations."
 
 \chapter{Experimental setup}
 
@@ -1696,6 +1655,18 @@ Overall, for GilBERTo, the plots are significantly different from those on human
 	\caption{Plots from GilBERTo with the LP sentence acceptability approximation}
 	\label{fig:gilberto_lp_madeddu}
 \end{figure}
+
+
+\section{Follow ups and future work}
+
+
+% finetune the models for acceptability? (already existin italian models for this, like from Trotta et al. 2021?)
+% finetuning is very fast anyway 
+% (fine tune also for english the Bostrom models?)
+
+% (also to the plot on acceptability score by sentence lenght?)
+
+% what about a follow up analysis on the thesis, based on the results? like manipulating data to check the effect of somee factors, ..
 
 \section{Drafts}
 \subsection{Observation on plots for other models}
