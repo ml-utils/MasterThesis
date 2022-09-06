@@ -36,6 +36,8 @@ With the large progress made since 2018 in NLP benchmarks by the last generation
 % section on overview of NN language models, DL language models, transformers based language models
 
 
+%  "Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. " "research paradigms" (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
+
 
 
 Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
@@ -403,7 +405,9 @@ a further discussion in Appendix B" \citep{salazar2020masked}
 \pagebreak
 
 
-\section{Research questions}
+\section{Our research questions and contributions 
+
+% (separate chapter, or section of other chapter?)}
 
 Context, lit review ..
 the literature on syntactic tests.. intrinsic tests
@@ -437,83 +441,28 @@ following sentences schema from sprouse et al.
 quote umberto eco at the beginning on the section on methodology
 (translate it)
 
-\subsection{ItaCola from Trotta et al. 2021}
-
-the meaning of cross entropy (average?)
-even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
-or is this problematic/a ..forzatura
-only in the case of minimal pairs (in the strict sense of differing by 1 word), ..
-otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood, and still, in natural language use, some frequenty incorrect sentences are more likely than rare ones
-
-Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
-
-finetune the models for acceptability? (already existin italian models for this, like from Trotta et al. 2021?)
-finetuning is very fast anyway 
-
-domande per Lenci:
-possibili obiezioni sui dati raccolti, il dataset creato:
-differenze rispetto a paper che controllano per certi fattori, escludono certe frasi, ..ripuliscono il dataset secondo vari criteri
-
-"An additional check was performed to manually
-control for typos and transcription errors."
-
-out contributions wrt to trotta et al 2021:
+our contributions wrt to trotta et al 2021:
 comparable number of examples (50), but for more phenomena (4 instead of 1)
 difference in the wh-islands phenomena
 NB in fig.1 (right) trotta et al also omit the wh islands results
 problem in trotta et al for sentences with multiple phenomena
 (check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
 
-"The fact that classification of sentences containing only one phenomenon yields better results holds for all categories except for Questions and Auxiliary"
+\subsection{ItaCola from Trotta et al. 2021}
 
-"Interestingly, Wh-islands violation
-does not appear in the chart on the right because
-this phenomenon is always accompanied with at
-least another annotation"
+% finetune the models for acceptability? (already existin italian models for this, like from Trotta et al. 2021?)
+% finetuning is very fast anyway 
+% (fine tune also for english the Bostrom models?)
+
+%"An additional check was performed to manually control for typos and transcription errors."
 
 
-(fine tune also for english the Bostrom models?)
 
-"(Gao et al., 2020) shows that pre-trained LM performs worse in some tasks such
-as linguistic acceptability task and natural language inference task since pre-trained LM barely saw
-this data distribution." (Wang et al 2021 Entailment as few shot learner)
+% A particular interest of language in AI, is that it ..measures AI models with ..different concepts ..phenomena for which some of the standard ..alghoritmic/statistical or teory of information ..metrics, approaches, .. , don't work (eg. perplexity, ..probability estimation of next word, ..)
 
-Alternative training tasks:
-"Task reformulation: Language model is usually pre-trained with a Masked Language Modeling
-(MLM) objective, which is motivated by Cloze task in (Taylor, 1953). There have been several
-works reformulating few-shot learning tasks as cloze questions to reuse pre-trained LM such as
-LM prompt (Jiang et al., 2020), PET (Radford et al., 2019; Schick \& Schutze, 2020a), and recent ¨
-LM-BFF (Gao et al., 2020). It shows a pre-trained LM can achieve non-trivial performance with few annotated samples. There are also some other works transforming NLP tasks as generative QA tasks (Puri \& Catanzaro, 2019)."
-but low performance on CoLA (possible beacuse of "different data distribution"):
-"The only exception is the CoLA (the linguistic acceptability task). It
-is might due to that MLM pre-trainng and entailment training did not see this type of data distribution before"
 
-enriched training data (with supervised tasks):
-"Intermediate training: The work by (Phang et al., 2018) shows that supplementing pre-trained LMs with further training on data-rich supervised tasks can obtain additional performance improvements on the GLUE benchmark."
 
-"Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. " "research paradigms" (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
 
-A particular interest of language in AI, is that it ..measures AI models with ..different concepts ..phenomena for which some of the standard ..alghoritmic/statistical or teory of information ..metrics, approaches, .. , don't work (eg. perplexity, ..probability estimation of next word, ..)
-
-"Prior work has demonstrated that heads
-induce grammar formalisms and structural knowledge (Zhou and Zhao, 2019; Lin et al., 2019; Luo,
-2021), and linguistic features motivate attention
-patterns (Kovaleva et al., 2019; Clark et al., 2019)."
-"Recent studies also show that certain heads can
-have multiple functional roles (Pande et al., 2021)
-and even perform syntactic functions for distant
-languages (Ravishankar et al., 2021)."
-(Cherniavskii et al. 2022)
-
-Freezing / Frozen Layers:
-"The results align with Lee et al. (2019), who discuss the performance degradation of BERT-based models depending upon the number of frozen layers." (Cherniavskii et al. 2022)
-
-note on thesis:
-our contributions are as follows:
-a dataset for some specific island effects phenomena in italian
-experiments
-..
-(as in the ItaCoLA paper)
 
 
 Minimal pairs vs sentence acceptability (with CoLA)
@@ -917,6 +866,16 @@ PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked}
 \section{Test suites}
 \subsection{CoLA, ItaCoLA}
 ..
+the meaning of cross entropy (average?)
+even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
+or is this problematic/a ..forzatura
+only in the case of minimal pairs (in the strict sense of differing by 1 word), ..
+otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood, and still, in natural language use, some frequenty incorrect sentences are more likely than rare ones
+
+Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
+
+..
+
 \subsection{BLiMP}
 ..
 \subsection{Other (Hu et al, Wilcox et al, ..)}
@@ -1164,6 +1123,35 @@ scores appear to cause it to \textbf{overweigh common word sequences} at the exp
 % in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
 
 % ensembling not effective for PLL and LP, they overlap: "Given the differences between PLLs and log probabilities, we explore whether ensembling both improves performance in Appendix D. Similar to the largely-dominant results of MLMs on BLiMP over GPT-2 (Section 4.1), we find that as the MLM gets stronger, adding GPT-2 scores has negligible effect, suggesting that their roles overlap."  \citep{salazar2020masked}
+
+
+"The fact that classification of sentences containing only one phenomenon yields better results holds for all categories except for Questions and Auxiliary"
+
+"Interestingly, Wh-islands violation
+does not appear in the chart on the right because
+this phenomenon is always accompanied with at
+least another annotation"
+
+"(Gao et al., 2020) shows that pre-trained LM performs worse in some tasks such
+as linguistic acceptability task and natural language inference task since pre-trained LM barely saw
+this data distribution." (Wang et al 2021 Entailment as few shot learner)
+
+"Prior work has demonstrated that heads induce grammar formalisms and structural knowledge (Zhou and Zhao, 2019; Lin et al., 2019; Luo,
+2021), and linguistic features motivate attention
+patterns (Kovaleva et al., 2019; Clark et al., 2019)."
+"Recent studies also show that certain heads can
+have multiple functional roles (Pande et al., 2021)
+and even perform syntactic functions for distant
+languages (Ravishankar et al., 2021)."
+(Cherniavskii et al. 2022)
+
+
+note on thesis:
+our contributions are as follows:
+a dataset for some specific island effects phenomena in italian
+experiments
+..
+(as in the ItaCoLA paper)
 
 \chapter{Experimental setup}
 
@@ -1852,5 +1840,13 @@ the LSTM. This model has the best published perplexity for English text." \citep
 % (that is, incorporating linguitic signals could be effective in lowering the amount of training data needed)
 
 % "Second, we find a larger effect of model inductive bias than training data size on SG score, a result that accords with van Schijndel et al. (2019). Models afforded explicit structural supervision during training outperform other models: One structurally supervised model is able to achieve the same SG scores as a purely sequence-based model trained on ∼100 times the number of tokens. Furthermore, several Transformer models achieve the same SG score as a Transformer trained on ∼200 times the amount of data. " \citep{hu2020systematic}
+
+% Alternative training tasks:
+% "Task reformulation: Language model is usually pre-trained with a Masked Language Modeling (MLM) objective, which is motivated by Cloze task in (Taylor, 1953). There have been several works reformulating few-shot learning tasks as cloze questions to reuse pre-trained LM such as LM prompt (Jiang et al., 2020), PET (Radford et al., 2019; Schick \& Schutze, 2020a), and recent ¨ LM-BFF (Gao et al., 2020). It shows a pre-trained LM can achieve non-trivial performance with few annotated samples. There are also some other works transforming NLP tasks as generative QA tasks (Puri \& Catanzaro, 2019)." but low performance on CoLA (possible beacuse of "different data distribution"): "The only exception is the CoLA (the linguistic acceptability task). It is might due to that MLM pre-trainng and entailment training did not see this type of data distribution before"
+
+% enriched training data (with supervised tasks): "Intermediate training: The work by (Phang et al., 2018) shows that supplementing pre-trained LMs with further training on data-rich supervised tasks can obtain additional performance improvements on the GLUE benchmark."
+
+% Freezing / Frozen Layers:
+% "The results align with Lee et al. (2019), who discuss the performance degradation of BERT-based models depending upon the number of frozen layers." (Cherniavskii et al. 2022)
 
 \nocite{wei2021frequency, hu2020systematic, lau2020furiously, bostrom2020byte, futrell-etal-2019-neural}
