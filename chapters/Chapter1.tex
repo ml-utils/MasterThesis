@@ -5,29 +5,42 @@
 
 \section{Motivation}
 
-With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a  are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. 
+With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a  are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. \\
+Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}.  \\
+
+(TODO: virgolettati da sintetizzare di seguito) \\
+
+"Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. "  (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
+% "research paradigms" (Cherniavskii et al. 2022)
+
+"more fine-grained evaluation tools may accelerate work on general-purpose neural network modules for sentence understanding. " \\
+"studying the linguistic competence of ANNs bears on foundational questions in linguistics about the learnability of grammar."
+
+(black boxes and explainability) : "the nature of the representations learned by these models is not properly understood." \citep{wilcox2018rnn}
+
+% "We see two chief motivations that guide work on acceptability classification with ANNs by us and by others: First," 
+% "Second, 
 % better models: more performant, more efficient. Detect which linguistic phenomena they learn and which they don't.
 
-% "We see two chief motivations that guide work on acceptability classification with ANNs by us and by others: First, more fine-grained evaluation tools may accelerate work on general-purpose neural network modules for sentence understanding. "
-
-% "Second, studying the linguistic competence of ANNs bears on foundational questions in linguistics about the learnability of grammar."
 
 % A particular interest of language in AI, is that it ..measures AI models with ..different concepts ..phenomena for which some of the standard ..alghoritmic/statistical or teory of information ..metrics, approaches, .. , don't work (eg. perplexity, ..probability estimation of next word, ..)
 
 % transformer SotA :
 % "transformer-based models, as they have become the benchmark for many NLP tasks in recent years (Vaswani et al., 2017; Devlin et al., 2019; Yang et al., 2019)"  \citep{lau2020furiously}. 
 % transformers: much larger models, much more training data
+% "Recent technological advances have led to an explosion of neural network-based LM architectures. The most popular ones are based on recurrent neural networks (RNNs) .. , LSTMs are still highly competitive (Melis et al., 2018)" \citep{marvin2018targeted}
 
 % the above section should be renamed also "introduction"
 % then have a more specific motitvation section on the motivation of this thesis within its line of research (targeted linguistic tests for language models)
 
 % a  self-supervisedlearning approach. In self-supervised learning, a system is given no  explicit  labeling  of  raw  data,  but  it  is  able  to  construct  its own supervised learning problems by choosing to interpret someof  the  data  as  a  “label”  to  be  predicted \citep{manning2020emergent}
-% The  canonical  casefor  human  language  is  the  language-modeling  task  of  tryingto  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
+
+% The  canonical  casefor  human  language  is  the  language-modeling  task  of  trying to  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
 % (that unsupervised models could not develop interesting knowledge of language) this  has  been  the  dominant  perspective  in  linguistics, where language models have long been seen as inadequateand having no scientific interest, even when their usefulness inpractical engineering applications is grudgingly accepted (15, 16). \citep{manning2020emergent}
 
-% "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
-% "Recent technological advances have led to an explosion of neural network-based LM architectures. The most popular ones are based on recurrent neural networks (RNNs) .. , LSTMs are still highly competitive (Melis et al., 2018)" \citep{marvin2018targeted}
 
+
+% "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
 
 
 
@@ -37,95 +50,24 @@ With the large progress made since 2018 in NLP benchmarks by the last generation
 % - ..explainability, 
 % - having a complementary measure of model performance, explaining performance (good or bad) in downstream application benchmarks, 
  
-% BERT " implicitly learns to recover the rich latent struc-ture of human language. "   (manning2020emergent)
  
-% section on overview of NN language models, DL language models, transformers based language models
-
-
-%  "Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. " "research paradigms" (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
-
-
-
-Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
-"the nature of the representations learned by these models is not properly understood." \citep{wilcox2018rnn}
-"One promising line of research aims to crack open these ‘black boxes’ by investigating how" "language models perform on specially controlled sentences designed to draw out behavior that indicates representation of" "a syntactic dependency." \citep{wilcox2018rnn}
-
-"In this paper, we broaden and deepen this line of inquiry by examining what LSTMs learn about
-an unexplored syntactic relationship: the filler–gap dependency." \citep{wilcox2018rnn}
-"The filler–gap dependency is novel, insofar as learning it requires the network to generalize about the absence of material." \citep{wilcox2018rnn}
-
-wilcox study only on wh-dependencies (a filler like ‘what’ or ‘who’)
-"a gap, which is an empty syntactic position licensed by the filler. "
-% definition of "licensing" ?
-
-(1) a. I know what the lion devoured at sunrise.
-b.*I know that the lion devoured at sunrise.
-
-TODO: test filler-gap examples in italian (which are propedeutic to testing restriction violations/island effects)
-first tell if the italian LM encode correctly filler gap contrasts like 1a-b
-because the issues on island effects might be confounded by those on filler gaps
-
-"There is also a semantic relationship between the filler and the gap, in the sense that “what” is semantically the direct object of “devoured”. In this work, we study the behavior of language models, and so we treat the filler–gap dependency purely as a licensing relationship." \citep{wilcox2018rnn}
-
-"Many recent studies have searched for evidence that neural networks (NNs) learn representations ("\textit{linguistic knowledge}") that implicitly encode grammatical concepts. "  \citep{warstadt2020blimp}
-
-to uncover linguistic phenomena where current state-of-the-art transformer-based language models lack human-like knowledge, to focus on investigating and improving those  \citep{warstadt2020blimp}.
-offer broad coverage of linguistic phenomena \citep{warstadt2020blimp} 
-
-indirect evidence about each model’s linguistic knowledge \citep{warstadt2020blimp}
-compare models in a fine-grained way \citep{warstadt2020blimp}.
-
-Methodologies for evaluation a Language Model linguistic knowledge:
-* Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
-% TODO: review marvin2018targeted, wilcox2018rnn
-* "using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al.,
-2017; Conneau et al., 2018; Ettinger et al., 2018;
-Tenney et al., 2019). "  \citep{warstadt2020blimp}	
-
-On minimal pairs and necessity of controlling factors btw the two sentences:
-"Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP"
-
-(question/doubt/objection: BLIMP format might not be suitable for testing some phenomena.. ie chunking, some aspects of island effects..: "Our implementation of these phenomena is often
-narrower than the linguistic definition because of the particular constraints described above."  \citep{warstadt2020blimp}	
-(more extensive list of linguistic phenomena, and how they can be ..encoded in a Blimp format, and which can't. Each phenomena has more complementaty forms in which is tested in Blimp; phenomena need to be more fine grained, ie, for island effects, all subtypes; even subtypes of phenomena might even multiple aspects/linguistic facts..)
+% BERT " implicitly learns to recover the rich latent structure of human language. "   (manning2020emergent)
  
-(pros and cons of different approaches)
+
+% Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
+
+% "One promising line of research aims to crack open these ‘black boxes’ by investigating how" "language models perform on specially controlled sentences designed to draw out behavior that indicates representation of" "a syntactic dependency." \citep{wilcox2018rnn}
 
 
-On acceptability judgments
-"Acceptability judgments are the main form of
-behavioral data used in generative linguistics to
-measure human linguistic competence (Chomsky,
-1965; Schutze, 1996)." \citep{warstadt2020blimp}	
 
-inclusion, in LM testing, of "well-studied phenomena in linguistics such as control and
-raising, ellipsis, quantification, and countless others"  \citep{warstadt2020blimp}	
+% "Many recent studies have searched for evidence that neural networks (NNs) learn representations ("\textit{linguistic knowledge}") that implicitly encode grammatical concepts. "  \citep{warstadt2020blimp}
 
-"labor-intensive nature of collecting such targeted minimal pairs." \citep{warstadt2020blimp}	
+% Purposes: to uncover linguistic phenomena where current state-of-the-art transformer-based language models lack human-like knowledge, to focus on investigating and improving those  \citep{warstadt2020blimp}.
+% offer broad coverage of linguistic phenomena \citep{warstadt2020blimp} 
 
+% indirect evidence about each model’s linguistic knowledge \citep{warstadt2020blimp}
+% compare models in a fine-grained way \citep{warstadt2020blimp}.
 
-Corpora of sentences and their grammaticality. "The most recent
-and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
-CoLA is included in the GLUE benchmark (Wang et al., 2018)
-
-"Current models like BERT (Devlin et al., 2019) and T5 (Raffel et al., 2019) now learn to give acceptability judgments that approach or even exceed individual human agreement with CoLA." \citep{warstadt2020blimp}	
-
-Limits on the CoLA approach: "the need to train a supervised classifier on CoLA data prior to evaluation." \citep{warstadt2020blimp}	
-"This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised
-models like LMs.2""2Though see \citet{lau2017grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
-
-adapting language models with finetuning to perform downstream tasks doesn’t necessary
-reflect knowledge that is already present in the LMs  \citep{warstadt2020blimp}
-"Warstadt and Bowman (2019)
-measure phenomenon-specific performance on
-CoLA for several pretrained sentence encoding
-models: an LSTM, GPT (Radford et al., 2018),
-and BERT. However, the use of supervision
-prevents making strong conclusions about the
-sentence encoding component, since it is not
-possible to distinguish what the encoder knows
-from what is learned through supervised training
-on acceptability data." \citep{warstadt2020blimp}
 
 
 \section{Research on linguistic tests on language models}
@@ -161,6 +103,8 @@ poverty of the stimulus argument:
 \pagebreak
 
 \section{Transformer-based language models}
+
+% section on overview of NN language models, DL language models, transformers based language models
 
 \subsection{Transformers and the Attention Mechanism}
 
@@ -420,6 +364,60 @@ by up to 3.9\% absolute, with +10\% on island effects and NPI licensing phenomen
 MLMs in a supervision-free manner"
 
 
+\section{Targeted linguistic evaluation of language models}
+
+Methodologies for evaluation a Language Model linguistic knowledge:
+* Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
+% TODO: review marvin2018targeted, wilcox2018rnn
+* "using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al.,
+2017; Conneau et al., 2018; Ettinger et al., 2018;
+Tenney et al., 2019). "  \citep{warstadt2020blimp}	
+
+On minimal pairs and necessity of controlling factors btw the two sentences:
+"Evaluating LMs on minimal pairs .. the caveat that the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP"
+
+(question/doubt/objection: BLIMP format might not be suitable for testing some phenomena.. ie chunking, some aspects of island effects..: "Our implementation of these phenomena is often
+narrower than the linguistic definition because of the particular constraints described above."  \citep{warstadt2020blimp}	
+(more extensive list of linguistic phenomena, and how they can be ..encoded in a Blimp format, and which can't. Each phenomena has more complementaty forms in which is tested in Blimp; phenomena need to be more fine grained, ie, for island effects, all subtypes; even subtypes of phenomena might even multiple aspects/linguistic facts..)
+
+(pros and cons of different approaches)
+
+
+On acceptability judgments
+"Acceptability judgments are the main form of
+behavioral data used in generative linguistics to
+measure human linguistic competence (Chomsky,
+1965; Schutze, 1996)." \citep{warstadt2020blimp}	
+
+inclusion, in LM testing, of "well-studied phenomena in linguistics such as control and
+raising, ellipsis, quantification, and countless others"  \citep{warstadt2020blimp}	
+
+"labor-intensive nature of collecting such targeted minimal pairs." \citep{warstadt2020blimp}	
+
+% "targeted linguistic evaluation" \citep{hu2020systematic}
+
+" targeted syntactic evaluation of language models" \citep{marvin2018targeted}
+"a language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
+"The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments,
+designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
+
+% "For example, given the two strings The keys to the cabinet are on the table and *The keys to the cabinet is on the table, a model that has learned the proper subject–verb number agreement rules for English should assign a higher probability to the grammatical plural verb in the first sentence than to the ungrammatical singular verb in the second (Linzen et al., 2016)." \citep{hu2020systematic}
+
+"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex. We can demonstrate this with an evaluation of models’ “\textbf{garden-pathing}” behavior (Futrell et al., 2019)." \citep{hu2020systematic}
+
+% "In this paper, we broaden and deepen this line of inquiry by examining what LSTMs learn about an unexplored syntactic relationship: the filler–gap dependency." \citep{wilcox2018rnn}
+% "The filler–gap dependency is novel, insofar as learning it requires the network to generalize about the absence of material." \citep{wilcox2018rnn}
+
+% on Wilcox et al. work:
+% wilcox study only on wh-dependencies (a filler like ‘what’ or ‘who’) "a gap, which is an empty syntactic position licensed by the filler. "
+%  (1) a. I know what the lion devoured at sunrise.
+% b.*I know that the lion devoured at sunrise.
+
+% TODO: test filler-gap examples in italian (which are propedeutic to testing restriction violations/island effects)
+% first tell if the italian LM encode correctly filler gap contrasts like 1a-b because the issues on island effects might be confounded by those on filler gaps
+
+% "There is also a semantic relationship between the filler and the gap, in the sense that “what” is semantically the direct object of “devoured”. In this work, we study the behavior of language models, and so we treat the filler–gap dependency purely as a licensing relationship." \citep{wilcox2018rnn}
+
 \section{Linguistic evaluation measures for language models}
 
 
@@ -479,6 +477,22 @@ Hart and Todd R. Risley. 1992. American parenting of language-learning children:
 "Addressing this problem will likely involve new forms of regularization to mitigate this overfitting and, more importantly, new pretraining
 strategies that can help the model better learn the fundamental ingredients of grammaticality from unlabeled data" 
 
+
+Limits on the CoLA approach: "the need to train a supervised classifier on CoLA data prior to evaluation." \citep{warstadt2020blimp}	
+"This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised
+models like LMs.2""2Though see \citet{lau2017grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
+
+adapting language models with finetuning to perform downstream tasks doesn’t necessary reflect knowledge that is already present in the LMs  \citep{warstadt2020blimp}
+"Warstadt and Bowman (2019) measure phenomenon-specific performance on
+CoLA for several pretrained sentence encoding
+models: an LSTM, GPT (Radford et al., 2018),
+and BERT. However, the use of supervision
+prevents making strong conclusions about the
+sentence encoding component, since it is not
+possible to distinguish what the encoder knows
+from what is learned through supervised training
+on acceptability data." \citep{warstadt2020blimp}
+
 % "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
 % Perplexity issues: 
 % ". In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
@@ -489,15 +503,6 @@ strategies that can help the model better learn the fundamental ingredients of g
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
 % "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
 
-"targeted linguistic evaluation" \citep{hu2020systematic}
-" targeted syntactic evaluation of language models" \citep{marvin2018targeted}
-"a language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
-"The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments,
-designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
-
-% "For example, given the two strings The keys to the cabinet are on the table and *The keys to the cabinet is on the table, a model that has learned the proper subject–verb number agreement rules for English should assign a higher probability to the grammatical plural verb in the first sentence than to the ungrammatical singular verb in the second (Linzen et al., 2016)." \citep{hu2020systematic}
-
-"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex. We can demonstrate this with an evaluation of models’ “\textbf{garden-pathing}” behavior (Futrell et al., 2019)." \citep{hu2020systematic}
 
 Factorial experimental setup example:
 " A targeted syntactic evaluation for gardenpathing is provided by comparing surprisals at the disambiguating word found in the set of four examples below (Futrell et al., 2019):"\citep{hu2020systematic}
@@ -772,6 +777,12 @@ PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked}
 
 \section{Test suites}
 \subsection{CoLA, ItaCoLA}
+
+
+Corpora of sentences and their grammaticality. "The most recent
+and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
+CoLA is included in the GLUE benchmark (Wang et al., 2018)
+
 ..
 the meaning of cross entropy (average?)
 even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
@@ -791,6 +802,8 @@ Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the
 
 
 \section{Review of results from previous related work}
+
+"Current models like BERT (Devlin et al., 2019) and T5 (Raffel et al., 2019) now learn to give acceptability judgments that approach or even exceed individual human agreement with CoLA." \citep{warstadt2020blimp}	
 
 " Section 4 investigates whether
 LSTM language models are sensitive to various
