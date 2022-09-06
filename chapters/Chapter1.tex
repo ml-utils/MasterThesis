@@ -339,6 +339,19 @@ MLMs in a supervision-free manner"
 % "targeted linguistic evaluation" \citep{hu2020systematic}
 % " targeted syntactic evaluation of language models" \citep{marvin2018targeted}
 
+Minimal pairs vs sentence acceptability (with CoLA)
+acceptability: absolute score
+minimal pairs: relative score, compared btw two sentences
+also minimal pairs scoring is done with the pretrained models, while CoLA involves finetuning
+% study by Lau et al is ..intermediate in comparing sentences that are not strictly minimal pairs
+% Follow study from Trotta et al, and the original CoLA paper 
+on the alternative of minimal pairs:
+"This task is often employed to evaluate language models because the outputted
+probabilities for a pair of minimally different sentences are directly comparable, while the output for a single sentence cannot be taken as a measure
+of acceptability without some kind of normalization (Lau et al., 2016)"
+
+"Accordingly, CoLA, but not datasets based solely on preferences between minimal pairs, may be used to evaluate models’ ability to make judgments that align with both native speaker judgments and the predictions of generative theories."
+
 "A language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
 "The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments,
 designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
@@ -364,14 +377,14 @@ Methodologies for evaluation a Language Model linguistic knowledge:
 
 % ? also MDL (min descr lenght approaches?)
 
-\subsection{Probing tasks}
+\subsection{Probing classifiers}
 
 "using probing tasks in which a classifier is trained to directly predict grammatical properties of a sentence  (Shi et al., 2016; Adi et al.,
 2017; Conneau et al., 2018; Ettinger et al., 2018;
 Tenney et al., 2019). "  \citep{warstadt2020blimp}	
 
 
-\subsection{Estimating LM acceptability scores}
+\subsection{Acceptability scores}
 ..
 CoLA, ItaCoLA
 
@@ -381,6 +394,30 @@ On acceptability judgments
 
 % binary vs graded measurement used in psycholinguistic studies
 ..
+% acceptability results from the cola paper:
+
+% "Our results identify specific syntactic features that make sentences harder to classify, such as long distance dependencies (What do you think I ate?), and others that have little effect on difficulty, such as non-canonical argument structures like passives (The book was read)." (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
+
+% "Furthermore, some constructions highlight or minimize the differences between models. For example, GPT and BERT far out perform the BiLSTM on movement phenomena such as clefts (\textit{"It is Bo that left"}), yet have no advantage on sentences with adjuncts ("\textit{Sue exercises in the morning}")." 
+% "We wish to exercise caution in interpreting these results since it is not clear to what extent an encoder’s failure on a particular phenomenon is due to a weakness of the encoder rather than the training data or probing classifier. However, this caveat applies to varying degrees to all probing resources. In this context of other similar linguistically informed datasets, our analysis set addresses the critical need for a evaluation task with wide coverage of linguistic phenomena"
+
+% "Hence, unacceptable sentences in CoLA tend to be maximally similar to acceptable sentences and are unacceptable for a single identifiable reason."   (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
+
+% note the processing that was done for CoLA and ItaCoLA, ie editing less common words by checking their occurence, respectively, in the BNC and .. (a tool .. for it), noting that we ..did not check that ..for time constraints ..
+
+% " Our large sentence encoders are limited to 100-200 million tokens of training data, which is within a factor of ten of the number of tokens human learners are exposed to during language acquisition (Hart and Risley, 1992).11  11Hart and Risley (1992) find that children in affluent families are exposed to about 45 million tokens by age 4." (Warstadt et al 2019 Neural Network Acceptability Judgments)
+% Hart and Todd R. Risley. 1992. American parenting of language-learning children: Persisting differences in family-child interactions observed in natural home environments. Developmental Psychology, 28(6):1096.
+
+
+% "Addressing this problem will likely involve new forms of regularization to mitigate this overfitting and, more importantly, new pretraining strategies that can help the model better learn the fundamental ingredients of grammaticality from unlabeled data" 
+
+
+% Limits on the CoLA approach: "the need to train a supervised classifier on CoLA data prior to evaluation." \citep{warstadt2020blimp}	
+% "This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised models like LMs.2""2Though see \citet{lau2017grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
+
+% other limit of fintuning for acceptability:
+% adapting language models with finetuning to perform downstream tasks doesn’t necessary reflect knowledge that is already present in the LMs  \citep{warstadt2020blimp}
+% "Warstadt and Bowman (2019) measure phenomenon-specific performance on CoLA for several pretrained sentence encoding models: an LSTM, GPT (Radford et al., 2018), and BERT. However, the use of supervision prevents making strong conclusions about the sentence encoding component, since it is not possible to distinguish what the encoder knows from what is learned through supervised training on acceptability data." \citep{warstadt2020blimp}
 
 \subsection{Approaches based on minimal pairs}
 Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
@@ -414,86 +451,9 @@ Sprouse, Wilcox, Hu, ..
 
 % "There is also a semantic relationship between the filler and the gap, in the sense that “what” is semantically the direct object of “devoured”. In this work, we study the behavior of language models, and so we treat the filler–gap dependency purely as a licensing relationship." \citep{wilcox2018rnn}
 
+
 \section{Linguistic evaluation measures for language models}
 
-
-
-Minimal pairs vs sentence acceptability (with CoLA)
-study for lau et al is ..intermediate in comparing sentences that are not strictly minimal pairs
-acceptability: absolute score
-minimal pairs: relative score, compared btw two sentences
-Follow study from Trotta et al, and the original CoLA paper 
-also minimal pairs scoring is done with the pretrained models, while CoLA involves finetuning
-
-"Our results identify specific syntactic features that make sentences harder to classify, such as long distance dependencies (What do you think I
-ate?), and others that have little effect on difficulty, such as non-canonical argument structures like passives (The book was read)." (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
-
-exemplary analysis acceptability results from the cola paper:
-"Our results identify specific syntactic features
-that make sentences harder to classify, such as
-long distance dependencies (What do you think I
-ate?), and others that have little effect on difficulty, such as non-canonical argument structures
-like passives (The book was read). Furthermore,
-some constructions highlight or minimize the differences between models. For example, GPT and
-BERT far out perform the BiLSTM on movement
-phenomena such as clefts (It is Bo that left), yet
-have no advantage on sentences with adjuncts (Sue exercises in the morning). We wish to exercise caution in interpreting these results since it is not
-clear to what extent an encoder’s failure on a particular phenomenon is due to a weakness of the encoder rather than the training data or probing
-classifier. However, this caveat applies to varying
-degrees to all probing resources. In this context of
-other similar linguistically informed datasets, our analysis set addresses the critical need for a evaluation task with wide coverage of linguistic phenomena"
-
-"Hence, unacceptable sentences in CoLA tend to
-be maximally similar to acceptable sentences and
-are unacceptable for a single identifiable reason."   (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
-
-on the alternative of minimal pairs:
-"This task is often employed
-to evaluate language models because the outputted
-probabilities for a pair of minimally different sentences are directly comparable, while the output
-for a single sentence cannot be taken as a measure
-of acceptability without some kind of normalization (Lau et al., 2016)"
-
-"Accordingly, CoLA, but not datasets based
-solely on preferences between minimal pairs, may
-be used to evaluate models’ ability to make judgments that align with both native speaker judgments and the predictions of generative theories."
-
-note the processing that was done for CoLA and ItaCoLA, ie editing less common words by checking their occurence, respectively, in the BNC and .. (a tool .. for it), noting that we ..did not check that ..for time constraints ..
-
-" Our large sentence encoders are limited
-to 100-200 million tokens of training data, which
-is within a factor of ten of the number of tokens
-human learners are exposed to during language
-acquisition (Hart and Risley, 1992).11 
-11Hart and Risley (1992) find that children in affluent families are exposed to about 45 million tokens by age 4.
-" (Warstadt et al 2019 Neural Network Acceptability Judgments)
-Hart and Todd R. Risley. 1992. American parenting of language-learning children: Persisting differences in family-child interactions observed in natural home environments. Developmental Psychology, 28(6):1096.
-
-
-"Addressing this problem will likely involve new forms of regularization to mitigate this overfitting and, more importantly, new pretraining
-strategies that can help the model better learn the fundamental ingredients of grammaticality from unlabeled data" 
-
-
-Limits on the CoLA approach: "the need to train a supervised classifier on CoLA data prior to evaluation." \citep{warstadt2020blimp}	
-"This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised
-models like LMs.2""2Though see \citet{lau2017grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
-
-adapting language models with finetuning to perform downstream tasks doesn’t necessary reflect knowledge that is already present in the LMs  \citep{warstadt2020blimp}
-"Warstadt and Bowman (2019) measure phenomenon-specific performance on
-CoLA for several pretrained sentence encoding
-models: an LSTM, GPT (Radford et al., 2018),
-and BERT. However, the use of supervision
-prevents making strong conclusions about the
-sentence encoding component, since it is not
-possible to distinguish what the encoder knows
-from what is learned through supervised training
-on acceptability data." \citep{warstadt2020blimp}
-
-% "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
-% Perplexity issues: 
-% ". In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
-
-%"This measure conflates multiple sources of success (or failure) in predicting the next word: common collocations, semantics, pragmatics, syntax, and so on. The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions." \citep{marvin2018targeted}
 
 % (Factorial design as a supplement to minimal pairs assessment)
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
@@ -649,6 +609,11 @@ are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 \subsubsection{Issues with perplexity}
 
+% "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
+% Perplexity issues: 
+% ". In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
+
+%"This measure conflates multiple sources of success (or failure) in predicting the next word: common collocations, semantics, pragmatics, syntax, and so on. The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions." \citep{marvin2018targeted}
 
 % (observation: a problem with perplexities is that it mixes knowledge of language with actually studying a domain to be able to predict the content; studiare a memoria il testset)
 
