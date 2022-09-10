@@ -114,7 +114,9 @@ pdfcreator={TexStudio}]{hyperref}
 % for image positioning
 \usepackage{float}
 
-
+% for numbering linguistic examples
+\usepackage{gb4e} % problem, conflict with other packages
+\noautomath
 
 % -----------------------------------------------------------------
 
@@ -222,7 +224,6 @@ pdfcreator={TexStudio}]{hyperref}
 \theoremstyle{definition}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{example}[thm]{Example}
-
 
 
 % -----------------------------------------------------------------

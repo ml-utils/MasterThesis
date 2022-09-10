@@ -332,43 +332,77 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 \chapter{Island effects}
 
-An island effect is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance "filler-gap" dependency which crosses certain constructs metaphorically called syntactic islands.\citep{sprouse2013experimental}
 
-"filler-gap" dependencies are ..
+An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs, which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
+
+In psycholinguistic terminology (since \citet{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or "filler" (e.g. a complementizer like “what” or ”who”) and the canonical position (called “gap”) of the predicate argument that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}, like in the following examples (we mark the gap with an underscore):
+
+\begin{exe}
+	\ex
+		\begin{xlist}
+			\ex What does Susan think that John bought \_?
+			\ex *What does Susan wonder [whether John bought \_]?
+		\end{xlist}
+\end{exe}
+
+%\begin{exe}
+%	\ex
+%	\begin{xlist}
+%		\ex Chi pensa che io abbia riscosso il pagamento?
+%		\ex ..
+%	\end{xlist}
+%\end{exe}
 
 
-% Intro / definition of island effects
-island constraints inhibit ungrammatical long-distance dependency formation
+%\begin{exe}
+%	\ex[*]{Example this ungrammatical is.}
+%	\ex[??]{This example questionable is.}		
+%\end{exe}
+%
+%\begin{exe}
+%	\ex \gll la mujer\\
+%	the woman\\
+%	\glt `the woman'
+%\end{exe}
 
-"filler-gap dependency processing in sentences that involve long-distance dislocation of a constituent, as in wh-questions (1a) or relativization (1b)." (Omaki and Schulz)
 
-"In these constructions, the parser must identify the gap position— indicated by the underlines in (1)—to assign a thematic interpretation to the dislocated constituent (called the fi ller; boldface type in (1))."
 
-Filler-gap dependencies def
-Islands def
+% "the wh-word or wh-phrase at the beginning of the sentence, which is often called the antecedent or the filler," \citep{sprouse2016experimental}
 
-island constraints are restrictions on filler–gap dependencies \citep{ross1967constraints}
-"constraints on long-distance dependencies, also known as syntactic island constraints" \citep{pearl2013syntactic}
+% "2. A BRIEF INTRODUCTION TO SYNTACTIC ISLAND EFFECTS" \citep{pearl2013syntactic}
+% "One of the most interesting aspects of the syntax of human languages is the fact that dependencies can exist between two non-adjacent items in a sentence. For example, in English, Noun Phrases (NPs) typically appear adjacent (or nearly adjacent) to the verbs that select them as semantic arguments (e.g., "Jack likes Lily."). However, in English wh-questions, wh-words do not appear near the verb that selects them as semantic arguments. Instead, wh-words appear at the front of the sentence (la), resulting in a \textbf{long-distance dependency} between the wh-word and the verb that selects it (we will mark the canonical position of the wh-word, which is often called \textit{gap position}, with an underscore)."  \citep{pearl2013syntactic}
 
+% "For our purposes, filler–gap dependency refers to a relationship between a filler, which is a wh-complementizer such as ‘what’ or ‘who’, and a gap, which is an empty syntactic position licensed by the filler. In example (1a), the filler is ‘what’ and the gap appears after ‘devoured’, indicated with underscores. If the filler were not present, the gap would be ungrammatical, as in (1b). 
+% (1) a. I know what the lion devoured at sunrise. 
+% b.*I know that the lion devoured at sunrise." \citep{wilcox2018rnn}
+
+% def complementizer: a complementizer is a functional category that includes those words that can be used to turn a clause into the subject or object of a sentence (eg: "that", "che")
+
+% names of islands, which take their name from the respective constructs ..
+
+
+% "filler-gap dependency processing in sentences that involve long-distance dislocation of a constituent, as in wh-questions (1a) or relativization (1b)." (Omaki and Schulz)
+% "In these constructions, the parser must identify the gap position— indicated by the underlines in (1)—to assign a thematic interpretation to the dislocated constituent (called the filler; boldface type in (1))." (Omaki and Schulz)
+
+% "syntactic island constraints" \citep{pearl2013syntactic}
+
+
+\subsection{Syntactic islands and language acquisition theories}
 "potential problems posed by syntactic island effects for any theory of syntactic acquisition." "previous theories of syntactic island learning" "difficult questions about how the specific biases required by syntactic islands arise in the learner." \citep{pearl2013syntactic}
 "the syntactic theories of UG proponents." \citep{pearl2013syntactic}
 
 "to truly test the UG hypothesis, and in order for the resulting acquisition models to have a real impact on existing syntactic theories (Chomsky 1965), we need to choose a set of syntactic phenomena that are central to (UG-based) syntactic theories." \citep{pearl2013syntactic}
 "while the methodology for testing learning biases is relatively clear, the data required to actually perform those tests are still relatively scarce"   \citep{pearl2013syntactic}
 
-"Section 2 introduces syntactic island effects and presents the formal acceptability judgment experiments (from Sprouse, Wagers \& Phillips 2012a) that were used to quantitatively define the target state of learn" \citep{pearl2013syntactic} \\
-
 \subsection{Brief intro}
-"2. A BRIEF INTRODUCTION TO SYNTACTIC ISLAND EFFECTS" \citep{pearl2013syntactic}
-"One of the most interesting aspects of the syntax of human languages is the fact that dependencies can exist between two non-adjacent items in a sentence. For example, in English, Noun Phrases (NPs) typically appear adjacent (or nearly adjacent) to the verbs that select them as semantic arguments (e.g., "Jack likes Lily."). However, in English wh-questions, wh-words do not appear near the verb that selects them as semantic arguments. Instead, wh-words appear at the front of the sentence (la), resulting in a \textbf{long-distance dependency} between the wh-word and the verb that selects it (we will mark the canonical position of the wh-word, which is often called \textit{gap position}, with an underscore)."  \citep{pearl2013syntactic}
+
 
 "One of the defining characteristics of these long-distance wh-dependencies is that they appear to be unconstrained by length (Chomsky 1965; Ross 1967): the distance between the wh-word and the verb that selects it can be increased by any number of words and/or clauses (lb-d). Though there is clearly an upper bound on the number of words and/or clauses that an English speaker can keep track of during sentence processing, this restriction appears to be based on the limited nature of human working memory capacity rather than an explicit grammatical restriction on the length of wh-dependencies in English. Because of this syntacticians often describe wh-dependencies as \textit{unbounded} or \textit{long-distance} dependencies" \citep{pearl2013syntactic}
 
-"In psycholinguistics the terms FILLER and GAP have been used for the moved element and its trace respectively (following Fodor 1978, 1989)," (Hawkins 1999) " the wh-word or wh-phrase at the beginning of the sentence, which is often called the antecedent or the filler," \citep{sprouse2016experimental}
+"Section 2 introduces syntactic island effects and presents the formal acceptability judgment experiments (from Sprouse, Wagers \& Phillips 2012a) that were used to quantitatively define the target state of learn" \citep{pearl2013syntactic} \\
 
 
-(also "filler-gap dependencies, as in Wilcox?)
-(FILLER-GAP DEPENDENCIES, among which WH-questions and relative clauses)
+% (FILLER-GAP DEPENDENCIES, among which WH-questions and relative clauses)
 
 
 
@@ -377,18 +411,18 @@ island constraints are restrictions on filler–gap dependencies \citep{ross1967
 % "in the psycholinguistic literature (cf. Goodluck & Rochemont 1992 for a useful summary)" .. "t there appears to be a consensus on the following basic point. Filler-gap dependencies are difficult structures to process, and they are characterized by a heightened processing load and a constant effort to relate the filler to its appropriate gap. Identifying the gap is not easy. It is an empty element with no surface manifestation and its presence must be inferred from its immediate environment. At the same time the filler must be held in working memory, all the other material on the path from filler to gap must be processed simultaneously, and the gap must be correctly identified and filled. This basic insight has been central to psycholinguistic theorizing ever since Wanner and Maratsos (1978) provided experimental evidence for a measurable processing load within a filler-gap domain. Numerous subsequent experiments have refined it, and there has also been neurolinguistic support using event-related brain potentials or ERPs (Kluender & Kutas 1993a, b, King & Kutas 1992, 1993)"  (Hawkins 1999)
 
 % "One important finding is that there appears to be a FIRST RESORT STRATEGY in parsing" " A gap is postulated as soon as it can be and is filled with the filler" "t is first
-interpreted as the direct object of ask, i.e. it is assigned to the first subcategorizer encountered. This interpretation is then revised as soon as Mary is parsed, since Mary has to be understood as the direct object, and which student is returned to its unfilled filler status until the preposition about is encountered, to which it can be assigned as a complement. Clifton and Frazier define this parsing process as the ACTIVE FILLER HYPOTHESIS."  (Hawkins 1999)
+interpreted as the direct object of ask, i.e. it is assigned to the first subcategorizer encountered. This interpretation is then revised as soon as Mary is parsed, since Mary has to be understood as the direct object, and which student is returned to its unfilled filler status until the preposition about is encountered, to which it can be assigned as a complement. Clifton and Frazier define this parsing process as the ACTIVE FILLER HYPOTHESIS."  \citep{hawkins1999processing}
 "As words in the path from filler to gap are processed there appears
 to be a constant effort to find the gap, relate the filler to it, and thereby unload the filler from working memory by resolving the uncertainty over gap location"
 
 
 "Third," "grammars can avoid a filler-gap structure altogether by conventionalizing
-structural alternatives, such as resumptive pronou" (Hawkins 1999)
+structural alternatives, such as resumptive pronou" \citep{hawkins1999processing}
 
 
 % Ross's COMPLEX NP CONSTRAINT (buy quite a few languages are counterexamples to such a general constraint)
 % subsequent reformulations in terms of subjacency (Chomsky 1981) and barriers (Chomsky 1986): also to these quite a few languages are counterexamples)
-% "There is also a large amount of stipulation, and an absence of motivation or explanation for constraints of generality" (Hawkins, J. A. (1999). Processing Complexity and Filler-Gap Dependencies across Grammars. Language, 75(2), 244–285. https://doi.org/10.2307/417261)
+% "There is also a large amount of stipulation, and an absence of motivation or explanation for constraints of generality" \citep{hawkins1999processing} 
 % "Why should complex NPs be less hospitable environments for gaps than other structures? Why are there so-called wH-islands? Why are resumptive pronouns found in place of gaps in some syntactic positions and not others? We are simply told that this is the way things are. It is also apparent that there are numerous factors that contribute to wellformedness in this area-syntactic, semantic, and lexical-yet no unifying principle has been proposed for why all of them should be relevant and for why they combine together in the ways they do to give us the variation we observe." (Hawkins 1999)
 
 % "hard to process" argument for syntactic islands "Gaps in complex NPs are ungrammatical in many languages because they are hard structures to process" (Hawkins 1999)
@@ -401,7 +435,7 @@ d. What does Jack think that Lily said that Sarah heard that David stole \_" \\
 
 % TODO: add equivalent examples also for italian
 
-"Though it is true that w/i-dependencies are unconstrained by length, they are not entirely unconstrained. Linguists have observed that if the gap position of a w/i-dependency appears within certain syntactic structures, the resulting sentence will be unacceptable (Chomsky 1965; Ross 1967; Chomsky 1973; Huang 1982; and many others);" \citep{pearl2013syntactic}
+"Though it is true that wh-dependencies are unconstrained by length, they are not entirely unconstrained. Linguists have observed that if the gap position of a w/i-dependency appears within certain syntactic structures, the resulting sentence will be unacceptable (Chomsky 1965; Ross 1967; Chomsky 1973; Huang 1982; and many others);" \citep{pearl2013syntactic}
 
 "(2) a. *What did you make [the claim that Jack bought ]? \\
 b. * What do you think [the joke about ] offended Jack? \\
@@ -412,7 +446,7 @@ f. *What did [that Jack wrote ] offend the editor? \\
 g. *What did Jack buy [a book and ]? \\
 h. *Which did Jack borrow [ book]"  \\
 
-"Ross (1967) used the metaphorical term island to refer to these “gap-resistant” structures, evoking the idea that the wh-word could not move from the gapposition inside the island to the front of the sentence.3" 3 While it is true that this was originally a theory-laden metaphor (invoking the idea of movement that is central to transformational grammar), the term itself has been adopted by nearly all linguistic theories, therefore we will continue to use it here. A historical note: Ross (1967) attributed island effects to the illicit application of “chopping” rules within islands. Movement from islands was permitted. The prohibition against movement from islands is proposed in later
+"Ross (1967) used the metaphorical term island to refer to these “gap-resistant” structures, evoking the idea that the wh-word could not move from the gap position inside the island to the front of the sentence.3" 3 While it is true that this was originally a theory-laden metaphor (invoking the idea of movement that is central to transformational grammar), the term itself has been adopted by nearly all linguistic theories, therefore we will continue to use it here. A historical note: Ross (1967) attributed island effects to the illicit application of “chopping” rules within islands. Movement from islands was permitted. The prohibition against movement from islands is proposed in later
 accounts that built on Ross’s earlier work, most especially Chomsky’s Subjacency Theory (1973, 1981, 1986)." \citep{sprouse2013experimental}
 
 "Building on this, we will use the term island effect to refer to the unacceptability that arises when a gap position occurs within an island.4" 4" We have chosen the term island effect over the more common island violation because the former is agnostic about the source of the unacceptability (the primary question driving this volume), while the latter specifically refers to the violation of a specific (likely grammatical) constraint." \citep{sprouse2013experimental}
@@ -588,7 +622,7 @@ Table 1.1 in \citet{sprouse2013experimental}
 "As we will see in the next section, the variation in island effects between English and Italian involves both interrogative clause formation and related wh-dependencies (2) and headed relative clause formation and related rc-dependencies (3)"  \citep{sprouse2016experimental}
 
 \section{Filler–gap dependencies}
-\section{Defitions of the island structures testes here}
+\section{Defitions of the island structures tested here}
 wh-dependencies only
 
 \section{Island effects in Italian}
@@ -2159,7 +2193,7 @@ italian rc-dependencies, in the case of, introduced only by ..oblique relative p
 % as opposed to appositive relatives 
 % or restrictive relatives introduced by a complementizer
 
-% def: a complementizer is a functional category that includes those words that can be used to turn a clause into the subject or object of a sentence (eg: "that", "che")
+
 
 % recap the cross lingual diffs in En and It about island effects
 % then edit/write the whole chapter
