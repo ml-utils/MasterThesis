@@ -338,7 +338,7 @@ An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical
 In psycholinguistic terminology (since \citep{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or “filler” (e.g. a complementizer like “what” or ”who”) and the canonical position (often called “gap”, as a postulated empty position or element with no surface manifestation) of the predicate argument % check if only predicates, or any other constituent, like nouns, that the filler/"argument"/modifier modifies
 that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}.
 
-Consider the following examples, in which we mark the gaps with underscores:
+Consider the following examples (\ref{no_filler_gap_1} and \ref{filler_gap_1} in English, \ref{no_filler_gap_1_it} and \ref{filler_gap_1_it} in Italian), in which we mark the gaps with underscores, and the fillers in bold:
 
 %\begin{exe}
 %	\ex\label{here}
@@ -351,8 +351,23 @@ Consider the following examples, in which we mark the gaps with underscores:
 
 \begin{exe}
 	\ex{Susan thinks that John bought the book.} \label{no_filler_gap_1}
-	\ex{What does Susan think that John bought \_?} \label{filler_gap_1}
+	\ex{\textbf{What} does Susan think that John bought \textbf{\_}?} \label{filler_gap_1}
 \end{exe}
+
+\begin{exe}
+	\ex \gll Tu pensi	che io abbia comprato il libro.\\
+			You	think 	that I have bought the book\\
+	\glt `You think I bought the book'\label{no_filler_gap_1_it}
+	\ex \gll \textbf{Cosa}	pensi	che io abbia comprato \textbf{\_}?\\
+	What think 	that I have bought \\
+	\glt `What do you think I bought?'\label{filler_gap_1_it}
+\end{exe}
+
+% ? todo? separate section for the examples in italian?
+% mention here: "(we will discuss equivalent examples for Italian in section ..)"
+
+% names common to English and Italian: Andrea, Lara, ..
+
 % % todo: add an example in italian of a filler-gap dependency
 % In the (\subref{sub2}) examples. In the (\subref{sub}) examples.
 %\begin{exe}
@@ -363,21 +378,16 @@ Consider the following examples, in which we mark the gaps with underscores:
 	%	\end{xlist}
 %\end{exe}
 
-
 %\begin{exe}
 %	\ex[*]{Example this ungrammatical is.}
 %	\ex[??]{This example questionable is.}		
 %\end{exe}
 %
-%\begin{exe}
-%	\ex \gll la mujer\\
-%	the woman\\
-%	\glt `the woman'
-%\end{exe}
+
 
 In (\ref{no_filler_gap_1}) the argument \textit{the book } is adjacent to the predicate that selects it (\textit{bought}), while in (\ref{filler_gap_1}) the wh-word \textit{What} is not. Because of this, syntacticians sometimes call wh-dependencies as in (\ref{filler_gap_1}) \textit{long-distance} dependencies, distinguishing them from \textit{short-distance} dependencies as in (\ref{no_filler_gap_1}) where the two constituents in the dependency relationship are adjacent or nearly adjacent to each other \citep{pearl2013syntactic}.
  
-The distance between the filler and the gap can be made arbitrarily long (as long as human working memory capacity permits), unless a syntactic island intervenes, as in the following examples (taken from \citet{sprouse2013experimental}), in which the syntactic island has been marked within square brackets, and the asterisks indicate unacceptable sentences:
+The distance between the filler and the gap can be made arbitrarily long (as long as human working memory capacity permits), unless a syntactic island intervenes, as in the following examples (taken from \citet{sprouse2013experimental}), in which the syntactic islands have been marked within square brackets, and the asterisks indicate unacceptable sentences:
 
 \begin{exe}
 	\ex{What does Susan think that Lily said that Sarah heard that John bought \_?}\label{very_long_distance_1} 
@@ -402,20 +412,17 @@ In the adjunct island example above (\ref{adjunct_island_1}), there is the extra
 % TODO: add equivalent examples also for italian
 % for wh-dependencies, and subject islands in italian, is there a restriction to PPs only, or also subjects and direct objects?
 
-
-
-
+% todo: mention here that there are other types of dependencies possible other than wh-dependencies.
+% It should be noted here that although island effects are most commonly ..
+%"Though island effects are typically exemplified by wh-dependencies, it should be noted that island effects arise with several different types of long-distance dependencies in human languages, such as relative-clause formation (3), topicalization (4), and adjective-though constructions (5):" \citep{pearl2013syntactic}
 % (FILLER-GAP DEPENDENCIES, among which WH-questions and relative clauses)
 % "we focus here on a single type of long-distance dependency (WH-dependencies in English)" \citep{sprouse2012test}
 % other dependencies other than wh-dependencies
 %"Though island effects are typically exemplified by wh-dependencies, as in (2), the same effects crucially arise with several different types of long-distance dependencies in human languages: for instance rc-dependencies (3), dependencies between the topicalized preposed constituent and the lower gap (4), and dependencies between the preposed adjective and the lower gap in adjective-though constructions (5). " \citep{sprouse2016experimental}
 %
-%"Though island effects are typically exemplified by wh-dependencies, it should be noted that island effects arise with several different types of long-distance dependencies in human languages, such as relative-clause formation (3), topicalization (4), and adjective-though constructions (5):" \citep{pearl2013syntactic}
 
 
  
-
-
 
 
 % importance in linguistics
