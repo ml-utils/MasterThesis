@@ -335,16 +335,23 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs, which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
 
-In psycholinguistic terminology (since \citet{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or "filler" (e.g. a complementizer like “what” or ”who”) and the canonical position (called “gap”) of the predicate argument that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}, like in the following examples (we mark the gap with an underscore):
+In psycholinguistic terminology (since \citet{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or "filler" (e.g. a complementizer like “what” or ”who”) and the canonical position (called “gap”) of the predicate argument that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}
+
+As in the following examples(we mark the gaps with an underscore):
 
 \begin{exe}
-	\ex
+	\ex\label{here}
 		\begin{xlist}
-			\ex What does Susan think that John bought \_?
-			\ex *What does Susan wonder [whether John bought \_]?
+			\ex{What does Susan think that John bought \_?} \label{sub}
+			\ex[*]{What does Susan wonder [whether John bought \_]?} \label{sub2}
 		\end{xlist}
+	
 \end{exe}
 
+In (\ref{here}) we see that ..
+% In the (\subref{sub2}) examples. In the (\subref{sub}) examples.
+
+% todo: add an example in italian of a filler-gap dependency
 %\begin{exe}
 %	\ex
 %	\begin{xlist}
@@ -365,8 +372,6 @@ In psycholinguistic terminology (since \citet{fodor1978parsing}) a filler–gap 
 %	\glt `the woman'
 %\end{exe}
 
-
-
 % "the wh-word or wh-phrase at the beginning of the sentence, which is often called the antecedent or the filler," \citep{sprouse2016experimental}
 
 % "2. A BRIEF INTRODUCTION TO SYNTACTIC ISLAND EFFECTS" \citep{pearl2013syntactic}
@@ -385,14 +390,6 @@ In psycholinguistic terminology (since \citet{fodor1978parsing}) a filler–gap 
 % "In these constructions, the parser must identify the gap position— indicated by the underlines in (1)—to assign a thematic interpretation to the dislocated constituent (called the filler; boldface type in (1))." (Omaki and Schulz)
 
 % "syntactic island constraints" \citep{pearl2013syntactic}
-
-
-\subsection{Syntactic islands and language acquisition theories}
-"potential problems posed by syntactic island effects for any theory of syntactic acquisition." "previous theories of syntactic island learning" "difficult questions about how the specific biases required by syntactic islands arise in the learner." \citep{pearl2013syntactic}
-"the syntactic theories of UG proponents." \citep{pearl2013syntactic}
-
-"to truly test the UG hypothesis, and in order for the resulting acquisition models to have a real impact on existing syntactic theories (Chomsky 1965), we need to choose a set of syntactic phenomena that are central to (UG-based) syntactic theories." \citep{pearl2013syntactic}
-"while the methodology for testing learning biases is relatively clear, the data required to actually perform those tests are still relatively scarce"   \citep{pearl2013syntactic}
 
 \subsection{Brief intro}
 
@@ -621,7 +618,15 @@ Table 1.1 in \citet{sprouse2013experimental}
 
 "As we will see in the next section, the variation in island effects between English and Italian involves both interrogative clause formation and related wh-dependencies (2) and headed relative clause formation and related rc-dependencies (3)"  \citep{sprouse2016experimental}
 
-\section{Filler–gap dependencies}
+
+
+\subsection{Syntactic islands and language acquisition theories}
+"potential problems posed by syntactic island effects for any theory of syntactic acquisition." "previous theories of syntactic island learning" "difficult questions about how the specific biases required by syntactic islands arise in the learner." \citep{pearl2013syntactic}
+"the syntactic theories of UG proponents." \citep{pearl2013syntactic}
+
+"to truly test the UG hypothesis, and in order for the resulting acquisition models to have a real impact on existing syntactic theories (Chomsky 1965), we need to choose a set of syntactic phenomena that are central to (UG-based) syntactic theories." \citep{pearl2013syntactic}
+"while the methodology for testing learning biases is relatively clear, the data required to actually perform those tests are still relatively scarce"   \citep{pearl2013syntactic}
+
 \section{Defitions of the island structures tested here}
 wh-dependencies only
 
