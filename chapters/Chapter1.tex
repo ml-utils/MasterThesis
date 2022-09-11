@@ -330,12 +330,12 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 % \pagebreak
 
-\chapter{Island effects}
+\chapter{A Brief Introduction to Island Effects}
 
 
 An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs, which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
 
-In psycholinguistic terminology (since \citep{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or “filler” (e.g. a complementizer like “what” or “who”) and the canonical position (often called “gap”, as a postulated empty position or element with no surface manifestation) of the predicate argument % check if only predicates, or any other constituent, like nouns, that the filler/"argument"/modifier modifies
+In psycholinguistic terminology (since \citep{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or “filler” (e.g. a complementizer like “\textit{what}” or “\textit{who}” in English, or “\textit{cosa}” or “\textit{chi}” in Italian) and the canonical position (often called “gap”, as a postulated empty position or element with no surface manifestation) of the predicate argument % check if only predicates, or any other constituent, like nouns, that the filler/"argument"/modifier modifies
 that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}. 
 
 Consider the following examples (taken from \citet{sprouse2016experimental}), in which (\ref{no_filler_gap_1}) is a plain sentence with no “extraction”\footnote{The use of the term \textit{extraction} to refer to filler-gap dependencies evokes the idea of movement formulated in transformational grammars within the generative linguistic paradigm, as if the filler is moved or extracted from the canonical argument position \citep{sprouse2013experimental}.}, and (\ref{filler_gap_1}) contains a filler-gap dependency (the gaps are marked with underscores, and the fillers in bold) :
@@ -453,9 +453,63 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 % TODO: add equivalent examples also for italian
 % for wh-dependencies, and subject islands in italian, is there a restriction to PPs only, or also subjects and direct objects?
 
-\section{Testsuite Design}\label{sec:testsuite_design}
+\section{Test suite design}\label{sec:testsuite_design}
+
+In building test suite for our experiments, we largely followed the format of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects. However, we increased the number of items per phenomenon from 8 to 50, and we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
+
+For each of the four island effect types, we built 50 items, each containing 4 sentences covering a 2x2 factorial design crossing two factors: presence or absence of an island structure, and presence of a short or long-distance dependency.
+
+Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure; condition b. displays a long-distance dependency and no island structure; condition c. displays a short-distance dependency and an adjunct island structure; and condition d. displays a long-distance dependency crossing an adjunct island structure:
+
+\begin{exe}
+	\ex{\textsc{Adjunct island}}\label{adjunct_island_2_it}
+	\begin{xlist}
+		\ex\gll Chi dice che {l'imprenditore} ha raccolto i fondi sufficienti? \\
+		Who say that {the businessman} have raised the funds sufficient\\
+		\glt `Who says that the businessman raised sufficient funds?'
+		
+		\ex\gll {Che cosa} dici che {l'imprenditore} ha raccolto \_?\\
+		What say that {the businessman} have raised\\
+		\glt `What do you say that the businessman raised?'
+		
+		\ex\gll Chi ha avviato {l’attività} [quando ha raccolto i fondi sufficienti]?\\
+		Who have started {the business} when have raised the funds sufficient\\
+		\glt `Who started the business when he raised sufficient funds?'
+		
+		\ex\gll {*Che cosa} {l'imprenditore} ha avviato {l’attività} [quando ha raccolto \_]?\\
+		What {the businessman}  have started {the business} when have raised\\
+		\glt `What did the businessman started the business when he raised?'
+	\end{xlist}
+\end{exe}
+
+%Chi dice che Lucia pubblicherà il libro?
+%Che cosa dici che Lucia pubblicherà \_?	
+%Che cosa Lucia scriverà una recensione se l'editore pubblicherà \_?	
+%Chi scriverà una recensione se l'editore pubblicherà il libro?	
+
+%Chi pensa che io abbia scritto la lettera? [Non-island, short-distance-dependency]
+%Cosa pensi che io abbia scritto \_? [Non-island, long dependency]
+%Chi si domanda se io abbia scritto la lettera?	
+%Cosa ti domandi se io abbia scritto \_?		
 
 
+
+
+
+
+
+
+
+
+
+
+
+Differences with the target material in \citet{sprouse2016experimental}
+
+We replaced personal pronouns (“io”/“tu”) with common nouns (“lo studente”, “il giornalista”, etc.) that are more typically associated with the verbs in each item,  to reduce the lexical difference across the sentences of an item (eg. “\textit{Chi ha approvato la legge dopo aver valutato gli emendamenti?}” and	“\textit{Che cosa i deputati hanno approvato la legge dopo aver valutato?}”). % for the sentences that have less words. for instance ..
+
+For adjunct islands, while \citet{sprouse2016experimental} tested only conditional clauses introduced by “se” (“Cosa ti irriti \textit{se dimentico in ufficio}?”), we also tested temporal adjuncts introduced by “prima/dopo/mentre/quando” (“Che cosa i deputati hanno approvato la legge \textit{dopo aver valutato}?”), in 31 items out of 50.
+% " our choice to use conditional clauses as the adjunct structure in adjunct islands " "it would be interesting to test other types of adjuncts (e.g., causal adjuncts and temporal adjuncts). In this case, we chose conditional adjuncts because previous studies have demonstrated that conditional adjuncts are not transparently reducible to a processing complexity effect (Sprouse et al. 2012), therefore conditional adjuncts are a particularly good candidate for investigations of crosslinguistic variation in grammatical theories of island effects. " \citep{sprouse2016experimental}
 
 \section{Factorial definition of Island Effects}
 
@@ -556,8 +610,7 @@ clauses" \citep{sprouse2016experimental}
 "To remedy this, we decided to modify the factorial definition of subject islands slightly. Whereas the factor GAP-POSITION in the canonical factorial definition in (12) varies between MATRIX SUBJECT and EMBEDDED-SUBJECT gap positions, the modified subject island definition varies between EMBEDDED-OBJECT and EMBEDDED-SUBJECT gap positions. This allows us to include a PP adjunct with both the subject and object NP, minimizing the potential for the errant interpretation of the gap location of the displaced PP. This modified design closely resembles the definitions used in traditional syntax studies, but crucially results in a non-monotonic interaction rather than a monotonic interaction (the non-parallel lines have slopes in opposite directions). In order to minimize the differences caused by this modification, subject islands in both languages and both dependency types used the modified definition, but all other island types and dependency types used the canonical design." \citep{sprouse2016experimental}
 
 
-% NB: in our dataset, we mix multiple types of ajdunct clauses: conditional clauses as in Sprouse (introduced by "se"), temporal adjuncts (introduced by "prima/dopo/mentre/quando"), and one ..adversative adjunct (introduced by "ma")
-" our choice to use conditional clauses as the adjunct structure in adjunct islands " "it would be interesting to test other types of adjuncts (e.g., causal adjuncts and temporal adjuncts). In this case, we chose conditional adjuncts because previous studies have demonstrated that conditional adjuncts are not transparently reducible to a processing complexity effect (Sprouse et al. 2012), therefore conditional adjuncts are a particularly good candidate for investigations of crosslinguistic variation in grammatical theories of island effects. " \citep{sprouse2016experimental}
+
 
 % " the factorial design allows us to test any structure that we may be interested in, and crucially isolate a superadditive component that goes above and beyond the cost of the structure itself. This means that there is no way for the choice of structure to lead to a confound, as long as we respect the properties of the factorial design. In fact, in principle, the factorial design could be used to identify completely novel island effects this way" \citep{sprouse2016experimental}
 
