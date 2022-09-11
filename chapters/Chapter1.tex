@@ -393,7 +393,8 @@ The dependency in (\ref{filler_gap_1}) is called a wh-interrogative clause depen
 In (\ref{no_filler_gap_1}) the argument \textit{the book} is adjacent to the predicate that selects it (\textit{bought}), while in (\ref{filler_gap_1}) the wh-word \textit{What} is not. Because of this, syntacticians sometimes call wh-dependencies as in (\ref{filler_gap_1}) \textit{long-distance} dependencies, distinguishing them from \textit{short-distance} dependencies as in (\ref{no_filler_gap_1}) where the two constituents in the dependency relationship are adjacent or nearly adjacent to each other \citep{pearl2013syntactic}.
 
 
-The distance between the filler and the gap can be made arbitrarily long (as long as human working memory capacity permits), unless a syntactic island intervenes, as in the following examples (taken from \citet{sprouse2013experimental}), in which the syntactic islands have been marked within square brackets, and the asterisks indicate unacceptable sentences (we will discuss the respective island effect examples in Italian in \autoref{sec:island_effects_in_italian}):
+The distance between the filler and the gap can be made arbitrarily long (as long as human working memory capacity permits), unless a syntactic island intervenes, as in the following examples (taken from \citet{sprouse2013experimental})\footnote{In the examples we use the following notation conventions: the asterisks indicate unacceptable sentences, as it is common in linguistic literature. The syntactic islands constructs, and occasionally other clauses, are marked within square brackets, but this is for explanatory purposes only, they are not part of the sentences given as input to the language models. The gaps are marked with underscores, again for explanatory purposes only.}:
+% (we will discuss the respective island effect examples in Italian in \autoref{sec:island_effects_in_italian}):
 
 \begin{exe}
 	\ex{What does Susan think that Lily said that Sarah heard that John bought \_?}\label{very_long_distance_1} 
@@ -455,7 +456,9 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 
 \section{Test suite design}\label{sec:testsuite_design}
 
-In building test suite for our experiments, we largely followed the factorial design of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects. However, we increased the number of items per phenomenon from 8 to 50, and we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
+In building test suite for our experiments, we largely followed the factorial design of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects  (however, we increased the number of items per island effect type from 8 to 50).
+
+% and we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
 
 A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \cite{warstadt2020blimp}.
 
@@ -494,15 +497,19 @@ In a factorial design, the scores (being a log probability or a pseudo-log-likel
 \end{itemize}  
 
 The \textsc{lenght effect} should capture the decrease in sentence acceptability due to the increase of the dependency distance from short to a long filler-gap dependency. The \textsc{structure effect} should capture the effect of adding an island structure. \textsc{total effect} should capture the total effect. Subtracting the first two effects from the total effect should isolate the \textsc{island effect} alone, without consider the independent sentence processing cost due to the other two factors. We conclude that a model has 'learned' the island effect displayed in an item, if the island effect score on that item is greater than zero. 
+
 This is factorial score is used by \citet{sprouse2016experimental} to assess island effect in human subjects, equivalent to a differences-in-differences (DD) score \citep{maxwell2003designing}. Analogous factorial score have been used for language models by \citet{wilcox2018rnn} and \citet{hu2020systematic}.
 
 
-Differences with the target material in \citet{sprouse2016experimental}
+%\subsection{Differences with the target material in \citet{sprouse2016experimental}}
 
-We replaced personal pronouns (“io”/“tu”) with common nouns (“lo studente”, “il giornalista”, etc.) that are more typically associated with the verbs in each item,  to reduce the lexical difference across the sentences of an item (eg. “\textit{Chi ha approvato la legge dopo aver valutato gli emendamenti?}” and	“\textit{Che cosa i deputati hanno approvato la legge dopo aver valutato?}”). % for the sentences that have less words. for instance ..
+% move to observations in results
+% We replaced personal pronouns (“io”/“tu”) with common nouns (“lo studente”, “il giornalista”, etc.) that are more typically associated with the verbs in each item,  to reduce the lexical difference across the sentences of an item (eg. “\textit{Chi ha approvato la legge dopo aver valutato gli emendamenti?}” and	“\textit{Che cosa i deputati hanno approvato la legge dopo aver valutato?}”). % for the sentences that have less words. for instance ..
 
-For adjunct islands, while \citet{sprouse2016experimental} tested only conditional clauses introduced by “se” (“Cosa ti irriti \textit{se dimentico in ufficio}?”), we also tested temporal adjuncts introduced by “prima/dopo/mentre/quando” (“Che cosa i deputati hanno approvato la legge \textit{dopo aver valutato}?”), in 31 items out of 50.
+% For adjunct islands, while \citet{sprouse2016experimental} tested only conditional clauses introduced by “se” (“Cosa ti irriti \textit{se dimentico in ufficio}?”), we also tested temporal adjuncts introduced by “prima/dopo/mentre/quando” (“Che cosa i deputati hanno approvato la legge \textit{dopo aver valutato}?”), in 31 items out of 50.
 % " our choice to use conditional clauses as the adjunct structure in adjunct islands " "it would be interesting to test other types of adjuncts (e.g., causal adjuncts and temporal adjuncts). In this case, we chose conditional adjuncts because previous studies have demonstrated that conditional adjuncts are not transparently reducible to a processing complexity effect (Sprouse et al. 2012), therefore conditional adjuncts are a particularly good candidate for investigations of crosslinguistic variation in grammatical theories of island effects. " \citep{sprouse2016experimental}
+
+
 
 % todo: the senence acceptability estimates
 
