@@ -455,28 +455,30 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 
 \section{Test suite design}\label{sec:testsuite_design}
 
-In building test suite for our experiments, we largely followed the format of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects. However, we increased the number of items per phenomenon from 8 to 50, and we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
+In building test suite for our experiments, we largely followed the factorial design of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects. However, we increased the number of items per phenomenon from 8 to 50, and we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
 
-For each of the four island effect types, we built 50 items, each containing 4 sentences covering a 2x2 factorial design crossing two factors: presence or absence of an island structure, and presence of a short or long-distance dependency.
+A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \cite{warstadt2020blimp}.
 
-Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure; condition b. displays a long-distance dependency and no island structure; condition c. displays a short-distance dependency and an adjunct island structure; and condition d. displays a long-distance dependency crossing an adjunct island structure:
+In out case, for each of the four island effect types that we want to test, we built 50 \textsc{items}, each containing 4 sentences (one for \textsc{condition}) covering a 2x2 factorial design crossing two \textsc{factors}: presence or absence of an island structure (\textsc{structure} factor), and presence of a short or long-distance dependency (\textsc{gap-position} factor).
+
+Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure (\textsc{SD/NI}); condition b. displays a long-distance dependency and no island structure (\textsc{LD/NI}); condition c. displays a short-distance dependency and an adjunct island structure (\textsc{SD/IS}); and condition d. displays a long-distance dependency crossing an adjunct island structure (\textsc{LD/IS}). Sentences a-c are supposed to be acceptable, while d is unacceptable because of an island effect:
 
 \begin{exe}
 	\ex{\textsc{Adjunct island}}\label{adjunct_island_2_it}
 	\begin{xlist}
-		\ex\gll Chi dice che {l'imprenditore} ha raccolto i fondi sufficienti? \\
+		\ex\gll Chi dice che {l'imprenditore} ha raccolto i fondi sufficienti? \textsc{[SD/NI]}\\
 		Who say that {the businessman} have raised the funds sufficient\\
 		\glt `Who says that the businessman raised sufficient funds?'
 		
-		\ex\gll {Che cosa} dici che {l'imprenditore} ha raccolto \_?\\
+		\ex\gll {Che cosa} dici che {l'imprenditore} ha raccolto \_? \textsc{[LD/NI]}\\
 		What say that {the businessman} have raised\\
 		\glt `What do you say that the businessman raised?'
 		
-		\ex\gll Chi ha avviato {l’attività} [quando ha raccolto i fondi sufficienti]?\\
+		\ex\gll Chi ha avviato {l’attività} [quando ha raccolto i fondi sufficienti]? \textsc{[SD/IS]}\\
 		Who have started {the business} when have raised the funds sufficient\\
 		\glt `Who started the business when he raised sufficient funds?'
 		
-		\ex\gll {*Che cosa} {l'imprenditore} ha avviato {l’attività} [quando ha raccolto \_]?\\
+		\ex\gll {*Che cosa} {l'imprenditore} ha avviato {l’attività} [quando ha raccolto \_]? \textsc{[LD/IS]}\\
 		What {the businessman}  have started {the business} when have raised\\
 		\glt `What did the businessman started the business when he raised?'
 	\end{xlist}
