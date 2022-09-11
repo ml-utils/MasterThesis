@@ -335,10 +335,10 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs, which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
 
-In psycholinguistic terminology (since \citep{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or “filler” (e.g. a complementizer like “what” or ”who”) and the canonical position (often called “gap”, as a postulated empty position or element with no surface manifestation) of the predicate argument % check if only predicates, or any other constituent, like nouns, that the filler/"argument"/modifier modifies
-that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}.
+In psycholinguistic terminology (since \citep{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or “filler” (e.g. a complementizer like “what” or “who”) and the canonical position (often called “gap”, as a postulated empty position or element with no surface manifestation) of the predicate argument % check if only predicates, or any other constituent, like nouns, that the filler/"argument"/modifier modifies
+that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}. 
 
-Consider the following examples, in which we mark the gaps with underscores, and the fillers in bold:
+Consider the following examples (taken from \citet{sprouse2016experimental}), in which (\ref{no_filler_gap_1}) is a plain sentence with no “extraction”\footnote{The use of the term \textit{extraction} to refer to filler-gap dependencies evokes the idea of movement formulated in transformational grammars within the generative linguistic paradigm, as if the filler is moved or extracted from the canonical argument position \citep{sprouse2013experimental}.}, and (\ref{filler_gap_1}) contains a filler-gap dependency (the gaps are marked with underscores, and the fillers in bold) :
 
 %\begin{exe}
 %	\ex\label{here}
@@ -377,9 +377,22 @@ Consider the following examples, in which we mark the gaps with underscores, and
 %\end{exe}
 %
 
+% other types of dependencies, different from wh-dependencies (examples inline with parentheses)
+% todo: mention here that there are other types of dependencies possible other than wh-dependencies.
+% It should be noted here that although island effects are most commonly ..
+%"Though island effects are typically exemplified by wh-dependencies, it should be noted that island effects arise with several different types of long-distance dependencies in human languages, such as relative-clause formation (3), topicalization (4), and adjective-though constructions (5):" \citep{pearl2013syntactic}
+% (FILLER-GAP DEPENDENCIES, among which WH-questions and relative clauses)
+% "we focus here on a single type of long-distance dependency (WH-dependencies in English)" \citep{sprouse2012test}
+% other dependencies other than wh-dependencies
+%"Though island effects are typically exemplified by wh-dependencies, as in (2), the same effects crucially arise with several different types of long-distance dependencies in human languages: for instance rc-dependencies (3), dependencies between the topicalized preposed constituent and the lower gap (4), and dependencies between the preposed adjective and the lower gap in adjective-though constructions (5). " \citep{sprouse2016experimental}
 
-In (\ref{no_filler_gap_1}) the argument \textit{the book } is adjacent to the predicate that selects it (\textit{bought}), while in (\ref{filler_gap_1}) the wh-word \textit{What} is not. Because of this, syntacticians sometimes call wh-dependencies as in (\ref{filler_gap_1}) \textit{long-distance} dependencies, distinguishing them from \textit{short-distance} dependencies as in (\ref{no_filler_gap_1}) where the two constituents in the dependency relationship are adjacent or nearly adjacent to each other \citep{pearl2013syntactic}.
- 
+The dependency in (\ref{filler_gap_1}) is called a wh-interrogative clause dependency (wh-dependency, in short) because the filler is an interrogative wh-word. There are however other types of filler-gap dependencies that are blocked by syntactic islands, like relative clause dependencies (rc-dependencies, in short)\footnote{In rc-dependencies, the filler can be either a relative pronoun or a head noun, and it introduces a headed relative clause that hosts the gap, as in the example (from \citet{sprouse2016experimental}) “\textit{I like \textbf{the car} that you think [that John bought \_].}”}. Island effects have been shown to display different patterns of variations with different dependency types, but in the present work we'll focus only on wh-dependencies.
+
+
+
+In (\ref{no_filler_gap_1}) the argument \textit{the book} is adjacent to the predicate that selects it (\textit{bought}), while in (\ref{filler_gap_1}) the wh-word \textit{What} is not. Because of this, syntacticians sometimes call wh-dependencies as in (\ref{filler_gap_1}) \textit{long-distance} dependencies, distinguishing them from \textit{short-distance} dependencies as in (\ref{no_filler_gap_1}) where the two constituents in the dependency relationship are adjacent or nearly adjacent to each other \citep{pearl2013syntactic}.
+
+
 The distance between the filler and the gap can be made arbitrarily long (as long as human working memory capacity permits), unless a syntactic island intervenes, as in the following examples (taken from \citet{sprouse2013experimental}), in which the syntactic islands have been marked within square brackets, and the asterisks indicate unacceptable sentences (we will discuss the respective island effect examples in Italian in \autoref{sec:island_effects_in_italian}):
 
 \begin{exe}
@@ -387,7 +400,7 @@ The distance between the filler and the gap can be made arbitrarily long (as lon
 	\ex{\textsc{Whether island:} \\ *What does Susan wonder [whether John bought \_]?} \label{whether_island_1}
 \end{exe}
 
-It is worth mentioning here that island effects have been found to decrease with repeated exposure, that is, an individual repeatedly exposed to an island structure such as the one in (\ref{whether_island_1}), will find the resulting sentences acceptable or less unacceptable \citep{chaves2014subject}.
+It is worth mentioning here that island effects have been found to decrease with repeated exposure, that is, an individual repeatedly exposed to an island structure such as the one in (\ref{whether_island_1}), will find the resulting sentences acceptable, or less unacceptable \citep{chaves2014subject}.
 
 Island effects are usually named after the type of syntactic structure that creates them \citep{sprouse2013experimental}. The sentence in (\ref{whether_island_1}) exemplifies an extraction from a wh-island, specifically of the whether-island sub-type, that is from an embedded clause headed with the complementizer “whether” \citep{wilcox2018rnn}. Whether islands are among the most easily intelligible types of islands for learners \citep{pearl2013syntactic}, along with Adjunct islands (\ref{adjunct_island_1}), Complex Noun Phrase islands (\ref{complex_np_island_1}) and Subject islands (\ref{subject_island_1}), which are the four types on which we'll focus in the present thesis. The following examples are taken from \citet{sprouse2016experimental}:
 
@@ -428,7 +441,7 @@ In the adjunct island example above (\ref{adjunct_island_1}), there is the extra
 	\end{xlist}
 \end{exe}
 
-Island effects in Italian were first studied by \citep{rizzi1982violations}, which observed some cross-linguistic variation with respect to English. However the above four island subtypes, with  wh-dependencies, are in effect both in English and Italian \citep{rizzi1982violations, sprouse2016experimental}.
+Island effects in Italian were first studied by \citep{rizzi1982violations}, which observed some cross-linguistic variation between English and Italian on island effects with rc-dependencies. However, the above four syntactic islands are constructed with wh-dependencies, and these configurations have been shown to produce island effects in both English and Italian \citep{rizzi1982violations, sprouse2016experimental}.
 
 % "1 In the syntactic literature it is common to use the label “complex NP island effects” to refer both to extraction from the clausal complement of a noun, as in (2b), and from a relative clause as in (2e). In this paper we use a stricter terminology and use “complex NP island” to refer only to the clausal complement of a noun. See Cecchetto and Donati (2015) for a nonstandard view of this construction."  \citep{sprouse2016experimental}
 
@@ -436,20 +449,30 @@ Island effects in Italian were first studied by \citep{rizzi1982violations}, whi
 % TODO: add equivalent examples also for italian
 % for wh-dependencies, and subject islands in italian, is there a restriction to PPs only, or also subjects and direct objects?
 
-% todo: mention here that there are other types of dependencies possible other than wh-dependencies.
-% It should be noted here that although island effects are most commonly ..
-%"Though island effects are typically exemplified by wh-dependencies, it should be noted that island effects arise with several different types of long-distance dependencies in human languages, such as relative-clause formation (3), topicalization (4), and adjective-though constructions (5):" \citep{pearl2013syntactic}
-% (FILLER-GAP DEPENDENCIES, among which WH-questions and relative clauses)
-% "we focus here on a single type of long-distance dependency (WH-dependencies in English)" \citep{sprouse2012test}
-% other dependencies other than wh-dependencies
-%"Though island effects are typically exemplified by wh-dependencies, as in (2), the same effects crucially arise with several different types of long-distance dependencies in human languages: for instance rc-dependencies (3), dependencies between the topicalized preposed constituent and the lower gap (4), and dependencies between the preposed adjective and the lower gap in adjective-though constructions (5). " \citep{sprouse2016experimental}
-%
+\section{Testsuite Design}\label{sec:testsuite_design}
 
 
- 
+
+\section{Factorial definition of Island Effects}
 
 
-% importance in linguistics
+% "However, investigating the learning of syntactic island effects requires \textbf{a formally explicit definition} of the target state beyond the diacritics that are typically used to delineate unacceptable sentences in syntactic articles." \citep{pearl2013syntactic}
+
+% "To that end, we decided to explicitly construct the target state from data from \citet{sprouse2012test}, who collected formal acceptability judgments for four island types using the magnitude estimation task: Complex NP islands (2a), (simple) Subject islands (2b), Whether islands (2c), and (conditional) Adjunct islands (2d). These four islands were selected by Sprouse, Wagers \& Phillips (2012a) for several reasons. First, they have been argued to be captured by syntactic constraints (e.g., Subjacency or the Condition on Extraction Domains), as opposed to the island types that have historically been captured with semantic constraints (e.g., factive islands, negative islands)." \citep{pearl2013syntactic}
+
+
+% "Sprouse, Wagers \& Phillips used a (2x2 \textbf{factorial definition} of each island effect (shown in 6-9), which controls for the two salient syntactic properties of island-violating sentences: (i) they contain a long-distance dependency, and (ii) they contain an island structure. By translating each of these properties into separate factors, each with two levels (dependency GAP POSITION: matrix, embedded; STRUCTURE present in question: non-island, island), Sprouse, Wagers \& Phillips were able to define island effects as a superadditive interaction of the two factors—in other words, an island effect is the additional unacceptability that arises when the two factors are combined, above and beyond the independent contribution of each factor. Specifically, a syntactic island occurs when there is more unacceptability than what the EMBEDDED dependency and the presence of an ISLAND structure in the question contribute by themselves."\citep{pearl2013syntactic}
+
+% "an acceptability judgment experiment that employs a factorial definition of island effects. First, we can isolate the effect of dependency length on acceptability by contrasting a sentence with a short WH-dependency, an extraction from a matrix clause (5a), with a sentence that contains a longer WH-dependency, an extraction from an embedded clause (5b). Similarly, we can isolate the effect of processing island structures by contrasting a sentence with an island structure (5c) with a sentence that does not contain an island structure (5a). Finally, we can measure the effect on acceptability of processing both long-distance WH-dependencies and island structures—the island effect itself—by combining both in a single sentence (5d)." \citep{sprouse2012test}
+
+% " A matrix clause is a clause that contains another clause. Thus, the main clause in (37), the professor told the students, is a matrix clause since it contains another clause (that he was going to cancel the next class), which is said to be embedded inside the matrix clause:
+% (37)
+% The professor told the students that he was going to cancel the next class. ." (Martin J. Endley, Linguistic Perspectives on English Grammar. Information Age, 2010)
+
+
+\section{Draft sections}
+
+\subsection{importance in linguistics}
 
 % mention that it is debated in linguistics ..what causes island effects .. their nature
 % (and that experimental psycholinguistic studies, sprouse, have shown, confirmed, some predictions/ assessed some theories predictions ..)
@@ -467,9 +490,9 @@ Island effects in Italian were first studied by \citep{rizzi1982violations}, whi
 % mention phenomena that ameliorate the acceptabily of island effects: parasitic gaps , resumptive pronouns
 
 
-\section{Island effects in Italian}\label{sec:island_effects_in_italian}
+\subsection{Island effects in Italian}\label{sec:island_effects_in_italian}
 
-As an introductory description of island effects, we list here examples of the four types of islands in Italian for which we conducted experiments. We give a fuller description of our test suite in  \autoref{sec:testsuite_design}.
+%As an introductory description of island effects, we list here examples of the four types of islands in Italian for which we conducted experiments. We give a fuller description of our test suite in  \autoref{sec:testsuite_design}.
 
 
 
@@ -734,6 +757,8 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 %g. *What did Jack buy [a book and ]? \\
 %h. *Which did Jack borrow [ book]"  \\
 
+% 
+
 %"Ross (1967) used the metaphorical term island to refer to these “gap-resistant” structures, evoking the idea that the wh-word could not move from the gap position inside the island to the front of the sentence.3" 3 While it is true that this was originally a theory-laden metaphor (invoking the idea of movement that is central to transformational grammar), the term itself has been adopted by nearly all linguistic theories, therefore we will continue to use it here. A historical note: Ross (1967) attributed island effects to the illicit application of “chopping” rules within islands. Movement from islands was permitted. The prohibition against movement from islands is proposed in later
 %accounts that built on Ross’s earlier work, most especially Chomsky’s Subjacency Theory (1973, 1981, 1986)." \citep{sprouse2013experimental}
 
@@ -804,10 +829,6 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 % "In chapter 5, Pearl and Sprouse address one of the motivations for the debate between grammatical and reductionist accounts: the claim that a grammatical approach to island effects necessitates innate linguistic constraints (i.e., Universal Grammar). Contrary to this claim, Pearl and Sprouse propose (and implement) a computational model that can learn island effects as a type of grammatical constraint from a corpus of child-directed speech without resorting to innate linguistic biases (i.e., UG)." \citep{sprouse2013experimental}
 
 
-\section{Testsuite Design}\label{sec:testsuite_design}
-
-\section{Defitions of the island structures tested here}
-wh-dependencies only
 
 \section{Cross-linguistic variation in island effects}
 
@@ -866,23 +887,6 @@ wh-dependencies only
 % (iii)) The interaction of resumptive pronouns with island effects in Irish-type, Vata-type, and English-type languages;
 % (iv) The existence of parasitic gaps that can (grammatically) appear inside of island structures, as well as the restrictions on their appearance." \citep{sprouse2013experimental}
 
-
-
-\section{Factorial definition of Island Effects}
-
-
-% "However, investigating the learning of syntactic island effects requires \textbf{a formally explicit definition} of the target state beyond the diacritics that are typically used to delineate unacceptable sentences in syntactic articles." \citep{pearl2013syntactic}
-
-% "To that end, we decided to explicitly construct the target state from data from \citet{sprouse2012test}, who collected formal acceptability judgments for four island types using the magnitude estimation task: Complex NP islands (2a), (simple) Subject islands (2b), Whether islands (2c), and (conditional) Adjunct islands (2d). These four islands were selected by Sprouse, Wagers \& Phillips (2012a) for several reasons. First, they have been argued to be captured by syntactic constraints (e.g., Subjacency or the Condition on Extraction Domains), as opposed to the island types that have historically been captured with semantic constraints (e.g., factive islands, negative islands)." \citep{pearl2013syntactic}
-
-
-% "Sprouse, Wagers \& Phillips used a (2x2 \textbf{factorial definition} of each island effect (shown in 6-9), which controls for the two salient syntactic properties of island-violating sentences: (i) they contain a long-distance dependency, and (ii) they contain an island structure. By translating each of these properties into separate factors, each with two levels (dependency GAP POSITION: matrix, embedded; STRUCTURE present in question: non-island, island), Sprouse, Wagers \& Phillips were able to define island effects as a superadditive interaction of the two factors—in other words, an island effect is the additional unacceptability that arises when the two factors are combined, above and beyond the independent contribution of each factor. Specifically, a syntactic island occurs when there is more unacceptability than what the EMBEDDED dependency and the presence of an ISLAND structure in the question contribute by themselves."\citep{pearl2013syntactic}
-
-% "an acceptability judgment experiment that employs a factorial definition of island effects. First, we can isolate the effect of dependency length on acceptability by contrasting a sentence with a short WH-dependency, an extraction from a matrix clause (5a), with a sentence that contains a longer WH-dependency, an extraction from an embedded clause (5b). Similarly, we can isolate the effect of processing island structures by contrasting a sentence with an island structure (5c) with a sentence that does not contain an island structure (5a). Finally, we can measure the effect on acceptability of processing both long-distance WH-dependencies and island structures—the island effect itself—by combining both in a single sentence (5d)." \citep{sprouse2012test}
-
-% " A matrix clause is a clause that contains another clause. Thus, the main clause in (37), the professor told the students, is a matrix clause since it contains another clause (that he was going to cancel the next class), which is said to be embedded inside the matrix clause:
-% (37)
-% The professor told the students that he was going to cancel the next class. ." (Martin J. Endley, Linguistic Perspectives on English Grammar. Information Age, 2010)
 
 \section{Factorial Measurement of Island Effects in Psycholinguistic studies}
 
