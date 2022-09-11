@@ -202,8 +202,7 @@ The unidirectionality of conventional LMs allows to estimate log probabilities f
 $log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$" 
 % "which can be used out of the box to rescore hypotheses in end-to-end speech recognition and machine translation (Chan et al., 2016; Gulcehre et al., 2015), and to evaluate sentences for linguistic acceptability (Lau et al., 2017)."  \citep{salazar2020masked}
 
-"Given a unidirectional language model, we can infer the probability of a sentence by multiplying the estimated probabilities of each token using
-previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020furiously}
+"Given a unidirectional language model, we can infer the probability of a sentence by multiplying the estimated probabilities of each token using previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020furiously, bengio2003neural} 
 % →P (s) = |s| Y i =0 P(wi|w<i)
 % "where s is the sentence, and wi a token in s. LSTM, TDLM, and GPT2 are unidirectional models, so they all compute sentence probability as described" \citep{lau2020furiously}
 
@@ -460,7 +459,7 @@ In building test suite for our experiments, we largely followed the factorial de
 
 % and we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
 
-A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
+A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
 
 In out case, for each of the four island effect types that we want to test, we built 50 \textsc{items}, each containing 4 sentences (one per \textsc{condition}) covering a 2x2 factorial design crossing two \textsc{factors}: presence or absence of an island structure (\textsc{structure} factor), and presence of a short or long-distance dependency (\textsc{gap-position} factor).
 
@@ -488,6 +487,10 @@ Consider the item in the following example (\ref{adjunct_island_2_it}), in which
 \end{exe}
 
 In a factorial design, the scores (being a log probability or a pseudo-log-likelihood) that a language model gives to the sentences of an item like (\ref{adjunct_island_2_it}), can be compared to quantify and tease out the effect of different factors. For instance, in the case of a pseudo-log-likelihood (PLL) score obtained from a bi-directional LM like BERT, we could calculate the following quantities:
+% Factorial Measurement of Island Effects in Psycholinguistic studies
+% "A DD score is calculated for a two-way interaction as follows. First, calculate the difference (D1) between the scores in two of the four conditions. To make the DD scores as intuitively meaningful as possible, we have defined D1 as the difference between the NONISLAND/EMBEDDED condition and the ISLAND/EMBEDDED condition. Second, calculate the difference (D2) between the scores in the other two conditions. For our purposes, D2 is the difference between the NONISLAND/MATRIX condition and the ISLAND/MATRIX condition. Finally, calculate the difference between these two difference scores. Intuitively, the DD score measures how much greater the effect of an island structure is in a long distance dependency sentence than in a sentence with a local dependency" \citep{sprouse2012test}
+
+% todo: compare terminology: "DD score" in sprouse, while in Hu/Wilcox ..
 
 \begin{itemize}  
 	\item \textsc{length effect} = $PLL_a - PLL_b$
@@ -497,6 +500,8 @@ In a factorial design, the scores (being a log probability or a pseudo-log-likel
 \end{itemize}  
 
 The \textsc{length effect} should capture the decrease in sentence acceptability due to the increase of the dependency distance from short to a long filler-gap dependency. The \textsc{structure effect} should capture the effect of adding an island structure. The \textsc{total effect} should capture the whole decrease in sentence acceptability due to the increase in sentence complexity from the two factors and also due to the violation of the island constraint. Subtracting the first two effects from the total effect should isolate the \textsc{island effect} alone, without considering the sentence acceptability decrease due to the other two factors. We conclude that a model has 'learned' the island effect displayed in an item, if the island effect score on that item is greater than zero. 
+% accuracy score like in Hu ..
+
 
 This factorial score is used by \citet{sprouse2016experimental} to assess island effects as perceived by human subjects, and it is equivalent to a differences-in-differences (DD) score \citep{maxwell2003designing}. Similar factorial scores have been used for language models by \citet{wilcox2018rnn} and \citet{hu2020systematic}.
 
@@ -510,11 +515,84 @@ This factorial score is used by \citet{sprouse2016experimental} to assess island
 % For adjunct islands, while \citet{sprouse2016experimental} tested only conditional clauses introduced by “se” (“Cosa ti irriti \textit{se dimentico in ufficio}?”), we also tested temporal adjuncts introduced by “prima/dopo/mentre/quando” (“Che cosa i deputati hanno approvato la legge \textit{dopo aver valutato}?”), in 31 items out of 50.
 % " our choice to use conditional clauses as the adjunct structure in adjunct islands " "it would be interesting to test other types of adjuncts (e.g., causal adjuncts and temporal adjuncts). In this case, we chose conditional adjuncts because previous studies have demonstrated that conditional adjuncts are not transparently reducible to a processing complexity effect (Sprouse et al. 2012), therefore conditional adjuncts are a particularly good candidate for investigations of crosslinguistic variation in grammatical theories of island effects. " \citep{sprouse2016experimental}
 
-
-
 % todo: the senence acceptability estimates
 
-\section{Factorial definition of Island Effects}
+\section{Sentence acceptability estimates}
+
+We assessed uni-directional and bi-directional transformer-based Italian language models. For the uni-directional models (based on GPT-2), we scored sentences using the log probability given as output by the model, which is calculated by multiplying the estimated probabilities of each token $t_i$ of a sentence $s$ using the previously seen left tokens $t_{<i}$ as context\citep{lau2020furiously, bengio2003neural}:
+
+\begin{displaymath}
+	\log P(s) = \sum_{i=0}^{|s|} \log P_{GPT2}(t_i | t_{<i}) 
+\end{displaymath}
+% 	LP = \log P(s)
+% $\log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
+
+For bi-directional models, based on BERT, we estimated sentence probabilities using a pseudo-log-likelihood score (PLL), obtained by summing the conditional log probabilities of each token, using as context the rest of the tokens in the sentence (both left and right), as in \citet{salazar2020masked} and \citet{lau2020furiously}:
+
+\begin{displaymath}
+	PLL(s) =\sum_{i=0}^{|s|} \log P_{BERT}(t_i | t_{<i}, t_{>i}) 
+\end{displaymath}
+% W_{\setminus t}
+
+% normalizing by sentence lenght? as in Lau et al  .. not effective in our case .. numerical properties as in Salazar ..
+% this amounts to a sum of surpraisals .. as we'll discuss in section ..
+We used these two scores as a relative estimate of sentence acceptability, for the purpose of comparing similar sentences (varying across controlled conditions) within an item like (\ref{adjunct_island_2_it}).
+
+% ?todo: python code for sentence likelihood/probability scores
+
+% in method/.. section, mention the fact that we plan to also do a qualitative analysis comparing the plots with those of sprouse.. mention normalization of the scores to a liker scale ..
+% todo: compare accuracy percentage by DD scores.. with sprouse results on human, to see if the island types with the strongest DD also have the strongest accuracy (but it makes no sense, we can already compare the DD scores on the same datasets.. although the plots are on averages, while the accuracies might tell a different story)
+
+
+
+
+
+
+
+\section{Results}
+
+Our results confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like Gpt2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
+Salaza observed/found that for Gpt2-like model, the penalty term actually has a dampening effect on the ..
+In the sentence proability score given by Gpt2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surpraisals at individual token position.
+
+The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
+
+compare results btw italian bert and gpt.. gpt better by a little (which is surprising, considering that in english bert outperforms gpt instead, ..and by a wide marging.) This might be due to the due in which these models have been trained (discuss the amount and quality of data..)
+
+% todo, follow up experiments:
+% token spikes for the complex np items (problems comparing long island advantaged over long nonisland)
+% editing and scoring sentences for new test, balancing semantic material
+
+% todo: rerun the spike analysis, but sorting the examples by dd score
+% todo: check alpha value and redo score for gpt with PenLP
+\begin{table} \scriptsize 
+	\begin{center}
+		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
+			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT (it)}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
+			\textbf{Pheno-menon} & \textbf{Factorial score} & LP & LP & LP \\
+			\hline
+			\multirow{1}{0.8cm}{Adjunct}  
+			& DD & \textbf{98} & 64 & 94 \\ 
+			\hline
+			\multirow{1}{0.8cm}{ComplexNP} 
+			& DD & 46 & \textbf{100} & 30 \\  			 
+			\hline
+			\multirow{1}{0.8cm}{Subject} 
+			& DD & 82 & \textbf{90} & 64 \\ 
+			\hline
+			\multirow{1}{0.8cm}{Whether} 
+			& DD & \textbf{100} & \textbf{100} & 4 \\ 
+			\hline
+			\textbf{Average} & & 81.5\% & \textbf{88.5\%} & 48\%    \\ 	
+			
+		\end{tabular}
+		\caption{Accuracy percentages for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
+		\label{tab:accuracy_DD_it_data}
+	\end{center}
+\end{table}
+
+\section{Draft sections}
+\subsection{Factorial definition of Island Effects}
 
 
 % "However, investigating the learning of syntactic island effects requires \textbf{a formally explicit definition} of the target state beyond the diacritics that are typically used to delineate unacceptable sentences in syntactic articles." \citep{pearl2013syntactic}
@@ -531,7 +609,6 @@ This factorial score is used by \citet{sprouse2016experimental} to assess island
 % The professor told the students that he was going to cancel the next class. ." (Martin J. Endley, Linguistic Perspectives on English Grammar. Information Age, 2010)
 
 
-\section{Draft sections}
 
 \subsection{importance in linguistics}
 
@@ -890,7 +967,7 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 
 
 
-\section{Cross-linguistic variation in island effects}
+\subsection{Cross-linguistic variation in island effects}
 
 % "\textbf{distinction between strong and weak islands} in the literature (for a review see Szabolcsi 2006)" \citep{sprouse2016experimental, szabolcsi2006strong}
 % so from weakest to strongest ("more prototypical) islands, the order should be:
@@ -948,13 +1025,7 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 % (iv) The existence of parasitic gaps that can (grammatically) appear inside of island structures, as well as the restrictions on their appearance." \citep{sprouse2013experimental}
 
 
-\section{Factorial Measurement of Island Effects in Psycholinguistic studies}
 
-
-"A DD score is calculated for a two-way interaction as follows. First, calculate the difference (D1) between the scores in two of the four conditions. To make the DD scores as intuitively
-meaningful as possible, we have defined D1 as the difference between the NONISLAND/EMBEDDED condition and the ISLAND/EMBEDDED condition. Second, calculate the difference (D2) between the scores in the other two conditions. For our purposes, D2 is the difference between the NONISLAND/MATRIX condition and the ISLAND/MATRIX condition. Finally, calculate the difference between these two difference scores. Intuitively, the DD score measures how much greater the effect of an island structure is in a long distance dependency sentence than in a sentence with a local dependency" \citep{sprouse2012test}
-
-% todo: compare terminology: "DD score" in sprouse, while in Hu/Wilcox ..
 
 \chapter{Related work}
 
