@@ -335,9 +335,10 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs, which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
 
 In psycholinguistic terminology (since \citep{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or “filler” (e.g. a complementizer like “\textit{what}” or “\textit{who}” in English, or “\textit{cosa}” or “\textit{chi}” in Italian) and the canonical position (often called “gap”, as a postulated empty position or element with no surface manifestation) of the predicate argument % check if only predicates, or any other constituent, like nouns, that the filler/"argument"/modifier modifies
-that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}. 
+that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}. % the gap can be also referred to as trace or empty category \citep{jurafsky2021speech}
+Other terms to refer to filler–gap or long-distance dependencies are syntactic movement or \textit{extraction}\footnote{The use of the term \textit{extraction} to refer to filler-gap dependencies evokes the idea of movement formulated in transformational grammars, within the generative linguistic paradigm, as if the filler is moved or extracted from the canonical argument position \citep{sprouse2013experimental}. } \citep{jurafsky2021speech}.
 
-Consider the following examples (taken from \citet{sprouse2016experimental}), in which (\ref{no_filler_gap_1}) is a plain sentence with no “extraction”\footnote{The use of the term \textit{extraction} to refer to filler-gap dependencies evokes the idea of movement formulated in transformational grammars within the generative linguistic paradigm, as if the filler is moved or extracted from the canonical argument position \citep{sprouse2013experimental}.}, and (\ref{filler_gap_1}) contains a filler-gap dependency (the gaps are marked with underscores, and the fillers in bold) :
+Consider the following examples (taken from \citet{sprouse2016experimental}), in which (\ref{no_filler_gap_1}) is a plain sentence with no “extraction”, and (\ref{filler_gap_1}) contains a filler-gap dependency (the gaps are marked with underscores, and the fillers in bold) :
 
 %\begin{exe}
 %	\ex\label{here}
@@ -389,7 +390,7 @@ The dependency in (\ref{filler_gap_1}) is called a wh-interrogative clause depen
 
 
 
-In (\ref{no_filler_gap_1}) the argument \textit{the book} is adjacent to the predicate that selects it (\textit{bought}), while in (\ref{filler_gap_1}) the wh-word \textit{What} is not. Because of this, syntacticians sometimes call wh-dependencies as in (\ref{filler_gap_1}) \textit{long-distance} dependencies, distinguishing them from \textit{short-distance} dependencies as in (\ref{no_filler_gap_1}) where the two constituents in the dependency relationship are adjacent or nearly adjacent to each other \citep{pearl2013syntactic}.
+In (\ref{no_filler_gap_1}) the argument \textit{the book} is adjacent to the predicate that selects it (\textit{bought}), while in (\ref{filler_gap_1}) the wh-word \textit{What} is not. Because of this, syntacticians sometimes call wh-dependencies as in (\ref{filler_gap_1}) \textit{long-distance} dependencies, distinguishing them from \textit{short-distance} dependencies as in (\ref{no_filler_gap_1}) where the two constituents in the dependency relationship are adjacent or nearly adjacent to each other \citep{pearl2013syntactic}. 
 
 
 The distance between the filler and the gap can be made arbitrarily long (as long as human working memory capacity permits), unless a syntactic island intervenes, as in the following examples (taken from \citet{sprouse2013experimental})\footnote{In the examples we use the following notation conventions: the asterisks indicate unacceptable sentences, as it is common in linguistic literature. The syntactic islands constructs, and occasionally other clauses, are marked within square brackets, but this is for explanatory purposes only, they are not part of the sentences given as input to the language models. The gaps are marked with underscores, again for explanatory purposes only.}:
@@ -565,6 +566,7 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 
 % todo: rerun the spike analysis, but sorting the examples by dd score
 % todo: check alpha value and redo score for gpt with PenLP
+% strange very low results, with the dd score, for gilberto.. (problem in using the special tokens?)
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
@@ -1029,14 +1031,14 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 
 \chapter{Related work}
 
-The previous works closest to ours are those by \citet{wilcox2018rnn, hu2020systematic, sprouse2016experimental}, which use a factorial test design and test on island effects, on neural language models for \citet{wilcox2018rnn, hu2020systematic}, and on human subjects for \citet{sprouse2016experimental}
+The previous works closest to ours are those by \citet{wilcox2018rnn, hu2020systematic, sprouse2016experimental}, which use a factorial test design and assess island effects or filler-gap dependencies, on neural language models in the case of \citet{wilcox2018rnn, hu2020systematic}, and on human subjects in the case of \citet{sprouse2016experimental}
 
-\citet{hu2020systematic} uses a factorial design with minimal pairs and obtains a percentage accuracy score. %, without the need for statistical significance
-An item is considered to have been scored by the models when multiple conditions are met (eg. the unacceptable sentence is scored lower than the others, and a factorial effect measurement is greater than zero).
+\citet{hu2020systematic} used a factorial design in which each test items is composed of 4 minimal varying sentences, and obtains an overall percentage accuracy score on a test suite using a success criteria for items. %, without the need for statistical significance
+An item is considered to have been scored accurately by the models when multiple conditions are met (e.g. the unacceptable sentence is scored lower than the others, and a factorial effect measurement is greater than zero).
 However, the phenomena tested by \citet{hu2020systematic} can be formulated in the stringent way of minimal pairs differing for just one word; which is not well-suited for island effects. \\
-\citet{wilcox2018rnn, sprouse2016experimental} instead obtain a measure of statistical significance and a confidence interval. In the case of Sprouse, however, the format of sentences employed is not suitable for scoring language models, which require that all the sentences in an item are minimally different in terms of lexical content, and ideally should differ in just one word.
-\citet{wilcox2018rnn} circumvents this issue by scoring separately items with different construct (i.e. one with and one without an island structure) which are lexically very similar but differ more than a minimal pair. For both items, they measure the effect of the filler-gap dependency phenomena, whose effect is expected to drop in the presence of an island construct, which blocks it. If the drop in the effect is statistically significant, they can conclude that the model has "learned" the island constraint. \\
-Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-right unidirectional language models, none tested on bidirectional language models like BERT.
+\citet{wilcox2018rnn, sprouse2016experimental} obtain a measure of statistical significance and a confidence interval, instead of an accuracy score. In the case of Sprouse, however, the format of sentences employed shows more variation across the sentences of each item than those typically used for scoring language models, where usually all the sentences in an item are minimally different in terms of lexical content, and differ in just one word.
+\citet{wilcox2018rnn} circumvents the need for minimally different sentences, by scoring separately items with different constructs (i.e. one with and one without an island structure) which are lexically very similar but differ more than a minimal pair. For both items, they measure the effect of the filler-gap dependency phenomena, whose effect is expected to drop in the presence of an island construct, which blocks it. If the drop in the effect is statistically significant, they can conclude that the model has "learned" the island constraint. \\
+Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-right unidirectional language models, and not on bi-directional language models like BERT.
 
 %NB: the minimal pairs on Wilcox et al 2018, designed for  language model, are controlled for lexical content (indentical, basically), unlike those for human subjects in Sprouse et al. (..)
 
@@ -1089,50 +1091,67 @@ Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-ri
 
 \section{Approaches for targeted linguistic evaluation of language models}
 
+
+
 % "targeted linguistic evaluation" \citep{hu2020systematic}
 % " targeted syntactic evaluation of language models" \citep{marvin2018targeted}
 
-Linguists concerned with acceptability judgements, while "Computational language processing has traditionally been more concerned with \textit{likelihood}—the probability of a sentence being produced or encountered" \cite{lau2020furiously}
-"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
+% "A language model (LM) defines a probability distribution over sequences of words. "  \citep{marvin2018targeted}
+While linguists are usually concerned with grammaticality or \textit{acceptability} judgments when assessing linguistic expressions, computational language processing has traditionally been more concerned with \textit{likelihood}, i.e. the probability of a sentence being produced or encountered \citep{lau2020furiously}. But the concepts of grammaticality and probability, while related and partially overlapping, do not coincide. A fundamental research question is to determine how these two concepts are related \citep{lau2020furiously}. %computational language models learn a probability distribution of words and expressions. 
+%"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
+In other words, while computational language models learn a probability distribution of words and expressions, this does not corresponds exactly to a grammaticality or acceptability judgment \citep{marvin2018targeted}.
 
+The concept of acceptability broader than that of grammaticality. Grammaticality usually refers to syntactic acceptability (well-formedness), but an acceptability in general includes also semantic, pragmatic, and even non-linguistic factors (e.g. sentence length) \citep{lau2020furiously}. Additionally acceptability is usually a graded judgment on a sentence, while grammaticality is a binary one (a sentence can be either grammatical or not).
+% "Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic well-formedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence length. It is gradient, rather than binary, in nature (Denison, 2004; Sorace and Keller, 2005; Sprouse, 2007)" \citep{lau2020furiously}
 
+% the targeted linguistic evaluation of deep neural language models started with probes and agreement and grammaticality judgment tasks, and language modeling objective with no finetuning, (Linzen et al 2016), then CoLA, then minimal pairs
+The targeted linguistic evaluation of deep neural language models started with the work of \citet{linzen2016assessing}, which used a corpus of naturally occurring sentences, extracted from the English Wikipedia, and tested the ability of Recurrent Neural Network models (RNNs), and in particular models based on long short-term memory units (LSTM). Linzen et al. used different testing approaches that will be developed in future work: (1) fine-tuning the models on a probing subject-verb-agreement prediction task (in which model saws the part of a sentence up to the word to predict), (2) fine-tuning the models on grammaticality judgments of full sentences, and (3) using the models out-of-the box word prediction objective, seeing if the model gives the higher probability to the correctly inflected word than the incorrect one \citet{linzen2016assessing}. 
 
-"Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic wellformedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence length. It is gradient, rather than binary, in nature (Denison, 2004; Sorace and Keller, 2005; Sprouse, 2007)" \citep{lau2020furiously}
+\citet{gulordava2018colorless}, building on Linzen et al. evaluation paradigm, also used naturally occurring sentences on a subject-verb-agreement task, but added also nonce sentence that are grammatical but semantically meaningless, to tease out potential confounds due to semantic cues. 
 
-"Overview of the approach"
-"Grammaticality and LM probability" \citep{marvin2018targeted}
+\citet{marvin2018targeted} used instead artificially constructed sentences, observing the limitations of the "naturalistic approach" of using naturally occurring sentences on targeted syntactic phenomena: they are sparse and hard to collect, and they are hard to control for confounds. The constructed sentences approach allowed them to examine a much larger range of specific grammatical phenomena than was possible before. Furthermore, their sentences were automatically generated using templates, which resulted in a much larger test set, while still balancing the coverage for each phenomenon. 
+% "Previous work on targeted syntactic evaluation of language models has identified syntactically challenging sentences in corpora (Linzen et al., 2016; Gulordava et al., 2018). While evaluation on naturally occurring examples is appealing, this approach has its limitations (see Section 2). In particular, syntactically challenging examples are sparsely represented in a corpus, their identification .., and naturally occurring sentences are difficult to control for confounds." \citep{marvin2018targeted}
 
-"How should grammaticality be captured in the probability distribution defined by an LM? The most extreme position would be that a language model should assign a probability of zero to ungrammatical sentences. For most applications, some degree of error tolerance is desirable, and  it is not practical to assign a sentence a probability of exactly zero.1 " "1Nor is it possible to have a threshold episilon such that all grammatical sentences have probability higher than episilon and all ungrammatical sentences have probability lower than episilon, for the simple reason that there is an infinite number of grammatical sentences (Lau et al., 2017)."  \citep{marvin2018targeted}
-
-The Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}, it has a training set and asks to label sentences as “acceptable” or not in isolation, with an absolute score \citet{warstadt2019neural}"  \citet{salazar2020masked}.
-
-% "naturalistic approach vs a constructed dataset"
 % acceptability judgements vs minimal pairs
+\citet{marvin2018targeted} also introduced the \textbf{minimal pairs} evaluation paradigm: instead of trying to extract from the model an absolute grammaticality judgment for each sentence in isolation, the model is evaluated on pair of full sentences that differ for only one word, and the model is expected to give an higher probability to the grammatical sentence. This is one possible solution to the problem of how to capture grammaticality from the probability or likelihood score given by language models (which, as seen above, typically learn a probability distribution, not a grammaticality judgment)
+% "How should grammaticality be captured in the probability distribution defined by an LM? The most extreme position would be that a language model should assign a probability of zero to ungrammatical sentences. For most applications, some degree of error tolerance is desirable, and it is not practical to assign a sentence a probability of exactly zero.1 " "1Nor is it possible to have a threshold episilon such that all grammatical sentences have probability higher than episilon and all ungrammatical sentences have probability lower than episilon, for the simple reason that there is an infinite number of grammatical sentences (Lau et al., 2017)."  \citep{marvin2018targeted}
+The minimal pairs evaluation paradigm take advantage of the fact that, while a model's outputted probability of a sentence cannot be taken has an absolute value comparable with any other sentence for grammaticality judgments, the probability scores of minimally different sentences are directly comparable for this purpose \citep{lau2016grammaticality, warstadt2019neural}.  
+% "This task is often employed to evaluate language models because the outputted probabilities for a pair of minimally different sentences are directly comparable, while the output for a single sentence cannot be taken as a measure of acceptability without some kind of normalization (Lau et al., 2016)"
 
-In minimal pairs approaches, on the other hand, there is a relative comparison bewtween two sentences, and the model is considered to have given the right answer if it gives an higher score to the acceptable sentence than the unacceptable (or more marginal) one.
+On the other hand the approach of minimal pairs might be more challenging to apply to more complex syntactic phenomena, and approaches that try to extract absolute acceptability judgments from a model have the advantages of being directly comparable with with both native speaker judgments and predictions made in the linguistic literature \citep{warstadt2019neural}.
+% On the other hand .. "Accordingly, CoLA, but not datasets based solely on preferences between minimal pairs, may be used to evaluate models’ ability to make judgments that align with both native speaker judgments and the predictions of generative theories."
+Another fundamental difference is that  minimal pairs scoring is usually done with the pretrained models out of the box, while acceptability judgments datasets %like CoLA 
+require the models to be finetuned on an additional dataset on an acceptability detection task.
 
-Another fundamental difference is that  minimal pairs scoring is usually done with the pretrained models out of the box, while acceptability judgments datasets like CoLA require the models to be finetuned on an additional dataset on an acceptability detection task.
+\citet{warstadt2019neural} introduced the Corpus of Linguistic Acceptability (CoLA), a collection of about 10k of sentences labeled with acceptability judgments in the linguistic literature. It was developed to be used with the absolute acceptability judgments approach, and required the models to be fine-tuned on an sentence acceptability task with a subset of the data. 
+% The Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}, it has a training set and asks to label sentences as “acceptable” or not in isolation, with an absolute score \citet{warstadt2019neural}" \citet{salazar2020masked}.
+A successor of CoLA was the BLiMP dataset, which was developed for the minimal pairs paradigm instead. \citep{warstadt2020blimp}.
 
+
+% details on BLiMP..
+
+An evolution of the minimal pairs paradigm is the use of a factorial experimental setup, as used in psycholinguistic studies.
+% suitable for more comples phenomena ..
+% "Overview of the approach" "Grammaticality and LM probability" \citep{marvin2018targeted}
+
+% the unacceptable (or more marginal) one.
 
 %Minimal pairs vs sentence acceptability (with CoLA)
-%acceptability: absolute score
-%minimal pairs: relative score, compared btw two sentences
-%also
+
 % study by Lau et al is ..intermediate in comparing sentences that are not strictly minimal pairs
 % Follow study from Trotta et al, and the original CoLA paper 
 
-"This task is often employed to evaluate language models because the outputted probabilities for a pair of minimally different sentences are directly comparable, while the output for a single sentence cannot be taken as a measure of acceptability without some kind of normalization (Lau et al., 2016)"
-
-"Accordingly, CoLA, but not datasets based solely on preferences between minimal pairs, may be used to evaluate models’ ability to make judgments that align with both native speaker judgments and the predictions of generative theories."
 
 %"A language model can be evaluated on its ability to make human-like generalizations for specific syntactic phenomena (Linzen et al., 2016; Lau et al., 2017; Gulordava et al., 2018)"  \citep{hu2020systematic}
 
 
 %"The targeted syntactic evaluation paradigm (Marvin and Linzen, 2018; Futrell et al., 2019) incorporates methods from psycholinguistic experiments, designing sentences which hold most lexical and syntactic features of each sentence constant while minimally varying features that determine grammaticality or surprise characteristics of the sentence."  \citep{hu2020systematic}
-
-% "For example, given the two strings The keys to the cabinet are on the table and *The keys to the cabinet is on the table, a model that has learned the proper subject–verb number agreement rules for English should assign a higher probability to the grammatical plural verb in the first sentence than to the ungrammatical singular verb in the second (Linzen et al., 2016)." \citep{hu2020systematic}
-
+% "For example, given the two strings \textit{The keys to the cabinet are on the table} and \textit{*The keys to the cabinet is on the table}, a model that has learned the proper subject–verb number agreement rules for English should assign a higher probability to the grammatical plural verb in the first sentence than to the ungrammatical singular verb in the second (Linzen et al., 2016)." \citep{hu2020systematic}
 %"Although some targeted syntactic evaluations, such as the example discussed above, involve simple comparisons of conditional probabilities of a word in its context, other evaluations are more complex." \citep{hu2020systematic}
+
+
+
+
 
 %Methodologies for evaluation a Language Model linguistic knowledge:
 %* Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
@@ -1200,7 +1219,7 @@ Another fundamental difference is that  minimal pairs scoring is usually done wi
 
 
 % Limits on the CoLA approach: "the need to train a supervised classifier on CoLA data prior to evaluation." \citep{warstadt2020blimp}	
-% "This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised models like LMs.2""2Though see \citet{lau2017grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
+% "This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised models like LMs.2""2Though see \citet{lau2016grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
 
 % other limit of fintuning for acceptability:
 % adapting language models with finetuning to perform downstream tasks doesn’t necessary reflect knowledge that is already present in the LMs  \citep{warstadt2020blimp}
