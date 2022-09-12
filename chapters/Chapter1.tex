@@ -462,7 +462,7 @@ In building test suite for our experiments, we largely followed the factorial de
 
 A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
 
-In out case, for each of the four island effect types that we want to test, we built 50 \textsc{items}, each containing 4 sentences (one per \textsc{condition}) covering a 2x2 factorial design crossing two \textsc{factors}: presence or absence of an island structure (\textsc{structure} factor), and presence of a short or long-distance dependency (\textsc{gap-position} factor).
+In our case, for each of the four island effect types that we want to test, we built 50 \textsc{items}, each containing 4 sentences (one per \textsc{condition}) covering a 2x2 factorial design crossing two \textsc{factors}: presence or absence of an island structure (\textsc{structure} factor), and presence of a short or long-distance dependency (\textsc{gap-position} factor).
 
 Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure (\textsc{SD/NI}); condition b. displays a long-distance dependency and no island structure (\textsc{LD/NI}); condition c. displays a short-distance dependency and an adjunct island structure (\textsc{SD/IS}); and condition d. displays a long-distance dependency crossing an adjunct island structure (\textsc{LD/IS}). Sentences a-c are supposed to be acceptable, while d is unacceptable because of an island effect:
 
@@ -505,6 +505,10 @@ The \textsc{length effect} should capture the decrease in sentence acceptability
 
 
 This factorial score is used by \citet{sprouse2016experimental} to assess island effects as perceived by human subjects, and it is equivalent to a differences-in-differences (DD) score \citep{maxwell2003designing}. Similar factorial scores have been used for language models by \citet{wilcox2018rnn} and \citet{hu2020systematic}.
+
+"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
+"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
+
 
 % plots, adjustin to a 7point likert scale
 
@@ -1097,7 +1101,7 @@ Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-ri
 \subsection{Grammaticality vs Probability}
 
 % "A language model (LM) defines a probability distribution over sequences of words. "  \citep{marvin2018targeted}
-While linguists are usually concerned with grammaticality or \textit{acceptability} judgments when assessing linguistic expressions, computational language processing has traditionally been more concerned with \textit{likelihood}, i.e. the probability of a sentence being produced or encountered \citep{lau2020furiously}. But the concepts of grammaticality and probability, while related and partially overlapping, do not coincide. In other words, while computational language models learn a probability distribution of words and expressions, this does not corresponds exactly to a grammaticality or acceptability judgment \citep{marvin2018targeted}.
+While linguists are usually concerned with grammaticality or \textit{acceptability} judgments when assessing linguistic expressions, computational language processing has traditionally been more concerned with \textit{likelihood}, i.e. the probability of a sentence being produced or encountered \citep{lau2020furiously}. But the concepts of grammaticality and probability, while related and partially overlapping, do not coincide. In other words, while computational language models learn a probability distribution of word sequences, this does not corresponds exactly to a grammaticality or acceptability judgment \citep{marvin2018targeted}.
 There is still no generally accepted method for obtaining binary acceptability predictions from unsupervised language models, and this remains a fundamental research question \citep{lau2020furiously, warstadt2020blimp}. % "This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised models like LMs.2""2Though see \citet{lau2016grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
  %  is to determine how these two concepts are related %computational language models learn a probability distribution of words and expressions. 
 %"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
@@ -1279,7 +1283,31 @@ As noted in the original BLiMP paper, the minimal pairs paradigm might not be su
 
 \subsection{Factorial approaches}
 
-An evolution of the minimal pairs paradigm is the use of a factorial experimental setup, as used in psycholinguistic studies.
+Factorial experimental setup can be considered a more general case of a minimal pairs one. A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. 
+
+% "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
+A common use case is to have the \textsc{items} (the equivalent of the sentence pairs) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
+
+The factorial design allows to calculate the effect of the combination of the different properties, by making subtractions between the scores of the sentences of an item, because they differ minimally between each other (only on the basis of the controlled properties). This allows to factor as many confound as possible, even unexpected ones, as long as they are evenly distributed within across the sentences of an item \citep{sprouse2016experimental, hu2020systematic}.
+
+The results of a factorial experimental setup can then be analyzed in multiple ways. It is possible to derive measures of statistical significance using a mixed-effects linear regression model, as it's standard practice in psycholinguistics \citep{sprouse2016experimental, wilcox2018rnn}.; or it is possible to obtain an overall accuracy score, by setting up a multi-fold \textsc{success criterion}, considering an item as accurately scored if multiple inequalities have been satisfied, as done by \citet{hu2020systematic}. This latter case is more suitable for integration into minimal pairs benchmarks like BLiMP, that use accuracy scores, and it is the one we adopt in this thesis.
+%In \citet{hu2020systematic}, "Test suites are written using a standard format that allows for flexible predictions which more \textbf{closely resemble those used in psycholinguistic studies}," 
+%"specifically allowing for predictions about \textbf{interactions among multiple testing conditions}." \citep{hu2020systematic}
+
+% "Following standard practice in psycholinguistics, we derive the statistical significance of the interaction from a mixed-effects linear regression model predicting surprisal given sum-coded conditions (Baayen et al., 2008). We include random intercepts by item"
+% Baayen, R.H., D.J. Davidson, and D.M. Bates. 2008. Mixedeffects modeling with crossed random effects for subjects and items. Journal of memory and language 59(4):390–412.
+
+%"Each test suite contains at least one PREDICTION, which specifies inequalities between \textbf{surprisal} values at \textbf{pairs of regions/conditions} that should hold if a model has learned the appropriate syntactic generalization. We expect language models which have learned the appropriate syntactic generalizations from their input to \textbf{satisfy these inequalities} without further fine-tuning. We compute \textbf{accuracy} on a test suite as
+%the proportion of items for which the model’s behavior conforms to the prediction "  \citep{hu2020systematic}
+
+%In a factorial experiment, each item, instead of being composed of a pairs of sentences, 
+%"and employ a 2 × 2 paradigm with a strict, multi-fold success criterion inspired by psycholinguistics methodology" 
+%An evolution of the minimal pairs paradigm is the use of a factorial experimental setup, as used in psycholinguistic studies. 
+%
+%This allows them "to factor out as many confounds as possible, such as the lexical frequency of individual tokens and low-level n-gram statistics."  \citep{hu2020systematic}
+
+% conditions, factors, items
+% In our case, for each of the four island effect types that we want to test, we built 50 \textsc{items}, each containing 4 sentences (one per \textsc{condition}) covering a 2x2 factorial design crossing two \textsc{factors}: presence or absence of an island structure (\textsc{structure} factor), and presence of a short or long-distance dependency (\textsc{gap-position} factor).
 % suitable for more comples phenomena ..
 % from psycholinguistic studies..
 
@@ -1300,13 +1328,13 @@ An evolution of the minimal pairs paradigm is the use of a factorial experimenta
 %(ii) found should be more probable in C than A; 
 %(iii) the C–D surprisal difference should be smaller than the A-B surprisal difference--a 2 × 2 \textit{interaction effect} on surprisal--because the syntactic disambiguation effect of not reducing the relative clause was achieved by using a part-of-speech unambiguous verb"\citep{hu2020systematic}
 
-\citet{hu2020systematic} use these controlled tests to "describe and test for human-like syntactic knowledge in language models"
-The testing paradigm presented  by \citet{hu2020systematic} "\textbf{compare critical sentence regions instead of full-sentence probabilities}, and employ a 2 × 2 paradigm with a strict, multi-fold success criterion inspired by psycholinguistics methodology"  \citep{hu2020systematic}
-This allows them "to factor out as many confounds as possible, such as the lexical frequency of individual tokens and low-level n-gram statistics."  \citep{hu2020systematic}
 
-"Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
-"Each test suite contains at least one PREDICTION, which specifies inequalities between \textbf{surprisal} values at \textbf{pairs of regions/conditions} that should hold if a model has learned the appropriate syntactic generalization. We expect language models which have learned the appropriate syntactic generalizations from their input to \textbf{satisfy these inequalities} without further fine-tuning. We compute \textbf{accuracy} on a test suite as
-the proportion of items for which the model’s behavior conforms to the prediction "  \citep{hu2020systematic}
+%\citet{hu2020systematic} use these controlled tests to "describe and test for human-like syntactic knowledge in language models"
+%The testing paradigm presented  by \citet{hu2020systematic} "\textbf{compare critical sentence regions instead of full-sentence probabilities}," 
+%"and employ a 2 × 2 paradigm with a strict, multi-fold success criterion inspired by psycholinguistics methodology"  \citep{hu2020systematic}
+%This allows them "to factor out as many confounds as possible, such as the lexical frequency of individual tokens and low-level n-gram statistics."  \citep{hu2020systematic}
+
+
 % "Most of our test suites involve 2×2 designs and a success criterion consisting of a conjunction of inequalities across conditions, as in the garden-pathing example described in Section 2.2.1 Random baseline accuracy varies by test suite and is ∼25\% overall. Most of these test suites and criteria are designed so that n-gram models cannot perform above chance for n = 5 (sometimes greater)" \citep{hu2020systematic}
 % NB: our test suites are not designed to avoid that 5-gram models could score well in some items ..
 % Material and code from  \citet{hu2020systematic} https://github. com/cpllab/syntactic-generalization
@@ -1317,8 +1345,7 @@ the proportion of items for which the model’s behavior conforms to the predict
 %
 %(TODO: code refactoring and thesis renamings to follow this terminology by hu2020systematic: item, conditions, success criterion)
 
-In \citet{hu2020systematic}  "a model’s accuracy for a test
-suite is computed as the percentage of the test suite’s items for which it satisfies the criterion." 
+%In \citet{hu2020systematic}  "a model’s accuracy for a test suite is computed as the percentage of the test suite’s items for which it satisfies the criterion." 
 % "In this appendix, we briefly describe each test suite and the criterion used to determine whether a given model succeeds on each item of the test suite." \citep{hu2020systematic} 
 
 %Success criteria
@@ -1335,11 +1362,8 @@ suite is computed as the percentage of the test suite’s items for which it sat
 % (B) #The paintingN1 that the artistN2 who lived long ago deterioratedV1 paintedV2. [incorrect]
 % PA(V2V1) > PB(V1V2) References Miller and Chomsky (1963);Wilcox et al. (2019a) Ethan Wilcox, Roger P. Levy, and Richard Futrell.2019a. Hierarchical representation in neural language models: Suppression and recovery of expectations. In Proceedings of the 2019 EMNLP Workshop BlackboxNLP: Analyzing and Interpreting Neural Networks for NLP
 
-In \citet{hu2020systematic}, "Test suites are written using a standard format that allows for flexible predictions which more \textbf{closely resemble those used in psycholinguistic studies}, specifically allowing for predictions about \textbf{interactions among multiple testing conditions}."
-
 %"Performance on each test suite is reported as a Syntactic Generalization (SG) score." \citep{hu2020systematic}
 % "We group test suites into six syntactic circuits based on the linguistic representations needed to achieve high performance on each suite"  \citep{hu2020systematic}
-
 
 % when evaluations of some phenomena are more complex. Example of this with an evaluation of models’ “\textbf{garden-pathing}” behavior (Futrell et al., 2019) by \citet{hu2020systematic}
 
@@ -1357,30 +1381,19 @@ In \citet{hu2020systematic}, "Test suites are written using a standard format th
 % "There is also a semantic relationship between the filler and the gap, in the sense that “what” is semantically the direct object of “devoured”. In this work, we study the behavior of language models, and so we treat the filler–gap dependency purely as a licensing relationship." \citep{wilcox2018rnn}
 
 
-"In this paper, we look for cases where the surprisal associated with an an unusual construction—such as a gap—is ameliorated by the presence of a licensor, such as a wh-word." \citep{wilcox2018rnn}
-"If the models learn that syntactic gaps require licensing, then sentences with licensors should exhibit lower surprisal than minimally different pairs that lack a proper licensor." \citep{wilcox2018rnn}
+%"In this paper, we look for cases where the surprisal associated with an an unusual construction—such as a gap—is ameliorated by the presence of a licensor, such as a wh-word." \citep{wilcox2018rnn}
+%"If the models learn that syntactic gaps require licensing, then sentences with licensors should exhibit lower surprisal than minimally different pairs that lack a proper licensor." \citep{wilcox2018rnn}
+%
+%"We test whether the LSTM language models have learned filler–gap dependencies by looking for a 2x2 interaction between the presence of a gap and the presence of a wh-licensor"
 
-"We test whether the LSTM language models have learned filler–gap dependencies by looking for a 2x2 interaction between the presence of a gap and the presence of a wh-licensor"
-
-"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
-"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
 
 %"We \textbf{measure surprisal in two places}: at the word immediately following a (filled) gap and summed over the whole region from the gap to the end of the embedded clause. We look at immediate word surprisal because a gap’s licitness should have \textbf{local effects} on network \textbf{expectation}. We look at whole-region surprisal because the presence of a filler also changes expectations about overall well-formedness of the sentence—\textbf{a global phenomenon}. Until the final punctuation is reached in (2b) there are \textbf{potential gap-containing continuations that render the sentence syntactically licit} (e.g. ‘with .’). Therefore, we might expect no large spike in surprisal at any one point, but small increases in surprisal when the network encounters filled argument-structure roles and at the end of the sentence. Measuring summed surprisal captures these distributed, global effects."  \citep{wilcox2018rnn}
 
-"In the following experiments, we examine whether RNN language models have learned constraints on filler–gap dependencies by comparing the wh-licensing interaction in non-islands to that within islands. The strongest evidence for an island constraint would be if the wh-licensing interaction goes to zero for a gap in island position, implying that, in the distribution over strings implied by the network, the appearance of a whlicensor is totally unrelated to the appearance of a gap in the island position"
-\citep{wilcox2018rnn}
+%"In the following experiments, we examine whether RNN language models have learned constraints on filler–gap dependencies by comparing the wh-licensing interaction in non-islands to that within islands. The strongest evidence for an island constraint would be if the wh-licensing interaction goes to zero for a gap in island position, implying that, in the distribution over strings implied by the network, the appearance of a whlicensor is totally unrelated to the appearance of a gap in the island position"
+%\citep{wilcox2018rnn}
 
-"More generally, we can look for a weakened wh-licensing interaction for island vs. non-island positions, which would mean
-that the network believes a relationship between
-the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
-"A positive but nonzero wh-licensing interaction
-would be in line with human acceptability judgments, which do not always categorically rule out gaps in island positions (Ambridge and Goldberg, 2008), and with human online processing experiments, which have shown that gap expectation is
-attenuated during processing of areas where gaps
-cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering,
-1996; Phillips, 2006). Therefore, in this section we
-take a significant reduction in the island relative to
-the non-island case to constitute evidence that the
-model has ‘learned’ the constraint." \citep{wilcox2018rnn}
+%"More generally, we can look for a weakened wh-licensing interaction for island vs. non-island positions, which would mean that the network believes a relationship between the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
+%"A positive but nonzero wh-licensing interaction would be in line with human acceptability judgments, which do not always categorically rule out gaps in island positions (Ambridge and Goldberg, 2008), and with human online processing experiments, which have shown that gap expectation is attenuated during processing of areas where gaps cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering, 1996; Phillips, 2006). Therefore, in this section we take a significant reduction in the island relative to the non-island case to constitute evidence that the model has ‘learned’ the constraint." \citep{wilcox2018rnn}
 
 \section{Linguistic evaluation measures for language models}
 
@@ -1670,8 +1683,7 @@ treating them like islands (the Gulordava model)"  \citep{wilcox2018rnn}
 
 % note analisi by Wilcox:
 % "error bars represent 95% confidence intervals of the contrasts between conditions"
-% "Following standard practice in psycholinguistics, we derive the statistical significance of the interaction from a mixed-effects linear regression model predicting surprisal given sum-coded conditions (Baayen et al., 2008). We include random intercepts by item"
-% Baayen, R.H., D.J. Davidson, and D.M. Bates. 2008. Mixedeffects modeling with crossed random effects for subjects and items. Journal of memory and language 59(4):390–412.
+
 
 %- evitano frasi with "bare whquestions because it eliminates do-support and tense manipulation of the main verb, resulting in higher similarity across conditions." Provare a riformulare le frasi precedendole con "So che..", ad es. per evitare cambiamenti verbali condizionale/presente
 
