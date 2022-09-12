@@ -1091,47 +1091,93 @@ Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-ri
 
 \section{Approaches for targeted linguistic evaluation of language models}
 
-
-
 % "targeted linguistic evaluation" \citep{hu2020systematic}
 % " targeted syntactic evaluation of language models" \citep{marvin2018targeted}
 
-% "A language model (LM) defines a probability distribution over sequences of words. "  \citep{marvin2018targeted}
-While linguists are usually concerned with grammaticality or \textit{acceptability} judgments when assessing linguistic expressions, computational language processing has traditionally been more concerned with \textit{likelihood}, i.e. the probability of a sentence being produced or encountered \citep{lau2020furiously}. But the concepts of grammaticality and probability, while related and partially overlapping, do not coincide. A fundamental research question is to determine how these two concepts are related \citep{lau2020furiously}. %computational language models learn a probability distribution of words and expressions. 
-%"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
-In other words, while computational language models learn a probability distribution of words and expressions, this does not corresponds exactly to a grammaticality or acceptability judgment \citep{marvin2018targeted}.
+\subsection{Grammaticality vs Probability}
 
-The concept of acceptability broader than that of grammaticality. Grammaticality usually refers to syntactic acceptability (well-formedness), but an acceptability in general includes also semantic, pragmatic, and even non-linguistic factors (e.g. sentence length) \citep{lau2020furiously}. Additionally acceptability is usually a graded judgment on a sentence, while grammaticality is a binary one (a sentence can be either grammatical or not).
+% "A language model (LM) defines a probability distribution over sequences of words. "  \citep{marvin2018targeted}
+While linguists are usually concerned with grammaticality or \textit{acceptability} judgments when assessing linguistic expressions, computational language processing has traditionally been more concerned with \textit{likelihood}, i.e. the probability of a sentence being produced or encountered \citep{lau2020furiously}. But the concepts of grammaticality and probability, while related and partially overlapping, do not coincide. In other words, while computational language models learn a probability distribution of words and expressions, this does not corresponds exactly to a grammaticality or acceptability judgment \citep{marvin2018targeted}.
+There is still no generally accepted method for obtaining binary acceptability predictions from unsupervised language models, and this remains a fundamental research question \citep{lau2020furiously, warstadt2020blimp}. % "This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised models like LMs.2""2Though see \citet{lau2016grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
+ %  is to determine how these two concepts are related %computational language models learn a probability distribution of words and expressions. 
+%"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
+
+
+The concept of acceptability is broader than that of grammaticality. Grammaticality usually refers to syntactic acceptability (well-formedness), but acceptability in general includes also semantic, pragmatic, and even non-linguistic factors, like sentence length \citep{lau2020furiously}. Additionally, acceptability is usually a graded judgment, while grammaticality is a binary one (a sentence can be either grammatical or not).
 % "Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic well-formedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence length. It is gradient, rather than binary, in nature (Denison, 2004; Sorace and Keller, 2005; Sprouse, 2007)" \citep{lau2020furiously}
+
+
+% "more work is needed to find methods for extracting reliable Boolean acceptability judgments from unsupervised language models. Our approach of fitting a threshold to the models of Lau et al. (2016) gives encouraging results, but these models are ultimately not as effective as supervised models." 
+
+%"An alternative adopted by Linzen et al. (2016) and Marvin and Linzen (2018) is to evaluate whether language models’ assign higher probability to the acceptable sentence in a minimal pair." 
+% "However, this forced choice minimal pair task, as discussed in Section 2.3, cannot be applied to CoLA, which does not exclusively contain minimal pairs"
+
 
 % the targeted linguistic evaluation of deep neural language models started with probes and agreement and grammaticality judgment tasks, and language modeling objective with no finetuning, (Linzen et al 2016), then CoLA, then minimal pairs
 The targeted linguistic evaluation of deep neural language models started with the work of \citet{linzen2016assessing}, which used a corpus of naturally occurring sentences, extracted from the English Wikipedia, and tested the ability of Recurrent Neural Network models (RNNs), and in particular models based on long short-term memory units (LSTM). Linzen et al. used different testing approaches that will be developed in future work: (1) fine-tuning the models on a probing subject-verb-agreement prediction task (in which model saws the part of a sentence up to the word to predict), (2) fine-tuning the models on grammaticality judgments of full sentences, and (3) using the models out-of-the box word prediction objective, seeing if the model gives the higher probability to the correctly inflected word than the incorrect one \citet{linzen2016assessing}. 
 
 \citet{gulordava2018colorless}, building on Linzen et al. evaluation paradigm, also used naturally occurring sentences on a subject-verb-agreement task, but added also nonce sentence that are grammatical but semantically meaningless, to tease out potential confounds due to semantic cues. 
 
-\citet{marvin2018targeted} used instead artificially constructed sentences, observing the limitations of the "naturalistic approach" of using naturally occurring sentences on targeted syntactic phenomena: they are sparse and hard to collect, and they are hard to control for confounds. The constructed sentences approach allowed them to examine a much larger range of specific grammatical phenomena than was possible before. Furthermore, their sentences were automatically generated using templates, which resulted in a much larger test set, while still balancing the coverage for each phenomenon. 
+\citet{marvin2018targeted} used instead artificially constructed sentences, noting the limitations of the "naturalistic approach" of using naturally occurring sentences on targeted syntactic phenomena: they are sparse and hard to collect, and they are hard to control for confounds. The constructed sentences approach allowed them to examine a much larger range of specific grammatical phenomena than was possible before. Furthermore, their sentences were automatically generated using templates, which resulted in a much larger test set, while still balancing the coverage for each phenomenon. 
 % "Previous work on targeted syntactic evaluation of language models has identified syntactically challenging sentences in corpora (Linzen et al., 2016; Gulordava et al., 2018). While evaluation on naturally occurring examples is appealing, this approach has its limitations (see Section 2). In particular, syntactically challenging examples are sparsely represented in a corpus, their identification .., and naturally occurring sentences are difficult to control for confounds." \citep{marvin2018targeted}
 
+\subsection{Minimal pairs vs acceptability judgments}
+
 % acceptability judgements vs minimal pairs
-\citet{marvin2018targeted} also introduced the \textbf{minimal pairs} evaluation paradigm: instead of trying to extract from the model an absolute grammaticality judgment for each sentence in isolation, the model is evaluated on pair of full sentences that differ for only one word, and the model is expected to give an higher probability to the grammatical sentence. This is one possible solution to the problem of how to capture grammaticality from the probability or likelihood score given by language models (which, as seen above, typically learn a probability distribution, not a grammaticality judgment)
+\citet{marvin2018targeted} also introduced the \textbf{minimal pairs} evaluation paradigm: instead of trying to extract from the model an absolute grammaticality judgment for each sentence in isolation, the model is evaluated on pair of full sentences that differ for only one word, and the model is expected to give an higher probability to the grammatical sentence. This is one possible solution to the problem of how to capture grammaticality from the probability or likelihood score given by language models: the LM probability of a sentence can be a proxy for its acceptability only when considered relatively to another sentence that differs minimally from it, controlling confounding factors like sentence length and lexical content that impact sentence probability \citep{warstadt2020blimp}.
+% "the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP" \citep{warstadt2020blimp}
+
 % "How should grammaticality be captured in the probability distribution defined by an LM? The most extreme position would be that a language model should assign a probability of zero to ungrammatical sentences. For most applications, some degree of error tolerance is desirable, and it is not practical to assign a sentence a probability of exactly zero.1 " "1Nor is it possible to have a threshold episilon such that all grammatical sentences have probability higher than episilon and all ungrammatical sentences have probability lower than episilon, for the simple reason that there is an infinite number of grammatical sentences (Lau et al., 2017)."  \citep{marvin2018targeted}
 The minimal pairs evaluation paradigm take advantage of the fact that, while a model's outputted probability of a sentence cannot be taken has an absolute value comparable with any other sentence for grammaticality judgments, the probability scores of minimally different sentences are directly comparable for this purpose \citep{lau2016grammaticality, warstadt2019neural}.  
 % "This task is often employed to evaluate language models because the outputted probabilities for a pair of minimally different sentences are directly comparable, while the output for a single sentence cannot be taken as a measure of acceptability without some kind of normalization (Lau et al., 2016)"
 
-On the other hand the approach of minimal pairs might be more challenging to apply to more complex syntactic phenomena, and approaches that try to extract absolute acceptability judgments from a model have the advantages of being directly comparable with with both native speaker judgments and predictions made in the linguistic literature \citep{warstadt2019neural}.
+On the other hand, the approach of minimal pairs might be more challenging to apply to more complex syntactic phenomena, and approaches that try to extract absolute acceptability judgments from a model have the advantages of being directly comparable with with both native speaker judgments and predictions made in the linguistic literature \citep{warstadt2019neural}. Targeted minimal pairs datasets might also be more labor-intensive to produce, when manually collected \citep{warstadt2020blimp}.	
 % On the other hand .. "Accordingly, CoLA, but not datasets based solely on preferences between minimal pairs, may be used to evaluate models’ ability to make judgments that align with both native speaker judgments and the predictions of generative theories."
-Another fundamental difference is that  minimal pairs scoring is usually done with the pretrained models out of the box, while acceptability judgments datasets %like CoLA 
-require the models to be finetuned on an additional dataset on an acceptability detection task.
+Another fundamental difference is that minimal pairs scoring is usually done with the pretrained models out of the box, while acceptability judgments datasets %like CoLA 
+require the models to be fine-tuned on an additional dataset on an acceptability detection task.
 
-\citet{warstadt2019neural} introduced the Corpus of Linguistic Acceptability (CoLA), a collection of about 10k of sentences labeled with acceptability judgments in the linguistic literature. It was developed to be used with the absolute acceptability judgments approach, and required the models to be fine-tuned on an sentence acceptability task with a subset of the data. 
+\citet{warstadt2019neural} introduced the Corpus of Linguistic Acceptability (CoLA), a collection of about 10k of sentences labeled with acceptability judgments taken from the linguistic literature. It was developed to be used with the absolute acceptability judgments approach, and required the models to be fine-tuned on an sentence acceptability task with a subset of the data. 
 % The Corpus of Linguistic Acceptability (CoLA) is the predecessor of Blimp minimal pairs approach \citet{salazar2020masked}, it has a training set and asks to label sentences as “acceptable” or not in isolation, with an absolute score \citet{warstadt2019neural}" \citet{salazar2020masked}.
-A successor of CoLA was the BLiMP dataset, which was developed for the minimal pairs paradigm instead. \citep{warstadt2020blimp}.
+This poses the problem of all probing tasks: adapting language models with fine-tuning to perform downstream tasks doesn’t necessary reflect knowledge that is already present in the LMs \citep{warstadt2020blimp}. The models could for instance be overfitting to superficial cues in the fine-tuning training set, rather than actually leverage the linguistic features learned during pretraining.
+% "Warstadt and Bowman (2019) measure phenomenon-specific performance on CoLA for several pretrained sentence encoding models: an LSTM, GPT (Radford et al., 2018), and BERT. However, the use of supervision prevents making strong conclusions about the sentence encoding component, since it is not possible to distinguish what the encoder knows from what is learned through supervised training on acceptability data." \citep{warstadt2020blimp}
+% Limits on the CoLA approach: "the need to train a supervised classifier on CoLA data prior to evaluation." \citep{warstadt2020blimp}	
+CoLA was also preprocessed to edit out less common words, as detected by checking their occurrence in the British National Corpus (BNC).
+% note the processing that was done for CoLA and ItaCoLA, i.e. editing less common words by checking their occurence, respectively, in the BNC and .. (a tool .. for it), noting that we ..did not check that ..for time constraints ..
+
+A successor of CoLA was the BLiMP dataset (The Benchmark of Linguistic Minimal Pairs), which was developed for the minimal pairs paradigm instead. \citep{warstadt2020blimp}. The sentences in BLiMP are automatically generated from templates, producing 1000 sentences for each of the covered phenomena, controlling for confounding factors such as sentence length and lexical content. The lexical items are sampled from a 3000 word lexicon, which includes a complex annotation for selectional restrictions to be observed when combining words in a sentence. % This often produces sentence that are semantically award or infelicitus.. 
+
+As noted in the original BLiMP paper, the minimal pairs paradigm might not be suitable for testing some more complex phenomena, like negative polarity items (NPIs) or island effects: "our implementation of these phenomena is often narrower than the linguistic definition because of the particular constraints described above." \citep{warstadt2020blimp} For these phenomena, a more suitable approach might be the factorial design seen in psycholinguistic studies \citep{sprouse2016experimental}, which also has been later applied for the assessment of LMs \citep{wilcox2018rnn, hu2020systematic}, and that we adopt for the present thesis.
+% were each item contains more than a pair (for instance 4 sentences for a design with )
+% paper itself, .. ie chunking, some aspects of island effects..:
+% (more extensive list of linguistic phenomena, and how they can be ..encoded in a Blimp format, and which can't. Each phenomena has more complementaty forms in which is tested in Blimp; phenomena need to be more fine grained, ie, for island effects, all subtypes; even subtypes of phenomena might even multiple aspects/linguistic facts..)
+% "One limitation of our approach is that 
+% it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
+% for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
+
+
+% problem limitations btw evaluation unidirectional vs bidirectional models
+% limits, compare whole sentences: "The prediction setting is only applicable when the locus of ungrammaticality is a single word, rather than, say, the interaction between two words;" "moreover, the information needed to make the grammaticality decision needs to be available in the left context of the locus of grammaticality. These conditions do not always hold. Negative polarity items (NPIs), for example,.."  \citep{marvin2018targeted}
+
+
+% On minimal pairs and necessity of controlling factors btw the two sentences:
+% "Evaluating LMs on minimal pairs .. the caveat that " 
 
 
 % details on BLiMP..
 
 An evolution of the minimal pairs paradigm is the use of a factorial experimental setup, as used in psycholinguistic studies.
 % suitable for more comples phenomena ..
+% from psycholinguistic studies..
+
+
+The targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, serve also as a supplement to \textbf{perplexity}, which is the metric that has been previously used to evaluate language models, as it captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted}. However, perplexity has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models (see \ref{sec:issues_with_perplexity}) \citep{marvin2018targeted, hu2020systematic}.
+% Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
+% "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
+
+
+% the problem of scoring non traditional bidirectional models like BERT
+% Salazar, Lau, approximating sentence probability for bidirectional models
+
 % "Overview of the approach" "Grammaticality and LM probability" \citep{marvin2018targeted}
 
 % the unacceptable (or more marginal) one.
@@ -1164,7 +1210,7 @@ An evolution of the minimal pairs paradigm is the use of a factorial experimenta
 % note: the fact that BLiMP has 1000 pairs for phenomenon makes it problematic for some uses, because it's computationally expensive. Specifically, if one wants to use it as a validation set during training, to be used for ..early storpping or anyway to change training when certain syntactic phenomena have been learned by the model. There should be a smaller version of BLiMP for these uses. A smaller, manually crafted dataset of 20 sentences for phenomenon might be better suited for this use case.
 
 % TODO: pros and cons of different approaches; currently open issues ..
-%"labor-intensive nature of collecting such targeted minimal pairs." \citep{warstadt2020blimp}	
+
 
 % inclusion, in LM testing, of "well-studied phenomena in linguistics such as control and raising, ellipsis, quantification, and countless others"  \citep{warstadt2020blimp}	
 
@@ -1189,84 +1235,54 @@ An evolution of the minimal pairs paradigm is the use of a factorial experimenta
 %
 %The disadvantage of local measures: "as example (1a) shows, a sentence can always continue in unexpected ways. Moreover, in some cases of ungrammaticality the presence of individual words might not be a significant predictor." \citep{chowdhury2018rnn}
 
-\subsection{Acceptability judgments (absolute scores)}
+
+% \subsection{Acceptability judgments (absolute scores)}
 %..
 %CoLA, ItaCoLA
 
 % "To understand the relationship between sentence acceptability and probability, we conduct experiments with unsupervised language models to predict acceptability. " \citep{lau2020furiously}
 
 % On acceptability judgments
-"Acceptability judgments are the main form of behavioral data used in generative linguistics to measure human linguistic competence (Chomsky, 1965; Schutze, 1996)." \citep{warstadt2020blimp}	
+% "Acceptability judgments are the main form of behavioral data used in generative linguistics to measure human linguistic competence (Chomsky, 1965; Schutze, 1996)." \citep{warstadt2020blimp}	
 
 % binary vs graded measurement used in psycholinguistic studies
-..
+
 % acceptability results from the cola paper:
 
-% "Our results identify specific syntactic features that make sentences harder to classify, such as long distance dependencies (What do you think I ate?), and others that have little effect on difficulty, such as non-canonical argument structures like passives (The book was read)." (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
+% "Our results identify specific syntactic features that make sentences harder to classify, such as long distance dependencies (What do you think I ate _?), and others that have little effect on difficulty, such as non-canonical argument structures like passives (The book was read)." (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
 
 % "Furthermore, some constructions highlight or minimize the differences between models. For example, GPT and BERT far out perform the BiLSTM on movement phenomena such as clefts (\textit{"It is Bo that left"}), yet have no advantage on sentences with adjuncts ("\textit{Sue exercises in the morning}")." 
-% "We wish to exercise caution in interpreting these results since it is not clear to what extent an encoder’s failure on a particular phenomenon is due to a weakness of the encoder rather than the training data or probing classifier. However, this caveat applies to varying degrees to all probing resources. In this context of other similar linguistically informed datasets, our analysis set addresses the critical need for a evaluation task with wide coverage of linguistic phenomena"
+% "We wish to exercise caution in interpreting these results since it is not clear to what extent an encoder’s failure on a particular phenomenon is due to a weakness of the encoder rather than the training data or probing classifier. However, this caveat applies to varying degrees to all probing resources." "In this context of other similar linguistically informed datasets, our analysis set addresses the critical need for a evaluation task with wide coverage of linguistic phenomena"
 
 % "Hence, unacceptable sentences in CoLA tend to be maximally similar to acceptable sentences and are unacceptable for a single identifiable reason."   (Warstadt and Bowman Linguistic Analysis of Pretrained Sentence Encoders with Acceptability Judgments)
 
-% note the processing that was done for CoLA and ItaCoLA, ie editing less common words by checking their occurence, respectively, in the BNC and .. (a tool .. for it), noting that we ..did not check that ..for time constraints ..
 
-% " Our large sentence encoders are limited to 100-200 million tokens of training data, which is within a factor of ten of the number of tokens human learners are exposed to during language acquisition (Hart and Risley, 1992).11  11Hart and Risley (1992) find that children in affluent families are exposed to about 45 million tokens by age 4." (Warstadt et al 2019 Neural Network Acceptability Judgments)
+% " Our large sentence encoders are limited to 100-200 million tokens of training data, which is within a factor of ten of the number of tokens human learners are exposed to during language acquisition (Hart and Risley, 1992).11  11Hart and Risley (1992) find that children in affluent families are exposed to about 45 million tokens by age 4." (Warstadt et al 2019 Neural Network Acceptability Judgments) 
 % Hart and Todd R. Risley. 1992. American parenting of language-learning children: Persisting differences in family-child interactions observed in natural home environments. Developmental Psychology, 28(6):1096.
 
-
 % "Addressing this problem will likely involve new forms of regularization to mitigate this overfitting and, more importantly, new pretraining strategies that can help the model better learn the fundamental ingredients of grammaticality from unlabeled data" 
-
-
-% Limits on the CoLA approach: "the need to train a supervised classifier on CoLA data prior to evaluation." \citep{warstadt2020blimp}	
-% "This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised models like LMs.2""2Though see \citet{lau2016grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
-
-% other limit of fintuning for acceptability:
-% adapting language models with finetuning to perform downstream tasks doesn’t necessary reflect knowledge that is already present in the LMs  \citep{warstadt2020blimp}
-% "Warstadt and Bowman (2019) measure phenomenon-specific performance on CoLA for several pretrained sentence encoding models: an LSTM, GPT (Radford et al., 2018), and BERT. However, the use of supervision prevents making strong conclusions about the sentence encoding component, since it is not possible to distinguish what the encoder knows from what is learned through supervised training on acceptability data." \citep{warstadt2020blimp}
-
-
-
 
 % "phenomena that linguists consider to be sensitive to hierarchical syntactic structure (Everaert et al., 2015; Xiang et al., 2009): subjectverb agreement (described in detail in Sections 4.1 and 4.2), reflexive anaphora (Section 4.3) and negative polarity items (Section 4.4)."   \citep{marvin2018targeted}
 
 
 % "The Supplementary Materials provide a full description of all our templates.3" 3The code, the data set and the Supplementary Materials can be found at https://github.com/ BeckyMarvin/LM_syneval.  \citep{marvin2018targeted}
 
-% "more work is needed to find methods for extracting reliable Boolean acceptability judgments from unsupervised language models. Our approach of fitting a threshold to the models of Lau et al. (2016) gives encouraging results, but these models are ultimately not as effective as supervised models. An alternative adopted by Linzen et al. (2016) and Marvin and Linzen (2018) is to evaluate whether language models’ assign higher probability to the acceptable sentence in a minimal pair. However, this forced choice minimal pair task, as discussed in Section 2.3, cannot be applied to CoLA, which does not exclusively contain minimal pairs"
 
-% "Interrogatives are quite challenging in general (major feature=QUESTION). Sentences with questionlike syntax may be difficult because they usually involve extraction of a wh-word, creating a longdistance dependency between the wh-word and its extraction site, which may be difficult for models to recognize." ()
+% "Interrogatives are quite challenging in general (major feature=QUESTION). Sentences with questionlike syntax may be difficult because they usually involve extraction of a wh-word, creating a long-distance dependency between the wh-word and its extraction site, which may be difficult for models to recognize." ()
 
 
-\subsection{Minimal pairs (relative scores)}
+% \subsection{Minimal pairs (relative scores)}
 
 % Minimal pairs studies \citep{warstadt2020blimp, linzen2016assessing, marvin2018targeted, wilcox2018rnn}
 
 %"Following Linzen et al. (2016) and Gulordava et al. (2018), our desideratum for the language model is more modest [rather then absolute LM probabilities reflecting grammaticality]: if two closely matched sentence differ only in their grammaticality, the probability of the grammatical sentence should be higher than the probability of the ungrammatical one. "  \citep{marvin2018targeted}
 
-% limits, compare whole sentences: "The prediction setting is only applicable when the locus of ungrammaticality is a single word, rather than, say, the interaction between two words; moreover, the information needed to make the grammaticality decision needs to be available in the left context of the locus of grammaticality. These conditions do not always hold. Negative polarity items (NPIs), for example,.."  \citep{marvin2018targeted}
 
-
-% On minimal pairs and necessity of controlling factors btw the two sentences:
-% "Evaluating LMs on minimal pairs .. the caveat that " 
-"the LM probability of a sentence can only serve as a proxy for acceptability if \textbf{confounding factors impacting a sentence’s probability} such as \textbf{length} and \textbf{lexical content} are \textbf{controlled} for. It is with these considerations in mind that we design BLiMP" \citep{warstadt2020blimp}
-
-% Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
-% "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
-
-% (as noted in the BLIMP paper itself, the minimal pairs format might not be suitable for testing some phenomena.. ie chunking, some aspects of island effects..: "Our implementation of these phenomena is often
-% narrower than the linguistic definition because of the particular constraints described above."  \citep{warstadt2020blimp}	
-% (more extensive list of linguistic phenomena, and how they can be ..encoded in a Blimp format, and which can't. Each phenomena has more complementaty forms in which is tested in Blimp; phenomena need to be more fine grained, ie, for island effects, all subtypes; even subtypes of phenomena might even multiple aspects/linguistic facts..)
 
 % general note on grammaticality notation: "Following and building on linguistic traditions, we annotate examples as follows. Examples marked with a * violate a well-established grammatical constraint, and are ungrammatical. Examples marked with ? or ?? are not necessarily ungrammatical, but are marginal: for example, they may require an unusual interpretation of a word in order for the sentence to be grammatical. (More ?’s is roughly intended to indicate more severe marginality). Examples marked with ! are not ungrammatical, but induce severe processing difficulty that is measurable in real-time human sentence processing" \citep{hu2020systematic} 
 
 
-% "One limitation of our approach is that 
-% it is not always clear what constitutes a minimal grammaticality contrast" \citep{marvin2018targeted}
-% for instance on NPI manipulations: "the members of the contrasts differed not only in their syntactic structure but also in low-level n-gram probabilities, making the performance on this particular contrast harder to interpret."
-
-
-"Since most minimal pairs [in BLiMP] only differ by a single word, the effect of length on log probabilities and PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
+% "Since most minimal pairs [in BLiMP] only differ by a single word, the effect of length on log probabilities and PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
 \subsection{Factorial approaches}
 
@@ -1274,7 +1290,7 @@ An evolution of the minimal pairs paradigm is the use of a factorial experimenta
 
 
 % (Factorial design as a supplement to minimal pairs assessment)
-Factorial experimental setup example: (..)
+% Factorial experimental setup example: (..)
 %" A targeted syntactic evaluation for garden-pathing is provided by comparing surprisals at the disambiguating word found in the set of four examples below (Futrell et al., 2019):"\citep{hu2020systematic}
 %"(A) The child kicked in the chaos found ..."
 %(B) The child forgotten in the chaos found . . .
@@ -1408,7 +1424,7 @@ PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
 are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 
-\subsection{Issues with perplexity}
+\subsection{Issues with perplexity}\label{sec:issues_with_perplexity}
 
 Perplexity: 
 "perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
