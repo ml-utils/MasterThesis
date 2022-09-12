@@ -1165,14 +1165,6 @@ As noted in the original BLiMP paper, the minimal pairs paradigm might not be su
 
 % details on BLiMP..
 
-An evolution of the minimal pairs paradigm is the use of a factorial experimental setup, as used in psycholinguistic studies.
-% suitable for more comples phenomena ..
-% from psycholinguistic studies..
-
-
-The targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, serve also as a supplement to \textbf{perplexity}, which is the metric that has been previously used to evaluate language models, as it captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted}. However, perplexity has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models (see \ref{sec:issues_with_perplexity}) \citep{marvin2018targeted, hu2020systematic}.
-% Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
-% "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
 
 
 % the problem of scoring non traditional bidirectional models like BERT
@@ -1284,7 +1276,12 @@ The targeted linguistic evaluation of language models, and the minimal pairs par
 
 % "Since most minimal pairs [in BLiMP] only differ by a single word, the effect of length on log probabilities and PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
+
 \subsection{Factorial approaches}
+
+An evolution of the minimal pairs paradigm is the use of a factorial experimental setup, as used in psycholinguistic studies.
+% suitable for more comples phenomena ..
+% from psycholinguistic studies..
 
 % Sprouse, Wilcox, Hu, ..
 
@@ -1426,6 +1423,12 @@ are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 \subsection{Issues with perplexity}\label{sec:issues_with_perplexity}
 
+
+
+The targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, serve also as a supplement to \textbf{perplexity}, which is the metric that has been previously used to evaluate language models, as it captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted}. However, perplexity has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models (see \ref{sec:issues_with_perplexity}) \citep{marvin2018targeted, hu2020systematic}.
+% Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
+% "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
+
 Perplexity: 
 "perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
 "the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
@@ -1467,7 +1470,8 @@ Perplexity:
 % 2016 paper
 % ..
 
-
+% Venturi paper: https://aclanthology.org/2021.deelio-1.5.pdf 
+% "This demonstrates that the considered features are able to model aspects involved in NLM’s perplexity that go beyond the simple length of sentence. This is particularly the case of GPT-2, suggesting that the probability assigned to a sentence by a traditional NLM is more explainable in terms of linguistic phenomena mainly affecting morpho-syntactic and syntactic structure."
 
 \subsection{Pseudo-log-likelihood scores (PLLs)}
 
@@ -1845,6 +1849,7 @@ Who does Amanda find Lucille while thinking about?"
 424 MB.
 
 \textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
+% GPT-2 Architecture - GePpeTto Wikipedia + ItWAC (14GB)
 
 \textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
 
