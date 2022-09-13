@@ -1116,6 +1116,7 @@ The concept of acceptability is broader than that of grammaticality. Grammatical
 %"An alternative adopted by Linzen et al. (2016) and Marvin and Linzen (2018) is to evaluate whether language models’ assign higher probability to the acceptable sentence in a minimal pair." 
 % "However, this forced choice minimal pair task, as discussed in Section 2.3, cannot be applied to CoLA, which does not exclusively contain minimal pairs"
 
+% "fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
 
 % the targeted linguistic evaluation of deep neural language models started with probes and agreement and grammaticality judgment tasks, and language modeling objective with no finetuning, (Linzen et al 2016), then CoLA, then minimal pairs
 The targeted linguistic evaluation of deep neural language models started with the work of \citet{linzen2016assessing}, which used a corpus of naturally occurring sentences, extracted from the English Wikipedia, and tested the ability of Recurrent Neural Network models (RNNs), and in particular models based on long short-term memory units (LSTM). Linzen et al. used different testing approaches that will be developed in future work: (1) fine-tuning the models on a probing subject-verb-agreement prediction task (in which model saws the part of a sentence up to the word to predict), (2) fine-tuning the models on grammaticality judgments of full sentences, and (3) using the models out-of-the box word prediction objective, seeing if the model gives the higher probability to the correctly inflected word than the incorrect one \citet{linzen2016assessing}. 
@@ -1124,6 +1125,7 @@ The targeted linguistic evaluation of deep neural language models started with t
 
 \citet{marvin2018targeted} used instead artificially constructed sentences, noting the limitations of the "naturalistic approach" of using naturally occurring sentences on targeted syntactic phenomena: they are sparse and hard to collect, and they are hard to control for confounds. The constructed sentences approach allowed them to examine a much larger range of specific grammatical phenomena than was possible before. Furthermore, their sentences were automatically generated using templates, which resulted in a much larger test set, while still balancing the coverage for each phenomenon. 
 % "Previous work on targeted syntactic evaluation of language models has identified syntactically challenging sentences in corpora (Linzen et al., 2016; Gulordava et al., 2018). While evaluation on naturally occurring examples is appealing, this approach has its limitations (see Section 2). In particular, syntactically challenging examples are sparsely represented in a corpus, their identification .., and naturally occurring sentences are difficult to control for confounds." \citep{marvin2018targeted}
+% % "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
 
 \subsection{Minimal pairs vs acceptability judgments}
 
@@ -1280,6 +1282,7 @@ As noted in the original BLiMP paper, the minimal pairs paradigm might not be su
 
 % "Since most minimal pairs [in BLiMP] only differ by a single word, the effect of length on log probabilities and PLLs (discussed in Section 4.3) is mitigated"  \citep{salazar2020masked} 
 
+% mention how Wilcox measure island effects: expectations of a gap should be attenuated
 
 \subsection{Factorial approaches}
 
@@ -1404,11 +1407,20 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 
 % acceptability judgements, LM probability of a sentence, likelihood, ..
 
+% measures and estimations of sentence probability/likelihood, and of grammaticality/acceptabiliy 
+% for bi-directional language models..
 
+% the numerical properties, that show that bidirectional model can separate fluency from likelihood, unlike unidirectional ones..
+%"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by \log P_{LM}(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
+% in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
 
 \subsection{Surprisal}
 
-In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -log2 p(w|C)$, " \citep{hu2020systematic}
+% intro discussion on surprisal, taken from ..salazar et al
+% intro to token surprisal spikes analysis, taken from salazar
+% analisis of numerical properties of output (of surprisals/PLL), taken from salazar et al 2020
+
+In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -\log_2 p(w|C)$, " \citep{hu2020systematic}
 Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
 
 
@@ -1464,8 +1476,11 @@ Perplexity:
 
 
 "a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons. In principle, a sentence can appear with vanishingly low probability but still be grammatically wellformed, such as \textit{Colorless green ideas sleep furiously} (Chomsky, 1957).  "  \citep{hu2020systematic}
-"While perplexity remains an integral part of language model evaluation, fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
+"While perplexity remains an integral part of language model evaluation," "fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
 
+
+% perplexity correlate with human reading.. processing complexity (cite)
+% (cite Venturi paper?) list of other phenomana perplexity correlates with
 
 
 %Perplexity vs minimal pairs, previous example of an LSTM vs and early attention-only model: the LSTM "learned more robust syntactic representations, but this advantage was not reflected in its average perplexity on the corpus, since syntactically challenging sentences are relatively infrequent." \citep{marvin2018targeted}
@@ -1495,7 +1510,7 @@ The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet
 
 
 
-"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-toright bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
+"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-to-right bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
 
 
 \citet{lau2020furiously} formula for BERT sentence acceptability:
@@ -1603,8 +1618,43 @@ challenge set of 67k pairs which isolate contrasts in syntax, morphology, and se
 
 \section{Review of results from previous related work}
 
+% salazar, wilcox, hu, blimp, sprouse
+% while \citet{warstadt2020blimp} found .. that ..models did not learn island, cite .., found that it was not the case  for .., and that warstadt2020blimp results were due to ..
+\citet{salazar2020masked} found that, on the Blimp testset, Roberta large learns island effects close to a human level (accuracy scores are 83.4\% from Roberta and 84.9\% by humans). But as pointed out in the original Blimp paper \citep{warstadt2020blimp}, island effects phenomena are probably better tested with a factorial design like \citep{wilcox2018rnn} % that ..controls/.. for lexical differences
+% Salazar on the improvement of Berta over Gpt on island effects (which \citep{warstadt2020blimp} scored at ..near chance level) 
+the improvement of RoBerta over GPT-2 on island effect, approaching human levels "suggests that the difficulty of these BLiMP categories was due to PLM decomposing autoregressively, and not intrinsic to unsupervised language model training, as the original results may suggest \citep{warstadt2020blimp}." \citep{salazar2020masked}
+"For some intuition, we include examples in Table 8. In the subject-verb agreement example, BERT sees The pamphlets and resembled those photographs when scoring have vs. has, whereas GPT-2 only sees The pamphlets, which may not be enough to counter the misleading adjacent entity Winston Churchill at scoring time" \citep{salazar2020masked}
+"Who does Amanda find while thinking about Lucille?
+Who does Amanda find Lucille while thinking about?"
+"GPT-2 and BERT both promote fluency, but GPT-2’s left-to-right biased scores appear to cause it to \textbf{overweight common word sequences} at the expense of adequacy" \citep{salazar2020masked}
 
-"Current models like BERT (Devlin et al., 2019) and T5 (Raffel et al., 2019) now learn to give acceptability judgments that approach or even exceed individual human agreement with CoLA." \citep{warstadt2020blimp}	
+% compare the datasets of blimp and that of hu and Wilcox (2020)
+% Hu, number of suites: 34, adapted from previously published work (which?)
+% accuracy perc Hu gpt2: 58-82%
+% NB: take just the methodology from hu, not results or models tested
+
+% what did hu and wilcox find?
+
+% warstadt2020blimp however used a narrower definition of island effects and other more complex phenomena, that are more adequately tested with a factorial experimental setup.
+
+% bert or gpt2 already ..approached (but not reached) human level on island effects
+% T5?
+% include Hu tests into blimp? it would be ..interesting to see
+
+% review and summarize conclusion sections from the above previous works
+% no test of island effects on Bert models, even english? no test for italian models.. (redo a search in google scholar)
+
+
+% Salazar scoring Bert on Blimp, Table 7 \citep{salazar2020masked}: "Unsupervised performance (forced choice accuracy) on BLiMP using log probabilities (GPT-2) or PLLs. Human scores from Warstadt et al. (2020). " \citep{salazar2020masked}
+
+
+% prev paper that test on local regions only, instead of whole sentence, and their discussions about this
+"In other recent work, \citet{chowdhury2018rnn} tested the ability of neural networks to separate grammatical from ungrammatical extractions using similar metrics to ours, finding that their neural networks do not represent the unboundedness of filler–gap dependencies nor certain strong island constraints." \citep{wilcox2018rnn}
+"We believe the difference between our results and theirs is \textbf{due to experimental design}: They choose to measure the probability of the question mark punctuation as a proxy for the RNNs gap expectation, and use \textbf{sentence schemata} instead of hand-engineered experimental items." \citep{wilcox2018rnn}
+"While \citet{chowdhury2018rnn} conclude that the networks are not learning island-like constraints, but rather displaying sensitivity to syntactic complexity plus order, we demonstrate island-like effects where both the island and the non-island item are equally complex (in e.g. wh-islands). " \citep{wilcox2018rnn}
+
+
+"Current models like BERT (Devlin et al., 2019) and T5 \citep{raffel2020exploring} now learn to give acceptability judgments that approach or even exceed individual human agreement with CoLA." \citep{warstadt2020blimp}	
 
 "We show that PLLs outperform scores from autoregressive language models like GPT-2 in a variety of tasks. " \citep{salazar2020masked}
 
@@ -1701,10 +1751,7 @@ treating them like islands (the Gulordava model)"  \citep{wilcox2018rnn}
 
 %diminishing returns also found \citep{wilcox2018rnn}, the two compared models have a 10x size difference for params and training data.
 
-"In other recent work, \citet{chowdhury2018rnn} tested the ability of neural networks to separate grammatical from ungrammatical extractions using similar metrics to ours, finding that their neural networks do not represent the unboundedness of filler–gap dependencies nor certain strong island constraints." 
-"We believe the difference between our results and theirs is \textbf{due to experimental design}: They choose to measure the probability of the question mark punctuation as a proxy for the RNNs gap expectation, and use \textbf{sentence schemata} instead of hand-engineered experimental items." 
 
-"While \citet{chowdhury2018rnn} conclude that the networks are not learning island-like constraints, but rather displaying sensitivity to syntactic complexity plus order, we demonstrate island-like effects where both the island and the non-island item are equally complex (in e.g. wh-islands). " \citep{wilcox2018rnn}
 
 %"Note also that our work is focused on finding evidence that networks represent the probabilistic contingencies implied by island constraints, without attempting to directly model grammaticality judgments."  \citep{wilcox2018rnn}
 %
@@ -1718,11 +1765,10 @@ treating them like islands (the Gulordava model)"  \citep{wilcox2018rnn}
 % section name "2. Methods" \citep{wilcox2018rnn}
 % also in \citep{wilcox2018rnn}, "Experimental design" section, where they motivate the choice of sentence paradigms, and what results are expected if the model learns the respective linguistic phenomena.
 
-"While inconsistent with the formal linguistic literature on filler–gap dependencies, the negative values of all but one of the correlations are consistent with known effects in human sentence processing, where increasing distance between fillers
-and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et al., 2011)."  \citep{wilcox2018rnn}
+"While inconsistent with the formal linguistic literature on filler–gap dependencies, the negative values of all but one of the correlations are consistent with known effects in human sentence processing, where increasing distance between fillers and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et al., 2011)." \citep{wilcox2018rnn}
 
 "Our work shows these dependencies and their constraints can be learned to some extent by a generic sequence model with no obvious inductive bias for hierarchical structures. This is evidence against the idea that such an inductive bias is necessary for language learning, although the amount of data these models are trained on is much larger than the typical input to a child learner." \citep{wilcox2018rnn}
-
+% questo quindi forse non smentisce il "Poverty of the stimulus argument", se lo stimolo sono 1B tokens..
 
 %Frequency effects
 
@@ -1737,7 +1783,7 @@ and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et
 
 % "our results show that LSTM language models are far from matching naive annotators’ performance on this task, let alone performing at 100% accuracy."  \citep{marvin2018targeted}
 
-% "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
+
 
 %"Compression effect" of acceptability (by humans) from presence or absence of contect: 
 %"Tworecentstudiesthat explorethe impact of document context on acceptability judgments both
@@ -1758,20 +1804,9 @@ and gaps usually causes processing slowdown (Grodner and Gibson, 2005; Bartek et
 % althoug the linguistic examples are much shorter "—less than 7 words on average—than the natural texts" \citep{lau2020furiously} , and this might confirm ..our finding on difficulty of shorter sentences. 
 % 
 
-%Salazar scoring Bert on Blimp, Table 7 \citep{salazar2020masked}: "Unsupervised performance (forced choice accuracy) on BLiMP using log probabilities (GPT-2) or PLLs. Human scores from Warstadt et al. (2020). " \citep{salazar2020masked}
 
-\citet{salazar2020masked} found that, on the Blimp testset, Roberta large learns island effects close to a human level (accuracy scores are 83.4\% from Roberta and 84.9\% by humans). But as pointed out in the original Blimp paper \citep{warstadt2020blimp}, island effects phenomena are probably better tested with a factorial design like \citep{wilcox2018rnn} % that ..controls/.. for lexical differences
 
-% Salazar on the improvement of Berta over Gpt on island effects (which \citep{warstadt2020blimp} scored at ..near chance level) 
-the improvement of RoBerta over Gpt on island effect, approaching human levels "suggests that the difficulty of these BLiMP categories was due to PLM decomposing autoregressively, and not intrinsic to unsupervised language model training, as the original results may suggest \citep{warstadt2020blimp}." \citep{salazar2020masked}
 
-"For some intuition, we include examples in Table 8. In the subject-verb agreement example, BERT sees The pamphlets and resembled those photographs when scoring have vs. has, whereas GPT-2 only sees The pamphlets, which may not be enough to counter the misleading adjacent entity Winston Churchill at scoring time" \citep{salazar2020masked}
-"Who does Amanda find while thinking about Lucille?
-Who does Amanda find Lucille while thinking about?"
-"GPT-2 and BERT both promote fluency, but GPT-2’s left-to-right biased scores appear to cause it to \textbf{overweigh common word sequences} at the expense of adequacy" \citep{salazar2020masked}
-
-%"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by log PLM(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
-% in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
 
 % ensembling not effective for PLL and LP, they overlap: "Given the differences between PLLs and log probabilities, we explore whether ensembling both improves performance in Appendix D. Similar to the largely-dominant results of MLMs on BLiMP over GPT-2 (Section 4.1), we find that as the MLM gets stronger, adding GPT-2 scores has negligible effect, suggesting that their roles overlap."  \citep{salazar2020masked}
 
@@ -1785,14 +1820,7 @@ Who does Amanda find Lucille while thinking about?"
 %
 %"(Gao et al., 2020) shows that pre-trained LM performs worse in some tasks such as linguistic acceptability task and natural language inference task since pre-trained LM barely saw his data distribution." (Wang et al 2021 Entailment as few shot learner)
 
-%"Prior work has demonstrated that heads induce grammar formalisms and structural knowledge (Zhou and Zhao, 2019; Lin et al., 2019; Luo,
-%2021), and linguistic features motivate attention
-%patterns (Kovaleva et al., 2019; Clark et al., 2019)."
-%"Recent studies also show that certain heads can
-%have multiple functional roles (Pande et al., 2021)
-%and even perform syntactic functions for distant
-%languages (Ravishankar et al., 2021)."
-%(Cherniavskii et al. 2022)
+%"Prior work has demonstrated that heads induce grammar formalisms and structural knowledge (Zhou and Zhao, 2019; Lin et al., 2019; Luo, 2021), and linguistic features motivate attention patterns (Kovaleva et al., 2019; Clark et al., 2019)." "Recent studies also show that certain heads can have multiple functional roles (Pande et al., 2021) and even perform syntactic functions for distant languages (Ravishankar et al., 2021)." (Cherniavskii et al. 2022)
 
 
 %note on thesis:
@@ -1803,8 +1831,7 @@ Who does Amanda find Lucille while thinking about?"
 %(as in the ItaCoLA paper)
 
 
-%"The poor performance of our models on contrasts involving agreement (Singular/Pl and Reflexive) is surprising in light of findings by (Linzen et al., 2016) that LSTMs can identify agreement
-%errors easily even without access to sub-word information. We speculate that this is due to underrepresentation of the relevant examples in CoLA."
+%"The poor performance of our models on contrasts involving agreement (Singular/Pl and Reflexive) is surprising in light of findings by (Linzen et al., 2016) that LSTMs can identify agreement errors easily even without access to sub-word information. We speculate that this is due to underrepresentation of the relevant examples in CoLA."
 
 % "Our results are purely correlational, and do not mark whether a particular construction is crucial for the acceptability of the sentence. Future experiments following Ettinger et al. (2018) and Kann et al. (2019) can semi-automatically generate datasets by manipulating, for example, length of long-distance dependencies, inflectional violations, or the presence of interrogatives, while controlling for factors like sentence length and word choice, in order to determine the extent to which these features impact the quality of sentence representations."
 
@@ -1969,6 +1996,9 @@ Since for humans the likert scale discretization and the z-score normalization w
 
 
 \section{Accuracy results for island effects minimal pairs in Italian}
+
+% update accuracy scores, in particular for Gilberto, aquired using 3 minimal pairs (3 acceptable sentences vs 1 unacceptable), since there were code changes on special tokens (check for warning at the beginning if special tokens were not inizialized in some models)
+% how the results have changed with the last update? (they seemed very differen) better or worse?
 
 In \autoref{tab:accuracy_it_data} we see the accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_item_1}. 
 \\ Each acceptable sentence of an item like \autoref{adjunct_item_1} is compared with the unacceptable sentence, and the score is considered accurate if the acceptable sentence receives an higher score than the unacceptable one.
@@ -2619,5 +2649,11 @@ the LSTM. This model has the best published perplexity for English text." \citep
 
 % BAAYEN, R. HARALD. 2007. Analyzing linguistic data: A practical introduction to statistics using R. Cambridge: Cambridge University Press.
 % BAAYEN, R. HARALD; DOUGLAS J. DAVIDSON; and DOUGLAS M. BATES. 2008. Mixed-effects modeling with crossed random effects for subjects and items. Journal of Memory and Language 59.390–412.
+
+% "Other studies have investigate how one model’s linguistic  knowledge changes during the training process, as a function of the number of updates (Saphra and Lopez, 2019; Chiang et al., 2020)." (Raffel et al 2020, T5 paper)
+
+% works that tracks the progress in performance on linguistic tests during training (cited in paper by ..)(T5? Venturi? Zhang when do you need ..?)
+
+% "The method we use in this work, which is currently common practice, is to train the model to denoise corrupted spans of text. We suspect that this simplistic technique may not be a very efficient way to teach the model general-purpose knowledge. More concretely, it would be useful to be able to attain good fine-tuning performance without needing to train our models on 1 trillion tokens of text first. Some concurrent work along these lines improves efficiency by pre-training a model to distinguish between real and machine-generated text (Clark et al., 2020)." (Raffel et al 2020, T5 paper)
 
 % \nocite{wei2021frequency, hu2020systematic, lau2020furiously, bostrom2020byte, futrell-etal-2019-neural}
