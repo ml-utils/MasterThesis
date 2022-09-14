@@ -2261,11 +2261,10 @@ In this section we compare our results obtained from transformer-based language 
 
 % todo: 2 facing pages with 4 figures: sprouse paper plots, then 3 models plots (geppetto, bert, gilberto) on the madeddu dataset
 % after this 2 pages with 3 figures for the plots on the 3 models and the sprouse testsuite, for comparison
-\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
-\AddThispageHook{\thispagestyle{empty}}%
 % \begin{figure}[p]
 % \begin{figure}[ht]
-
+\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
+\AddThispageHook{\thispagestyle{empty}}%
 \begin{figure}
 	\centering
 	\ULsubfloat[Image from \citet{sprouse2016experimental}\label{fig:sprouse_humans}]{%
@@ -2277,73 +2276,69 @@ In this section we compare our results obtained from transformer-based language 
 	}
 	\caption{ \ref{fig:sprouse_humans} and \ref{fig:md_gpt_penlp} 
 	}
-	\label{fig:plots_1}
+	\label{fig:plots_1_mdd}
 \end{figure}
 
-%\begin{figure}[htp]
-%	\begin{subfigure}{\textwidth}
-%		\includegraphics[trim=70 30 90 60,clip,width=\textwidth,height=8cm]{images/Chapter1/Plot_1_Sprouse_paper.png}
-%		\caption{Figure A}
-%	\end{subfigure}
-%	\begin{subfigure}{\textwidth}
-%		\includegraphics[trim=70 30 90 60,clip,width=\textwidth,height=8cm]{images/Chapter1/Plot_1_Sprouse_paper.png}
-%		\caption{Figure B}
-%	\end{subfigure}
-%\end{figure}
-
-	
-%\begin{figure}[h]
-%	\refstepcounter{figure}
-%	\begin{tabular}{c c}
-%		\rotatebox[origin=c]{90}{Figure~\thefigure }
-%		&
-%		\includegraphics[valign=m]{images/Chapter1/Plot_1_Sprouse_paper.png}
-%		\label{fig:sprouse_humans}
-%	\end{tabular}
-%	\begin{tabular}{c c}
-%	\rotatebox[origin=c]{90}{Fig.~\thefigure: blabkbalbalablabalb }
-%	&
-%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}
-%	\label{fig:md_gpt_penlp}
-%\end{tabular}
-%\end{figure}	
-	
-%\begin{figure}[h]
-%	% \centering
-%	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={left,top},capbesidewidth=4cm}}]{figure}[\FBwidth]
-%	{\caption{}\label{fig:test}}
-%	{ % \includegraphics[width=5cm]{name}
-%	% \includegraphics[width=0.9\textwidth, height=16cm]{example-image-c}
-%	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}}
-%	% \caption{\blindtext[1]}\label{here}
-%	%\caption{<caption2>}
-%	\vspace*{\floatsep}%
-%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
-%	%\caption{<caption2>}
-%	%\end{center}
-%\end{figure}
-
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
-%\subsubsection{BERT with LP (from softmax model output)}
-% \begin{figure}[ht]
 \AddThispageHook{\thispagestyle{empty}}%
-% \begin{figure}[p]
-	% \begin{figure}[ht]
-		
 \begin{figure}
 	\centering
-	\ULsubfloat[\label{fig:md_bert_lp}]{%
+	\ULsubfloat[Fig.\ref{fig:md_bert_lp}  \label{fig:md_bert_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}%
 	}
 	\vspace{10pt}
-	\ULsubfloat[\label{fig:md_camembert_lp}]{%
+	\ULsubfloat[Fig.\ref{fig:md_gilberto_lp} \label{fig:md_gilberto_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png}%
 	}
-	\caption{  \ref{fig:md_bert_lp} and \ref{fig:md_camembert_lp} 
+	\caption{ \ref{fig:md_bert_lp} and \ref{fig:md_gilberto_lp} 
 	}
-	\label{fig:plots_2}
+	\label{fig:plots_2_mdd}
 \end{figure}
+
+
+%\begin{figure}[htp]
+%	\begin{subfigure}{\textwidth}
+	%		\includegraphics[trim=70 30 90 60,clip,width=\textwidth,height=8cm]{images/Chapter1/Plot_1_Sprouse_paper.png}
+	%		\caption{Figure A}
+	%	\end{subfigure}
+%	\begin{subfigure}{\textwidth}
+	%		\includegraphics[trim=70 30 90 60,clip,width=\textwidth,height=8cm]{images/Chapter1/Plot_1_Sprouse_paper.png}
+	%		\caption{Figure B}
+	%	\end{subfigure}
+%\end{figure}
+
+
+%\begin{figure}[h]
+%	\refstepcounter{figure}
+%	\begin{tabular}{c c}
+	%		\rotatebox[origin=c]{90}{Figure~\thefigure }
+	%		&
+	%		\includegraphics[valign=m]{images/Chapter1/Plot_1_Sprouse_paper.png}
+	%		\label{fig:sprouse_humans}
+	%	\end{tabular}
+%	\begin{tabular}{c c}
+	%	\rotatebox[origin=c]{90}{Fig.~\thefigure: blabkbalbalablabalb }
+	%	&
+	%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}
+	%	\label{fig:md_gpt_penlp}
+	%\end{tabular}
+	%\end{figure}	
 	
+	%\begin{figure}[h]
+	%	% \centering
+	%	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={left,top},capbesidewidth=4cm}}]{figure}[\FBwidth]
+	%	{\caption{}\label{fig:test}}
+	%	{ % \includegraphics[width=5cm]{name}
+		%	% \includegraphics[width=0.9\textwidth, height=16cm]{example-image-c}
+		%	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}}
+	%	% \caption{\blindtext[1]}\label{here}
+	%	%\caption{<caption2>}
+	%	\vspace*{\floatsep}%
+	%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
+	%	%\caption{<caption2>}
+	%	%\end{center}
+	%\end{figure}
+
 %\begin{figure}[h]
 %	\centering
 %	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}
@@ -2355,15 +2350,31 @@ In this section we compare our results obtained from transformer-based language 
 
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
-\begin{figure}[h]
+\begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png} 
-	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png} 
+	\ULsubfloat[Fig.\ref{fig:sprouse_gpt_penlp}  \label{fig:sprouse_gpt_penlp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png}%
+	}
+	\vspace{10pt}
+	\ULsubfloat[Fig.\ref{fig:sprouse_bert_lp} \label{fig:sprouse_bert_lp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png}%
+	}
+	\caption{ \ref{fig:sprouse_gpt_penlp} and \ref{fig:sprouse_bert_lp} 
+	}
+	\label{fig:plots_3_sprouse}
 \end{figure}
 
-\begin{figure}[h]
+\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
+\AddThispageHook{\thispagestyle{empty}}%
+\begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h17m28s42.png} 
+	\ULsubfloat[Fig.\ref{fig:sprouse_gilbertot_lp}  \label{fig:sprouse_gilbertot_lp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h17m28s42.png}%
+	}
+	\vspace{10pt}
+	\caption{ \ref{fig:sprouse_gilbertot_lp}
+	}
+	\label{fig:plots_4_sprouse}
 \end{figure}
 
 %\subsubsection{GilBERTo with LP (from softmax model output)}
