@@ -2060,6 +2060,40 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 \end{table}
 
 
+% todo: tests from Sprouse testsuites, in Both English and Italian, to see if they are comparable (use accuracy on DD factorial score )
+
+% \subsection{Comparison with BLiMP results on island effects in English}
+% ..
+
+% The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
+
+\begin{table} 
+	\begin{center}
+		\begin{tabular}{c|c|c|c} 
+			Model & \textbf{Adjunct} & \textbf{Complex NP} & \textbf{Wh} \\
+			\hline
+			Gpt2 (Warstadt et al 2020) 	& 91 			& 72 			& 77 \\ 
+			Gpt2-large 					& 90.2 			& 72 			& 79.1 \\ 
+			Gpt2-medium 				& \textbf{91.6} & 72.3			& 77.9 \\
+			Gpt2 						& 91.3 			& 68.8 			& 82.2 \\
+			BERT-large-cased (PenLP)	& 86.3			& 67.4 			& 69.4 \\
+			BERT-base-cased (PenLP)		& 88.1 			& 56 			& 66.2 \\
+			RoBERTa-large (PenLP)		& 86.9			& \textbf{82.3}	& \textbf{88.2} \\
+			RoBERTa-base(PenLP)			& 84.9			& 75.3 			& 76.2 \\  
+			RoBERTa-base(PLL)			& 80			& 47.7 			& 83.3 \\  
+			
+		\end{tabular}
+		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} 
+			\\ NB: RoBERTa-base with alpha = 0.8 in the penalty term  as in Lau et al
+			\\ with with alpha = 1 ..
+			%			\\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores.
+			%			\\ TODO: rerun the BLiMP and Sprouse English tests with the RoBERTa model from \citet{bostrom2020byte}, which uses a more linguistically/morphologically plausible subword splitting, to see if performance improves.
+		}
+		\label{tab:accuracy_blimp}
+	\end{center}
+\end{table}
+
+
 \section{Accuracy results for island effects minimal pairs in Italian}
 
 % todo: move to the appendix, edit discussion
@@ -2161,36 +2195,6 @@ Although it's between different languages (English and Italian), the scores on \
 % (also add table with accuracy scores on Sprouse test suite, 8 items per phenomenon)
 % (? table on DD accuracy? ..)
 
-% \subsection{Comparison with BLiMP results on island effects in English}
-% ..
-
-% The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
-
-\begin{table} 
-	\begin{center}
-		\begin{tabular}{c|c|c|c} 
-			Model & \textbf{Adjunct} & \textbf{Complex NP} & \textbf{Wh} \\
-			\hline
-			Gpt2 (Warstadt et al 2020) 	& 91 			& 72 			& 77 \\ 
-			Gpt2-large 					& 90.2 			& 72 			& 79.1 \\ 
-	  		Gpt2-medium 				& \textbf{91.6} & 72.3			& 77.9 \\
-	  		Gpt2 						& 91.3 			& 68.8 			& 82.2 \\
-	  		BERT-large-cased (PenLP)	& 86.3			& 67.4 			& 69.4 \\
-	  		BERT-base-cased (PenLP)		& 88.1 			& 56 			& 66.2 \\
-	  		RoBERTa-large (PenLP)		& 86.9			& \textbf{82.3}	& \textbf{88.2} \\
-	  		RoBERTa-base(PenLP)			& 84.9			& 75.3 			& 76.2 \\  
-	  		RoBERTa-base(PLL)			& 80			& 47.7 			& 83.3 \\  
-	  		 
-		\end{tabular}
-		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} 
-			\\ NB: RoBERTa-base with alpha = 0.8 in the penalty term  as in Lau et al
-			\\ with with alpha = 1 ..
-%			\\ TODO: show table with accuracy scores on Sprouse English test data, see how they compare with BLiMP English accuracy scores.
-%			\\ TODO: rerun the BLiMP and Sprouse English tests with the RoBERTa model from \citet{bostrom2020byte}, which uses a more linguistically/morphologically plausible subword splitting, to see if performance improves.
-		}
-		\label{tab:accuracy_blimp}
-	\end{center}
-\end{table}
 
 %Results, for comparison, on Blimp dataset (island effects only), for BERT models (..), as in paper from Salazar et al 2021.
 %
@@ -2247,7 +2251,9 @@ Although it's between different languages (English and Italian), the scores on \
 %[('Hello', (0, 5)), (',', (5, 6)), ('how', (7, 10)), ('are', (11, 14)), ('you', (16, 19)), ('?', (19, 20))]
 %\end{lstlisting}
 
-\section{Factorial tests results}
+\section{Qualitative analysis}
+
+% todo: gpt2 plots more similar to Sprouse plots from humans scores: this might be related to the finding by (..Venturi paper) that GPT2 scores are more interpretable than BERT ones..
 
 % Surprisal ( $\displaystyle\-log P_{MLM} (w_t | W_{\setminus t}) $)
 
