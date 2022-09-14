@@ -2252,12 +2252,30 @@ Although it's between different languages (English and Italian), the scores on \
 
 \section{Qualitative analysis}
 
-In this section we compare our results obtained from transformer-based language models with those obtained by \citet{sprouse2016experimental} on human subjects. The
+In this section we compare our results obtained from transformer-based language models with those from human subjects collected by  \citet{sprouse2016experimental}. 
+
+In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:plots_3_sprouse}-\ref{fig:plots_4_sprouse} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
+
+in the two datasets the stimuli are similar, but there are differences (for instance, out adjunct islands test suite includes temporal adjuncts, while in the Sprouse one includes only conditional adjuncts, as noted in section ..).
+
+We can see that the plots for whether, adjunct, and subject islands are quite similar with those obtained on human subjects, with the difference that for adjunct islands, the SHORT-ISLAND sentence gets a higher acceptability score from the transformer model (this might be due to the confound deriving from the format of this sentence, as discussed in section ..).
+
+
+The complex np islands plots from the transformers models are instead quite different from those on humans. This might be due to ..
+
+Comparing the plots from BERT with those on humans, we can see again the discrepancy with the SHORT ISLAND sentence of the adjunct island (likely due to the confound discussed above).
+
+Bert seems to score the complex np islands better than GPT2, with plots that resemble more those from humans.
+
+For subject island (that have ..a modified factorial design as discussed in section ..) we see that BERT scores higher the short island sentence than the short non island, contrary to what happens with humans and with GPT2. To better explain why we should have a look at the spike analysis in the following section. In any case, this effect seems to be subtracted out by the factorial score, so BERT still gets the best accuracy score for this type of island as seen in table ..
+
+
+in fig .. (Sprouse test suites, language models), we see that the ..error bars (..confidence intervals?) are wider, and this is probably due to the fact that the sample sizes are smaller (8 items per phenomenon instead of 50), so there is probably more variance.
 
 % todo: gpt2 plots more similar to Sprouse plots from humans scores: this might be related to the finding by (..Venturi paper) that GPT2 scores are more interpretable than BERT ones..
 
 %\subsection{GePpeTto}
-\subsubsection{GePpeTto with PenLP (from softmax model output)}
+%\subsubsection{GePpeTto with PenLP (from softmax model output)}
 
 % todo: 2 facing pages with 4 figures: sprouse paper plots, then 3 models plots (geppetto, bert, gilberto) on the madeddu dataset
 % after this 2 pages with 3 figures for the plots on the 3 models and the sprouse testsuite, for comparison
@@ -2330,10 +2348,6 @@ In this section we compare our results obtained from transformer-based language 
 \end{figure}
 \restoregeometry
 
-%\subsubsection{GilBERTo with LP (from softmax model output)}
-
-
-
 %\begin{figure}[htp]
 %	\begin{subfigure}{\textwidth}
 	%		\includegraphics[trim=70 30 90 60,clip,width=\textwidth,height=8cm]{images/Chapter1/Plot_1_Sprouse_paper.png}
@@ -2386,20 +2400,6 @@ In this section we compare our results obtained from transformer-based language 
 	%	%\caption{<caption2>}
 	%\end{figure}
 
-in fig .. (Sprouse test suites, language models), we see that the ..error bars (..confidence intervals?) are wider, and this is probably due to the fact that the sample sizes are smaller (8 items per phenomenon instead of 50), so there is probably more variance.
-
-in the two datasets the stimuli are similar, but there are differences (for instance, out adjunct islands teststuite includes temporals adjunts, while in the Sproure one includes only conditional adjuncts, as noted in section ..).
-
-We can see that the plots for whether, adjunct, and subject islands are quite similar with those obtainad on human subjects, with the difference that for adjunct islands, the SHORT-ISLAND sentence gets a higher acceptability score from the transformer model (this might be due to the confound deriving from the format of this sentence, as discussed in section ..).
-
-
-The complex np islands plots from the transformers models are instead quite different from those on humans. This might be due to ..
-
-Comparing the plots from BERT with those on humans, we can see again the discrepancy with the SHORT ISLAND sentence of the adjunct island (likely due to the confound discussed above).
-
-Bert seems to score the complex np islands better than GPT2, with plots that resemble more those from humans.
-
-For subject island (that have ..a modified factorial design as discussed in section ..) we see that BERT scores higher the short island sentence than the short non island, contrary to what happens with humans and with GPT2. To better explain why we should have a look at the spike analysis in the following section. In any case, this effect seems to be subtracted out by the factorial score, so BERT still gets the best accuracy score for this type of island as seen in table ..
 
 
 % todo: regenerate Sprouse's plots from the published score data?
