@@ -128,6 +128,13 @@ pdfcreator={TexStudio}]{hyperref}
 %\renewcommand{\eachwordthree}{\normalfont\fontsize{10.2}{11.9}\selectfont}
 %\renewcommand{\exnrfont}{\normalfont\fontsize{10.2}{11.9}\selectfont}
 
+% for quotes
+% With this, you can simply quote your text like "this", and csquotes will change it to ``this''. The drawback is that if you forget a " it messes up the parity everywhere with no warning. Also, If you need nested quotes, you will have to use \enquote{this}.
+% Other examples \enquote{quote} \enquote*{quote} \enquote{quote \enquote{quote in quote}}
+\usepackage[autostyle=false, style=english]{csquotes}
+\MakeOuterQuote{"}
+
+
 % -----------------------------------------------------------------
 
 % Changes the header style
