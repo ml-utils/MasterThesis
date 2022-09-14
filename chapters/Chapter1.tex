@@ -1979,15 +1979,6 @@ In \autoref{adjunct_item_1}, the Short-NonIsland sentence has a short distance d
 In the present thesis, we focus on four phenomena of island effect structures: whether islands, complex np islands, subject islands, and adjunct islands, all based on wh-dependencies (we leave rc-dependencies like those treated in \citet{sprouse2016experimental}, for future work.)
 
 
-
-\subsubsection{Using factorial sentences as minimal pairs}
-
-% todo: discuss that this is not really feasible, 
-We also explored the possibility of deriving minimal pairs from each factorial item, by building three pairs from the unacceptable sentence and the three unacceptable ones. However this is not feasible, because in this way the resulting pairs are "less minimal", since confounds are not controlled for lexical and syntactic variations (other than the violation of the island constraint). This could lead even to cases where the least complex sentence (\textsc{short-nonisland} condition) would receive a very low likelihood score for being very short hand having less semantic cues that longer sentences, therefore presenting spikes of surprisals for some tokens, that are less predictable given the less informative context. % We give the accuracy scores we obtained for these experiments.
-
-%e also use the four sentences of each item of the factorial test design, to draw three minimal pairs, comparing the three acceptable sentences (long and short non-island, and the short-island types) with the unacceptable one (the long-nonisland sentence type). We then score these minimal pairs for accuracy, considering that a model scores accurately a pair of sentences if it gives an higher acceptability score to the acceptable sentence rather than the unacceptable one.
-
-
 \section{Tested models}
 
 \textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
@@ -2093,7 +2084,14 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 \end{table}
 
 
-\section{Accuracy results for island effects minimal pairs in Italian}
+\section{Using factorial sentences as minimal pairs}
+% \section{Accuracy results for island effects minimal pairs in Italian}
+
+% todo: discuss that this is not really feasible, 
+We also explored the possibility of deriving minimal pairs from each factorial item, by building three pairs from the unacceptable sentence and the three unacceptable ones. However this is not feasible, because in this way the resulting pairs are "less minimal", since confounds are not controlled for lexical and syntactic variations (other than the violation of the island constraint). This could lead even to cases where the least complex sentence (\textsc{short-nonisland} condition) would receive a very low likelihood score for being very short hand having less semantic cues that longer sentences, therefore presenting spikes of surprisals for some tokens, that are less predictable given the less informative context. % We give the accuracy scores we obtained for these experiments.
+
+%e also use the four sentences of each item of the factorial test design, to draw three minimal pairs, comparing the three acceptable sentences (long and short non-island, and the short-island types) with the unacceptable one (the long-nonisland sentence type). We then score these minimal pairs for accuracy, considering that a model scores accurately a pair of sentences if it gives an higher acceptability score to the acceptable sentence rather than the unacceptable one.
+
 
 % todo: move to the appendix, edit discussion
 
