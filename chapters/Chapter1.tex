@@ -454,15 +454,13 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 % TODO: add equivalent examples also for italian
 % for wh-dependencies, and subject islands in italian, is there a restriction to PPs only, or also subjects and direct objects?
 
-\section{Test suite design}\label{sec:testsuite_design}
-
-In building test suite for our experiments, we largely followed the factorial design of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects  (however, we increased the number of items per island effect type from 8 to 50).
-
-% and we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
+\section{Factorial experimental setups from psycholinguistic studies}\label{sec:testsuite_design}
 
 A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
 
-In our case, for each of the four island effect types that we want to test, we built 50 \textsc{items}, each containing 4 sentences (one per \textsc{condition}) covering a 2x2 factorial design crossing two \textsc{factors}: presence or absence of an island structure (\textsc{structure} factor), and presence of a short or long-distance dependency (\textsc{gap-position} factor).
+% "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
+A common use case is to have the \textsc{items} (the equivalent of the sentence pairs) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
+
 
 Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure (\textsc{SD/NI}); condition b. displays a long-distance dependency and no island structure (\textsc{LD/NI}); condition c. displays a short-distance dependency and an adjunct island structure (\textsc{SD/IS}); and condition d. displays a long-distance dependency crossing an adjunct island structure (\textsc{LD/IS}). Sentences a-c are supposed to be acceptable, while d is unacceptable because of an island effect:
 
@@ -487,7 +485,7 @@ Consider the item in the following example (\ref{adjunct_island_2_it}), in which
 	\end{xlist}
 \end{exe}
 
-In a factorial design, the scores (being a log probability or a pseudo-log-likelihood) that a language model gives to the sentences of an item like (\ref{adjunct_island_2_it}), can be compared to quantify and tease out the effect of different factors. For instance, in the case of a pseudo-log-likelihood (PLL) score obtained from a bi-directional LM like BERT, we could calculate the following quantities:
+In a factorial design, the scores (being either a human judgment on a likert scale, or a language model score like a log probability or a pseudo-log-likelihood)given to the sentences of an item like (\ref{adjunct_island_2_it}), can be compared to quantify and tease out the effect of different factors. For instance, in the case of a pseudo-log-likelihood (PLL) score obtained from a bi-directional LM like BERT, we could calculate the following quantities:
 % Factorial Measurement of Island Effects in Psycholinguistic studies
 % "A DD score is calculated for a two-way interaction as follows. First, calculate the difference (D1) between the scores in two of the four conditions. To make the DD scores as intuitively meaningful as possible, we have defined D1 as the difference between the NONISLAND/EMBEDDED condition and the ISLAND/EMBEDDED condition. Second, calculate the difference (D2) between the scores in the other two conditions. For our purposes, D2 is the difference between the NONISLAND/MATRIX condition and the ISLAND/MATRIX condition. Finally, calculate the difference between these two difference scores. Intuitively, the DD score measures how much greater the effect of an island structure is in a long distance dependency sentence than in a sentence with a local dependency" \citep{sprouse2012test}
 
@@ -506,19 +504,7 @@ The \textsc{length effect} should capture the decrease in sentence acceptability
 
 This factorial score is used by \citet{sprouse2016experimental} to assess island effects as perceived by human subjects, and it is equivalent to a differences-in-differences (DD) score \citep{maxwell2003designing}. Similar factorial scores have been used for language models by \citet{wilcox2018rnn} and \citet{hu2020systematic}.
 
-"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
-"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
-
-
-% plots, adjustin to a 7point likert scale
-
-%\subsection{Differences with the target material in \citet{sprouse2016experimental}}
-
-% move to observations in results
-% We replaced personal pronouns (“io”/“tu”) with common nouns (“lo studente”, “il giornalista”, etc.) that are more typically associated with the verbs in each item,  to reduce the lexical difference across the sentences of an item (eg. “\textit{Chi ha approvato la legge dopo aver valutato gli emendamenti?}” and	“\textit{Che cosa i deputati hanno approvato la legge dopo aver valutato?}”). % for the sentences that have less words. for instance ..
-
-% For adjunct islands, while \citet{sprouse2016experimental} tested only conditional clauses introduced by “se” (“Cosa ti irriti \textit{se dimentico in ufficio}?”), we also tested temporal adjuncts introduced by “prima/dopo/mentre/quando” (“Che cosa i deputati hanno approvato la legge \textit{dopo aver valutato}?”), in 31 items out of 50.
-% " our choice to use conditional clauses as the adjunct structure in adjunct islands " "it would be interesting to test other types of adjuncts (e.g., causal adjuncts and temporal adjuncts). In this case, we chose conditional adjuncts because previous studies have demonstrated that conditional adjuncts are not transparently reducible to a processing complexity effect (Sprouse et al. 2012), therefore conditional adjuncts are a particularly good candidate for investigations of crosslinguistic variation in grammatical theories of island effects. " \citep{sprouse2016experimental}
+The factorial design allows to calculate the effect of the combination of the different properties, by making subtractions between the scores of the sentences of an item, because they differ minimally between each other (only on the basis of the controlled properties). This allows to factor as many confound as possible, even unexpected ones, as long as they are evenly distributed within across the sentences of an item \citep{sprouse2016experimental, hu2020systematic}.
 
 % todo: the senence acceptability estimates
 
@@ -1288,10 +1274,7 @@ As noted in the original BLiMP paper, the minimal pairs paradigm might not be su
 
 Factorial experimental setup can be considered a more general case of a minimal pairs one. A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. 
 
-% "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
-A common use case is to have the \textsc{items} (the equivalent of the sentence pairs) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
-
-The factorial design allows to calculate the effect of the combination of the different properties, by making subtractions between the scores of the sentences of an item, because they differ minimally between each other (only on the basis of the controlled properties). This allows to factor as many confound as possible, even unexpected ones, as long as they are evenly distributed within across the sentences of an item \citep{sprouse2016experimental, hu2020systematic}.
+% ..
 
 The results of a factorial experimental setup can then be analyzed in multiple ways. It is possible to derive measures of statistical significance using a mixed-effects linear regression model, as it's standard practice in psycholinguistics \citep{sprouse2016experimental, wilcox2018rnn}.; or it is possible to obtain an overall accuracy score, by setting up a multi-fold \textsc{success criterion}, considering an item as accurately scored if multiple inequalities have been satisfied, as done by \citet{hu2020systematic}. This latter case is more suitable for integration into minimal pairs benchmarks like BLiMP, that use accuracy scores, and it is the one we adopt in this thesis.
 %In \citet{hu2020systematic}, "Test suites are written using a standard format that allows for flexible predictions which more \textbf{closely resemble those used in psycholinguistic studies}," 
@@ -1937,10 +1920,38 @@ and Long Short-Term Memory RNNs (LSTM) in particular, on island effects with a f
 
 \section{Test data}
 
-For the present thesis, we develop a new test suite that follows the same paradigm form as the one in \citet{sprouse2016experimental}, but with an increased item number of 50 (from the original 8). As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 items, which in turn are composed by four sentences as in \autoref{adjunct_item_1}, covering the combinations of two factors: presence or absence of an island structure, and a short or long-distance dependency.
+
+\section{Test suite design}\label{sec:testsuite_design}
 
 
-Here are two sample items for the adjunct island complex NP island phenomena from the test suite we developed for this thesis:
+
+% we made some adjustments (discussed in the following paragraphs) to reduce potential confounds in administering the material to Language Models (LMs), due to the way in which these models estimate likelihood scores for sentences.
+
+
+
+
+%"We use experimental items where the gap is located in an obligatory argument position, e.g. in subject position or as the direct object of a transitive verb, \textbf{as judged by the authors}." \citep{wilcox2018rnn}
+%"The phrase with the gap is embedded inside a complement clause.  We chose this paradigm over bare wh-questions because \textbf{it eliminates do-support and tense manipulation of the main verb}, resulting in \textbf{higher similarity across conditions}" \citep{wilcox2018rnn}
+
+
+% plots, adjustin to a 7point likert scale
+
+%\subsection{Differences with the target material in \citet{sprouse2016experimental}}
+
+% move to observations in results
+% We replaced personal pronouns (“io”/“tu”) with common nouns (“lo studente”, “il giornalista”, etc.) that are more typically associated with the verbs in each item,  to reduce the lexical difference across the sentences of an item (eg. “\textit{Chi ha approvato la legge dopo aver valutato gli emendamenti?}” and	“\textit{Che cosa i deputati hanno approvato la legge dopo aver valutato?}”). % for the sentences that have less words. for instance ..
+
+% For adjunct islands, while \citet{sprouse2016experimental} tested only conditional clauses introduced by “se” (“Cosa ti irriti \textit{se dimentico in ufficio}?”), we also tested temporal adjuncts introduced by “prima/dopo/mentre/quando” (“Che cosa i deputati hanno approvato la legge \textit{dopo aver valutato}?”), in 31 items out of 50.
+% " our choice to use conditional clauses as the adjunct structure in adjunct islands " "it would be interesting to test other types of adjuncts (e.g., causal adjuncts and temporal adjuncts). In this case, we chose conditional adjuncts because previous studies have demonstrated that conditional adjuncts are not transparently reducible to a processing complexity effect (Sprouse et al. 2012), therefore conditional adjuncts are a particularly good candidate for investigations of crosslinguistic variation in grammatical theories of island effects. " \citep{sprouse2016experimental}
+
+
+In building test suite for our experiments, we largely followed the factorial design of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects, but we increased item number of 50 from the original 8 (by comparison, previous work on language models like \citet{wilcox2018rnn} used about 20 items per suite). 
+
+As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 \textsc{items}, which in turn are composed by four sentences, one per \textsc{condition}, as in \autoref{adjunct_item_1}, covering the combinations of two \textsc{factors}: presence or absence of an island structure (the \textsc{structure} factor), and and presence of a short or long-distance dependency (\textsc{gap-position} factor). Therefore, each sentence in an item varies minimally from the other 3 to exemplify one these four \textsc{conditions:} \textsc{Short-NonIsland}, {Long-NonIsland}, {Short-Island}, and {Long-Island}. The first three are supposed  to be acceptable sentences, while the last one is supposed to be unacceptable.
+
+% Here are two sample items for the adjunct island complex NP island phenomena from the test suite we developed for this thesis:
+
+% todo: add notes on the variations: ed for adjuncts, we add both conditional and temporal adjuncts
 
 \begin{example}
 	\textsc{Adjunct islands}
