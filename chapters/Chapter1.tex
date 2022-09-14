@@ -2265,6 +2265,7 @@ In this section we compare our results obtained from transformer-based language 
 % \begin{figure}[ht]
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
+\thispagestyle{empty}
 \newgeometry{noheadfoot=true,top=1.5cm,bottom=1.5cm}
 \begin{figure}
 	\centering
@@ -2296,6 +2297,41 @@ In this section we compare our results obtained from transformer-based language 
 	}
 	\label{fig:plots_2_mdd}
 \end{figure}
+
+\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
+\AddThispageHook{\thispagestyle{empty}}%
+\thispagestyle{empty}
+\begin{figure}
+	\centering
+	\ULsubfloat[Fig.\ref{fig:sprouse_gpt_penlp}  \label{fig:sprouse_gpt_penlp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png}%
+	}
+	\vspace{10pt}
+	\ULsubfloat[Fig.\ref{fig:sprouse_bert_lp} \label{fig:sprouse_bert_lp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png}%
+	}
+	\caption{ \ref{fig:sprouse_gpt_penlp} and \ref{fig:sprouse_bert_lp} 
+	}
+	\label{fig:plots_3_sprouse}
+\end{figure}
+
+\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
+\AddThispageHook{\thispagestyle{empty}}%
+\thispagestyle{empty}
+\begin{figure}
+	\centering
+	\ULsubfloat[Fig.\ref{fig:sprouse_gilbertot_lp}  \label{fig:sprouse_gilbertot_lp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h17m28s42.png}%
+	}
+	\vspace{10pt}
+	\caption{ \ref{fig:sprouse_gilbertot_lp}
+	}
+	\label{fig:plots_4_sprouse}
+\end{figure}
+\restoregeometry
+
+%\subsubsection{GilBERTo with LP (from softmax model output)}
+
 
 
 %\begin{figure}[htp]
@@ -2340,51 +2376,15 @@ In this section we compare our results obtained from transformer-based language 
 	%	%\caption{<caption2>}
 	%	%\end{center}
 	%\end{figure}
-
-%\begin{figure}[h]
-%	\centering
-%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}
-%	%\caption{<caption2>}
-%	% \vspace*{\floatsep}%
-%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png} 
-%	%\caption{<caption2>}
-%\end{figure}
-
-\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
-\AddThispageHook{\thispagestyle{empty}}%
-\thispagestyle{empty}
-\begin{figure}
-	\centering
-	\ULsubfloat[Fig.\ref{fig:sprouse_gpt_penlp}  \label{fig:sprouse_gpt_penlp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png}%
-	}
-	\vspace{10pt}
-	\ULsubfloat[Fig.\ref{fig:sprouse_bert_lp} \label{fig:sprouse_bert_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png}%
-	}
-	\caption{ \ref{fig:sprouse_gpt_penlp} and \ref{fig:sprouse_bert_lp} 
-	}
-	\label{fig:plots_3_sprouse}
-\end{figure}
-
-\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
-\AddThispageHook{\thispagestyle{empty}}%
-\thispagestyle{empty}
-\begin{figure}
-	\centering
-	\ULsubfloat[Fig.\ref{fig:sprouse_gilbertot_lp}  \label{fig:sprouse_gilbertot_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h17m28s42.png}%
-	}
-	\vspace{10pt}
-	\caption{ \ref{fig:sprouse_gilbertot_lp}
-	}
-	\label{fig:plots_4_sprouse}
-\end{figure}
-
-%\subsubsection{GilBERTo with LP (from softmax model output)}
-% . . . stuff
-\restoregeometry
-
+	
+	%\begin{figure}[h]
+	%	\centering
+	%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}
+	%	%\caption{<caption2>}
+	%	% \vspace*{\floatsep}%
+	%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png} 
+	%	%\caption{<caption2>}
+	%\end{figure}
 
 in fig .. (Sprouse test suites, language models), we see that the ..error bars (..confidence intervals?) are wider, and this is probably due to the fact that the sample sizes are smaller (8 items per phenomenon instead of 50), so there is probably more variance.
 
