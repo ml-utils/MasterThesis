@@ -54,6 +54,15 @@
 \usepackage[export]{adjustbox}
 \usepackage{graphics}
 %\usepackage{array}
+%\usepackage{subcaption}
+\newcommand{\ULsubfloat}[2][\empty]% #1 = caption (optional), #2 = image
+{\hbox{% unbreakable group
+		\sbox0{#2}% measure height of image
+		\captionsetup{position=top, justification=raggedleft, singlelinecheck=false}%
+		\rotatebox[origin=bl]{90}{\begin{minipage}[b]{\dimexpr \ht0+\dp0}
+				\subcaption{#1}
+		\end{minipage}}\raisebox{\dp0}{\usebox0}%
+}}
 
 
 % For colors

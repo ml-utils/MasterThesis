@@ -2265,51 +2265,94 @@ In this section we compare our results obtained from transformer-based language 
 \AddThispageHook{\thispagestyle{empty}}%
 % \begin{figure}[p]
 % \begin{figure}[ht]
-	
-\begin{figure}[h]
-	\refstepcounter{figure}
-	\begin{tabular}{c c}
-		\rotatebox[origin=c]{90}{Figure~\thefigure }
-		&
-		\includegraphics[valign=m]{images/Chapter1/Plot_1_Sprouse_paper.png}
-		\label{fig:sprouse_humans}
-	\end{tabular}
-	\begin{tabular}{c c}
-	\rotatebox[origin=c]{90}{Fig.~\thefigure: blabkbalbalablabalb }
-	&
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}
-	\label{fig:md_gpt_penlp}
-\end{tabular}
-\end{figure}	
-	
-\begin{figure}[h]
-	% \centering
-	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={left,top},capbesidewidth=4cm}}]{figure}[\FBwidth]
-	{\caption{}\label{fig:test}}
-	{ % \includegraphics[width=5cm]{name}
-	% \includegraphics[width=0.9\textwidth, height=16cm]{example-image-c}
-	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}}
-	% \caption{\blindtext[1]}\label{here}
-	%\caption{<caption2>}
-	\vspace*{\floatsep}%
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
-	%\caption{<caption2>}
-	%\end{center}
+
+\begin{figure}
+	\centering
+	\ULsubfloat[Image from \citet{sprouse2016experimental}\label{fig:sprouse_humans}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}%
+	}
+	\vspace{10pt}
+	\ULsubfloat[\label{fig:md_gpt_penlp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}%
+	}
+	\caption{  % (\ref{fig:XiParameterCuts0}) and (\ref{fig:XiParameterCuts3}) 
+	}
+	\label{fig:XiParameter}
 \end{figure}
 
+%\begin{figure}[htp]
+%	\begin{subfigure}{\textwidth}
+%		\includegraphics[trim=70 30 90 60,clip,width=\textwidth,height=8cm]{images/Chapter1/Plot_1_Sprouse_paper.png}
+%		\caption{Figure A}
+%	\end{subfigure}
+%	\begin{subfigure}{\textwidth}
+%		\includegraphics[trim=70 30 90 60,clip,width=\textwidth,height=8cm]{images/Chapter1/Plot_1_Sprouse_paper.png}
+%		\caption{Figure B}
+%	\end{subfigure}
+%\end{figure}
+
+	
+%\begin{figure}[h]
+%	\refstepcounter{figure}
+%	\begin{tabular}{c c}
+%		\rotatebox[origin=c]{90}{Figure~\thefigure }
+%		&
+%		\includegraphics[valign=m]{images/Chapter1/Plot_1_Sprouse_paper.png}
+%		\label{fig:sprouse_humans}
+%	\end{tabular}
+%	\begin{tabular}{c c}
+%	\rotatebox[origin=c]{90}{Fig.~\thefigure: blabkbalbalablabalb }
+%	&
+%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}
+%	\label{fig:md_gpt_penlp}
+%\end{tabular}
+%\end{figure}	
+	
+%\begin{figure}[h]
+%	% \centering
+%	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={left,top},capbesidewidth=4cm}}]{figure}[\FBwidth]
+%	{\caption{}\label{fig:test}}
+%	{ % \includegraphics[width=5cm]{name}
+%	% \includegraphics[width=0.9\textwidth, height=16cm]{example-image-c}
+%	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}}
+%	% \caption{\blindtext[1]}\label{here}
+%	%\caption{<caption2>}
+%	\vspace*{\floatsep}%
+%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
+%	%\caption{<caption2>}
+%	%\end{center}
+%\end{figure}
 
 
 \clearpage
 %\subsubsection{BERT with LP (from softmax model output)}
 % \begin{figure}[ht]
-\begin{figure}[h]
+\AddThispageHook{\thispagestyle{empty}}%
+% \begin{figure}[p]
+	% \begin{figure}[ht]
+		
+\begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}
-	%\caption{<caption2>}
-	% \vspace*{\floatsep}%
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png} 
-	%\caption{<caption2>}
+	\ULsubfloat[\label{fig:XiParameterCuts0}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}%
+	}
+	\vspace{10pt}
+	\ULsubfloat[\label{fig:XiParameterCuts3}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png}%
+	}
+	\caption{  % (\ref{fig:XiParameterCuts0}) and (\ref{fig:XiParameterCuts3}) 
+	}
+	\label{fig:XiParameter2}
 \end{figure}
+	
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}
+%	%\caption{<caption2>}
+%	% \vspace*{\floatsep}%
+%	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png} 
+%	%\caption{<caption2>}
+%\end{figure}
 
 
 \begin{figure}[h]
