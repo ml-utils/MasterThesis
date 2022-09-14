@@ -2252,44 +2252,80 @@ Although it's between different languages (English and Italian), the scores on \
 
 \section{Qualitative analysis}
 
-In this section we compare our results obtained from transformer
-based language models with those obtained by \citet{sprouse2016experimental} on human subjects. The
-
-% todo: 2 facing pages with 4 figures: sprouse paper plots, then 3 models plots (geppetto, bert, gilberto) on the madeddu dataset
-% after this 2 pages with 3 figures for the plots on the 3 models and the sprouse testsuite, for comparison
+In this section we compare our results obtained from transformer-based language models with those obtained by \citet{sprouse2016experimental} on human subjects. The
 
 % todo: gpt2 plots more similar to Sprouse plots from humans scores: this might be related to the finding by (..Venturi paper) that GPT2 scores are more interpretable than BERT ones..
 
 %\subsection{GePpeTto}
 \subsubsection{GePpeTto with PenLP (from softmax model output)}
+
+% todo: 2 facing pages with 4 figures: sprouse paper plots, then 3 models plots (geppetto, bert, gilberto) on the madeddu dataset
+% after this 2 pages with 3 figures for the plots on the 3 models and the sprouse testsuite, for comparison
+\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
+\AddThispageHook{\thispagestyle{empty}}%
+% \begin{figure}[p]
+% \begin{figure}[ht]
+	
+\begin{figure}[h]
+	\refstepcounter{figure}
+	\begin{tabular}{c c}
+		\rotatebox[origin=c]{90}{Figure~\thefigure }
+		&
+		\includegraphics[valign=m]{images/Chapter1/Plot_1_Sprouse_paper.png}
+		\label{fig:sprouse_humans}
+	\end{tabular}
+	\begin{tabular}{c c}
+	\rotatebox[origin=c]{90}{Fig.~\thefigure: blabkbalbalablabalb }
+	&
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}
+	\label{fig:md_gpt_penlp}
+\end{tabular}
+\end{figure}	
+	
+\begin{figure}[h]
+	% \centering
+	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={left,top},capbesidewidth=4cm}}]{figure}[\FBwidth]
+	{\caption{}\label{fig:test}}
+	{ % \includegraphics[width=5cm]{name}
+	% \includegraphics[width=0.9\textwidth, height=16cm]{example-image-c}
+	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}}
+	% \caption{\blindtext[1]}\label{here}
+	%\caption{<caption2>}
+	\vspace*{\floatsep}%
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
+	%\caption{<caption2>}
+	%\end{center}
+\end{figure}
+
+
+
+\clearpage
+%\subsubsection{BERT with LP (from softmax model output)}
+% \begin{figure}[ht]
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}
+	%\caption{<caption2>}
+	% \vspace*{\floatsep}%
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png} 
+	%\caption{<caption2>}
 \end{figure}
+
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png} 
-\end{figure}
-\subsubsection{BERT with LP (from softmax model output)}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png} 
-\end{figure}
-\begin{figure}[h]
-	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png} 
 \end{figure}
 
-
-\subsubsection{GilBERTo with LP (from softmax model output)}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png} 
-\end{figure}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h17m28s42.png} 
 \end{figure}
+
+%\subsubsection{GilBERTo with LP (from softmax model output)}
+
+
 
 in fig .. (Sprouse test suites, language models), we see that the ..error bars (..confidence intervals?) are wider, and this is probably due to the fact that the sample sizes are smaller (8 items per phenomenon instead of 50), so there is probably more variance.
 

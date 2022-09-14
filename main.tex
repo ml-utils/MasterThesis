@@ -38,6 +38,24 @@
 % For images
 \usepackage{graphicx}
 
+\usepackage{afterpage}
+\usepackage{blindtext}
+\usepackage[font={small}]{caption}  % Figure/table caption style
+% Desired page dimensions
+\usepackage{geometry}               
+% \geometry{paperwidth=170mm,paperheight=240mm, headsep=30pt, footskip=40pt, inner=70pt, outer=40pt, bottom=100pt, top=80pt}
+% Set-up header/footers
+\usepackage{fancyhdr}               % Headers/footers (load after geometry
+\pagestyle{fancy}                           % Set fancy header/footer style
+\fancyhf{}                                      % Clear header/footer
+\fancyfoot[RO, LE]{\thepage}        % Page numbers outside of page
+\usepackage{everypage}
+\usepackage{floatrow}
+\usepackage[export]{adjustbox}
+\usepackage{graphics}
+%\usepackage{array}
+
+
 % For colors
 \usepackage[dvipsnames]{xcolor}        
 \definecolor{codegreen}{rgb}{0,0.6,0}
