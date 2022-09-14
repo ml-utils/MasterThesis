@@ -2265,6 +2265,7 @@ In this section we compare our results obtained from transformer-based language 
 % \begin{figure}[ht]
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
+\newgeometry{noheadfoot=true,top=1.5cm,bottom=1.5cm}
 \begin{figure}
 	\centering
 	\ULsubfloat[Image from \citet{sprouse2016experimental}\label{fig:sprouse_humans}]{%
@@ -2281,6 +2282,7 @@ In this section we compare our results obtained from transformer-based language 
 
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
+\thispagestyle{empty}
 \begin{figure}
 	\centering
 	\ULsubfloat[Fig.\ref{fig:md_bert_lp}  \label{fig:md_bert_lp}]{%
@@ -2350,6 +2352,7 @@ In this section we compare our results obtained from transformer-based language 
 
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
+\thispagestyle{empty}
 \begin{figure}
 	\centering
 	\ULsubfloat[Fig.\ref{fig:sprouse_gpt_penlp}  \label{fig:sprouse_gpt_penlp}]{%
@@ -2366,6 +2369,7 @@ In this section we compare our results obtained from transformer-based language 
 
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
+\thispagestyle{empty}
 \begin{figure}
 	\centering
 	\ULsubfloat[Fig.\ref{fig:sprouse_gilbertot_lp}  \label{fig:sprouse_gilbertot_lp}]{%
@@ -2378,7 +2382,8 @@ In this section we compare our results obtained from transformer-based language 
 \end{figure}
 
 %\subsubsection{GilBERTo with LP (from softmax model output)}
-
+% . . . stuff
+\restoregeometry
 
 
 in fig .. (Sprouse test suites, language models), we see that the ..error bars (..confidence intervals?) are wider, and this is probably due to the fact that the sample sizes are smaller (8 items per phenomenon instead of 50), so there is probably more variance.
