@@ -1924,27 +1924,21 @@ and Long Short-Term Memory RNNs (LSTM) in particular, on island effects with a f
 %problem in trotta et al for sentences with multiple phenomena
 %(check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
 
+
+
 \chapter{Experimental setup}
+%data gathering, creating dataset, balancing minimal pairs / control factors, usefulness of factorial design, ..
+
+%\section{Methodology}
+%\section{Factorial test design}
+%\subsection{Introduction}
 
 % "Experimental setup" with list of models, details/description  \citep{marvin2018targeted}
 
-\section{Tested models}
+\section{Test data}
 
-\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
-424 MB.
+For the present thesis, we develop a new test suite that follows the same paradigm form as the one in \citet{sprouse2016experimental}, but with an increased item number of 50 (from the original 8). As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 items, which in turn are composed by four sentences as in \autoref{adjunct_item_1}, covering the combinations of two factors: presence or absence of an island structure, and a short or long-distance dependency.
 
-\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
-% GPT-2 Architecture - GePpeTto Wikipedia + ItWAC (14GB)
-
-\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
-
-\section{Methodology}
-
-%data gathering, creating dataset, balancing minimal pairs / control factors, usefulness of factorial design, ..
-
-\section{Factorial test design}
-
-\subsection{Introduction}
 
 Here are two sample items for the adjunct island complex NP island phenomena from the test suite we developed for this thesis:
 
@@ -2020,14 +2014,20 @@ In the present thesis, we focus on four phenomena of island effect structures: w
 
 In the present thesis, we also use the four sentences of each item of the factorial test design, to draw three minimal pairs, comparing the three acceptable sentences (long and short non-island, and the short-island types) with the unacceptable one (the long-nonisland sentence type). We then score these minimal pairs for accuracy, considering that a model scores accurately a pair of sentences if it gives an higher acceptability score to the acceptable sentence rather than the unacceptable one.
 
-..
 
-\subsection{Test suites}
+\section{Tested models}
 
-For the present thesis, we develop a new test suite that follows the same paradigm form as the one in \citet{sprouse2016experimental}, but with an increased item number of 50 (from the original 8). As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 items, which in turn are composed by four sentences as in \autoref{adjunct_item_1}, covering the combinations of two factors: presence or absence of an island structure, and a short or long-distance dependency.
+\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
+424 MB.
+
+\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
+% GPT-2 Architecture - GePpeTto Wikipedia + ItWAC (14GB)
+
+\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
 
 
 
+\section{Measures}
 \subsubsection{Scores normalization}
 
 To be more directly comparable with the results in \citet{sprouse2016experimental}, the scores (LP or PenLP) were then discretized into a 7-point likert scale (using bins rather than quantiles) and normalized into z-scores.
