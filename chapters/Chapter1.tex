@@ -2275,9 +2275,9 @@ In this section we compare our results obtained from transformer-based language 
 	\ULsubfloat[\label{fig:md_gpt_penlp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}%
 	}
-	\caption{  % (\ref{fig:XiParameterCuts0}) and (\ref{fig:XiParameterCuts3}) 
+	\caption{ \ref{fig:sprouse_humans} and \ref{fig:md_gpt_penlp} 
 	}
-	\label{fig:XiParameter}
+	\label{fig:plots_1}
 \end{figure}
 
 %\begin{figure}[htp]
@@ -2323,8 +2323,7 @@ In this section we compare our results obtained from transformer-based language 
 %	%\end{center}
 %\end{figure}
 
-
-\clearpage
+\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 %\subsubsection{BERT with LP (from softmax model output)}
 % \begin{figure}[ht]
 \AddThispageHook{\thispagestyle{empty}}%
@@ -2333,16 +2332,16 @@ In this section we compare our results obtained from transformer-based language 
 		
 \begin{figure}
 	\centering
-	\ULsubfloat[\label{fig:XiParameterCuts0}]{%
+	\ULsubfloat[\label{fig:md_bert_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}%
 	}
 	\vspace{10pt}
-	\ULsubfloat[\label{fig:XiParameterCuts3}]{%
+	\ULsubfloat[\label{fig:md_camembert_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png}%
 	}
-	\caption{  % (\ref{fig:XiParameterCuts0}) and (\ref{fig:XiParameterCuts3}) 
+	\caption{  \ref{fig:md_bert_lp} and \ref{fig:md_camembert_lp} 
 	}
-	\label{fig:XiParameter2}
+	\label{fig:plots_2}
 \end{figure}
 	
 %\begin{figure}[h]
@@ -2354,7 +2353,8 @@ In this section we compare our results obtained from transformer-based language 
 %	%\caption{<caption2>}
 %\end{figure}
 
-
+\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
+\AddThispageHook{\thispagestyle{empty}}%
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png} 
