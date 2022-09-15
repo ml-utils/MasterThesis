@@ -454,6 +454,11 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 % TODO: add equivalent examples also for italian
 % for wh-dependencies, and subject islands in italian, is there a restriction to PPs only, or also subjects and direct objects?
 
+% todo: subsections for each of the four island types: e.g. for adjuncts, with example of conditional and temporan adjuncts; the fact that they were first studied in 1982
+% for wh/wheter islands ..a few word on differences, variations, examples for the different studies (sprouse, hu, wilcox, blimp, rizzi); examples, variations, differences in italian
+% same for complex np and subject islands: examples from the different studies (sprouse, hu, wilcox, blimp, rizzi) showing variations, differences in italia (italian examples when possible)
+% cite also examples from the paper on norwegian and the one by .. and Zamparelli
+
 \section{Factorial experimental setups from psycholinguistic studies}\label{sec:factoria_paradigm}
 
 A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
@@ -2256,9 +2261,9 @@ In this section we compare our results obtained from transformer-based language 
 
 In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:plots_3_sprouse}-\ref{fig:plots_4_sprouse} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
 
-in the two datasets the stimuli are similar, but there are differences (for instance, out adjunct islands test suite includes temporal adjuncts, while in the Sprouse one includes only conditional adjuncts, as noted in section ..).
+% in the two datasets the stimuli are similar, but there are differences (for instance, out adjunct islands test suite includes temporal adjuncts, while in the Sprouse one includes only conditional adjuncts, as noted in section ..).
 
-We can see that the plots for whether, adjunct, and subject islands are quite similar with those obtained on human subjects, with the difference that for adjunct islands, the SHORT-ISLAND sentence gets a higher acceptability score from the transformer model (this might be due to the confound deriving from the format of this sentence, as discussed in section ..).
+We can see that the plots for whether, adjunct, and subject islands from the GPT2-2 model (\autoref{fig:md_gpt_penlp}) are quite similar with those obtained on human subjects (\autoref{fig:sprouse_humans}), with the difference that for adjunct islands, the SHORT-ISLAND sentence gets a higher acceptability score from the transformer model (this might be due to the confound deriving from the format of this sentence, as discussed in section ..).
 
 
 The complex np islands plots from the transformers models are instead quite different from those on humans. This might be due to ..
