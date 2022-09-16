@@ -2049,18 +2049,18 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 			\textbf{Pheno-menon} & \textbf{Factorial score} & LP & LP & LP \\
 			\hline
 			\multirow{1}{0.8cm}{Adjunct}  
-			& DD & \textbf{98} & 64 & 94 \\ 
+			& DD & \textbf{98} & 64 & 72 \\ 
 			\hline
 			\multirow{1}{0.8cm}{ComplexNP} 
-			& DD & 46 & \textbf{100} & 30 \\  			 
+			& DD & 46 & \textbf{100} & 98 \\  			 
 			\hline
 			\multirow{1}{0.8cm}{Subject} 
-			& DD & 82 & \textbf{90} & 64 \\ 
+			& DD & 82 & 90 & \textbf{94} \\ 
 			\hline
 			\multirow{1}{0.8cm}{Whether} 
-			& DD & \textbf{100} & \textbf{100} & 4 \\ 
+			& DD & \textbf{100} & \textbf{100} & \textbf{100} \\ 
 			\hline
-			\textbf{Average} & & 81.5\% & \textbf{88.5\%} & 48\%    \\ 	
+			\textbf{Average} & & 81.5\% & 88.5\% & \textbf{91\%}    \\ 	
 			
 		\end{tabular}
 		\caption{Accuracy percentages for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert. Each factorial item of 4 sentences is scored with the success criterion $DD\_score > 0$.}
@@ -2139,27 +2139,27 @@ Although it's between different languages (English and Italian), the scores on \
 			\hline
 			\multirow{3}{0.8cm}{Wh-whether} 
 			& Short-N.I. & 92 & 96 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 
-			& Long-N.I. & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 78  \\ 
-			& Short-I.S. & 64 & \textbf{98} & 90 & 96  & 62 & 76  \\ 	
+			& Long-N.I. & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 
+			& Short-I.S. & 64 & 98 & 90 & 96  & \textbf{100} & \textbf{100}  \\ 	
 			
 		  	\hline
 			\multirow{3}{0.8cm}{Wh-adjunct}  
-						& Short-N.I. & \textbf{96} & 92 & 94 & 90 & 94 & 92  \\ 
-					   	& Long-N.I. & \textbf{98} & 86 & 68 & 42 & 90 & 58  \\ 
-		  	 		    & Short-I.S. & 96 & 98 & \textbf{100} & 98 & \textbf{100} & \textbf{100}  \\ 
+						& Short-N.I. & \textbf{96} & 92 & 94 & 90 & 90 & 82  \\ 
+					   	& Long-N.I. & \textbf{98} & 86 & 68 & 42 & 76 & 54  \\ 
+		  	 		    & Short-I.S. & 96 & 98 & \textbf{100} & 98 & 96 & 94  \\ 
 		  	\hline
 		  	\multirow{3}{0.8cm}{Wh-complex np} 
-		  				& Short-N.I. & 90 & 92 & \textbf{100} & \textbf{100} & 84 & 88  \\ 
-		  			  	& Long-N.I. & \textbf{100} & 42 & 96 & 92 & 44 & 16  \\ 
-		  				& Short-I.S. & 38 & 88 & \textbf{100} & \textbf{100} & 78 & 90  \\ 		  			 
+		  				& Short-N.I. & 90 & 92 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 
+		  			  	& Long-N.I. & \textbf{100} & 42 & 96 & 92 & \textbf{100} & 98  \\ 
+		  				& Short-I.S. & 38 & 88 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 		  			 
 		  	\hline
 		  	\multirow{3}{0.8cm}{Wh-subject} 
-		  				& Short-N.I. & \textbf{100} & 94 & 28 & 8 & 98 & 72  \\ 
-					  	& Long-N.I. & \textbf{100} & 98 & 86 & 56 & 96 & 86  \\ 
-		  				& Short-I.S. & 40 & 56 & 62 & 60 & 56 & 62  \\ 
+		  				& Short-N.I. & \textbf{100} & 94 & 28 & 8 & 68 & 36  \\ 
+					  	& Long-N.I. & \textbf{100} & 98 & 86 & 56 & 98 & 86  \\ 
+		  				& Short-I.S. & 40 & 56 & 62 & 60 & 72 & \textbf{76}  \\ 
 
 		  	\hline
-		  	\textbf{Average} & & 84.5\% & \textbf{86.7\%} & 85.3\% & 78.5\% & 83.5\% & 76.5\%    \\ 	
+		  	\textbf{Average} & & 84.5\% & 86.7\% & 85.3\% & 78.5\% & \textbf{91.7\%} & 85.5\%    \\ 	
 		  		  	
 		\end{tabular}
 		\caption{Accuracy percentages for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
@@ -2283,6 +2283,7 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 There is also a difference regarding whether islands, in which, for GPT-2 (\autoref{fig:md_gpt_penlp}), the non-island sentences increase in acceptability when going from short-distance to long-distance dependencies, whereas for human subject it is the opposite, there is a decrease in acceptability. This discrepancy is present also in the plots for BERT (\autoref{fig:md_bert_lp}), while GilBERTo is the only model that shows the same trend as in humans for this line (\autoref{fig:md_gilberto_lp}). These trends are the same also in the plots for the results on the same Sprouse dataset that was used on humans (\autoref{fig:plots_3_sprouse}-\autoref{fig:plots_4_sprouse}).
 
 To explain why, we looked at the surprisal for each token (the sentence score is just the sum of the token surprisals, negative). In the example sentence Fig. .., we see that this is due to a lexical and sentence length difference between the short-nonisland ("\textit{Chi pensa che io abbia studiato la teoria?}") and the long-nonisland ("\textit{Cosa pensi che io abbia studiato?}"). The short-nonisland sentence contains the phrase "\textit{la teoria}", that is not present in the long-nonisland sentence and causes two spikes in surprisals that make the short-nonisland PLL score (-18.73) worse than the long-nonisland sentence (-14.72). We'll do follow-up experiments balancing the lexical content of the sentences.
+% possible more balanced variation: short nonisland = Cosa pensi che io in teoria abbia studiato?
 
 % For future work we would like to contro for more confounds, splitting the testsuites in smaller ones (of about 20 items each as in Hu et al and ..), each exemplyfying only one paradigm (eg. only conditional ajduncts or only temporal adjuncts), 
 % (and controlling for semantic cues, same lexical, using informative/prototypica common nouns instead of proper nouns or pronouns..), having testuites with rarer verbs/nouns ..
