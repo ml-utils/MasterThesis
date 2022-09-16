@@ -2296,6 +2296,12 @@ This is reflected also in the accuracy scores, where for complex NP islands BERT
 
 Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\autoref{fig:sprouse_humans}), we can see that the in the BERT plot for subject islands, strangely, the two lines cross, unlike in those for humans. This is due to the fact that BERT (on average) scores with very low acceptability the simplest sentence (the one for the \textsc{short-nonisland} condition on), lower than the other three sentence conditions. So the variation from it to any of the other three sentences sees and increase in acceptability. But the overall DD score is still positive (hence the 100\% accuracy BERT gets on this island type), because the increase in acceptability from \textsc{short-nonisland} to \textsc{long-island} (a-d in formula \ref{formula:factorial_score}) is still lower than the increase expected from the sum of the two other factors (lenght and structure), therefore this less-than-expected increase can be attributed to a super-additive island effect.
 
+% Chi dice che lo studente avrebbe studiato la teoria (and following examples)
+In Fig. (for GilBERTo and adjunct islands) we see that there is probably a confound due the use of the less common verb form "\textit{avrebbe studiato}" ("he had studied", subjunctive mood) in the sentences with a non-island structure (two top plots), while in the sentences with an island structure (two bottom plots) there is the more common form "\textit{aver studiato}" ("having studied", infinitive).
+% Balancing variant "ha studiato"; it could be used also in the island sentences with a relative "che ha studiato"
+
+% (also likely ngram sequences lower the surprisal)
+
 % list of things to check with the spikes analysis: ..
 
 % on GPT, but in BERT the trend is similar as on humans, just with all scores shifted downawrds. Regarding this, it's word rememberinght what ..discussed in section .., about the fact that the acceptability scores are not really comparable in absolute, but only relatively within minimal varying pairs or items. Therefore, plotting the values aggregating the scores, even with a ..likert notmalization and ..minus mean normalization, it's still a ..forzatura.
@@ -2351,7 +2357,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 	}
 	\vspace{10pt}
 	\ULsubfloat[Fig.\ref{fig:md_gilberto_lp} \label{fig:md_gilberto_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png}%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m28s27.png}%
 	}
 	\caption{ \ref{fig:md_bert_lp} and \ref{fig:md_gilberto_lp} 
 	}
@@ -2381,7 +2387,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \begin{figure}
 	\centering
 	\ULsubfloat[Fig.\ref{fig:sprouse_gilbertot_lp}  \label{fig:sprouse_gilbertot_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h17m28s42.png}%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m19s47.png}%
 	}
 	\vspace{10pt}
 	\caption{ \ref{fig:sprouse_gilbertot_lp}
@@ -2681,7 +2687,7 @@ If we compare these plots with the accuracy scores in \autoref{tab:accuracy_it_d
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-14_h15m47s06.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m28s27.png} 
 	\caption{Plots from GilBERTo with the LP sentence acceptability approximation}
 	\label{fig:gilberto_lp_madeddu}
 \end{figure}
