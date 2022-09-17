@@ -5,8 +5,45 @@
 
 \section{Motivation}
 
-With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. \\
-Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}.  \\ % more details on the utility of linguistic assessmen, more details in how it helps building better models
+With the rapid progress made by deep neural language models in the last few years, during which they have significantly advanced the state of the art of many NLP benchmarks and applications, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. 
+
+Recent studies have shown that these models, without explicit supervision, automatically "rediscover" traditional linguistic knowledge (like morphological, syntactic, and semantic structures), partially mimicking the classical NPL pipeline \citep{tenney2019bert, nikoulina2022rediscovery, wu2021infusing}. It has also been shown that that such knowledge is crucial for these models performance in downstream application tasks \citep{elazar2021amnesic}. 
+
+However, the linguistic rediscovery that these model make has been found to differ from human-like generalizations \citep{linzen2020can}, and to be lacking in robustness, since they are prone to "frequency effects", in which the linguistic generalizations degrade when they need to be applied to less common words \citep{wei2021frequency}.
+% \footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
+%try with rarer ones.
+
+A targeted linguistic evaluation of deep neural language models can detect and help to improve which linguistic generalizations are sub-optimal, which in turn could bring many benefits, including improving the performance on downstream application tasks, improving sample efficiency during training \citep{linzen2020can}, uncovering more effective training strategies, %TODO2: citation needed 
+and making more explainable the "black box" of these models internal representations \citep{wilcox2018rnn}.
+For these reasons, the evaluation of these models linguistic competence has emerged as one of the core sub-fields in NLP \citep{cherniavskii2022acceptability}.
+
+% "One promising line of research aims to crack open these ‘black boxes’ by investigating how" "language models perform on specially controlled sentences designed to draw out behavior that indicates representation of" "a syntactic dependency." \citep{wilcox2018rnn}
+
+%Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}.  \\ % more details on the utility of linguistic assessmen, more details in how it helps building better models
+% the repercussion on the linguistic debate on the innatedness of the language faculty (hauser, chomsky and fitch ..)
+%With the large progress made since 2018 in NLP benchmarks 
+%by the last generation of artificial neural network language models, which are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, 
+
+% "With the established impressive performance of large pre-trained language models (Devlin et al., 2019; Liu et al., 2019b), based on the Transformer architecture (Vaswani et al., 2017), a large body of work started studying and gaining insight into how these models work and what do they encode.15 For a thorough summary of these advancements we refer the reader to a recent primer on the subject (Rogers et al., 2020)." \citep{elazar2021amnesic}. 
+
+% "thorough summary of these advancements we refer the reader to a recent primer on the subject": Anna Rogers , OlgaKovaleva, and AnnaRumshisky. 2020. A primer in bertology: What we know about how Bert works. arXiv preprint arXiv:2002.12327. DOI: https://doi.org/10.1162/tacl_a_00349
+
+
+% "These works [on linguistic competence evaluation of LMs] cover a wide variety of topics, including grammatical generalization (Goldberg, 2019; Warstadt et al., 2019), syntax (Tenney et al., 2019b; Lin et al., 2019; Reif et al., 2019; Hewitt and Manning, 2019; Liu et al., 2019a), world knowledge (Petroni et al., 2019; Jiang et al., 2020), reasoning (Talmor et al., 2019), and common sense (Forbes et al., 2019; Zhou et al., 2019; Weir et al., 2020)." \citep{elazar2021amnesic}. 
+
+% "This is a nontrivial goal, as it is not clear whether neural models actually have abstract and disentangled representations of properties such as POS, which are independent of other properties of the text. It may be the case that the representation of many properties is intertwined. Indeed, there is an ongoing debate on the assertion that certain information is “encoded” in the representation (Voita and Titov, 2020; Pimentel et al., 2020). However, even if a disentangled representation of the information we focus on exists, it is not clear how to detect it." \citep{elazar2021amnesic}.
+
+% "In this work, we propose a new method, Amnesic Probing, which aims to quantify the influence of specific properties on a model that is trained on a task of interest." "Taken together, we argue that compared with probing, counterfactual intervention—such as the one we present here—can provide a richer and more refined view of the way symbolic linguistic information is encoded and used by neural models with distributed representations.16" \citep{elazar2021amnesic}
+
+% "research paradigms" (Cherniavskii et al. 2022)
+
+% rediscovery hypothesis/..
+% BERT " implicitly learns to recover the rich latent structure of human language. "   (manning2020emergent)
+
+% methodology for linguistic evaluation
+% "One prominent methodology that attempts to shed light on those questions is probing (Conneau et al., 2018) (also known as auxilliary prediction [Adi et al., 2016] and diagnostic classification [Hupkes et al., 2018]). Under this methodology, one trains a simple model —a probe—to predict some desired information from the latent representations of the pre-trained model. High prediction performance is interpreted as evidence for the information being encoded in the representation. A key drawback of such an approach is that while it may indicate that the information can be extracted from the representation, it provides no evidence for or against the actual use of this information by the model. Indeed, Hewitt and Liang (2019) have shown that under certain conditions, above-random probing accuracy can be achieved even when the information that one probes for is linguistically meaningless noise, which is unlikely to have any use by the actual model. More recently, Ravichanderet al. (2020) showed that models encode linguistic properties, even when not required at all for solving the task, questioning the usefulness and common interpretation of probing. These results call for higher scrutiny of causal claims based on probing results." \citep{elazar2021amnesic}. 
+% "A particularly popular and easy-to-use interpretation method is probing (Conneau et al., 2018). Despite its popularity, recent works have questioned the use of probing as an interpretation tool. Hewitt and Liang (2019) have emphasized the need to distinguish between decoding and learning the probing tasks. They introduced control tasks, a consistent but linguistically meaningless attribution of labels to tokens, and have shown that probes trained on the control tasks often perform well, due to the strong lexical information held in the representations and learned by the probe. This leads them to propose a selectivity measure that aims to choose probes which achieve high accuracy only on linguistically-meaningful tasks. Tamkin et al. (2020) claim that probing cannot serve as an explanation of downstream task success. They observe that the probing scores do not correlate with the transfer scores achieved by fine-tuning." \citep{elazar2021amnesic}. 
+
 
 % TODO: the intro chapter should contain: 
 % ..
@@ -22,6 +59,7 @@ Investigating this serves multiple purposes, like providing insights for buildin
 
 
 % "building better models": more performant and more data/computataion efficient
+
 % The purpose of assessing which linguistic knowledge is acquired by language models based on neural networks: 
 % - finding how/where/on what to improve the model, ..guiding research on further developing them for better performance, more data efficiency and computational efficiency
 % - ..explainability, 
@@ -54,28 +92,17 @@ they also ..highlight a methodological problem and limitedness of (and pose chal
 
 we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
 
-
-
 % the ..above section should be renamed also "introduction"
 % then have a more specific motitvation section on the motivation of this thesis within its line of research (targeted linguistic tests for language models)
-
-
 
 % "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
 
 
- 
-
 \section{Targeted linguistic evaluation of language models}
-% (TODO)
+
 %(general introductory overview of previous studies, state of the art, chronicle history, ..)
 
-% Targeted linguistic evaluation of language models
 
-"Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. "  (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
-% "research paradigms" (Cherniavskii et al. 2022)
-
-% BERT " implicitly learns to recover the rich latent structure of human language. "   (manning2020emergent)
 
 % Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
 
