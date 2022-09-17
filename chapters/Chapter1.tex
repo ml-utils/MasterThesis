@@ -37,7 +37,6 @@ on downstream benchmarks, and advancing SoTA performance in task like ..POS tagg
 frequency effects ..
 the importance of knowing ..how much training data (or which model architectures, or which training tasks/strategies) work best to ..achieve linguistic knowledge, and to acquire in a robust and human-like way. (..so communication with humans ..is more effective, the downstream tasks/applications are more/actually useful, ..)
 
-island effects one of the most challenging.. (although high performance already achieved..)
 
 methodological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
 few multilingual studies
@@ -46,8 +45,12 @@ we ..add/follow/contribute to this line of research ..
 assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
 ..linguistic knowledge tested mainly in English; for Italian.. there is the ItaCola ..corpus/test suite, which ..follows the acceptability judgment paradigm (..that has now be ..surpassed by the minimal pairs one..(surpassed or still used?)
 
+% Overview on island effects
+% overview of the interest for testing them in LMs (they are challenging), and brief mention of importance in linguistics (..)
+% Island Effects and their assessment
+\textbf{Island effects} one of the most challenging.. (although high performance already achieved..)
 island effects these are among the most complex syntactic phenomena 
-they also ..highlight a methodological problem and limitedness of the minimal pairs approach to test them in a comprehensive way: the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psycholinguistic studies.
+they also ..highlight a methodological problem and limitedness of (and pose challenges for) the minimal pairs approach to test them in a comprehensive way: the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psycholinguistic studies.
 
 we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
 
@@ -102,37 +105,10 @@ we test 4 italian models with fixed parameters size (about 110) but varying in t
 "Targeted syntactic evaluations have shown that these models [neural language models ] also implicitly capture many syntactic generalizations, ranging from subject–verb agreement to long-distance filler–gap dependencies (Linzen et al., 2016; Marvin and Linzen, 2018; Futrell et al., 2018; Wilcox et al., 2019b)" \citep{hu2020systematic} "similar developments in semantic evaluation (McCoy et al., 2019)" \citep{hu2020systematic}
 
 
-\section{Island Effects and their assessment}
 
-\subsection{Overview on island effects}
 
-(TODO: sintetizzare i virgolettati di seguito) \\
 
-"filler–gap dependencies are subject to numerous complex island constraints:  \citet{ross1967constraints} identified five syntactic positions in which gaps are illicit, dubbing them syntactic islands." \citep{wilcox2018rnn} \\
-% "Even though the filler–gap dependency is flexible and potentially unbounded, it is not entirely unconstrained.
 
-Examples: (..) \\
-
-"open question whether these “island constraints” are true grammatical constraints, or whether they are effects of processing difficulty or discourse-structural factors (Ambridge and Goldberg, 2008; Hofmeister and Sag, 2010; Sprouse and Hornstein, 2014)" \citep{wilcox2018rnn} 
-
-Argument from the poverty of the stimulus (APS):
-"Because of their complexity and ubiquity, these dependencies have figured prominently in arguments that natural language would be unlearnable by children without a great deal of innate knowledge (Phillips, 2013) (cf. Pearl and Sprouse, 2013; Ellefson and Christiansen, 2000)" \citep{wilcox2018rnn} 
-
-"The influential argument from the poverty of the stimulus (APS) ..  has been subject to much criticism (Pullum and Scholz, 2002)"  Geoffrey K. Pullum and Barbara C. Scholz. 2002. Empirical assessment of stimulus poverty arguments. The Linguistic Review, 18(1-2):9–50.
-
-% psycholinguistic studies (Sprouse)
-
-Wh-Island Constraint definition: 
-"A gap cannot appear inside doubly nested clauses headed by wh-complementizers. This phenomenon is called the Wh-Island Constraint (WHC). "  \citep{wilcox2018rnn}
-
-%Adjunct Island Constraint
-%"We used three different prepositions to construct temporal adjuncts: ‘while’, ‘after’ and ‘before’." \citep{wilcox2018rnn}
-
-\subsection{Island effects assessment in language models}
-
-(TODO)
-
-% Wilcox, Blimp, ..
 
 \pagebreak
 
@@ -160,11 +136,11 @@ which models all pairwise interactions between words.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/attention-manning-pnas.png} 
-	\caption{Overview of the attention mechanism, taken from \citet{manning2020emergent} (TODO: request permission, pnas licence is CC ND)} 
+	\caption{Overview of the attention mechanism, taken from \citet{manning2020emergent}.} 
 	\label{fig:manning_attention} 
 	\medskip
 	\small
-	..
+	(TODO: request permission, pnas licence is CC ND)
 \end{figure}
 
 % a non-recurrent architecture, called the Transformer \citep{vaswani2017attention} 
@@ -357,6 +333,12 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 \chapter{A Brief Introduction to Island Effects}
 
+%"filler–gap dependencies are subject to numerous complex island constraints:  \citet{ross1967constraints} identified five syntactic positions in which gaps are illicit, dubbing them syntactic islands." \citep{wilcox2018rnn} \\
+% "Even though the filler–gap dependency is flexible and potentially unbounded, it is not entirely unconstrained.
+
+% Examples: (..) \\
+
+% psycholinguistic studies (Sprouse)
 
 An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs, which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
 
@@ -481,10 +463,18 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 % for wh-dependencies, and subject islands in italian, is there a restriction to PPs only, or also subjects and direct objects?
 
 
+
 \section{Wh-islands and whether Islands}\label{sec:wh_islands}
 % todo: subsections for each of the four island types: e.g. 
 
 % for wh/wheter islands ..a few word on differences, variations, examples for the different studies (sprouse, hu, wilcox, blimp, rizzi); examples, variations, differences in italian
+
+%Wh-Island Constraint definition: 
+%"A gap cannot appear inside doubly nested clauses headed by wh-complementizers. This phenomenon is called the Wh-Island Constraint (WHC). "  \citep{wilcox2018rnn}
+
+%Adjunct Island Constraint
+%"We used three different prepositions to construct temporal adjuncts: ‘while’, ‘after’ and ‘before’." \citep{wilcox2018rnn}
+
 
 \section{Adjunct islands}\label{sec:adjunct_islands}
 % for adjuncts, with example of conditional and temporan adjuncts; the fact that they were first studied in 1982
@@ -580,6 +570,11 @@ We used these two scores as a relative estimate of sentence acceptability, for t
 
 
 
+\subsection{Island effects assessment in language models}
+
+(TODO)
+
+% Wilcox, Blimp, ..
 
 
 \section{Draft sections}
@@ -605,6 +600,15 @@ We used these two scores as a relative estimate of sentence acceptability, for t
 
 % mention that it is debated in linguistics ..what causes island effects .. their nature
 % (and that experimental psycholinguistic studies, sprouse, have shown, confirmed, some predictions/ assessed some theories predictions ..)
+
+
+"open question whether these “island constraints” are true grammatical constraints, or whether they are effects of processing difficulty or discourse-structural factors (Ambridge and Goldberg, 2008; Hofmeister and Sag, 2010; Sprouse and Hornstein, 2014)" \citep{wilcox2018rnn} 
+
+Argument from the poverty of the stimulus (APS):
+"Because of their complexity and ubiquity, these dependencies have figured prominently in arguments that natural language would be unlearnable by children without a great deal of innate knowledge (Phillips, 2013) (cf. Pearl and Sprouse, 2013; Ellefson and Christiansen, 2000)" \citep{wilcox2018rnn} 
+
+"The influential argument from the poverty of the stimulus (APS) ..  has been subject to much criticism (Pullum and Scholz, 2002)"  Geoffrey K. Pullum and Barbara C. Scholz. 2002. Empirical assessment of stimulus poverty arguments. The Linguistic Review, 18(1-2):9–50.
+
 
 % "As an acceptability-based phenomenon, the source of island effects has long been a topic of debate within the linguistic and psycholinguistic literature. The problem lies in the fact that acceptability judgments are a behavioral response that is the result of successful sentence processing (Chomsky 1965, Schutze 1996, Sprouse and Almeida 2013), and as such could be influenced ¨ by any of the cognitive systems that are implicated in successful sentence processing, from the multiple mental representations that can be used to characterize a sentence (e.g., phonological, morphological, syntactic, semantic, pragmatic), to the different components of the parsing system that must be deployed during normal sentence comprehension (e.g., structure-building operations, ambiguity resolution heuristics, working memory systems). In short, this is the classic problem of cognitive science (mapping observable behavioral responses to unobservable cognitive constructs), exacerbated by the complexity and multi-level nature of human language. The primary empirical goal of this volume is to bring the techniques of experimental syntax (broadly construed) to bear on this particular instantiation of the cognitive science problem, and move the field one step closer to identifying the source of island effects."  \citep{sprouse2013experimental}
 % "there is substantial variability within the class of grammatical approaches. There are syntactic approaches to island effects, which posit syntactic constraints known as island constraints on the formation of WH-dependencies, such as Ross’s classic COMPLEX NP CONSTRAINT (Ross 1967), Chomsky’s SUBJACENCY CONDITION (Chomsky 1973, 1986), and Huang’s CONDITION ON EXTRACTION DOMAINS (Huang 1982). There are also semantic approaches to island effects,  for example, the algebraic semantics approach to weak islands by Szabolcsi and Zwarts (1993), the event structure account of adjunct islands by Truswell (2007), and the presupposition failure account of negative islands, factive islands, and others by Abrusán (2011). Some other grammatical approaches are more pragmatic in nature (ErteschikShir 1973, Kuno 1976, 1987, Kuno \& Takami 1993, Goldberg 2007)."  \citep{sprouse2012test}
@@ -2447,9 +2451,10 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 	\ULsubfloat[\label{fig:md_gpt_penlp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}%
 	}
-	\caption{ Plots for average scores on humans (\ref{fig:sprouse_humans}) and GePpeTto (\ref{fig:md_gpt_penlp}) 
+	\caption{Plots of average scores from humans (\ref{fig:sprouse_humans}) and from GePpeTto (\ref{fig:md_gpt_penlp}), on the test suites developed for the present thesis. 
 	}
 	\label{fig:plots_1_mdd}
+	% \small (..)
 \end{figure}
 
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
@@ -2457,14 +2462,14 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \thispagestyle{empty}
 \begin{figure}
 	\centering
+	\caption{Plots of average scores from BERT XXL \ref{fig:md_bert_lp} and GilBERTo (\ref{fig:md_gilberto_lp}), on the test suites developed for the present thesis. 
+	}
 	\ULsubfloat[Fig.\ref{fig:md_bert_lp}  \label{fig:md_bert_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}%
 	}
 	\vspace{10pt}
 	\ULsubfloat[Fig.\ref{fig:md_gilberto_lp} \label{fig:md_gilberto_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m28s27.png}%
-	}
-	\caption{ \ref{fig:md_bert_lp} and \ref{fig:md_gilberto_lp} 
 	}
 	\label{fig:plots_2_mdd}
 \end{figure}
@@ -2481,7 +2486,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 	\ULsubfloat[Fig.\ref{fig:sprouse_bert_lp} \label{fig:sprouse_bert_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png}%
 	}
-	\caption{ \ref{fig:sprouse_gpt_penlp} and \ref{fig:sprouse_bert_lp} 
+	\caption{Plots of average scores from GePpeTto \ref{fig:sprouse_gpt_penlp} and BERT XXL (\ref{fig:sprouse_bert_lp}), on the original test suite by \citet{sprouse2016experimental}. 
 	}
 	\label{fig:plots_3_sprouse}
 \end{figure}
@@ -2495,7 +2500,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m19s47.png}%
 	}
 	\vspace{10pt}
-	\caption{ \ref{fig:sprouse_gilbertot_lp}
+	\caption{Plots of average scores from GilBERTo (\ref{fig:sprouse_gilbertot_lp}), on the original test suite by \citet{sprouse2016experimental}. 
 	}
 	\label{fig:plots_4_sprouse}
 \end{figure}
@@ -2514,10 +2519,11 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_152.png} 
-	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by GilBERTo. Note that the tokens are lowercased because GilBERTo is available only in the uncased version, otherwise uppercase words would be split, increase the surprisals, and introduce confounds.} 
+	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by GilBERTo.} 
 	\label{fig:md_gilberto_whether_item_152_surprisals} 
 	\medskip
 	\small
+	Note that the tokens are lowercased because GilBERTo is available only in the uncased version, otherwise uppercase words would be split, increase the surprisals, and introduce confounds.
 \end{figure}
 
 \begin{figure}[H]
