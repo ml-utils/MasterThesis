@@ -158,7 +158,26 @@ mention also sample efficiency, and the fact that, as observed in \citep{rogers2
 
 \section{Targeted linguistic evaluation of language models}
 
+% "As neural models have proven successful at NLP tasks and as potential psycholinguistic models, we continue to refine our understanding of how and whether they capture human-like language faculties" (Newman Refining Targeted Syntactic Evaluation of Language Models)
+% "we propose two minimal pair evaluations: equally-weighted and model-weighted syntactic evaluation. The first focuses on systematicity by expanding the set of verbs TSE considers, and illustrates that language models still struggle with S/V agreement for unlikely verbs. The second focuses on likely behavior by computing the probability of producing a correctly conjugated verb, and illustrates that despite systematic shortcomings, language models generate syntactically valid utterances with high probability. By introducing these metrics, we hope to arrive at a clearer picture of the syntactic abilities of language models"  (Newman Refining Targeted Syntactic Evaluation of Language Models)
+
+
 %(general introductory overview of previous studies, state of the art, chronicle history, ..)
+
+% "Targeted syntactic evaluation (TSE)" "Under our metrics, we find that TSE overestimates systematicity of language models, but that models score up to 40% better on verbs that they predict are likely in context." (Newman, Kai-Siang Ang, Julia Gong, John Hewitt 2021 Refining Targeted Syntactic Evaluation of Language Models)
+
+% "The syntactically correct of the two sentences is sampled from natural corpora (Linzen et al., 2016; Kuncoro et al., 2018) or constructed from templates. The use of templates, known as Targeted Syntactic Evaluation (TSE), , allows for the fine-grained evaluation of models on specific, often rare, syntactic phenomena (Marvin and Linzen, 2018; Ettinger et al., 2018; Warstadt et al., 2020)," \citep{newman2021refining}
+
+% "but (when evaluating S/V number agreement) relies on researchers hand-specifying a small set of verb lemmas that are substituted into each template. In this work, we improve the TSE methodology by disentangling its broad objective of evaluating syntactic ability into two distinct goals, and we introduce two variants of TSE to separately capture each goal. These evaluations demonstrate that neural models do not generally consider wellconjugated verbs more likely than their incorrect conjugations, but instead prefer to correctly conjugate verbs they deem likely" \citep{newman2021refining}
+
+% " decoding strategies like nucleus sampling (Holtzman et al., 2020).1"  (Newman Refining Targeted Syntactic Evaluation of Language Models)
+
+% "minimal pair evaluations should align with models’ performance as language models, which is measured by our MW score." (Newman Refining Targeted Syntactic Evaluation of Language Models)
+
+% "Psycholinguistics -- Recent work has also applied experimental procedures from psycholinguistics to compare human and neural model language processing (Futrell et al., 2019). Experiments investigating garden path sentences’ surprisal, S/V number agreement, and other specific syntactic phenomena reveal that models and humans have different patterns of errors and processing (Linzen and Leonard, 2018; Ettinger et al., 2018; Wilcox et al., 2020; van Schijndel and Linzen, 2020)"
+% "Many of these phenomena are rare, so evaluations with templated minimal pairs complement perplexity as a metric for evaluating models’ syntactic generalization (Hu et al., 2020). When measuring syntactic ability on arbitrary lemmas, our EW metric would be preferred." (Newman Refining Targeted Syntactic Evaluation of Language Models)
+
+% "Finally, Gulordava et al. (2018) argue that the results of syntactic evaluations are influenced by semantic associations between tokens, so they remove these associations by substituting each token with a different randomly selected token with the same syntactic role. Although the resulting minimal pairs are infelicitous, models are still able to predict the correct inflection with above-chance accuracy. Our methods are similar in that some of the verbs in our evaluation set are infelicitous, however the contexts we use are semantically coherent. Rather than avoiding semantic effects by creating infelicitous contexts, we marginalize them out by using a large set of verb lemmas. This makes our metrics less stringent than those of Gulordava et al. (2018), but captures a potentially more realistic setting where we expect our models to perform systematically" (Newman Refining Targeted Syntactic Evaluation of Language Models)
 
 methodological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
 few multilingual studies
