@@ -5,26 +5,61 @@
 
 \section{Motivation}
 
-With the rapid progress made by deep neural language models in the last few years, during which they have significantly advanced the state of the art of many NLP benchmarks and applications, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. 
+With the rapid progress made by deep neural language models in the last few years, during which they have significantly advanced the state of the art of many NLP benchmarks and applications, it has become increasingly important to understand what these model actually learn about human language \citep{rogers2020primer, hewitt2019structural, manning2020emergent, trotta2021monolingual}. 
+% "Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP by storm, offering enhanced parallelization and better modeling of long-range dependencies"  \citep{rogers2020primer}
 
-Recent studies have shown that these models, without explicit supervision, automatically "rediscover" traditional linguistic knowledge (like morphological, syntactic, and semantic structures), partially mimicking the classical NPL pipeline \citep{tenney2019bert, nikoulina2022rediscovery, wu2021infusing}. It has also been shown that that such knowledge is crucial for these models performance in downstream application tasks \citep{elazar2021amnesic}. 
+Recent studies have shown that these models, without explicit supervision, automatically "rediscover" traditional linguistic knowledge (like morphological, syntactic, and semantic structures) \citep{rogers2020primer}, partially mimicking the classical NPL pipeline \citep{tenney2019bert, nikoulina2022rediscovery, wu2021infusing}. It has also been shown that that such knowledge is crucial for these models performance in downstream application tasks \citep{elazar2021amnesic}. 
+% "Amnesic probing (Elazar et al., 2020) aims to specifically remove certain information from the model and see how it changes performance, finding, for example, that language modeling does rely on part-of-speech information." \citep{rogers2020primer}
+% "Syntactic Knowledge Lin et al. (2019) showed that BERT representations are hierarchical rather than linear, that is, there is something akin to syntactic tree structure in addition to the word order information. Tenney et al. (2019b) and Liu et al. (2019a) also showed that BERT embeddings encode information about parts of speech, syntactic chunks, and roles. Enough syntactic information seems to be captured in the token embeddings themselves to recover syntactic trees (Vilares et al., 2020; Kim et al., 2020; Rosa and Marecek, 2019), although ˇ probing classifiers could not recover the labels of distant parent nodes in the syntactic tree (Liu et al., 2019a). Warstadt and Bowman (2020) report evidence of hierarchical structure in three out of four probing tasks." \citep{rogers2020primer}. 
+
+
+
+% "The above claims of syntactic knowledge are belied by the evidence that BERT does not ‘‘understand’’ negation and is insensitive to malformed input. In particular, its predictions were not altered2 even with shuffled word order, truncated sentences, removed subjects and objects (Ettinger, 2019)." \citep{rogers2020primer}
+% "2See also the recent findings on adversarial triggers, which get the model to produce a certain output even though they are not well-formed from the point of view of a human reader (Wallace et al., 2019a)." \citep{rogers2020primer}
 
 However, the linguistic rediscovery that these model make has been found to differ from human-like generalizations \citep{linzen2020can}, and to be lacking in robustness, since they are prone to "frequency effects", in which the linguistic generalizations degrade when they need to be applied to less common words \citep{wei2021frequency}.
 % \footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
 %try with rarer ones.
 
-A targeted linguistic evaluation of deep neural language models can detect and help to improve which linguistic generalizations are sub-optimal, which in turn could bring many benefits, including improving the performance on downstream application tasks, improving sample efficiency during training \citep{linzen2020can}, uncovering more effective training strategies, %TODO2: citation needed 
+A targeted linguistic evaluation of deep neural language models can detect and help to improve which of their linguistic generalizations are sub-optimal, which in turn could bring many benefits, including enabling hypothesis-driven improvement of the  models architecture \citep{rogers2020primer}, improving the performance on downstream application tasks, improving sample efficiency during training \citep{linzen2020can}, indicating more effective training strategies, %TODO2: citation needed 
 and making more explainable the "black box" of these models internal representations \citep{wilcox2018rnn}.
-For these reasons, the evaluation of these models linguistic competence has emerged as one of the core sub-fields in NLP \citep{cherniavskii2022acceptability}.
+For these reasons, the evaluation of the linguistic competence of these models has emerged as one of the core sub-fields in NLP \citep{cherniavskii2022acceptability}.
+
+% "More generally, as language modeling techniques continue to improve, it will be useful to have large-scale tools like BLiMP to efficiently track changes in what these models do and do not know about grammar." warstad 2020 blimp
+
+
+This line of research is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. For instance, investigating to what extent this self-supervised models, without any explicit prior bias, can acquire non-trivial syntactic skills to a human level \citep{gulordava2018colorless, warstadt2020blimp}, addresses the debate on the innateness of the language faculty \citep{hauser2002faculty}.  
+
+% "Unlike CNNs, the Transformers have little cognitive motivation, and the size of these models limits our ability to experiment with pre-training and perform ablation studies. This explains a large number of studies over the past year that attempted to understand the reasons behind BERT’s performance"  \citep{rogers2020primer}
+
+
+% "the linguistic aspects of it, namely, the current evidence regarding the types of linguistic and world knowledge learned by BERT, as well as where and how this knowledge may be stored in the model" \citep{rogers2020primer}
 
 % "One promising line of research aims to crack open these ‘black boxes’ by investigating how" "language models perform on specially controlled sentences designed to draw out behavior that indicates representation of" "a syntactic dependency." \citep{wilcox2018rnn}
 
-%Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}.  \\ % more details on the utility of linguistic assessmen, more details in how it helps building better models
-% the repercussion on the linguistic debate on the innatedness of the language faculty (hauser, chomsky and fitch ..)
-%With the large progress made since 2018 in NLP benchmarks 
-%by the last generation of artificial neural network language models, which are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, 
+%Investigating this serves multiple purposes, like providing insights for building better models, but it is 
 
-% "With the established impressive performance of large pre-trained language models (Devlin et al., 2019; Liu et al., 2019b), based on the Transformer architecture (Vaswani et al., 2017), a large body of work started studying and gaining insight into how these models work and what do they encode.15 For a thorough summary of these advancements we refer the reader to a recent primer on the subject (Rogers et al., 2020)." \citep{elazar2021amnesic}. 
+
+% "literature on linguistic probes, found at least in (Peters et al., 2018b; Belinkov et al., 2017; Blevins et al., 2018; Hupkes et al., 2018)." \citep{hewitt2019structural}
+
+
+% " shed light on the cognitive plausibility of those networks." \citep{linzen2016assessing}
+% "phenomenon that crucially depends on hierarchical syntactic structure"  \citep{linzen2016assessing}
+ 
+% more details on the utility of linguistic assessment, more details in how it helps building better models
+% the repercussion on the linguistic debate on the innatedness of the language faculty (hauser, chomsky and fitch ..)
+% With the large progress made since 2018 in NLP benchmarks 
+% by the last generation of artificial neural network language models, which are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, 
+
+
+
+% "parasitic gap licensing (Culicover and Postal, 2001). While it is more challenging to extract reliable examples of such phenomena from corpora, their study would probe more sophisticated syntactic capabilities, possibly even shedding light on the theoretical analysis of the underlying linguistic structures." Gulordava et al 2018
+
+
+
+% "With the established impressive performance of large pre-trained language models (Devlin et al., 2019; Liu et al., 2019b), based on the Transformer architecture (Vaswani et al., 2017), a large body of work started studying and gaining insight into how these models work and what do they encode.15 For a thorough summary of these advancements we refer the reader to a recent primer on the subject \citep{rogers2020primer} (A primer in bertology)." \citep{elazar2021amnesic}. 
+
+
 
 % "thorough summary of these advancements we refer the reader to a recent primer on the subject": Anna Rogers , OlgaKovaleva, and AnnaRumshisky. 2020. A primer in bertology: What we know about how Bert works. arXiv preprint arXiv:2002.12327. DOI: https://doi.org/10.1162/tacl_a_00349
 
@@ -336,6 +371,8 @@ $log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
 \subsection{Bidirectional language models (BERT)}
 
 
+% "Overview of BERT Architecture. Fundamentally, BERT is a stack of Transformer encoder layers (Vaswani et al., 2017) that consist of multiple self-attention ‘‘heads’’ (..) " \citep{rogers2020primer}
+
 "BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
 
 "The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
@@ -624,6 +661,22 @@ We used these two scores as a relative estimate of sentence acceptability, for t
 
 \subsection{importance in linguistics}
 
+
+% "island effects provide a classic motivation for theories that assume domain-specific constraints on language acquisition (i.e. universal grammar)." \citep{sprouse2012test}
+% "In chapter 5, Pearl and Sprouse address one of the motivations for the debate between grammatical and reductionist accounts: the claim that a grammatical approach to island effects necessitates innate linguistic constraints (i.e., Universal Grammar). Contrary to this claim, Pearl and Sprouse propose (and implement) a computational model that can learn island effects as a type of grammatical constraint from a corpus of child-directed speech without resorting to innate linguistic biases (i.e., UG)." \citep{sprouse2013experimental}
+
+
+% Some studies have already shown that deep neural language models can learn non trivial linguistic phenomena without any kind of prior linguistic learning bias, % therefore providing evidence countering a classic staple of generative linguistics .
+% "Of particular interest, both for linguistics and for building better models, is whether deep models’ representations encode syntax (Linzen, 2018)" \citep{hewitt2019structural}.
+% "Recent work has analyzed model behavior to determine if a model understands hierarchy and other linguistic phenomena (Linzen, 2018; Gulordava et al., 2018; Kuncoro et al., 2018; Linzen and Leonard, 2018; van Schijndel and Linzen, 2018; Tang et al., 	2018; Futrell et al., 2018)." \citep{hewitt2019structural}
+
+% innate UG etc.: "We tentatively conclude that LM trained RNNs can construct abstract grammatical representations of their input. This, in turn, suggests that the input itself contains enough information to trigger some form of syntactic learning in a system, such as an RNN, that does not contain an explicit prior bias in favour of syntactic structures." Gulordava et al 2018
+
+% "Furthermore, the extent to which humans resemble data-driven learners like language models is debated in linguistics and cognitive science (see e.g., Chomsky, 1965; Reali and Christiansen, 2005). In some domains, we may require the aid of innate knowledge to acquire phenomenon-specific knowledge resembling that tested in BLiMP."  warstadt 2020 blimp
+% "By evaluating whether selfsupervised learners like LMs acquire human-like grammatical acuity in a particular domain, we gather indirect evidence as to whether this phenomenon is a necessary component of humans’ innate knowledge" warstadt 2020 blimp
+
+
+
 % mention that it is debated in linguistics ..what causes island effects .. their nature
 % (and that experimental psycholinguistic studies, sprouse, have shown, confirmed, some predictions/ assessed some theories predictions ..)
 
@@ -632,7 +685,7 @@ We used these two scores as a relative estimate of sentence acceptability, for t
 
 Argument from the poverty of the stimulus (APS):
 "Because of their complexity and ubiquity, these dependencies have figured prominently in arguments that natural language would be unlearnable by children without a great deal of innate knowledge (Phillips, 2013) (cf. Pearl and Sprouse, 2013; Ellefson and Christiansen, 2000)" \citep{wilcox2018rnn} 
-
+% innate knowledge, able to learn non-trivial ..
 "The influential argument from the poverty of the stimulus (APS) ..  has been subject to much criticism (Pullum and Scholz, 2002)"  Geoffrey K. Pullum and Barbara C. Scholz. 2002. Empirical assessment of stimulus poverty arguments. The Linguistic Review, 18(1-2):9–50.
 
 
@@ -664,6 +717,7 @@ Argument from the poverty of the stimulus (APS):
 % "while the methodology for testing learning biases is relatively clear, the data required to actually perform those tests are still relatively scarce"   \citep{pearl2013syntactic}
 
 % "Furthermore, given the relative infrequency of multiclausal WH-dependencies even in adult-directed speech, island effects raise difficult questions about how children could use their limited input to arrive at a grammar that includes long-distance dependencies that are nonetheless constrained by specific structural configurations. In this way, island effects provide a classic motivation for theories that assume domain-specific constraints on language acquisition (i.e. universal grammar)." \citep{sprouse2012test}
+
 
 
 % "In chapter 5, Pearl and Sprouse address one of the motivations for the debate between grammatical and reductionist accounts: the claim that a grammatical approach to island effects necessitates innate linguistic constraints (i.e., Universal Grammar). Contrary to this claim, Pearl and Sprouse propose (and implement) a computational model that can learn island effects as a type of grammatical constraint from a corpus of child-directed speech without resorting to innate linguistic biases (i.e., UG)." \citep{sprouse2013experimental}
@@ -832,8 +886,6 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 
 
 
-
-
 % "subject relatives .. easier to process than the object relatives"
 
 % "catalog of the constructions that demonstrate them"
@@ -993,6 +1045,8 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 
 \subsection{Cross-linguistic variation in island effects}
 
+% Cross-linguistic differences, italian, english "Differences across languages. English was by far the hardest language. We conjecture that this is due to its poorer morphology and higher POS ambiguity, which might not encourage a generic language model to track abstract syntactic configurations." "In languages such as Italian and Russian, which have richer morphology and less ambiguity at the part-of-speech level than English, the LSTMs show much better accuracy and a smaller gap between original and nonce sentences. " Gulordava et al 2018
+
 % "\textbf{distinction between strong and weak islands} in the literature (for a review see Szabolcsi 2006)" \citep{sprouse2016experimental, szabolcsi2006strong}
 % so from weakest to strongest ("more prototypical) islands, the order should be:
 % whether, complex np, subject, adjunct (swap the last 2?)
@@ -1113,8 +1167,14 @@ Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-ri
 
 \section{Approaches for targeted linguistic evaluation of language models}
 
+%  "Early work that used neural networks to model grammaticality judgments includes Allen and Seidenberg (1999) and Lawrence et al. (1996) ). More recently, the connection between grammaticality judgments and the probabilities assigned by a language model was explored by Clark et al. (2013) and Lau et al. (2015)."  \citep{linzen2016assessing}
+
 % "targeted linguistic evaluation" \citep{hu2020systematic}
 % " targeted syntactic evaluation of language models" \citep{marvin2018targeted}
+
+% "Finally, it may be useful to complement the corpus-driven approach used in the current paper with constructed evaluation sentences that isolate particular syntactic phenomena, independent of their frequency in a natural corpus, as is common in psycholinguistics (Enguehard et al., 2017)"  Gulordava et al 2018
+
+% "Benchmarks for the full range of linguistic competence. Although the language models seem to acquire a great deal of knowledge about language, we do not currently have comprehensive stress tests for different aspects of linguistic knowledge. A step in this direction is the ‘‘Checklist’’ behavioral testing (Ribeiro et al., 2020), the best paper at ACL 2020. Ideally, such tests would measure not only errors, but also sensitivity (Ettinger, 2019)." \citep{rogers2020primer}
 
 \subsection{Grammaticality vs Probability}
 
@@ -1146,6 +1206,10 @@ The targeted linguistic evaluation of deep neural language models trained on raw
 % % "Our results contrast with the results of Gulordava et al. (2018), who obtained a prediction accuracy of 81% on English sentences from their test corpus and 74% on constructed sentences modeled after sentences from the corpus. It is likely that our sentences are more syntactically challenging than the ones they were able to find in the relatively small manually annotated treebank they used." \citep{marvin2018targeted}
 
 \subsection{Minimal pairs vs acceptability judgments}
+
+% limitations of probes: 
+% "Limitations Multiple probing studies in section 3 and section 4 report that BERT possesses a surprising amount of syntactic, semantic, and world knowledge. However, Tenney et al. (2019a) remark, ‘‘the fact that a linguistic pattern is not observed by our probing classifier does not guarantee that it is not there, and the observation of a pattern does not tell us how it is used.’’ There is also the issue of how complex a probe should be allowed to be (Liu et al., 2019a). If a more complex probe recovers more information, to what extent are we still relying on the original model? Furthermore, different probing methods may lead to complementary or even contradictory conclusions, which makes a single test (as in most studies) insufficient (Warstadt et al., 2019). A given method might also favor one model over another, for example, RoBERTa trails BERT with one tree extraction method, but leads with another (Htut et al., 2019)." \citep{rogers2020primer}
+
 
 % acceptability judgements vs minimal pairs
 \citet{marvin2018targeted} also introduced the \textbf{minimal pairs} evaluation paradigm: instead of trying to extract from the model an absolute grammaticality judgment for each sentence in isolation, the model is evaluated on pair of full sentences that differ for only one word, and the model is expected to give an higher probability to the grammatical sentence. This is one possible solution to the problem of how to capture grammaticality from the probability or likelihood score given by language models: the LM probability of a sentence can be a proxy for its acceptability only when considered relatively to another sentence that differs minimally from it, controlling confounding factors like sentence length and lexical content that impact sentence probability \citep{warstadt2020blimp}.
@@ -1478,6 +1542,8 @@ are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 \subsection{Issues with perplexity}\label{sec:issues_with_perplexity}
 
 
+% "The majority of NLP work on neural networks evaluates them on their performance in a task such as language modeling or machine translation (Sundermeyer et al., 2012; Bahdanau et al., 2015). These evaluation setups average over many different syntactic constructions, making it difficult to isolate the network’s syntactic capabilities." \citep{linzen2016assessing}
+% "Neural network architectures are typically evaluated on random samples of naturally occurring sentences, e.g., using perplexity on held-out data in language modeling. Since the majority of natural language sentences are grammatically simple, models can achieve high overall accuracy using flawed heuristics that fail on harder cases. This makes it difficult to distinguish simple but robust sequence models from more expressive architectures (Socher, 2014; Grefenstette et al., 2015; Joulin and Mikolov, 2015)" \citep{linzen2016assessing}
 
 The targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, serve also as a supplement to \textbf{perplexity}, which is the metric that has been previously used to evaluate language models, as it captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted}. However, perplexity has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models (see \ref{sec:issues_with_perplexity}) \citep{marvin2018targeted, hu2020systematic}.
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
@@ -3023,6 +3089,14 @@ italian rc-dependencies, in the case of, introduced only by ..oblique relative p
 %
 %"We also replaced numbers (exponential, comma separated etc) with a <NUM> tag."    \citep{chowdhury2018rnn}
 
+% "A qualitative inspection suggests that the low accuracy in the verb conjunction case (67.5%) is due to ambiguous sentences such as “if you have have have have any have questions or need need need need/ need needs needs needs needs”, where the target can be needs re-interpreted as a noun that is acceptable in the relevant context.9" "These results are in line with human experimental studies that found that richer morphology correlates with fewer agreement attraction errors (Lorimor et al., 2008). " Gulordava et al 2018
+
+% Tests on nonce words, and similar: "As a proof of concept, Pereira (2000) and, later, Mikolov (2012) computed the probability of Chomsky’s famous “colorless green ideas” sentence using a class-based bigram LM and an RNN, respectively, and showed that it is much higher than the probability of its shuffled ungrammatical variants." Gulordava et al 2018
+
+% quoting in the thesis: "However, Tenney et al. (2019a) remark, ‘‘the fact that a linguistic pattern is not observed by our probing classifier does not guarantee that it is not there, and the observation of a pattern does not tell us how it is used.’’ There is also the issue of how complex a probe should be allowed to be (Liu et al., 2019a)."  \citep{rogers2020primer}
+
+% "Another direction is information-theoretic probing. Pimentel et al. (2020) operationalize probing as estimating mutual information between the learned representation and a given linguistic property, which highlights that the focus should be not on the amount of information contained in a representation, but rather on how easily it can be extracted from it. Voita and Titov (2020) quantify the amount of effort needed to extract information from a given representation as minimum description length needed to communicate both the probe size and the amount of data required for it to do well on a task" \citep{rogers2020primer}.
+
 \section{Notes and refs on incorporating explicit semantic info}
 
 % "Syntax in LMs: There have been several proposals over the years to incorporate explicit syntax into LMs" ", in practice it can still be beneficial to inject syntax into the model. This can be done by combining it with a supervised parser (Dyer et al., 2016) or other multi-task learning objectives (Enguehard et al., 2017)" \citep{marvin2018targeted}
@@ -3054,4 +3128,41 @@ italian rc-dependencies, in the case of, introduced only by ..oblique relative p
 % nonetheless, even in the T5 (Raffel et al. 2020), it says that these models shouldn't need 1T data to ace ..common sense benchmarks.
 % multimodal / multitask training settings to be more comparable to the learning setting of humans. Images, sounds (prosody/.. signals), .. Automatically generate the training sets for these. Part of these might be useful for any language.. the images. Although the images also are rapresentative of a particular culture. Sound that are not linguistic sounds, like noises, can be used as grounding for any language.
 
-% \nocite{wei2021frequency, hu2020systematic, lau2020furiously, bostrom2020byte, futrell-etal-2019-neural}
+
+% alternative training strategies, tasks, linguistic supervision, augmentation, .. "This approach can be extended to the training stage: neural networks can be encouraged to develop more sophisticated generalizations by oversampling grammatically challenging training sentences. "  ". This training regime indeed improved the performance of the network; however, the improvement was quantitative rather than qualitative: there was limited generalization to dependencies that were even more difficult than those encountered in training. Further experiments are needed to establish the efficacy of this method." \citep{linzen2016assessing}
+
+% benefits from targeted linguistic training: "A network that has acquired syntactic representations sophisticated enough to handle subject-verb agreement is likely to show improved performance on other structure-sensitive dependencies, including pronoun coreference, quantifier scope and negative polarity items." 
+% "As such, neural models used in NLP applications may benefit from grammatically sophisticated sentence representations developed in a multitask learning setup (Caruana, 1998), where the model is trained concurrently on the task of interest and on one of the tasks we proposed in this paper." " Of course, grammatical phenomena differ from each other in many ways. The distribution of negative polarity items is highly sensitive to semantic factors (Giannakidou, 2011)." island effects / constraints: "Restrictions on unbounded dependencies (Ross, 1967) may require richer syntactic representations than those required for subject-verb dependencies" \citep{linzen2016assessing}
+
+% "This could mean that either BERT’s syntactic knowledge is incomplete, or it does not need to rely on it for solving its tasks. The latter seems more likely, since Glavasˇ and Vulic (2020) report that an intermediate ´ fine-tuning step with supervised parsing does not make much difference for downstream task performance" \citep{rogers2020primer}
+
+% "Out-of-the-box BERT is surprisingly brittle to named entity replacements: For example, replacing names in the coreference task changes 85% of predictions (Balasubramanian et al., 2020). This suggests that the model does not actually form a generic idea of named entities, although its F1 scores on NER probing tasks are high (Tenney et al., 2019a). Broscheit (2019) finds that fine-tuning BERT on Wikipedia entity linking ‘‘teaches’’ it additional entity knowledge, which would suggest that it did not absorb all the relevant entity information during pre-training on Wikipedia" \citep{rogers2020primer}
+
+% "BERT struggles with pragmatic inference and role-based event knowledge (Ettinger, 2019). BERT also struggles with abstract attributes of objects, as well as visual and perceptual properties that are likely to be assumed rather than mentioned (Da and Kasai, 2019)"  \citep{rogers2020primer}
+
+% " In order to retrieve BERT’s knowledge, we need good template sentences, and there is work on their automatic extraction and augmentation (Bouraoui et al., 2019; Jiang et al., 2019b)." "The MLM component of BERT is easy to adapt for knowledge induction by filling in the blanks (e.g., ‘‘Cats like to chase [ ]’’)."  \citep{rogers2020primer}
+
+% "However, BERT cannot reason based on its world knowledge. Forbes et al. (2019) show that BERT can ‘‘guess’’ the affordances and properties of many objects, but cannot reason about the relationship between properties and affordances. For example, it ‘‘knows’’ that people can walk into houses, and that houses are big, but it cannot infer that houses are bigger than people" \citep{rogers2020primer}
+
+% "The first layer of BERT receives as input a combination of token, segment, and positional embeddings. It stands to reason that the lower layers have the most information about linear word order. Lin et al. (2019) report a decrease in the knowledge of linear word order around layer 4 in BERT-base. This is accompanied by an increased knowledge of hierarchical sentence structure, as detected by the probing tasks of predicting the token index, the main auxiliary verb and the sentence subject." "4These BERT results are also compatible with findings by Vig and Belinkov (2019), who report the highest attention to tokens in dependency relations in the middle layers of GPT-2." \citep{rogers2020primer}
+
+% "There is conflicting evidence about syntactic chunks. Tenney et al. (2019a) conclude that ‘‘the basic syntactic information appears earlier in the network while high-level semantic features appear at the higher layers’’, drawing parallels between this order and the order of components in a typical NLP pipeline—from POS-tagging to dependency parsing to semantic role labeling. Jawahar et al. (2019) also report that the lower layers were more useful for chunking, while middle layers were more useful for parsing. At the same time, the probing experiments by Liu et al. (2019a) find the opposite: Both POS-tagging and chunking were performed best at the middle layers, in both BERT-base and BERT-large. However, all three studies use different suites of probing tasks." \citep{rogers2020primer}
+
+% "Tenney et al. (2019a) suggest that whereas syntactic information appears early in the model and can be localized, semantics is spread across the entire model, which explains why certain non-trivial examples get solved incorrectly at first but correctly at the later layers. This is rather to be expected: Semantics permeates all language, and linguists debate whether meaningless structures can exist at all (Goldberg, 2006, p.166–182). But this raises the question of what stacking more Transformer layers in BERT actually achieves in terms of the spread of semantic knowledge, and whether that is beneficial. Tenney et al. compared BERT-base and BERT-large, and found that the overall pattern of cumulative score gains is the same, only more spread out in the larger model." \citep{rogers2020primer}
+
+% "• What to mask. Masks can be applied to full words instead of word-pieces (Devlin et al., 2019; Cui et al., 2019). Similarly, we can mask spans rather than single tokens (Joshi et al., 2020), predicting how many are missing (Lewis et al., 2019). Masking phrases and named entities (Sun et al., 2019b) improves representation of structured knowledge."  \citep{rogers2020primer}
+
+% "The prominence of syntactic information in the middle BERT layers is related to Liu et al.’s (2019a) observation that the middle layers of Transformers are best-performing overall and the most transferable across tasks (see Figure 4)."  \citep{rogers2020primer}
+
+% "There is a wide consensus in studies with different tasks, datasets, and methodologies that syntactic information is most prominent in the middle layers of BERT.4"  \citep{rogers2020primer}
+
+% "Human language is incredibly complex, and would perhaps take many more parameters to describe fully, but the current models do not make good use of the parameters they already have. Voita et al. (2019b) showed that all but a few Transformer heads could be pruned without significant losses in performance. For BERT, Clark et al. (2019) observe that most heads in the same layer show similar self-attention patterns (perhaps related to the fact that the output of all self-attention heads in a layer is passed through the same MLP), which explains why Michel et al. (2019) were able to reduce most layers to a single head."  \citep{rogers2020primer}
+
+% "we list what we believe to be the most promising directions for further research. Benchmarks that require verbal reasoning." \citep{rogers2020primer}% "Although BERT enabled breakthroughs on many NLP benchmarks, a growing list of analysis papers are showing that its language skills are not as impressive as they seem. In particular, they were shown to rely on shallow heuristics in natural language inference (McCoy et al., 2019b; Zellers et al., 2019; Jin et al., 2020), reading comprehension (Si et al., 2019; Rogers et al., 2020; Sugawara et al., 2020; Yogatama et al., 2019), argument reasoning comprehension (Niven and Kao, 2019), and text classification (Jin et al., 2020). Such heuristics can even be used to reconstruct a non–publicly available model (Krishna et al., 2020). As with any optimization method, if there is a shortcut in the data, we have no reason to expect BERT to not learn it. But harder datasets that cannot be resolved with shallow heuristics are unlikely to emerge if their development is not asvalued as modeling work"  \citep{rogers2020primer}
+% NB: bias for modeling work rather than ..less technical but bigger picture approaches/directions..
+
+% "Developing methods to ‘‘teach’’ reasoning. While large pre-trained models have a lot of knowledge, they often fail if any reasoning needs to be performed on top of the facts they possess (Talmor et al., 2019, see also subsection 3.3). For instance, Richardson et al. (2020) propose a method to ‘‘teach’’ BERT quantification, conditionals, comparatives, and Boolean coordination."   \citep{rogers2020primer}
+
+% "Learning what happens at inference time. Most BERT analysis papers focus on different probes of the model, with the goal to find what the language model ‘‘knows’’. However, probing studies have limitations (subsection 3.4), and to this point, far fewer papers have focused on discovering what knowledge actually gets used. Several promising directions are the ‘‘amnesic probing’’ (Elazar et al., 2020), identifying features important for prediction for a given task (Arkhangelskaia and Dutta, 2019), and pruning the model to remove the non-important components (Voita et al., 2019b; Michel et al., 2019; Prasanna et al., 2020)."  \citep{rogers2020primer}
+
+% \nocite{lau2020furiously, bostrom2020byte, futrell-etal-2019-neural}
