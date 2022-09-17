@@ -6,44 +6,11 @@
 \section{Motivation}
 
 With the large progress made since 2018 in NLP benchmarks by the last generation of artificial neural network language models, which are based on a deep architecture of transformers layers and adopt a self-supervised learning approach, it has become increasingly important to understand what these model actually learn about human language \citep{hewitt2019structural, manning2020emergent, trotta2021monolingual}. \\
-Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}.  \\
+Investigating this serves multiple purposes, like providing insights for building better models, but it is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}.  \\ % more details on the utility of linguistic assessmen, more details in how it helps building better models
 
 % TODO: the intro chapter should contain: 
 % ..
-% transformer based language models: recap on the progress they've made, ..( table / (screenshot) with benchmarks/leaderboards?)
-%..what has been found about their linguistic/syntactic/semantic skills, different performance in different skills/types of benchmarks/tests
-% frequency effects ..
 
-% island effects one of the most challenging.. (although high performance already achieved..)
-% methdological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
-% few multilingual studies
-
-% we ..add/follow/contribute to this line of research ..
-% assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
-% these are among the most complex syntactic phenomena for which the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psychonlinguistic studies.
-
-% we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
-
-% (TODO: virgolettati da sintetizzare di seguito) \\
-
-"Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. "  (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
-% "research paradigms" (Cherniavskii et al. 2022)
-
-"more fine-grained evaluation tools may accelerate work on general-purpose neural network modules for sentence understanding. " \\
-"studying the linguistic competence of ANNs bears on foundational questions in linguistics about the learnability of grammar."
-
-(black boxes and explainability) : "the nature of the representations learned by these models is not properly understood." \citep{wilcox2018rnn}
-
-"In addition to the insight these results provide about neural NLP systems, they also bear on questions central to cognitive science and linguistics, putting lower bounds on what syntactic knowledge can be acquired from string input alone"  \citep{hu2020systematic} 
-
-% "We see two chief motivations that guide work on acceptability classification with ANNs by us and by others: First," 
-% "Second, 
-% better models: more performant, more efficient. Detect which linguistic phenomena they learn and which they don't.
-
-
-% "Targeted syntactic evaluations have shown that these models [neural language models ] also implicitly capture many syntactic generalizations, ranging from subject–verb agreement to long-distance filler–gap dependencies (Linzen et al., 2016; Marvin and Linzen, 2018; Futrell et al., 2018; Wilcox et al., 2019b)" \citep{hu2020systematic}
-
-%"similar developments in semantic evaluation (McCoy et al., 2019)" \citep{hu2020systematic}
 
 % A particular interest of language in AI, is that it ..measures AI models with ..different concepts ..phenomena for which some of the standard ..alghoritmic/statistical or teory of information ..metrics, approaches, .. , don't work (eg. perplexity, ..probability estimation of next word, ..)
 
@@ -52,18 +19,6 @@ Investigating this serves multiple purposes, like providing insights for buildin
 % transformers: much larger models, much more training data
 % "Recent technological advances have led to an explosion of neural network-based LM architectures. The most popular ones are based on recurrent neural networks (RNNs) .. , LSTMs are still highly competitive (Melis et al., 2018)" \citep{marvin2018targeted}
 
-% the above section should be renamed also "introduction"
-% then have a more specific motitvation section on the motivation of this thesis within its line of research (targeted linguistic tests for language models)
-
-% a  self-supervisedlearning approach. In self-supervised learning, a system is given no  explicit  labeling  of  raw  data,  but  it  is  able  to  construct  its own supervised learning problems by choosing to interpret someof  the  data  as  a  “label”  to  be  predicted \citep{manning2020emergent}
-
-% The  canonical  casefor  human  language  is  the  language-modeling  task  of  trying to  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
-% (that unsupervised models could not develop interesting knowledge of language) this  has  been  the  dominant  perspective  in  linguistics, where language models have long been seen as inadequateand having no scientific interest, even when their usefulness inpractical engineering applications is grudgingly accepted (15, 16). \citep{manning2020emergent}
-
-
-
-% "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
-
 
 
 % "building better models": more performant and more data/computataion efficient
@@ -71,16 +26,57 @@ Investigating this serves multiple purposes, like providing insights for buildin
 % - finding how/where/on what to improve the model, ..guiding research on further developing them for better performance, more data efficiency and computational efficiency
 % - ..explainability, 
 % - having a complementary measure of model performance, explaining performance (good or bad) in downstream application benchmarks, 
+
+
+\subsection{drafts}
+
+transformer based language models: recap on the progress they've made, % ..( table / (screenshot) with benchmarks/leaderboards?) 
+on downstream benchmarks, and advancing SoTA performance in task like ..POS tagging ..
+
+..what has been found about their linguistic/syntactic/semantic skills, different performance in different skills/types of benchmarks/tests
+frequency effects ..
+the importance of knowing ..how much training data (or which model architectures, or which training tasks/strategies) work best to ..achieve linguistic knowledge, and to acquire in a robust and human-like way. (..so communication with humans ..is more effective, the downstream tasks/applications are more/actually useful, ..)
+
+island effects one of the most challenging.. (although high performance already achieved..)
+
+methodological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
+few multilingual studies
+
+we ..add/follow/contribute to this line of research ..
+assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
+..linguistic knowledge tested mainly in English; for Italian.. there is the ItaCola ..corpus/test suite, which ..follows the acceptability judgment paradigm (..that has now be ..surpassed by the minimal pairs one..(surpassed or still used?)
+
+island effects these are among the most complex syntactic phenomena 
+they also ..highlight a methodological problem and limitedness of the minimal pairs approach to test them in a comprehensive way: the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psycholinguistic studies.
+
+we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
+
+
+
+% the ..above section should be renamed also "introduction"
+% then have a more specific motitvation section on the motivation of this thesis within its line of research (targeted linguistic tests for language models)
+
+
+
+% "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
+
+
  
- 
+
+\section{Targeted linguistic evaluation of language models}
+% (TODO)
+%(general introductory overview of previous studies, state of the art, chronicle history, ..)
+
+% Targeted linguistic evaluation of language models
+
+"Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. "  (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
+% "research paradigms" (Cherniavskii et al. 2022)
+
 % BERT " implicitly learns to recover the rich latent structure of human language. "   (manning2020emergent)
- 
 
 % Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
 
 % "One promising line of research aims to crack open these ‘black boxes’ by investigating how" "language models perform on specially controlled sentences designed to draw out behavior that indicates representation of" "a syntactic dependency." \citep{wilcox2018rnn}
-
-
 
 % "Many recent studies have searched for evidence that neural networks (NNs) learn representations ("\textit{linguistic knowledge}") that implicitly encode grammatical concepts. "  \citep{warstadt2020blimp}
 
@@ -90,11 +86,20 @@ Investigating this serves multiple purposes, like providing insights for buildin
 % indirect evidence about each model’s linguistic knowledge \citep{warstadt2020blimp}
 % compare models in a fine-grained way \citep{warstadt2020blimp}.
 
+"more fine-grained evaluation tools may accelerate work on general-purpose neural network modules for sentence understanding. " \\
+"studying the linguistic competence of ANNs bears on foundational questions in linguistics about the learnability of grammar."
+
+(black boxes and explainability) : "the nature of the representations learned by these models is not properly understood." \citep{wilcox2018rnn}
+% todo: add notes on benefits, necessity of explainability (eg: robust/safe/dependable/.. models, ..)
+
+"In addition to the insight these results provide about neural NLP systems, they also bear on questions central to cognitive science and linguistics, putting lower bounds on what syntactic knowledge can be acquired from string input alone"  \citep{hu2020systematic} 
+
+% "We see two chief motivations that guide work on acceptability classification with ANNs by us and by others: First," 
+% "Second, 
+% better models: more performant, more efficient. Detect which linguistic phenomena they learn and which they don't.
 
 
-\section{Research on linguistic tests on language models}
-(TODO)
-%(general introductory overview of previous studies, state of the art, chronicle history, ..)
+"Targeted syntactic evaluations have shown that these models [neural language models ] also implicitly capture many syntactic generalizations, ranging from subject–verb agreement to long-distance filler–gap dependencies (Linzen et al., 2016; Marvin and Linzen, 2018; Futrell et al., 2018; Wilcox et al., 2019b)" \citep{hu2020systematic} "similar developments in semantic evaluation (McCoy et al., 2019)" \citep{hu2020systematic}
 
 
 \section{Island Effects and their assessment}
@@ -134,6 +139,11 @@ Wh-Island Constraint definition:
 \section{Transformer-based language models}
 
 % section on overview of NN language models, DL language models, transformers based language models
+
+% a  self-supervisedlearning approach. In self-supervised learning, a system is given no  explicit  labeling  of  raw  data,  but  it  is  able  to  construct  its own supervised learning problems by choosing to interpret someof  the  data  as  a  “label”  to  be  predicted \citep{manning2020emergent}
+
+% The  canonical  casefor  human  language  is  the  language-modeling  task  of  trying to  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
+% (that unsupervised models could not develop interesting knowledge of language) this  has  been  the  dominant  perspective  in  linguistics, where language models have long been seen as inadequateand having no scientific interest, even when their usefulness inpractical engineering applications is grudgingly accepted (15, 16). \citep{manning2020emergent}
 
 \subsection{Transformers and the Attention Mechanism}
 
