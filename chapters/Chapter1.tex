@@ -124,22 +124,34 @@ we test 4 italian models with fixed parameters size (about 110) but varying in t
 % "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
 
 \section{Strengths and limitations of transformer-based language models} % Recap  / mentions / notes / summary /.. from the recent success of these models
-% "Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP by storm, offering enhanced parallelization and better modeling of long-range dependencies"  \citep{rogers2020primer}
 
 % what they can learn and what not, limitations ..
+%transformer based language models: recap on the progress they've made, % ..( table / (screenshot) with benchmarks/leaderboards?) 
+%on downstream benchmarks, and advancing SoTA performance in task like ..POS tagging ..
+%..what has been found about their linguistic/syntactic/semantic skills, different performance in different skills/types of benchmarks/tests
+%frequency effects ..
 % recap from the primer in bertology paper 
 
-% "Syntactic Knowledge Lin et al. (2019) showed that BERT representations are hierarchical rather than linear, that is, there is something akin to syntactic tree structure in addition to the word order information. Tenney et al. (2019b) and Liu et al. (2019a) also showed that BERT embeddings encode information about parts of speech, syntactic chunks, and roles. Enough syntactic information seems to be captured in the token embeddings themselves to recover syntactic trees (Vilares et al., 2020; Kim et al., 2020; Rosa and Marecek, 2019), although ˇ probing classifiers could not recover the labels of distant parent nodes in the syntactic tree (Liu et al., 2019a). Warstadt and Bowman (2020) report evidence of hierarchical structure in three out of four probing tasks." \citep{rogers2020primer}. 
+% "Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP by storm, offering enhanced parallelization and better modeling of long-range dependencies"  \citep{rogers2020primer}
 
-% "The above claims of syntactic knowledge are belied by the evidence that BERT does not ‘‘understand’’ negation and is insensitive to malformed input. In particular, its predictions were not altered2 even with shuffled word order, truncated sentences, removed subjects and objects (Ettinger, 2019)." \citep{rogers2020primer}
+
+% "Syntactic Knowledge Lin et al. (2019) showed that BERT representations are hierarchical rather than linear, that is, there is something akin to syntactic tree structure in addition to the word order information. Tenney et al. (2019b) and Liu et al. (2019a) also showed that BERT embeddings encode information about parts of speech, syntactic chunks, and roles. Enough syntactic information seems to be captured in the token embeddings themselves to recover syntactic trees (Vilares et al., 2020; Kim et al., 2020; Rosa and Marecek, 2019), although ˇ probing classifiers could not recover the labels of distant parent nodes in the syntactic tree (Liu et al., 2019a). Warstadt and Bowman (2020) report evidence of hierarchical structure in three out of four probing tasks." \citep{rogers2020primer}. 
+% "Tenney et al. (2019b) showed that BERT encodes information about entity types, relations, semantic roles, and proto-roles, since this information can be detected with probing classifiers." \citep{rogers2020primer}
+
+% "The above claims of syntactic knowledge are belied by the evidence that BERT does not ‘‘understand’’ negation" \citep{rogers2020primer}
+% "BERT struggles with representations of numbers. Addition and number decoding tasks showed that BERT does not form good representations for floating point numbers and fails to generalize away from the training data (Wallace et al., 2019b)." \citep{rogers2020primer}
+% "BERT struggles with pragmatic inference and role-based event knowledge (Ettinger, 2019)" \citep{rogers2020primer}
+% "BERT also struggles with abstract attributes of objects, as well as visual and perceptual properties that are likely to be assumed rather than mentioned (Da and Kasai, 2019)." \citep{rogers2020primer}
+
+% "BERT cannot reason based on its world knowledge. Forbes et al. (2019) show that BERT can ‘‘guess’’ the affordances and properties of many objects, but cannot reason about the relationship between properties and affordances. For example, it ‘‘knows’’ that people can walk into houses, and that houses are big, but it cannot infer that houses are bigger than people. Zhou et al. (2020) and Richardson and Sabharwal (2019) also show that the performance drops with the number of necessary inference steps" \citep{rogers2020primer}
+
+% "A part of the problem [with numbers] is BERT’s wordpiece tokenization, since numbers of similar values can be divided up into substantially different word chunks." \citep{rogers2020primer}
+
+
+% "[BERT] is insensitive to malformed input. In particular, its predictions were not altered2 even with shuffled word order, truncated sentences, removed subjects and objects (Ettinger, 2019)." \citep{rogers2020primer}
 % "2See also the recent findings on adversarial triggers, which get the model to produce a certain output even though they are not well-formed from the point of view of a human reader (Wallace et al., 2019a)." \citep{rogers2020primer}
 
 
-transformer based language models: recap on the progress they've made, % ..( table / (screenshot) with benchmarks/leaderboards?) 
-on downstream benchmarks, and advancing SoTA performance in task like ..POS tagging ..
-
-..what has been found about their linguistic/syntactic/semantic skills, different performance in different skills/types of benchmarks/tests
-frequency effects ..
 
 \section{Targeted linguistic evaluation of language models}
 
@@ -410,7 +422,7 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 % psycholinguistic studies (Sprouse)
 
-An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs, which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
+An \textit{island effect} is the phenomenon of a sentence becoming ungrammatical or unacceptable when there is a long-distance “filler-gap” dependency which crosses the boundaries of certain constructs (as in (\ref{whether_island_1})), which have been metaphorically called syntactic \textit{islands} \citep{ross1967constraints, sprouse2013experimental}.
 
 In psycholinguistic terminology (since \citep{fodor1978parsing}) a filler–gap dependency is the relationship between the antecedent or “filler” (e.g. a complementizer like “\textit{what}” or “\textit{who}” in English, or “\textit{cosa}” or “\textit{chi}” in Italian) and the canonical position (often called “gap”, as a postulated empty position or element with no surface manifestation) of the predicate argument % check if only predicates, or any other constituent, like nouns, that the filler/"argument"/modifier modifies
 that it replaces \citep{pearl2013syntactic, wilcox2018rnn, hawkins1999processing}. % the gap can be also referred to as trace or empty category \citep{jurafsky2021speech}
