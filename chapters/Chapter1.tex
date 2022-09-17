@@ -6,29 +6,28 @@
 \section{Motivation}
 
 With the rapid progress made by deep neural language models in the last few years, during which they have significantly advanced the state of the art of many NLP benchmarks and applications, it has become increasingly important to understand what these model actually learn about human language \citep{rogers2020primer, hewitt2019structural, manning2020emergent, trotta2021monolingual}. 
-% "Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP by storm, offering enhanced parallelization and better modeling of long-range dependencies"  \citep{rogers2020primer}
+
 
 Recent studies have shown that these models, without explicit supervision, automatically "rediscover" traditional linguistic knowledge (like morphological, syntactic, and semantic structures) \citep{rogers2020primer}, partially mimicking the classical NPL pipeline \citep{tenney2019bert, nikoulina2022rediscovery, wu2021infusing}. It has also been shown that that such knowledge is crucial for these models performance in downstream application tasks \citep{elazar2021amnesic}. 
 % "Amnesic probing (Elazar et al., 2020) aims to specifically remove certain information from the model and see how it changes performance, finding, for example, that language modeling does rely on part-of-speech information." \citep{rogers2020primer}
-% "Syntactic Knowledge Lin et al. (2019) showed that BERT representations are hierarchical rather than linear, that is, there is something akin to syntactic tree structure in addition to the word order information. Tenney et al. (2019b) and Liu et al. (2019a) also showed that BERT embeddings encode information about parts of speech, syntactic chunks, and roles. Enough syntactic information seems to be captured in the token embeddings themselves to recover syntactic trees (Vilares et al., 2020; Kim et al., 2020; Rosa and Marecek, 2019), although ˇ probing classifiers could not recover the labels of distant parent nodes in the syntactic tree (Liu et al., 2019a). Warstadt and Bowman (2020) report evidence of hierarchical structure in three out of four probing tasks." \citep{rogers2020primer}. 
 
 
-
-% "The above claims of syntactic knowledge are belied by the evidence that BERT does not ‘‘understand’’ negation and is insensitive to malformed input. In particular, its predictions were not altered2 even with shuffled word order, truncated sentences, removed subjects and objects (Ettinger, 2019)." \citep{rogers2020primer}
-% "2See also the recent findings on adversarial triggers, which get the model to produce a certain output even though they are not well-formed from the point of view of a human reader (Wallace et al., 2019a)." \citep{rogers2020primer}
-
-However, the linguistic rediscovery that these model make has been found to differ from human-like generalizations \citep{linzen2020can}, and to be lacking in robustness, since they are prone to "frequency effects", in which the linguistic generalizations degrade when they need to be applied to less common words \citep{wei2021frequency}.
+However, the linguistic rediscovery that these model make has been found to differ from human-like generalizations \citep{linzen2020can}, and to be lacking in robustness, since they are prone to "frequency effects", in which the linguistic generalizations degrade when they need to be applied to less common words \citep{wei2021frequency}. Other works have shown that some of these models success in NLP Benchmarks is due to shallow heuristics, rather than being based on a general knowledge of language \citep{rogers2020primer}.
 % \footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
 %try with rarer ones.
 
 A targeted linguistic evaluation of deep neural language models can detect and help to improve which of their linguistic generalizations are sub-optimal, which in turn could bring many benefits, including enabling hypothesis-driven improvement of the  models architecture \citep{rogers2020primer}, improving the performance on downstream application tasks, improving sample efficiency during training \citep{linzen2020can}, indicating more effective training strategies, %TODO2: citation needed 
 and making more explainable the "black box" of these models internal representations \citep{wilcox2018rnn}.
-For these reasons, the evaluation of the linguistic competence of these models has emerged as one of the core sub-fields in NLP \citep{cherniavskii2022acceptability}.
+For these reasons, the evaluation of the linguistic competence of these models has emerged as one of the core sub-fields in NLP \citep{cherniavskii2022acceptability}. A recent survey \citep{rogers2020primer} listed the development of comprehensive stress tests for the different aspects of linguistic knowledge (which we still don't have) as arguably one of the most promising direction of research for modern language models.
+% A 2020 survey listed, among the most promising directions for further research on modern language models, the development of "benchmarks for the full range of linguistic competence", noting that we still don't have "comprehensive stress tests for different aspects of linguistic knowledge."
+% "Although the language models seem to acquire a great deal of knowledge about language, we do not currently have" "comprehensive stress tests for different aspects of linguistic knowledge."
+% "A step in this direction is the ‘‘Checklist’’ behavioral testing (Ribeiro et al., 2020), the best paper at ACL 2020. Ideally, such tests would measure not only errors, but also sensitivity (Ettinger, 2019)."
+
 
 % "More generally, as language modeling techniques continue to improve, it will be useful to have large-scale tools like BLiMP to efficiently track changes in what these models do and do not know about grammar." warstad 2020 blimp
 
 
-This line of research is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. For instance, investigating to what extent this self-supervised models, without any explicit prior bias, can acquire non-trivial syntactic skills to a human level \citep{gulordava2018colorless, warstadt2020blimp}, addresses the debate on the innateness of the language faculty \citep{hauser2002faculty}.  
+This line of research is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. For instance, investigating to what extent these self-supervised models, without any explicit prior bias, can acquire non-trivial syntactic skills to a human level \citep{gulordava2018colorless, warstadt2020blimp}, impacts the debate on the innateness of the language faculty \citep{hauser2002faculty}.  
 
 % "Unlike CNNs, the Transformers have little cognitive motivation, and the size of these models limits our ability to experiment with pre-training and perform ablation studies. This explains a large number of studies over the past year that attempted to understand the reasons behind BERT’s performance"  \citep{rogers2020primer}
 
@@ -101,20 +100,10 @@ This line of research is also of interest for addressing research questions in l
 % - having a complementary measure of model performance, explaining performance (good or bad) in downstream application benchmarks, 
 
 
-\subsection{drafts}
+\section{Our contributions}
 
-transformer based language models: recap on the progress they've made, % ..( table / (screenshot) with benchmarks/leaderboards?) 
-on downstream benchmarks, and advancing SoTA performance in task like ..POS tagging ..
-
-..what has been found about their linguistic/syntactic/semantic skills, different performance in different skills/types of benchmarks/tests
-frequency effects ..
-the importance of knowing ..how much training data (or which model architectures, or which training tasks/strategies) work best to ..achieve linguistic knowledge, and to acquire in a robust and human-like way. (..so communication with humans ..is more effective, the downstream tasks/applications are more/actually useful, ..)
-
-
-methodological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
-few multilingual studies
-
-we ..add/follow/contribute to this line of research ..
+Our contributions to this line of research are the following.
+% we ..add/follow/contribute to this line of research ..
 assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
 ..linguistic knowledge tested mainly in English; for Italian.. there is the ItaCola ..corpus/test suite, which ..follows the acceptability judgment paradigm (..that has now be ..surpassed by the minimal pairs one..(surpassed or still used?)
 
@@ -127,17 +116,37 @@ they also ..highlight a methodological problem and limitedness of (and pose chal
 
 we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
 
+%the importance of knowing ..how much training data (or which model architectures, or which training tasks/strategies) work best to ..achieve linguistic knowledge, and to acquire in a robust and human-like way. (..so communication with humans ..is more effective, the downstream tasks/applications are more/actually useful, ..)
+
 % the ..above section should be renamed also "introduction"
 % then have a more specific motitvation section on the motivation of this thesis within its line of research (targeted linguistic tests for language models)
 
 % "A language model (LM) defines a probability distribution over sequences of words"  \citep{marvin2018targeted}
 
+\section{Strengths and limitations of transformer-based language models} % Recap  / mentions / notes / summary /.. from the recent success of these models
+% "Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP by storm, offering enhanced parallelization and better modeling of long-range dependencies"  \citep{rogers2020primer}
+
+% what they can learn and what not, limitations ..
+% recap from the primer in bertology paper 
+
+% "Syntactic Knowledge Lin et al. (2019) showed that BERT representations are hierarchical rather than linear, that is, there is something akin to syntactic tree structure in addition to the word order information. Tenney et al. (2019b) and Liu et al. (2019a) also showed that BERT embeddings encode information about parts of speech, syntactic chunks, and roles. Enough syntactic information seems to be captured in the token embeddings themselves to recover syntactic trees (Vilares et al., 2020; Kim et al., 2020; Rosa and Marecek, 2019), although ˇ probing classifiers could not recover the labels of distant parent nodes in the syntactic tree (Liu et al., 2019a). Warstadt and Bowman (2020) report evidence of hierarchical structure in three out of four probing tasks." \citep{rogers2020primer}. 
+
+% "The above claims of syntactic knowledge are belied by the evidence that BERT does not ‘‘understand’’ negation and is insensitive to malformed input. In particular, its predictions were not altered2 even with shuffled word order, truncated sentences, removed subjects and objects (Ettinger, 2019)." \citep{rogers2020primer}
+% "2See also the recent findings on adversarial triggers, which get the model to produce a certain output even though they are not well-formed from the point of view of a human reader (Wallace et al., 2019a)." \citep{rogers2020primer}
+
+
+transformer based language models: recap on the progress they've made, % ..( table / (screenshot) with benchmarks/leaderboards?) 
+on downstream benchmarks, and advancing SoTA performance in task like ..POS tagging ..
+
+..what has been found about their linguistic/syntactic/semantic skills, different performance in different skills/types of benchmarks/tests
+frequency effects ..
 
 \section{Targeted linguistic evaluation of language models}
 
 %(general introductory overview of previous studies, state of the art, chronicle history, ..)
 
-
+methodological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
+few multilingual studies
 
 % Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
 
@@ -168,10 +177,7 @@ we test 4 italian models with fixed parameters size (about 110) but varying in t
 
 
 
-
-\pagebreak
-
-\section{Transformer-based language models} % A brief overview on transformer-based language models
+\section{Some details on the architecture of transformer-based language models} % A brief overview on transformer-based language models
 
 % ?TODO: chapter on ..state of the art / baselines transformer based langugage models ..
 
@@ -181,6 +187,7 @@ we test 4 italian models with fixed parameters size (about 110) but varying in t
 
 % The  canonical  casefor  human  language  is  the  language-modeling  task  of  trying to  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
 % (that unsupervised models could not develop interesting knowledge of language) this  has  been  the  dominant  perspective  in  linguistics, where language models have long been seen as inadequateand having no scientific interest, even when their usefulness inpractical engineering applications is grudgingly accepted (15, 16). \citep{manning2020emergent}
+
 
 \subsection{Transformers and the Attention Mechanism}
 
