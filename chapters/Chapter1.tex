@@ -107,12 +107,11 @@ we test 4 italian models with fixed parameters size (about 110) but varying in t
 
 
 
-
-
-
 \pagebreak
 
-\section{Transformer-based language models}
+\section{Transformer-based language models} % A brief overview on transformer-based language models
+
+% ?TODO: chapter on ..state of the art / baselines transformer based langugage models ..
 
 % section on overview of NN language models, DL language models, transformers based language models
 
@@ -2442,7 +2441,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \AddThispageHook{\thispagestyle{empty}}%
 \thispagestyle{empty}
 \newgeometry{noheadfoot=true,top=1.5cm,bottom=1.5cm}
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\ULsubfloat[Image from \citet{sprouse2016experimental}\label{fig:sprouse_humans}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}%
@@ -2460,7 +2459,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
 \thispagestyle{empty}
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\caption{Plots of average scores from BERT XXL \ref{fig:md_bert_lp} and GilBERTo (\ref{fig:md_gilberto_lp}), on the test suites developed for the present thesis. 
 	}
@@ -2477,7 +2476,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
 \thispagestyle{empty}
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\ULsubfloat[Fig.\ref{fig:sprouse_gpt_penlp}  \label{fig:sprouse_gpt_penlp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png}%
@@ -2494,7 +2493,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
 \thispagestyle{empty}
-\begin{figure}
+\begin{figure}[p]
 	\centering
 	\ULsubfloat[Fig.\ref{fig:sprouse_gilbertot_lp}  \label{fig:sprouse_gilbertot_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m19s47.png}%
@@ -2506,7 +2505,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 \end{figure}
 \restoregeometry
 
-\begin{figure}[H]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_whether_island_item_158.png} 
 	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by the Italian BERT.} 
@@ -2516,7 +2515,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 	Token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. At the top of the figure there is the factorial DD score on the whole item (one that is $>0$ the item is considered scored accurately). There are also the factorial measures of length and structure effect, and the total effect. Note that these are raw values obtained from the (negative) sum of the token surprisals, while the values seen in plots like in \autoref{fig:plots_2_mdd} are normalized across all the sentence scores for all the phenomena given by a particular model.
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_152.png} 
 	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by GilBERTo.} 
@@ -2526,7 +2525,7 @@ Comparing the plots from BERT (\autoref{fig:md_bert_lp}) with those on humans (\
 	Note that the tokens are lowercased because GilBERTo is available only in the uncased version, otherwise uppercase words would be split, increase the surprisals, and introduce confounds.
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
 	\caption{Token surprisal for the four sentences of one of the adjunct island items, as scored by GilBERTo.} 
