@@ -21,7 +21,17 @@ Investigating this serves multiple purposes, like providing insights for buildin
 % we ..add/follow/contribute to this line of research ..
 % assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
 % these are among the most complex syntactic phenomena for which the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psychonlinguistic studies.
+
 % (assess a smaller model trained only on 100M tokens?)
+% gilberto vs bertbasexxl training tokens (11B vs 13B)
+% add dbmdz/bert-base-italian-cased (trained on 2B tokens, while the xxl-cased version was trained on 13B tokens). To make the point on how much data needed, and showing if going from 2B to 13B is needed even for syntax.
+% this is in particular interesting for subject islands, since in the current results there is a trend of improvement from
+% and for complex np, this might be the reason for the low performance of geppetto (46%)
+% could disambiguate/clarify results on adjuncts
+% see if perf on whether decreases ..
+
+% compare bertbasexxl with gilberto: gilberto different tokenizer, different type of training data.. but same architecture?
+
 % (future work: more challenging tests, controlling for frequency effects/more marginal web forms: do the accuracy/island effects captured by the model ..degrade when less common constructs/verb forms are used?)
 
 
@@ -2016,15 +2026,21 @@ In the present thesis, we focus on four phenomena of island effect structures: w
 
 \section{Tested models}
 
-\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): \textbf{81GB} (13 billion tokens) of training data  and from Wikipedia, OPUS and OSCAR corpora. Model 
-424 MB.
-
-\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): \textbf{13.8GB} of training data from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers and 117M parameters. Vocab size 30k. 620k training steps.
+\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): % foot note for link, ref for paper
+trained on a 13.8GB corpus, which correspond to about \textbf{2.2B tokens}, from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers, hidden layer size 768, 12-heads, for a total 117M parameters. The vocabulary size is 30k. % It was trained for 620k steps.
 % GPT-2 Architecture - GePpeTto Wikipedia + ItWAC (14GB)
+12-layer, 
+% 2B tokens, while the xxl-cased version was trained on 13B tokens
+\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): BERT-base cased model trained on a 13GB corpus, corresponding to \textbf{2B tokens}, from a Wikipedia dump, and the OPUS corpus. Model size: 12-layer, 768-hidden, 12-heads, and a total of 109M parameters. %  training with an initial sequence length of 512 subwords for ~2-3M steps.
 
-\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): Trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. Model size 420 MB
+\textbf{BERT XXL} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): BERT-base cased model trained on a 81GB corpus, corresponding to \textbf{13B tokens}, from a Wikipedia dump, and the OPUS and OSCAR corpora. Same model size as the BERT model above. 
 
+\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): uncased model trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. The vocabulary size is 32k. It uses the RoBERTa base architecture \citep{liu2019roberta} with a model size of: 12-layer, 768-hidden, 12-heads, a vocabulary of 32k subword units, and a total of about 110M parameters. % trained with the subword masking technique for 100k steps 
 
+% note that gilberto outperforms BERT despite using less training tokens (11B vs 13B), but diff in number of parameters?
+% geppetto competitive despite using far less data (13.8 GB or 2.2B tokens)
+% test on add dbmdz/bert-base-italian-cased (trained on 2B tokens, while the xxl-cased version was trained on 13B tokens). To make the point on how much data needed, and showing if going from 2B to 13B is needed even for syntax.
+% so this gives a more direct comparison with geppetto..
 
 \section{Measures}
 \subsubsection{Scores normalization}
@@ -2062,22 +2078,22 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
-			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT (it)}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
-			\textbf{Pheno-menon} & \textbf{Factorial score} & LP & LP & LP \\
+			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT}} & \multicolumn{1}{c|}{\textbf{BERT XXL}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
+			\textbf{Pheno-menon} & \textbf{Factorial score} & LP & LP & LP & LP \\
 			\hline
 			\multirow{1}{0.8cm}{Whether} 
-			& DD & \textbf{100} & \textbf{100} & \textbf{100} \\ 
+			& DD & \textbf{100} & 96 & \textbf{100} & \textbf{100} \\ 
 			\hline
 			\multirow{1}{0.8cm}{Adjunct}  
-			& DD & \textbf{98} & 64 & 72 \\ 
+			& DD & \textbf{98} & 70 & 64 & 72 \\ 
 			\hline
 			\multirow{1}{0.8cm}{ComplexNP} 
-			& DD & 46 & \textbf{100} & 98 \\  			 
+			& DD & 46 & 96 & \textbf{100} & 98 \\  			 
 			\hline
 			\multirow{1}{0.8cm}{Subject} 
-			& DD & 82 & 90 & \textbf{94} \\ 
+			& DD & 82 & 84 & 90 & \textbf{94} \\ 
 			\hline
-			\textbf{Average} & & 81.5\% & 88.5\% & \textbf{91\%}    \\ 	
+			\textbf{Average} & & 81.5\% & 86.5\% & 88.5\% & \textbf{91\%}    \\ 	
 			
 		\end{tabular}
 		\caption{Accuracy percentages for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert. Each factorial item of 4 sentences is scored with the success criterion $DD\_score > 0$.}
