@@ -24,19 +24,6 @@ Investigating this serves multiple purposes, like providing insights for buildin
 
 % we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
 
-% (assess a smaller model trained only on 100M tokens?)
-% gilberto vs bertbasexxl training tokens (11B vs 13B)
-% add dbmdz/bert-base-italian-cased (trained on 2B tokens, while the xxl-cased version was trained on 13B tokens). To make the point on how much data needed, and showing if going from 2B to 13B is needed even for syntax.
-% this is in particular interesting for subject islands, since in the current results there is a trend of improvement from
-% and for complex np, this might be the reason for the low performance of geppetto (46%)
-% could disambiguate/clarify results on adjuncts
-% see if perf on whether decreases ..
-
-% compare bertbasexxl with gilberto: gilberto different tokenizer, different type of training data.. but same architecture?
-
-% (future work: more challenging tests, controlling for frequency effects/more marginal web forms: do the accuracy/island effects captured by the model ..degrade when less common constructs/verb forms are used?)
-
-
 % (TODO: virgolettati da sintetizzare di seguito) \\
 
 "Linguistic competence of neural language models (LMs) has emerged as one of the core sub-fields in NLP. "  (Cherniavskii et al. 2022 Acceptability Judgements via Examining the Topology of Attention Maps)
@@ -2318,6 +2305,18 @@ In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse20
 
 We can see that the plots for whether (top-left plot of each figure), adjunct (bottom-right), and subject islands (bottom-left) from the GPT-2 model (\autoref{fig:md_gpt_penlp}) show some similarities with those obtained on human subjects (\autoref{fig:sprouse_humans}), but also some significant differences.
 
+
+% (assess a smaller model trained only on 100M tokens?)
+% gilberto vs bertbasexxl training tokens (11B vs 13B)
+% add dbmdz/bert-base-italian-cased (trained on 2B tokens, while the xxl-cased version was trained on 13B tokens). To make the point on how much data needed, and showing if going from 2B to 13B is needed even for syntax.
+% this is in particular interesting for subject islands, since in the current results there is a trend of improvement from
+% and for complex np, this might be the reason for the low performance of geppetto (46%)
+% could disambiguate/clarify results on adjuncts
+% see if perf on whether decreases ..
+
+% compare bertbasexxl with gilberto: gilberto different tokenizer, different type of training data.. but same architecture?
+
+
 \subsection{Whether islands}
 One difference is that for whether islands, with all three of the language models (\autoref{fig:md_gpt_penlp}-\autoref{fig:md_gilberto_lp}), the line connecting the \textsc{short-nonisland} and the \textsc{long-nonisland} goes upwards instead of downwards like for humans; that is, on average the language models give the \textsc{long-nonisland} a higher acceptability estimation score (the pseudo-log-likelihood, PLL), than the \textsc{short-nonisland} (and this trend remains also when the models score the original test suite administerd by Sprouse to humans, diplayed in \autoref{fig:plots_3_sprouse}-\autoref{fig:plots_4_sprouse}).
 
@@ -2964,6 +2963,9 @@ italian rc-dependencies, in the case of, introduced only by ..oblique relative p
 % recap the cross lingual diffs in En and It about island effects
 % then edit/write the whole chapter
 % add notes to other chapters in the analysis of results, formation of the dataset, ..
+
+
+% (future work: more challenging tests, controlling for frequency effects/more marginal web forms: do the accuracy/island effects captured by the model ..degrade when less common constructs/verb forms are used?)
 
 
 \chapter{Conclusions}
