@@ -22,6 +22,8 @@ Investigating this serves multiple purposes, like providing insights for buildin
 % assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
 % these are among the most complex syntactic phenomena for which the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psychonlinguistic studies.
 
+% we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
+
 % (assess a smaller model trained only on 100M tokens?)
 % gilberto vs bertbasexxl training tokens (11B vs 13B)
 % add dbmdz/bert-base-italian-cased (trained on 2B tokens, while the xxl-cased version was trained on 13B tokens). To make the point on how much data needed, and showing if going from 2B to 13B is needed even for syntax.
@@ -2025,6 +2027,9 @@ In the present thesis, we focus on four phenomena of island effect structures: w
 
 
 \section{Tested models}
+
+All the four models tested have the same numer of parameters (about 110M).
+% very by number of steps; by corpus size; and the type/quality of data ..
 
 \textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): % foot note for link, ref for paper
 trained on a 13.8GB corpus, which correspond to about \textbf{2.2B tokens}, from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers, hidden layer size 768, 12-heads, for a total 117M parameters. The vocabulary size is 30k. % It was trained for 620k steps.
