@@ -16,19 +16,12 @@ However, the linguistic rediscovery that these model make has been found to diff
 % \footnote{\citet{wei2021frequency} found significant frequency effects (but for agreement .. tests, which are much easier to isolate), for items that occurr rarely in the training corpus (..less then ..10-100 times). But to notice this effect they had to purposly tweak the training corpus. Replicating this for a preexisting corpus (using very rare vocabulary ..) is much more complex and out of the scope of the present study.}
 %try with rarer ones.
 
-% "Clarifying the linguistic knowledge acquired during LM-based training is increasingly relevant as state-of-the-art NLP models shift to be predominantly based on pre-training processes involving word prediction in context. In order to understand the fundamental strengths and limitations of these models—and in particular, to understand what allows them to generalize to many different tasks— we need to understand what linguistic competence and general knowledge this LM-based pre-training makes available (and what it does not). " (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
-% "The importance of understanding LM-based pre-training is also the motivation for examining pre-trained BERT, as we do in the present paper, despite the fact that the pre-trained form is typically used only as a starting point for fine-tuning. Because it is the pre-training that seemingly underlies the generalization power of the BERT model, allowing for simple fine-tuning to perform so impressively, it is the pre-trained model that presents the most important questions about the nature of generalizable linguistic knowledge in BERT." (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
-A targeted linguistic evaluation of deep neural language models can detect and help to improve which of their linguistic generalizations are sub-optimal, which in turn could bring many benefits, including enabling hypothesis-driven improvement of the  models architecture \citep{rogers2020primer}, improving the performance on downstream application tasks, improving sample efficiency during training \citep{linzen2020can}, indicating more effective training strategies, %TODO2: citation needed 
+
+A targeted linguistic evaluation of deep neural language models can detect and help to improve which of their linguistic generalizations are sub-optimal, which in turn could bring many benefits, including enabling hypothesis-driven improvement of the models architecture \citep{rogers2020primer}, improving the performance on downstream application tasks, improving sample efficiency during training \citep{linzen2020can}, indicating more effective training strategies, %TODO2: citation needed 
 and making more explainable the "black box" of these models internal representations \citep{wilcox2018rnn}.
 For these reasons, the evaluation of the linguistic competence of these models has emerged as one of the core sub-fields in NLP \citep{cherniavskii2022acceptability}. A recent survey \citep{rogers2020primer} listed the development of comprehensive stress tests for the different aspects of linguistic knowledge (which we still don't have) as arguably one of the most promising direction of research for modern language models.
 % A 2020 survey listed, among the most promising directions for further research on modern language models, the development of "benchmarks for the full range of linguistic competence", noting that we still don't have "comprehensive stress tests for different aspects of linguistic knowledge."
 % "Although the language models seem to acquire a great deal of knowledge about language, we do not currently have" "comprehensive stress tests for different aspects of linguistic knowledge."
-% "A step in this direction is the ‘‘Checklist’’ behavioral testing (Ribeiro et al., 2020), the best paper at ACL 2020. Ideally, such tests would measure not only errors, but also sensitivity (Ettinger, 2019)."
-
-
-% " the weaknesses highlighted by these diagnostics can help to identify areas of need for establishing robust and generalizable models for language understanding"  (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
-
-% "More generally, as language modeling techniques continue to improve, it will be useful to have large-scale tools like BLiMP to efficiently track changes in what these models do and do not know about grammar." warstad 2020 blimp
 
 
 This line of research is also of interest for addressing research questions in linguistics \citep{hewitt2019structural}. For instance, investigating to what extent these self-supervised models, without any explicit prior bias, can acquire non-trivial syntactic skills to a human level \citep{gulordava2018colorless, warstadt2020blimp}, impacts the debate on the innateness of the language faculty \citep{hauser2002faculty}.  
@@ -146,6 +139,7 @@ These models have been shown to be able to encode non-trivial hierarchical lingu
 %"Tenney et al. (2019b) showed that BERT encodes information about entity types, relations, semantic roles, and proto-roles, since this information can be detected with probing classifiers." \citep{rogers2020primer}
 %"A part of the problem [with numbers] is BERT’s wordpiece tokenization, since numbers of similar values can be divided up into substantially different word chunks." \citep{rogers2020primer}
 
+% " the weaknesses highlighted by these diagnostics can help to identify areas of need for establishing robust and generalizable models for language understanding"  (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
 The impressive advancements made by these models are however countered by some of their limitations, that pose doubts about what these models actually understand about language. BERT has been shown to struggle or be unable to acquire linguistic skills that require pragmatic knowledge, common sense, and basic reasoning. For instance, BERT is not able to understand negation, to make basic arithmetic operations on numbers \citep{wallace2019nlp}, to use pragmatic inference and role-based event knowledge \citep{ettinger2020bert}, and to grasp the abstract attributes of objects \citep{da2019cracking}.  \citet{ettinger2020bert} found that "BERT struggles with challenging commonsense/pragmatic inferences and role-based event prediction; that it is generally robust on within-category distinctions and role reversals, but with lower sensitivity than humans; and that it is very strong at associating nouns with hypernyms. Most strikingly, however, we find that BERT fails completely to show generalizable understanding of negation, raising questions about the aptitude of LMs to learn this type of meaning". Undoubtedly, some of these limitations are due to the fact BERT is trained in the single-modality of raw text, without any grounding in vision or other perceptions.
 
 Reasoning about the knowledge it possess seem to be the hardest task overall for BERT. While it can guess affordances and properties of many objects (e.g. the fact that people can walk into houses, and that houses are large), it cannot infer the relationship between their properties (e.g., the fact that houses are larger than people) \citep{forbes2019neural}.
@@ -164,21 +158,51 @@ These limitations are reflected also in the massive amount of data needed to tra
 % "2See also the recent findings on adversarial triggers, which get the model to produce a certain output even though they are not well-formed from the point of view of a human reader (Wallace et al., 2019a)." \citep{rogers2020primer}
 
 
-
-
 \section{Targeted linguistic evaluation of language models}
 
-% "As neural models have proven successful at NLP tasks and as potential psycholinguistic models, we continue to refine our understanding of how and whether they capture human-like language faculties" (Newman Refining Targeted Syntactic Evaluation of Language Models)
+Determining which linguistic phenomena are actually learned by modern transformer-based language models has become increasingly important, since they are trained without any explicit linguistic supervision, and their internal representations are akin to "black boxed" very hard to interpret. Investigating the linguistic competence acquired by these models serves multiple purposes, like having a clear picture of their strengths and limitations, to identify areas for improving their robustness and their ability to generalize in a human-like way, and to accelerate work towards building general-purpose models for language understanding \citep{wilcox2018rnn, ettinger2020bert}.
+%"more fine-grained evaluation tools may accelerate work on general-purpose neural network modules for sentence understanding. "  \citep{wilcox2018rnn}
+%(black boxes and explainability) : "the nature of the representations learned by these models is not properly understood." \citep{wilcox2018rnn}
+% todo: add notes on benefits, necessity of explainability (eg: robust/safe/dependable/.. models, ..)
+
+
+% "Clarifying the linguistic knowledge acquired during LM-based training is increasingly relevant as state-of-the-art NLP models shift to be predominantly based on pre-training processes involving word prediction in context."  \citep{ettinger2020bert}
+%"In order to understand the fundamental strengths and limitations of these models—and in particular, to understand what allows them to generalize to many different tasks— we need to understand what linguistic competence and general knowledge this LM-based pre-training makes available (and what it does not). " \citep{ettinger2020bert}
+% "The importance of understanding LM-based pre-training is also the motivation for examining pre-trained BERT, as we do in the present paper, despite the fact that the pre-trained form is typically used only as a starting point for fine-tuning. Because it is the pre-training that seemingly underlies the generalization power of the BERT model, allowing for simple fine-tuning to perform so impressively, it is the pre-trained model that presents the most important questions about the nature of generalizable linguistic knowledge in BERT."  \citep{ettinger2020bert}
+
+There has been a growing effort in this direction of research, which has been dominated in particular by the assessment of these models syntactic skills \citep{linzen2016assessing, gulordava2018colorless, marvin2018targeted, wilcox2018rnn, chowdhury2018rnn, futrell-etal-2019-neural, ettinger2020bert}.
+% "More directly related is existing work on analyzing linguistic capacities of language models specifically. This work is particularly dominated by testing of syntactic awareness in LMs, and often mirrors the present work in using targeted evaluations modeled after psycholinguistic tests (  Futrell et al., 2019)." (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
+
+
+% "As neural models have proven successful at NLP tasks and as potential psycholinguistic models, we continue to refine our understanding of how and whether they capture human-like language faculties" \citep{newman2021refining}
+% "This paper contributes to a growing effort to better understand the specific linguistic capacities  achieved by neural NLP models. Some approaches"  \citep{ettinger2020bert}
+
+
+% "A step in this direction is the ‘‘Checklist’’ behavioral testing (Ribeiro et al., 2020), the best paper at ACL 2020. Ideally, such tests would measure not only errors, but also sensitivity (Ettinger, 2019)."
+
+
+This relatively new area of research has met methodological problems in the non trivial task of assessing these models abilities and internal representations. The methodology has not yet converged to an established paradigm, multiple approaches are currently in use, and developing new and more effective methodologies for these goals is still an open area of research \citep{ribeiro2020beyond, newman2021refining}.
+
+One of the main approaches currently in use is that of targeted syntactic evaluations, which uses minimal pairs of sentences, of which the model is expected to give the higher probability to the grammatical sentence rather than the ungrammatical ones. These minimal pairs are supposed to vary only over a single condition, in order to isolate the ability of the model in a particular phenomenon and control confounds. However, building these minimal pairs can be labor-intensive, and it is not always easy to design minimally varying sentences for some more complex phenomena. 
+
+For such phenomena, like Negative Polarity Items (NPIs) or constraints on Filler-Gap dependencies, other approaches have been started to be utilized, like a factorial experimental setup, imported from the methodology in psycholinguistic research. A factorial experimental setup can be considered as a generalization of a minimal pair ones, in which and item has more then two sentence, all varying minimally covering the all the combinations of particular factors or property (for instance, a 2x2 factorial design is common). This allows to quantify and factor out confounding factors, by calculating the difference in score between sentences exemplifying different conditions.
+
+
+%"Targeted syntactic evaluations have shown that these models [neural language models ] also implicitly capture many syntactic generalizations, ranging from subject–verb agreement to long-distance filler–gap dependencies (Linzen et al., 2016; Marvin and Linzen, 2018; Futrell et al., 2018; Wilcox et al., 2019b)" \citep{hu2020systematic} "similar developments in semantic evaluation (McCoy et al., 2019)" \citep{hu2020systematic}
+
+
+
+% "More generally, as language modeling techniques continue to improve, it will be useful to have large-scale tools like BLiMP to efficiently track changes in what these models do and do not know about grammar." warstad 2020 blimp
+
 % "we propose two minimal pair evaluations: equally-weighted and model-weighted syntactic evaluation. The first focuses on systematicity by expanding the set of verbs TSE considers, and illustrates that language models still struggle with S/V agreement for unlikely verbs. The second focuses on likely behavior by computing the probability of producing a correctly conjugated verb, and illustrates that despite systematic shortcomings, language models generate syntactically valid utterances with high probability. By introducing these metrics, we hope to arrive at a clearer picture of the syntactic abilities of language models"  (Newman Refining Targeted Syntactic Evaluation of Language Models)
 
 % "It is important to be clear that in using these diagnostics, we are not testing whether LMs are psycholinguistically plausible. We are using these tests simply to examine LMs’ general linguistic knowledge, specifically by asking what information the models are able to use when assigning probabilities to words in context" (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
 
-% "This paper contributes to a growing effort to better understand the specific linguistic capacities  achieved by neural NLP models. Some approaches"  (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
 
-
+% approaches 
 % "use fine-grained classification tasks to probe information in sentence embeddings (Adi et al., 2016; Conneau et al., 2018; Ettinger et al., 2018), or token-level and other sub-sentence level information in contextual embeddings (Tenney et al., 2019b; Peters et al., 2018b). Some of this work has targeted specific linguistic phenomena such as function words (Kim et al., 2019). Much work has attempted to evaluate systems’ overall level of ‘‘understanding’’, often with tasks such as semantic similarity and entailment (Wang et al., 2018; Bowman et al., 2015; Agirre et al., 2012; Dagan et al., 2005; Bentivogli et al., 2016), and additional work has been done to design curated versions of these tasks to test for specific linguistic capabilities (Dasgupta et al., 2018; Poliak et al., 2018; McCoy et al., 2019). Our diagnostics complement this previous work in allowing for direct testing of language models in their natural setting—via controlled tests of word prediction in context—without requiring probing of extracted representations or task-specific fine-tuning." (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
 
-% "More directly related is existing work on analyzing linguistic capacities of language models specifically. This work is particularly dominated by testing of syntactic awareness in LMs, and often mirrors the present work in using targeted evaluations modeled after psycholinguistic tests (Linzen et al., 2016; Gulordava et al., 2018; Marvin and Linzen, 2018; Wilcox et al., 2018; Chowdhury and Zamparelli, 2018; Futrell et al., 2019)." (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
+
 
 % "These analyses, like ours, typically draw conclusions based on LMs’ output probabilities. Additional work has examined the internal dynamics underlying LMs’ capturing of syntactic information, including testing of syntactic sensitivity in different components of the LM and at different timesteps within the sentence (Giulianelli et al., 2018), or in individual units (Lakretz et al., 2019)."  (Ettinger 2020 "What BERT Is Not: Lessons from a New Suite of Psycholinguistic Diagnostics for Language Models")
 
@@ -202,8 +226,8 @@ These limitations are reflected also in the massive amount of data needed to tra
 
 % "Finally, Gulordava et al. (2018) argue that the results of syntactic evaluations are influenced by semantic associations between tokens, so they remove these associations by substituting each token with a different randomly selected token with the same syntactic role. Although the resulting minimal pairs are infelicitous, models are still able to predict the correct inflection with above-chance accuracy. Our methods are similar in that some of the verbs in our evaluation set are infelicitous, however the contexts we use are semantically coherent. Rather than avoiding semantic effects by creating infelicitous contexts, we marginalize them out by using a large set of verb lemmas. This makes our metrics less stringent than those of Gulordava et al. (2018), but captures a potentially more realistic setting where we expect our models to perform systematically" (Newman Refining Targeted Syntactic Evaluation of Language Models)
 
-methodological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
-few multilingual studies
+%methodological problem in assessing linguistic knowledge (section ..), how to derive a grammaticality judgement or otherwise assess model linguistic knowledge, various approaches have been proposed, also drawing from psycholinguistic studies, ..now the field seem to have focused on ..minimal pairs
+%few multilingual studies
 
 % Addressing the question of how the linguistic knowledge of state-of-the-art language models (LMs) varies across linguistic phenomena \citep{warstadt2020blimp}
 
@@ -217,20 +241,22 @@ few multilingual studies
 % indirect evidence about each model’s linguistic knowledge \citep{warstadt2020blimp}
 % compare models in a fine-grained way \citep{warstadt2020blimp}.
 
-"more fine-grained evaluation tools may accelerate work on general-purpose neural network modules for sentence understanding. " \\
-"studying the linguistic competence of ANNs bears on foundational questions in linguistics about the learnability of grammar."
 
-(black boxes and explainability) : "the nature of the representations learned by these models is not properly understood." \citep{wilcox2018rnn}
-% todo: add notes on benefits, necessity of explainability (eg: robust/safe/dependable/.. models, ..)
 
-"In addition to the insight these results provide about neural NLP systems, they also bear on questions central to cognitive science and linguistics, putting lower bounds on what syntactic knowledge can be acquired from string input alone"  \citep{hu2020systematic} 
+
+
+
+
+%"In addition to the insight these results provide about neural NLP systems, they also bear on questions central to cognitive science and linguistics, putting lower bounds on what syntactic knowledge can be acquired from string input alone"  \citep{hu2020systematic} 
+%"studying the linguistic competence of ANNs bears on foundational questions in linguistics about the learnability of grammar."
+
 
 % "We see two chief motivations that guide work on acceptability classification with ANNs by us and by others: First," 
 % "Second, 
 % better models: more performant, more efficient. Detect which linguistic phenomena they learn and which they don't.
 
 
-"Targeted syntactic evaluations have shown that these models [neural language models ] also implicitly capture many syntactic generalizations, ranging from subject–verb agreement to long-distance filler–gap dependencies (Linzen et al., 2016; Marvin and Linzen, 2018; Futrell et al., 2018; Wilcox et al., 2019b)" \citep{hu2020systematic} "similar developments in semantic evaluation (McCoy et al., 2019)" \citep{hu2020systematic}
+
 
 
 
