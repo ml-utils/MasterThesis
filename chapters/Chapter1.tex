@@ -670,122 +670,7 @@ Modern deep neural language models have also began to be used as an argument tha
 %"while the methodology for testing learning biases is relatively clear, the data required to actually perform those tests are still relatively scarce"   \citep{pearl2013syntactic}
 
 
-
-
-
-
 % "In chapter 5, Pearl and Sprouse address one of the motivations for the debate between grammatical and reductionist accounts: the claim that a grammatical approach to island effects necessitates innate linguistic constraints (i.e., Universal Grammar). Contrary to this claim, Pearl and Sprouse propose (and implement) a computational model that can learn island effects as a type of grammatical constraint from a corpus of child-directed speech without resorting to innate linguistic biases (i.e., UG)." \citep{sprouse2013experimental}
-
-
-\section{Factorial experimental setups from psycholinguistic studies}\label{sec:factoria_paradigm}
-
-A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
-
-% "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
-A common use case is to have the \textsc{items} (the equivalent of the sentence pairs) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
-
-
-Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure (\textsc{SD/NI}); condition b. displays a long-distance dependency and no island structure (\textsc{LD/NI}); condition c. displays a short-distance dependency and an adjunct island structure (\textsc{SD/IS}); and condition d. displays a long-distance dependency crossing an adjunct island structure (\textsc{LD/IS}). Sentences a-c are supposed to be acceptable, while d is unacceptable because of an island effect:
-
-\begin{exe}
-	\ex{\textsc{Adjunct island}}\label{adjunct_island_2_it}
-	\begin{xlist}
-		\ex\gll Chi dice che {l'imprenditore} ha raccolto i fondi sufficienti? \textsc{[SD/NI]}\\
-		Who say that {the businessman} have raised the funds sufficient\\
-		\glt `Who says that the businessman raised sufficient funds?'
-		
-		\ex\gll {Che cosa} dici che {l'imprenditore} ha raccolto \_? \textsc{[LD/NI]}\\
-		What say that {the businessman} have raised\\
-		\glt `What do you say that the businessman raised?'
-		
-		\ex\gll Chi ha avviato {l’attività} [quando ha raccolto i fondi sufficienti]? \textsc{[SD/IS]}\\
-		Who have started {the business} when have raised the funds sufficient\\
-		\glt `Who started the business when he raised sufficient funds?'
-		
-		\ex\gll {*Che cosa} {l'imprenditore} ha avviato {l’attività} [quando ha raccolto \_]? \textsc{[LD/IS]}\\
-		What {the businessman}  have started {the business} when have raised\\
-		\glt `What did the businessman started the business when he raised?'
-	\end{xlist}
-\end{exe}
-
-In a factorial design, the scores (being either a human judgment on a likert scale, or a language model score like a log probability or a pseudo-log-likelihood)given to the sentences of an item like (\ref{adjunct_island_2_it}), can be compared to quantify and tease out the effect of different factors. For instance, in the case of a pseudo-log-likelihood (PLL) score obtained from a bi-directional LM like BERT, we could calculate the following quantities:
-% Factorial Measurement of Island Effects in Psycholinguistic studies
-% "A DD score is calculated for a two-way interaction as follows. First, calculate the difference (D1) between the scores in two of the four conditions. To make the DD scores as intuitively meaningful as possible, we have defined D1 as the difference between the NONISLAND/EMBEDDED condition and the ISLAND/EMBEDDED condition. Second, calculate the difference (D2) between the scores in the other two conditions. For our purposes, D2 is the difference between the NONISLAND/MATRIX condition and the ISLAND/MATRIX condition. Finally, calculate the difference between these two difference scores. Intuitively, the DD score measures how much greater the effect of an island structure is in a long distance dependency sentence than in a sentence with a local dependency" \citep{sprouse2012test}
-
-% todo: compare terminology: "DD score" in sprouse, while in Hu/Wilcox ..
-
-\begin{itemize}\label{formula:factorial_score}
-	\item \textsc{length effect} = $PLL_a - PLL_b$
-	\item \textsc{structure effect} = $PLL_a - PLL_c$
-	\item \textsc{total effect} = $PLL_a - PLL_d$
-	\item \textsc{island effect} = $\textsc{total effect} - (\textsc{length effect} + \textsc{structure effect})$
-\end{itemize}  
-
-The \textsc{length effect} should capture the decrease in sentence acceptability due to the increase of the dependency distance from short to a long filler-gap dependency. The \textsc{structure effect} should capture the effect of adding an island structure. The \textsc{total effect} should capture the whole decrease in sentence acceptability due to the increase in sentence complexity from the two factors and also due to the violation of the island constraint. Subtracting the first two effects from the total effect should isolate the \textsc{island effect} alone, without considering the sentence acceptability decrease due to the other two factors. We conclude that a model has 'learned' the island effect displayed in an item, if the island effect score on that item is greater than zero. 
-% accuracy score like in Hu ..
-
-
-This factorial score is used by \citet{sprouse2016experimental} to assess island effects as perceived by human subjects, and it is equivalent to a differences-in-differences (DD) score \citep{maxwell2003designing}. Similar factorial scores have been used for language models by \citet{wilcox2018rnn} and \citet{hu2020systematic}.
-
-The factorial design allows to calculate the effect of the combination of the different properties, by making subtractions between the scores of the sentences of an item, because they differ minimally between each other (only on the basis of the controlled properties). This allows to factor as many confound as possible, even unexpected ones, as long as they are evenly distributed within across the sentences of an item \citep{sprouse2016experimental, hu2020systematic}.
-
-% todo: the senence acceptability estimates
-
-\section{Sentence acceptability estimates}
-
-We assessed uni-directional and bi-directional transformer-based Italian language models. For the uni-directional models (based on GPT-2), we scored sentences using the log probability given as output by the model, which is calculated by multiplying the estimated probabilities of each token $t_i$ of a sentence $s$ using the previously seen left tokens $t_{<i}$ as context\citep{lau2020furiously, bengio2003neural}:
-
-\begin{displaymath}
-	\log P(s) = \sum_{i=0}^{|s|} \log P_{GPT2}(t_i | t_{<i}) 
-\end{displaymath}
-% 	LP = \log P(s)
-% $\log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
-
-For bi-directional models, based on BERT, we estimated sentence probabilities using a pseudo-log-likelihood score (PLL), obtained by summing the conditional log probabilities of each token, using as context the rest of the tokens in the sentence (both left and right), as in \citet{salazar2020masked} and \citet{lau2020furiously}:
-
-\begin{displaymath}
-	PLL(s) =\sum_{i=0}^{|s|} \log P_{BERT}(t_i | t_{<i}, t_{>i}) 
-\end{displaymath}
-% W_{\setminus t}
-
-% normalizing by sentence lenght? as in Lau et al  .. not effective in our case .. numerical properties as in Salazar ..
-% this amounts to a sum of surpraisals .. as we'll discuss in section ..
-We used these two scores as a relative estimate of sentence acceptability, for the purpose of comparing similar sentences (varying across controlled conditions) within an item like (\ref{adjunct_island_2_it}).
-
-% ?todo: python code for sentence likelihood/probability scores
-
-% in method/.. section, mention the fact that we plan to also do a qualitative analysis comparing the plots with those of sprouse.. mention normalization of the scores to a liker scale ..
-% todo: compare accuracy percentage by DD scores.. with sprouse results on human, to see if the island types with the strongest DD also have the strongest accuracy (but it makes no sense, we can already compare the DD scores on the same datasets.. although the plots are on averages, while the accuracies might tell a different story)
-
-
-
-
-
-
-\subsection{Island effects assessment in language models}
-
-(TODO)
-
-% Wilcox, Blimp, ..
-
-
-\section{Draft sections}
-\subsection{Factorial definition of Island Effects}
-
-
-"However, investigating the learning of syntactic island effects requires \textbf{a formally explicit definition} of the target state beyond the diacritics that are typically used to delineate unacceptable sentences in syntactic articles." \citep{pearl2013syntactic}
-
-"To that end, we decided to explicitly construct the target state from data from \citet{sprouse2012test}, who collected formal acceptability judgments for four island types using the magnitude estimation task: Complex NP islands (2a), (simple) Subject islands (2b), Whether islands (2c), and (conditional) Adjunct islands (2d). These four islands were selected by Sprouse, Wagers \& Phillips (2012a) for several reasons. First, they have been argued to be captured by syntactic constraints (e.g., Subjacency or the Condition on Extraction Domains), as opposed to the island types that have historically been captured with semantic constraints (e.g., factive islands, negative islands)." \citep{pearl2013syntactic}
-
-
-"Sprouse, Wagers \& Phillips used a (2x2 \textbf{factorial definition} of each island effect (shown in 6-9), which controls for the two salient syntactic properties of island-violating sentences: (i) they contain a long-distance dependency, and (ii) they contain an island structure. By translating each of these properties into separate factors, each with two levels (dependency GAP POSITION: matrix, embedded; STRUCTURE present in question: non-island, island), Sprouse, Wagers \& Phillips were able to define island effects as a superadditive interaction of the two factors—in other words, an island effect is the additional unacceptability that arises when the two factors are combined, above and beyond the independent contribution of each factor. Specifically, a syntactic island occurs when there is more unacceptability than what the EMBEDDED dependency and the presence of an ISLAND structure in the question contribute by themselves."\citep{pearl2013syntactic}
-
-"an acceptability judgment experiment that employs a factorial definition of island effects. First, we can isolate the effect of dependency length on acceptability by contrasting a sentence with a short WH-dependency, an extraction from a matrix clause (5a), with a sentence that contains a longer WH-dependency, an extraction from an embedded clause (5b). Similarly, we can isolate the effect of processing island structures by contrasting a sentence with an island structure (5c) with a sentence that does not contain an island structure (5a). Finally, we can measure the effect on acceptability of processing both long-distance WH-dependencies and island structures—the island effect itself—by combining both in a single sentence (5d)." \citep{sprouse2012test}
-
-" A matrix clause is a clause that contains another clause. Thus, the main clause in (37), the professor told the students, is a matrix clause since it contains another clause (that he was going to cancel the next class), which is said to be embedded inside the matrix clause:
-(37)
- The professor told the students that he was going to cancel the next class. ." (Martin J. Endley, Linguistic Perspectives on English Grammar. Information Age, 2010)
-
 
 
 \subsection{Cross-linguistic variation in island effects}
@@ -868,11 +753,11 @@ We used these two scores as a relative estimate of sentence acceptability, for t
 %\begin{exe}
 %	\ex{\textsc{Whether island}}
 %		\begin{xlist}
-%				\ex\gll *Cosa ti domandi se io abbia comprato \_?\\
-%					What yourself wonder if I have bought \\
-%					\glt `What do you wonder if I bought?'\label{whether_island_1_it}
-%				\ex ..
-%		\end{xlist}
+	%				\ex\gll *Cosa ti domandi se io abbia comprato \_?\\
+	%					What yourself wonder if I have bought \\
+	%					\glt `What do you wonder if I bought?'\label{whether_island_1_it}
+	%				\ex ..
+	%		\end{xlist}
 %\end{exe}
 
 % (Some examples taken from \citep{sprouse2016experimental})
@@ -994,6 +879,118 @@ island as a (non-standardized) effect-size measure for each island type."  \cite
 "Taken as a whole, these results suggest that cross-linguistic experimental work has the potential to both reveal previously unobserved effects (e.g., the lack of adjunct islands with rc-dependencies in English), as well as better isolate previously observed effects (e.g., the D-linking effect on certain island-violating sentences). As such, we believe that formal experimental work deserves a prominent place in the cross-linguistic syntactician’s toolkit." \citep{sprouse2016experimental}
 
 "The second assumption, that the specifier of CP complements of NP is not a viable landing site, has also always been necessary to accommodate complex NP islands within the original Rizzi (1982) analysis of Italian. This assumption has had no empirical consequence for English, because movement from a complex NPs would cross at least two bounding nodes in English either way. Our results do not impact this assumption at all: Italian requires this assumption under both Rizzi’s original analysis and our revised analysis." \citep{sprouse2016experimental}
+
+
+\section{Factorial experimental setups from psycholinguistic studies}\label{sec:factoria_paradigm}
+
+A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
+
+% "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
+A common use case is to have the \textsc{items} (the equivalent of the sentence pairs) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
+
+
+Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure (\textsc{SD/NI}); condition b. displays a long-distance dependency and no island structure (\textsc{LD/NI}); condition c. displays a short-distance dependency and an adjunct island structure (\textsc{SD/IS}); and condition d. displays a long-distance dependency crossing an adjunct island structure (\textsc{LD/IS}). Sentences a-c are supposed to be acceptable, while d is unacceptable because of an island effect:
+
+\begin{exe}
+	\ex{\textsc{Adjunct island}}\label{adjunct_island_2_it}
+	\begin{xlist}
+		\ex\gll Chi dice che {l'imprenditore} ha raccolto i fondi sufficienti? \textsc{[SD/NI]}\\
+		Who say that {the businessman} have raised the funds sufficient\\
+		\glt `Who says that the businessman raised sufficient funds?'
+		
+		\ex\gll {Che cosa} dici che {l'imprenditore} ha raccolto \_? \textsc{[LD/NI]}\\
+		What say that {the businessman} have raised\\
+		\glt `What do you say that the businessman raised?'
+		
+		\ex\gll Chi ha avviato {l’attività} [quando ha raccolto i fondi sufficienti]? \textsc{[SD/IS]}\\
+		Who have started {the business} when have raised the funds sufficient\\
+		\glt `Who started the business when he raised sufficient funds?'
+		
+		\ex\gll {*Che cosa} {l'imprenditore} ha avviato {l’attività} [quando ha raccolto \_]? \textsc{[LD/IS]}\\
+		What {the businessman}  have started {the business} when have raised\\
+		\glt `What did the businessman started the business when he raised?'
+	\end{xlist}
+\end{exe}
+
+In a factorial design, the scores (being either a human judgment on a likert scale, or a language model score like a log probability or a pseudo-log-likelihood)given to the sentences of an item like (\ref{adjunct_island_2_it}), can be compared to quantify and tease out the effect of different factors. For instance, in the case of a pseudo-log-likelihood (PLL) score obtained from a bi-directional LM like BERT, we could calculate the following quantities:
+% Factorial Measurement of Island Effects in Psycholinguistic studies
+% "A DD score is calculated for a two-way interaction as follows. First, calculate the difference (D1) between the scores in two of the four conditions. To make the DD scores as intuitively meaningful as possible, we have defined D1 as the difference between the NONISLAND/EMBEDDED condition and the ISLAND/EMBEDDED condition. Second, calculate the difference (D2) between the scores in the other two conditions. For our purposes, D2 is the difference between the NONISLAND/MATRIX condition and the ISLAND/MATRIX condition. Finally, calculate the difference between these two difference scores. Intuitively, the DD score measures how much greater the effect of an island structure is in a long distance dependency sentence than in a sentence with a local dependency" \citep{sprouse2012test}
+
+% todo: compare terminology: "DD score" in sprouse, while in Hu/Wilcox ..
+
+\begin{itemize}\label{formula:factorial_score}
+	\item \textsc{length effect} = $PLL_a - PLL_b$
+	\item \textsc{structure effect} = $PLL_a - PLL_c$
+	\item \textsc{total effect} = $PLL_a - PLL_d$
+	\item \textsc{island effect} = $\textsc{total effect} - (\textsc{length effect} + \textsc{structure effect})$
+\end{itemize}  
+
+The \textsc{length effect} should capture the decrease in sentence acceptability due to the increase of the dependency distance from short to a long filler-gap dependency. The \textsc{structure effect} should capture the effect of adding an island structure. The \textsc{total effect} should capture the whole decrease in sentence acceptability due to the increase in sentence complexity from the two factors and also due to the violation of the island constraint. Subtracting the first two effects from the total effect should isolate the \textsc{island effect} alone, without considering the sentence acceptability decrease due to the other two factors. We conclude that a model has 'learned' the island effect displayed in an item, if the island effect score on that item is greater than zero. 
+% accuracy score like in Hu ..
+
+
+This factorial score is used by \citet{sprouse2016experimental} to assess island effects as perceived by human subjects, and it is equivalent to a differences-in-differences (DD) score \citep{maxwell2003designing}. Similar factorial scores have been used for language models by \citet{wilcox2018rnn} and \citet{hu2020systematic}.
+
+The factorial design allows to calculate the effect of the combination of the different properties, by making subtractions between the scores of the sentences of an item, because they differ minimally between each other (only on the basis of the controlled properties). This allows to factor as many confound as possible, even unexpected ones, as long as they are evenly distributed within across the sentences of an item \citep{sprouse2016experimental, hu2020systematic}.
+
+% todo: the senence acceptability estimates
+
+\section{Sentence acceptability estimates}
+
+We assessed uni-directional and bi-directional transformer-based Italian language models. For the uni-directional models (based on GPT-2), we scored sentences using the log probability given as output by the model, which is calculated by multiplying the estimated probabilities of each token $t_i$ of a sentence $s$ using the previously seen left tokens $t_{<i}$ as context\citep{lau2020furiously, bengio2003neural}:
+
+\begin{displaymath}
+	\log P(s) = \sum_{i=0}^{|s|} \log P_{GPT2}(t_i | t_{<i}) 
+\end{displaymath}
+% 	LP = \log P(s)
+% $\log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
+
+For bi-directional models, based on BERT, we estimated sentence probabilities using a pseudo-log-likelihood score (PLL), obtained by summing the conditional log probabilities of each token, using as context the rest of the tokens in the sentence (both left and right), as in \citet{salazar2020masked} and \citet{lau2020furiously}:
+
+\begin{displaymath}
+	PLL(s) =\sum_{i=0}^{|s|} \log P_{BERT}(t_i | t_{<i}, t_{>i}) 
+\end{displaymath}
+% W_{\setminus t}
+
+% normalizing by sentence lenght? as in Lau et al  .. not effective in our case .. numerical properties as in Salazar ..
+% this amounts to a sum of surpraisals .. as we'll discuss in section ..
+We used these two scores as a relative estimate of sentence acceptability, for the purpose of comparing similar sentences (varying across controlled conditions) within an item like (\ref{adjunct_island_2_it}).
+
+% ?todo: python code for sentence likelihood/probability scores
+
+% in method/.. section, mention the fact that we plan to also do a qualitative analysis comparing the plots with those of sprouse.. mention normalization of the scores to a liker scale ..
+% todo: compare accuracy percentage by DD scores.. with sprouse results on human, to see if the island types with the strongest DD also have the strongest accuracy (but it makes no sense, we can already compare the DD scores on the same datasets.. although the plots are on averages, while the accuracies might tell a different story)
+
+
+
+
+
+
+\subsection{Island effects assessment in language models}
+
+(TODO)
+
+% Wilcox, Blimp, ..
+
+
+\section{Draft sections}
+\subsection{Factorial definition of Island Effects}
+
+
+"However, investigating the learning of syntactic island effects requires \textbf{a formally explicit definition} of the target state beyond the diacritics that are typically used to delineate unacceptable sentences in syntactic articles." \citep{pearl2013syntactic}
+
+"To that end, we decided to explicitly construct the target state from data from \citet{sprouse2012test}, who collected formal acceptability judgments for four island types using the magnitude estimation task: Complex NP islands (2a), (simple) Subject islands (2b), Whether islands (2c), and (conditional) Adjunct islands (2d). These four islands were selected by Sprouse, Wagers \& Phillips (2012a) for several reasons. First, they have been argued to be captured by syntactic constraints (e.g., Subjacency or the Condition on Extraction Domains), as opposed to the island types that have historically been captured with semantic constraints (e.g., factive islands, negative islands)." \citep{pearl2013syntactic}
+
+
+"Sprouse, Wagers \& Phillips used a (2x2 \textbf{factorial definition} of each island effect (shown in 6-9), which controls for the two salient syntactic properties of island-violating sentences: (i) they contain a long-distance dependency, and (ii) they contain an island structure. By translating each of these properties into separate factors, each with two levels (dependency GAP POSITION: matrix, embedded; STRUCTURE present in question: non-island, island), Sprouse, Wagers \& Phillips were able to define island effects as a superadditive interaction of the two factors—in other words, an island effect is the additional unacceptability that arises when the two factors are combined, above and beyond the independent contribution of each factor. Specifically, a syntactic island occurs when there is more unacceptability than what the EMBEDDED dependency and the presence of an ISLAND structure in the question contribute by themselves."\citep{pearl2013syntactic}
+
+"an acceptability judgment experiment that employs a factorial definition of island effects. First, we can isolate the effect of dependency length on acceptability by contrasting a sentence with a short WH-dependency, an extraction from a matrix clause (5a), with a sentence that contains a longer WH-dependency, an extraction from an embedded clause (5b). Similarly, we can isolate the effect of processing island structures by contrasting a sentence with an island structure (5c) with a sentence that does not contain an island structure (5a). Finally, we can measure the effect on acceptability of processing both long-distance WH-dependencies and island structures—the island effect itself—by combining both in a single sentence (5d)." \citep{sprouse2012test}
+
+" A matrix clause is a clause that contains another clause. Thus, the main clause in (37), the professor told the students, is a matrix clause since it contains another clause (that he was going to cancel the next class), which is said to be embedded inside the matrix clause:
+(37)
+ The professor told the students that he was going to cancel the next class. ." (Martin J. Endley, Linguistic Perspectives on English Grammar. Information Age, 2010)
+
+
 
 
 \subsection{Unprocessed quotes}
