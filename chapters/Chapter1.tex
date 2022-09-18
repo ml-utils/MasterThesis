@@ -675,37 +675,64 @@ Modern deep neural language models have also began to be used as an argument tha
 
 \subsection{Cross-linguistic variation in island effects}
 
-% various patterns of island effects that have been observed cross-linguistically  \citep{pearl2013syntactic}
+Cross-linguistic variations have been observed for island effects, since the first study on island effects in Italian by \citet{rizzi1982violations}.  % 
+While English shows at least eight different types of island effects (whether islands, complex NP islands, subject islands, adjunct islands, relative-clause islands, sentential subject islands, coordinate structure constraint violations, and left branch extraction violations), Scandinavian languages (Swedish, Norwegian,
+Danish, and Icelandic), show almost no island effects\footnote{\citet{sprouse2013experimental} report that "Swedish is not bereft of apparent island effects. Rather it does not display island effects in all contexts where they are theoretically expected to appear (and as they do appear in English). For example, there are some unacceptable instances of extracting out of complex noun phrases, but others seem perfectly fine."} \citep{pearl2013syntactic}. Here are examples of the above mentioned eight types of syntactic islands in English, taken from \citet{sprouse2013experimental}:
 
-% Cross-linguistic differences, italian, english "Differences across languages. English was by far the hardest language. We conjecture that this is due to its poorer morphology and higher POS ambiguity, which might not encourage a generic language model to track abstract syntactic configurations." "In languages such as Italian and Russian, which have richer morphology and less ambiguity at the part-of-speech level than English, the LSTMs show much better accuracy and a smaller gap between original and nonce sentences. " Gulordava et al 2018
+\begin{example}
+	Island effects in English
+	\renewcommand{\labelenumi}{\alph{enumi}.}
+	\begin{enumerate}
+		\item \textsc{whether island:} \\
+		*What do you wonder [ whether John bought \_]?
+		\item \textsc{complex NP island:} \\
+		*What did you make [ the claim that John bought \_]?
+		\item \textsc{subject island:} \\
+		*What do you think [ the speech about \_] interrupted the TV show?
+		\item \textsc{adjunct island:} \\	
+		*What do you worry [ if John buys \_]?
+		\item \textsc{relative-clause island:} \\	
+		*What did you meet [ the scientist who invented \_]?
+		\item \textsc{sentential subject island:} \\	
+		*What did [ that John wrote \_] offend the editor?
+		\item \textsc{coordinate structure constraint violation:} \\	
+		*What did John buy [ a shirt and \_]?
+		\item \textsc{left branch extraction violation:} \\	
+		*Which did John borrow [ \_ book]?	
+	\end{enumerate}
+	\label{en_islands}
+\end{example}
 
+Most island effects are present in Romance languages, with some exceptions, as some types of syntactic islands have effect in certain types of sentences, but not in others. This is the case of subject islands, which are not present in Italian, Spanish and Portuguese, while they are present in French \citep{pearl2013syntactic}. In a psycholinguistic study, \citet{sprouse2016experimental} found evidence that subject islands with relative clause dependencies are not present in Italian. 
+% As noted by \citet{sprouse2013experimental}, this kind of variability "has proven challenging for approaches to island effects that postulate a source that is outside of the grammar (e.g., components of the sentence processing system), as grammatical theories have traditionally been the sole locus of cross-linguistic variation"
+% "To the extent that Table 1.1 is accurate, the cross-linguistic variation it reports raises some very interesting questions for theories of island effects. For example, it has proven relatively difficult to characterize precisely the variability indicated by question marks; that is, island effects in certain languages that appear arise for some sentences, but not others. Furthermore, the mere existence of variability has proven challenging for approaches to island effects that postulate a source that is outside of the grammar (e.g., components of the sentence processing system), as grammatical theories have traditionally been the sole locus of cross-linguistic variation." \citep{sprouse2013experimental}
+
+There is also a substantial varying degree of acceptability between the different types of islands. For instance, wh-islands are generally among the strongest sources of sentence acceptability, while violations of complex NP islands with rc-dependencies tend to be more acceptabile \citep{pearl2013syntactic}. Because of this, it has been proposed in the literature a distinction between strong and weak islands \citep{sprouse2016experimental, szabolcsi2006strong}.
+% "Furthermore, it has long been noted that the degrees of unacceptability substantially differ across the various islands. For example, violations of the WH-island condition are generally less unacceptable than violations of the relative clause version of the Complex Noun Phrase Constraint"  \citet{sprouse2013experimental}
+% "For discussion of these matters see chapter 3 (Hofmeister et al.), chapter 4 (Phillips), chapter 11 (Kush et al.), chapter 12 (Jurka), chapter 13 (Polinsky et al.)." \citep{sprouse2013experimental}
 % "\textbf{distinction between strong and weak islands} in the literature (for a review see Szabolcsi 2006)" \citep{sprouse2016experimental, szabolcsi2006strong}
 % so from weakest to strongest ("more prototypical) islands, the order should be:
 % whether, complex np, subject, adjunct (swap the last 2?)
-
-% is there a linguistic continuum in the cross-linguistic variation of island effects, from more prototipical to less ones?
+Furthermore, the acceptability of island violations also varies from speakers to speaker within the same language, with some speakers being more sensitive than others to island effects \citep{sprouse2013experimental}.
 
 %Table 1.1 in \citet{sprouse2013experimental}
-%
 %"Table 1.1 presents nine languages that are known to employ wh-movement in questions, and five of the most studied island effects: WH-islands (3a), Complex Noun Phrase islands (3b), Subject islands (3c), Adjunct islands (3d), and Relative Clause islands (3e). The diacritics indicate whether the specified language demonstrates that particular island effect: asterisks indicate that the island effect arises in that language, dashes indicate that the island effect does not arise in that language, and question marks indicate that the island effect arises for some sentence types, but not others." \citep{sprouse2013experimental}
-%
 %"We should note that Table 1.1 idealizes the empirical results to a considerable extent. There has been considerable work on these cross-linguistic differences and the differences noted here are not nearly as categorical as displayed. For example, many English speakers treat the wh-island violations discussed in Rizzi 1982b as acceptable (c.f. Grimshaw 1986)"  \citep{sprouse2013experimental}
+%
+% % is there a linguistic continuum in the cross-linguistic variation of island effects, from more prototipical to less ones?
 
-% "Furthermore, it has long been noted that the degrees of unacceptability substantially differ across the various islands. For example, violations of the WH-island condition are generally less unacceptable than violations of the relative clause version of the Complex Noun Phrase Constraint"  \citet{sprouse2013experimental}
-% "For discussion of these matters see chapter 3 (Hofmeister et al.), chapter 4 (Phillips), chapter 11 (Kush et al.), chapter 12 (Jurka), chapter 13 (Polinsky et al.)." \citep{sprouse2013experimental}
-
-% "To the extent that Table 1.1 is accurate, the cross-linguistic variation it reports raises some very interesting questions for theories of island effects. For example, it has proven relatively difficult to characterize precisely the variability indicated by question marks; that is, island effects in certain languages that appear arise for some sentences, but not others. Furthermore, the mere existence of variability has proven challenging for approaches to island effects that postulate a source that is outside of the grammar (e.g., components of the sentence processing system), as grammatical theories have traditionally been the sole locus of cross-linguistic variation." \citep{sprouse2013experimental}
 
 % "Whereas the first pattern in Table 1.1 primarily concerns Romance languages, the second pattern concerns Scandinavian languages (Swedish, Norwegian, Danish, and Icelandic). As first observed by Engdahl (1980) for Swedish, Scandinavian languages do not demonstrate any of these five island effects.6" \citep{sprouse2013experimental}
 %"In either case, the existence of apparently island-less languages such as modern Scandinavian languages raises interesting challenges for any comprehensive theory of island effects." \citep{sprouse2013experimental}
-%"6 Swedish is not bereft of apparent island effects. Rather it does not display island effects in all contexts where they are theoretically expected to appear (and as they do appear in English). For example, there are some unacceptable instances of extracting out of complex noun phrases, but others seem perfectly fine. For some discussion see chapter 11 (Kush et al.)."  \citep{sprouse2013experimental}
+
 
 % " the argument/adjunct distinction that has been observed in so-called wh-in-situ languages such as Chinese (Huang 1982a), Japanese (Lasnik and Saito 1984), and Sinhala (Hagstrom 1998). In wh-in-situ languages, question formation does not involve displacement of the wh-word: the wh-word appears in the same position that the questioned constituent would appear in a declarative sentence (i.e., the gap-position in wh-movement languages)." \citep{sprouse2013experimental}
+
+
 
 % "2.3 Resumptive pronouns"
 
 % "Although most of the languages discussed so far exclusively employ gap positions as the foot of long-distance dependencies, about half of the world’s languages appear to allow a second option: resumptive pronouns. Resumptive" "pronouns are lexically indistinguishable from regular pronouns, but appear in the position that under other circumstances would be the gap position of a long-distance dependency (McCloskey 2006). When it comes to the interaction of resumptive pronouns and island effects, McCloskey (2006) identifies three types of languages." \citep{sprouse2013experimental}
-
 
 % "The relevance of resumptive pronouns in free-variation languages for the theory of island effects rests in their dual nature (which McCloskey (2006) describes as Janus-like): whereas true gaps are canonically associated with long-distance dependencies that are sensitive to island effects, and true pronouns are canonically associated with a type of long-distance dependency that is not sensitive to island effects (i.e., binding relations), resumptive pronouns fall in between by allowing non-binding long-distance dependencies to cross island structures.8" "8It should be noted that the relevance of resumptive pronouns to island effects was first observed by Ross (1967). He noted that resumptive pronouns obviate island effects when present. As he also assumed that they are related to their antecedents via movement, he concluded that movement per se could not be island-sensitive. The approach discussed by McCloskey (2006) inverts this logic: binding is different from movement and the latter is island-sensitive while the former is not. Importantly both point to a conclusion of current interest: that overt gaps make a difference even if the dependency looks similar. The problem is not the dependency but how it is formed." \citep{sprouse2013experimental}
 
@@ -733,6 +760,11 @@ Modern deep neural language models have also began to be used as an argument tha
 % (i) "The (potentially constrained) variation observed in Romance and Scandinavian languages with respect to types of island effects;" \citep{sprouse2013experimental}
 % (iii)) The interaction of resumptive pronouns with island effects in Irish-type, Vata-type, and English-type languages;
 % (iv) The existence of parasitic gaps that can (grammatically) appear inside of island structures, as well as the restrictions on their appearance." \citep{sprouse2013experimental}
+
+
+
+% note on LM assessment on other phenomena
+% Cross-linguistic differences, italian, english "Differences across languages. English was by far the hardest language. We conjecture that this is due to its poorer morphology and higher POS ambiguity, which might not encourage a generic language model to track abstract syntactic configurations." "In languages such as Italian and Russian, which have richer morphology and less ambiguity at the part-of-speech level than English, the LSTMs show much better accuracy and a smaller gap between original and nonce sentences. " Gulordava et al 2018
 
 \subsection{Island effects in Italian}\label{sec:island_effects_in_italian}
 
