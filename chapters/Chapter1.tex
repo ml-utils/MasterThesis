@@ -585,7 +585,7 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 
 
 
-\section{Wh-islands and whether Islands}\label{sec:wh_islands}
+%\section{Wh-islands and whether Islands}\label{sec:wh_islands}
 % todo: subsections for each of the four island types: e.g. 
 
 % for wh/wheter islands ..a few word on differences, variations, examples for the different studies (sprouse, hu, wilcox, blimp, rizzi); examples, variations, differences in italian
@@ -597,14 +597,14 @@ Island effects in Italian were first studied by \citet{rizzi1982violations}, whi
 %"We used three different prepositions to construct temporal adjuncts: ‘while’, ‘after’ and ‘before’." \citep{wilcox2018rnn}
 
 
-\section{Adjunct islands}\label{sec:adjunct_islands}
+%\section{Adjunct islands}\label{sec:adjunct_islands}
 % for adjuncts, with example of conditional and temporan adjuncts; the fact that they were first studied in 1982
 
-\section{Complex NP islands}\label{sec:complex_np_islands}
+%\section{Complex NP islands}\label{sec:complex_np_islands}
 % same for complex np and subject islands: examples from the different studies (sprouse, hu, wilcox, blimp, rizzi) showing variations, differences in italia (italian examples when possible)
 % cite also examples from the paper on norwegian and the one by .. and Zamparelli
 
-\section{Subject islands}\label{sec:subject_islands}
+%\section{Subject islands}\label{sec:subject_islands}
 
 \section{Factorial experimental setups from psycholinguistic studies}\label{sec:factoria_paradigm}
 
@@ -1425,9 +1425,47 @@ As noted in the original BLiMP paper, the minimal pairs paradigm might not be su
 
 % mention how Wilcox measure island effects: expectations of a gap should be attenuated
 
+\subsubsection{CoLA}
+
+On test suite development:
+"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
+% cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
+"naturalistic approach vs a constructed dataset"
+"syntactically challenging examples are sparsely represented in a corpus" "naturally occurring sentences are difficult to control for confounds" \citep{marvin2018targeted}
+
+Corpora of sentences and their grammaticality. 
+"The most recent and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
+CoLA is included in the GLUE benchmark (Wang et al., 2018)
+
+%..
+%the meaning of cross entropy (average?)
+%even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
+%or is this problematic/a ..forzatura
+%only in the case of minimal pairs (in the strict sense of differing by 1 word), ..
+%otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood, and still, in natural language use, some frequenty incorrect sentences are more likely than rare ones
+%
+%Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
+
+%"An additional check was performed to manually control for typos and transcription errors."
+..
+
+\subsubsection{BLiMP}
+
+"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
+challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
+"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less negative) score." \citep{salazar2020masked} 
+% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
+
+\subsubsection{Other test suites (Hu et al, Wilcox et al, ..)}
+% section "Data set construction"   \citep{marvin2018targeted}
+
+% \citet{marvin2018targeted} "use templates to automatically construct a large number of English sentence pairs (∼350,000)."
+
+
+
 \subsection{Factorial approaches}
 
-Factorial experimental setup can be considered a more general case of a minimal pairs one. A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. 
+Factorial experimental setup can be considered a generalization the minimal pairs approach. A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. 
 
 % ..
 
@@ -1756,45 +1794,11 @@ the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked
 
 % \citep{chowdhury2018rnn} tested ..other types of islands: subject islands, relative clause islands
 
-\section{Test suites}
 
-% section "Data set construction"   \citep{marvin2018targeted}
 
-% \citet{marvin2018targeted} "use templates to automatically construct a large number of English sentence pairs (∼350,000)."
 
-\subsection{CoLA}
 
-On test suite development:
-"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
-% cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
-"naturalistic approach vs a constructed dataset"
-"syntactically challenging examples are sparsely represented in a corpus" "naturally occurring sentences are difficult to control for confounds" \citep{marvin2018targeted}
 
-Corpora of sentences and their grammaticality. 
-"The most recent and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
-CoLA is included in the GLUE benchmark (Wang et al., 2018)
-
-%..
-%the meaning of cross entropy (average?)
-%even in the case of gpt, can it be used as an estimation/approximation of sentence acceptability?
-%or is this problematic/a ..forzatura
-%only in the case of minimal pairs (in the strict sense of differing by 1 word), ..
-%otherwise the ..cross entropy loss ..might mean, likelihood, sentence likelihood, and still, in natural language use, some frequenty incorrect sentences are more likely than rare ones
-%
-%Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
-
-%"An additional check was performed to manually control for typos and transcription errors."
-..
-
-\subsection{BLiMP}
-
-"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
-challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
-"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less negative) score." \citep{salazar2020masked} 
-% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
-
-\subsection{Other (Hu et al, Wilcox et al, ..)}
-..
 
 
 \section{Review of results from previous related work}
@@ -2075,9 +2079,7 @@ and Long Short-Term Memory RNNs (LSTM) in particular, on island effects with a f
 
 % "Experimental setup" with list of models, details/description  \citep{marvin2018targeted}
 
-\section{Test data}
-
-
+% \section{Test data}
 \section{Test suite design}\label{sec:testsuite_design}
 
 
