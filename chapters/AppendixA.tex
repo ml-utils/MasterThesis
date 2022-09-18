@@ -7,41 +7,10 @@ GilBERTo: idb-ita/gilberto-uncased-from-camembert \footnote{https://huggingface.
 GePpeTto: LorenzoDeMattei/GePpeTto \citep{de2020geppetto} \footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto} \\
 
 \clearpage
-\section{Sprouse test suite}
-\subsection{BERT}
-\subsubsection{BERT with PenLP (from softmax model output)}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{images/AppendixA/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_PenLP-zscores-likert-2022-09-14_h17m26s15.png} 
-	\label{A-fig:sprouse_bert_penlp}
-	\caption{}
-\end{figure}
-
-\clearpage
-\subsection{GilBERTo}
-\subsubsection{GilBERTo with PenLP (from softmax model output)}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{images/AppendixA/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_PenLP-zscores-likert-2022-09-16_h10m00s24.png} 
-	\label{A-fig:sprouse_gilberto_penlp}
-	\caption{}
-\end{figure}
-
-\clearpage
-\subsection{GePpeTto}
-\subsubsection{GePpeTto with LP (from softmax model output)}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{images/AppendixA/Sprouse_wh_LorenzoDeMattei_GePpeTto_LP-zscores-likert-2022-09-14_h17m23s51.png} 
-	\label{A-fig:sprouse_gpt_lp}
-	\caption{}
-\end{figure}
-
-\clearpage
 \section{Madeddu test suite}
 
 \subsection{BERT}
-\subsubsection{BERT with PenLP (from softmax model output)}
+\subsubsection{BERT with the PenLP normalized sentence score}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{images/AppendixA/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_PenLP-zscores-likert-2022-09-14_h15m34s07.png} 
@@ -52,7 +21,7 @@ GePpeTto: LorenzoDeMattei/GePpeTto \citep{de2020geppetto} \footnote{https://hugg
 
 \clearpage
 \subsection{GilBERTo}
-\subsubsection{GilBERTo with PenLP (from softmax model output)}
+\subsubsection{GilBERTo with the PenLP normalized sentence score}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{images/AppendixA/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_PenLP-zscores-likert-2022-09-16_h10m26s47.png} 
@@ -62,12 +31,47 @@ GePpeTto: LorenzoDeMattei/GePpeTto \citep{de2020geppetto} \footnote{https://hugg
 
 \clearpage
 \subsection{GePpeTto}
-\subsubsection{GePpeTto with LP (from softmax model output)}
+\subsubsection{GePpeTto with the LP unnormalized sentence score}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{images/AppendixA/Madeddu_wh_LorenzoDeMattei_GePpeTto_LP-zscores-likert-2022-09-14_h15m28s58.png} 
 	\label{A-fig:md_gpt_lp}
 	\caption{}
 \end{figure}
+
+
+\clearpage
+\section{Sprouse test suite}
+\subsection{BERT}
+\subsubsection{BERT with the PenLP normalized sentence score}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{images/AppendixA/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_PenLP-zscores-likert-2022-09-14_h17m26s15.png} 
+	\label{A-fig:sprouse_bert_penlp}
+	\caption{}
+\end{figure}
+
+\clearpage
+\subsection{GilBERTo}
+\subsubsection{GilBERTo with the PenLP normalized sentence score}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{images/AppendixA/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_PenLP-zscores-likert-2022-09-16_h10m00s24.png} 
+	\label{A-fig:sprouse_gilberto_penlp}
+	\caption{}
+\end{figure}
+
+\clearpage
+\subsection{GePpeTto}
+\subsubsection{GePpeTto with the LP unnormalized sentence score}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{images/AppendixA/Sprouse_wh_LorenzoDeMattei_GePpeTto_LP-zscores-likert-2022-09-14_h17m23s51.png} 
+	\label{A-fig:sprouse_gpt_lp}
+	\caption{}
+\end{figure}
+
+\clearpage
+
 
 
