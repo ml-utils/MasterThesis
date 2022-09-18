@@ -766,10 +766,11 @@ Furthermore, the acceptability of island violations also varies from speakers to
 % note on LM assessment on other phenomena
 % Cross-linguistic differences, italian, english "Differences across languages. English was by far the hardest language. We conjecture that this is due to its poorer morphology and higher POS ambiguity, which might not encourage a generic language model to track abstract syntactic configurations." "In languages such as Italian and Russian, which have richer morphology and less ambiguity at the part-of-speech level than English, the LSTMs show much better accuracy and a smaller gap between original and nonce sentences. " Gulordava et al 2018
 
+
+
 \subsection{Island effects in Italian}\label{sec:island_effects_in_italian}
 
 %As an introductory description of island effects, we list here examples of the four types of islands in Italian for which we conducted experiments. We give a fuller description of our test suite in  \autoref{sec:testsuite_design}.
-
 
 
 % "For this article, we decided to test syntactic island effects in English and Italian because these two languages have been cited as evidence for cross-linguistic variation in syntactic island effects (e.g., Rizzi 1982)" \citep{sprouse2016experimental}
@@ -796,16 +797,47 @@ Furthermore, the acceptability of island violations also varies from speakers to
 
 
 
-
-"The other examples in (2) demonstrate that most other island types do not involve wh-words or phrases therefore can be investigated in Italian in wh-interrogatives without modification"  \citep{sprouse2016experimental}
-
-
-"As mentioned in Sect. 2.2, two different types of wh-islands were used in order to circumvent the double-wh-prohibition in Italian (Rizzi 1982): for wh-dependencies, which necessarily involve one wh-word, whether-islands were used in English and se-islands (‘if’) were used in Italian; for rcdependencies, which do not unequivocally involve wh-words (or at least not the same wh-words as wh-interrogatives),6 wh-islands involving full wh-words were used." "6 Italian relative clauses are introduced by the same complementizer as embedded declarative clauses or by two different series of relative pronouns that are different from the wh-words that occur in wh-interrogative
-clauses" \citep{sprouse2016experimental}
+%
+%"The other examples in (2) demonstrate that most other island types do not involve wh-words or phrases therefore can be investigated in Italian in wh-interrogatives without modification"  \citep{sprouse2016experimental}
 
 
+In the first study on island effects in Italian, \citet{rizzi1982violations} argued that it was not possible to isolate the effect of wh-islands violations in Italian, because in this language there is a double-wh-prohibition ..
 
-"The cross-linguistic variation of island effects in English and Italian" \citep{sprouse2016experimental}
+Rizzi focused only on syntactic islands under relative clause dependencies (a form less commonly studied than wh-interrogatives), arguing that it was problematic study them with wh-dependencies because they would require a double wh-word (as in \textit{*Chi ti domandi chi \_ ha incontrato \_?})(\textit{Who do you wonder who met?}), which itself renders a sentence unacceptable, resulting in a confound. 
+However, \citet{sprouse2016experimental}, which assessed the same types of islands with wh-dependencies in English and Italian speakers, showed that is possible to circumvent this problem, by studying wh-dependencies with island types that do not require a second wh-word. Specifically, for a direct cross-linguistic comparison, they studied wh-dependencies with whether-islands in English, and \textit{se}-islands ("\textit{if}") in Italian.
+
+
+%"As mentioned in Sect. 2.2, two different types of wh-islands were used in order to circumvent the double-wh-prohibition in Italian (Rizzi 1982): for wh-dependencies, which necessarily involve one wh-word, whether-islands were used in English and se-islands (‘if’) were used in Italian; for rcdependencies, which do not unequivocally involve wh-words (or at least not the same wh-words as wh-interrogatives),6 wh-islands involving full wh-words were used." 
+
+%"6 Italian relative clauses are introduced by the same complementizer as embedded declarative clauses or by two different series of relative pronouns that are different from the wh-words that occur in wh-interrogative clauses" \citep{sprouse2016experimental}
+
+Here are some of the examples of islands with rc-dependencies studied by \citet{rizzi1982violations} (the translations are from \citet{sprouse2016experimental}):
+
+
+
+\begin{exe}
+	\ex{\textsc{Wh-island} \\ Tuo fratello, a cui mi domando che storie abbiano raccontato \_ \_, era molto preoccupato.\\ "Your brother, who I wonder what stories they told, was really worried."}\\
+	\ex{\textsc{Complex NP Island} \\ {*Questo incarico, che non sapevo [la novità che avrebbero affidato \_ a te], ...} \\ "This task, which I didn't know the new that they may have assigned to you..."}\\
+	\ex{\textsc{Subject island} \\ Questo autore, di cui so che [il primo libro \_] è stato pubblicato recentemente, ...\\ "This task, which I didn't know the new that they may have assigned to you..."} \\
+\end{exe}
+%
+%\begin{exe}
+%	\ex{\textsc{Wh-island}} 
+%	\begin{xlist}
+%		\sn\gll Tuo fratello, a cui mi domando che storie abbiano raccontato \_ \_, era molto preoccupato.%\\
+%		\glt "Your brother, who I wonder what stories they told, was really worried."
+%	\end{xlist}
+%	\ex{\textsc{Complex NP island}} 
+%	\begin{xlist}
+%		\sn\gll{*Questo incarico, che non sapevo [la novità che avrebbero affidato \_ a te], ...}%\\
+%		\glt "This task, which I didn't know the new that they may have assigned to you..."
+%	\end{xlist}
+%	\ex{\textsc{Subject island}} 
+%	\begin{xlist}
+%		\sn\gll Questo autore, di cui so che [il primo libro \_] è stato pubblicato recentemente, ...%\\
+%		\glt "This author, who I know that the first book was published recently, ..."
+%	\end{xlist}
+%\end{exe}
 
 "As we will see in the next section, the variation in island effects between English and Italian involves both interrogative clause formation and related wh-dependencies (2) and headed relative clause formation and related rc-dependencies (3)"  \citep{sprouse2016experimental}
 
