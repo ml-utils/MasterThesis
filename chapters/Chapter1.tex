@@ -2787,7 +2787,7 @@ Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on human
 
 
 % gpt2 token spikes analysis:
-% - use to demonstrate the reason for geppetto accuracy scores/plots
+% - use to demonstrate the reason for GePpeTto accuracy scores/plots
 % use to obtain a plot for numerical analysis comparison of output (descending curve for gpt, "flat" for bert), like in Salazar et al, without reusing their image
 % ..
 
@@ -2818,7 +2818,12 @@ Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on human
 
 \subsection{Overall considerations}
 
-The plots also reflect the fact, already found by \citet{salazar2020masked}, that for bidirectional models like BERT, it's better not to normalize by sentence lengt the sentence score (the pseudo-log-likelihood), contrary to what proposed by \citet{lau2020furiously}. Comparing the plots for BERT XXL without normalization (\autoref{fig:md_bert_lp}) and with normalization (\ref{A-fig:md_bert_penlp} in the Appendix)\footnote{In the plots the scoring measures are indicated with the terminology by \citet{lau2020furiously}: LP stands for log probability, which for BERT models it's actually the pseudo-log-likelihood (PLL), while the sentence score normalized with a penalty term based on sentence length is indicated with PenLP.}, we can se that the discrepancies with the human scores are exacertbated when using sentence length normalization. The two lines cross for complex NP islands, they cross even more for subject islands, and are parallel (indicating absence of an island effect) for adjunct islands.
+The plots also reflect the fact, already found by \citet{salazar2020masked}, that for bidirectional models like BERT, it's better not to normalize by sentence lengt the sentence score (the pseudo-log-likelihood), contrary to what proposed by \citet{lau2020furiously}. Comparing the plots for BERT XXL without normalization (\autoref{fig:md_bert_lp}) and with normalization (%\ref{A-fig:md_bert_penlp} 
+Figure A.1 in the Appendix)\footnote{In the plots the scoring measures are indicated with the terminology by \citet{lau2020furiously}: LP stands for log probability, which for BERT models it's actually the pseudo-log-likelihood (PLL), while the sentence score normalized with a penalty term based on sentence length is indicated with PenLP.}, we can se that the discrepancies with the human scores are exacertbated when using sentence length normalization. The two lines cross for complex NP islands, they cross even more for subject islands, and are parallel (indicating absence of an island effect) for adjunct islands. Similar divergences from the human plots when using the length-normalized PenLP score also happen with GilBERTo (Figure A.2 in the Appendix vs \autoref{fig:md_gilberto_lp}). 
+
+Conversely, for unidirectional models like GPT-2, the length-based normalization of the sentence score has a beneficial dampening effect to the model score numerical properties, as noted by \citet{salazar2020masked}. And this is also reflected in the plots for GePpeTto, with a divergence from human plots when using the non ideal, unnormalized, LP score (compare \autoref{fig:md_gpt_penlp} with Figure A.3 in the Appendix).
+
+
 
 \subsection{Draft sections}
 
@@ -2938,12 +2943,12 @@ The plots also reflect the fact, already found by \citet{salazar2020masked}, tha
 \subsection{Observation on plots for other models}
 
 
-The plots for Geppetto and PenLp are the most similar to the plots on human ratings. However, with the LP measure, the plots differ significantly.
-
-The plots for BERT with PenLP on the Sprouse data are similar to the results on humans from \citet{sprouse2016experimental}, %..with some ..differences..
-
-
-In the plots from the GilBERTo scores, we see that for complex NP and subject islands, the sentences with the island structure receive a higher acceptability than the non island ones (this is no longer the case when removing the penalty for sentence lenght, using the LP sentence acceptability measure). With the PenLP sentence acceptability approximation, the lines tend to have similar slopes, close to being parallel (indicating a lack of, or small, island effect). 
+%The plots for Geppetto and PenLp are the most similar to the plots on human ratings. However, with the LP measure, the plots differ significantly.
+%
+%The plots for BERT with PenLP on the Sprouse data are similar to the results on humans from \citet{sprouse2016experimental}, %..with some ..differences..
+%
+%
+%In the plots from the GilBERTo scores, we see that for complex NP and subject islands, the sentences with the island structure receive a higher acceptability than the non island ones (this is no longer the case when removing the penalty for sentence lenght, using the LP sentence acceptability measure). With the PenLP sentence acceptability approximation, the lines tend to have similar slopes, close to being parallel (indicating a lack of, or small, island effect). 
 
 %
 %Plots on the Madeddu dataset developed for the present thesis:
@@ -2953,37 +2958,37 @@ In the plots from the GilBERTo scores, we see that for complex NP and subject is
 %for adjunct islands, LP seem to work best (without penalizing for sentence lenght).
 %Using the logistic function scores, again we see the ..binary differentiation btween unacceptable (long non island) and acceptable (the other 3 types) sentences. However here the plots are more ..flattened, with the scores being very close to the same values.
 
-We refer to the Appendix for the plots for the other models.
+%We refer to the Appendix for the plots for the other models.
 
-\subsection{What seems to affect the models acceptability scores}
-
-
-\subsubsection{Adjunct islands}
-
-Guardando le short-nonislands, sembra anche qui preponderante il fatto di usare nomi propri di persona (che ha uno score di accettabilità minore) e usare invece di nomi comuni animati/di mestieri/.. (che aumenta l’accettabilità). Ma questo non sembra influenzare il DD score finale % (..evidentemente i vari fattori si bilanciano).
+%\subsection{What seems to affect the models acceptability scores}
 
 
-\subsection{Discarded observations on differences between the plots}
+%\subsubsection{Adjunct islands}
+%
+%Guardando le short-nonislands, sembra anche qui preponderante il fatto di usare nomi propri di persona (che ha uno score di accettabilità minore) e usare invece di nomi comuni animati/di mestieri/.. (che aumenta l’accettabilità). Ma questo non sembra influenzare il DD score finale % (..evidentemente i vari fattori si bilanciano).
+%
 
-\subsubsection{Other notes on  Complex np islands,  what seems to affect the models acceptability scores}
-In \autoref{fig:wh_complex} we see that the non-island line (the line connecting the two acceptability scores for short and long distance dependency sentences without an island structure) is significantly lower in new data (todo: see constructs that increase the score of both long and short)
-
-The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
-
--- also the short island point is significantly lower
-
-All the 50 + 8 items of the two test suites (the ones from Sprouse et al and the ones developed for the present thesis), when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. 
-
-il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
-in particolare diminuzione della accettabilità delle frasi long nonisland (con long distance wh dependency e struttura non island), che ricevono accettabilità minore di quelle con struttura island:
-Esempio analisi variazioni con verbo “intuire” complex np, ..
-
-the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
-
-\subsubsection{Whether islands}
-NB: note that according to human scores, for this type of whether island sentences, the "correct" scoring is to have an increase in acceptability going from short to long non island sentences.
-Maybe comparing the scores between acceptable sentences (in this case short and long non islands), expecting it to match humans acceptability judgements .. is beside the present ..research question.
-In any case, we noted a reverse in the acceptability difference between this two types of sentences (short and long non islands) when changing the subject of the subordinate sentence from a personal pronoun ("io", 1st pers sg), to a proper noun (i.e. "Gianni"), to a common noun (i.e. "il parlamentare").
+%\subsection{Discarded observations on differences between the plots}
+%
+%\subsubsection{Other notes on  Complex np islands,  what seems to affect the models acceptability scores}
+%In \autoref{fig:wh_complex} we see that the non-island line (the line connecting the two acceptability scores for short and long distance dependency sentences without an island structure) is significantly lower in new data (todo: see constructs that increase the score of both long and short)
+%
+%The (gpt) model seem not to make much difference in ..acceptability btw “regular” subordinates and complex noun phrases ..
+%
+%-- also the short island point is significantly lower
+%
+%All the 50 + 8 items of the two test suites (the ones from Sprouse et al and the ones developed for the present thesis), when altered to use the following construct for the complex NP "avuto l'intuizione che" (had the intuition that), are scored by the model as if there is no island restriction violation anymore. 
+%
+%il verbo “intuire” diminuisce ..l’accuratezza del giudizio di accettabilità
+%in particolare diminuzione della accettabilità delle frasi long nonisland (con long distance wh dependency e struttura non island), che ricevono accettabilità minore di quelle con struttura island:
+%Esempio analisi variazioni con verbo “intuire” complex np, ..
+%
+%the verb form “sapeva” (imperfect), compared to ..present perfect forms (“ha osservato/affermato/..”) seems to get better DD score in complex np islands (and also in another phenomenon ..).
+%
+%\subsubsection{Whether islands}
+%NB: note that according to human scores, for this type of whether island sentences, the "correct" scoring is to have an increase in acceptability going from short to long non island sentences.
+%Maybe comparing the scores between acceptable sentences (in this case short and long non islands), expecting it to match humans acceptability judgements .. is beside the present ..research question.
+%In any case, we noted a reverse in the acceptability difference between this two types of sentences (short and long non islands) when changing the subject of the subordinate sentence from a personal pronoun ("io", 1st pers sg), to a proper noun (i.e. "Gianni"), to a common noun (i.e. "il parlamentare").
 
 %-- significant variation in acceptability diff between short non island and long non island, when replacing: the personal pronouns io/lei, with a proper noun like "Gianni", or even more with a noun like "il parlamentare" (the congressman). In this latter case, significant improvement toward the expected acceptability rate (only 10 out of 50 are .."missclassified"). With the proper noun "Gianni", 18 are missclassified. With the personal pronoun 29 out of 50 are missclassified.
 %Try replacing with .. another proper noun, more common like ..
@@ -2999,13 +3004,13 @@ In any case, we noted a reverse in the acceptability difference between this two
 
 
 \section{BLiMP English dataset}
-..
+
 \subsection{English models details}
-..
+
 
 \section{Token surprisal analysis}
 
-(TODO)
+
 %We found the most informative analysis (rather than the factorial test design) was looking at the token surprisals for the Bert-like models (do it also on the Gpt2 logits?).
 %..
 %(even more informative, or complementary, would be to look at the activations in the model layers)
