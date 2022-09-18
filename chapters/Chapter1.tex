@@ -452,7 +452,7 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 % \pagebreak
 
-\chapter{A Brief Introduction to Island Effects}
+\chapter{A Brief Introduction to Island Effects}\label{sec:islands_intro}
 
 %"filler–gap dependencies are subject to numerous complex island constraints:  \citet{ross1967constraints} identified five syntactic positions in which gaps are illicit, dubbing them syntactic islands." \citep{wilcox2018rnn} \\
 % "Even though the filler–gap dependency is flexible and potentially unbounded, it is not entirely unconstrained.
@@ -2106,14 +2106,41 @@ and Long Short-Term Memory RNNs (LSTM) in particular, on island effects with a f
 
 In building test suite for our experiments, we largely followed the factorial design of the target material in Italian that was administered by \citet{sprouse2016experimental} to human subjects (that we discussed in section \ref{sec:factoria_paradigm}), but we increased item number of 50 from the original 8 (by comparison, previous work on language models like \citet{wilcox2018rnn} used about 20 items per suite). 
 
-As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 \textsc{items}, which in turn are composed by four sentences, one per \textsc{condition}, as in \autoref{adjunct_item_1}, covering the combinations of two \textsc{factors}: presence or absence of an island structure (the \textsc{structure} factor), and and presence of a short or long-distance dependency (\textsc{gap-position} factor). Therefore, each sentence in an item varies minimally from the other 3 to exemplify one these four \textsc{conditions:} \textsc{Short-NonIsland}, {Long-NonIsland}, {Short-Island}, and {Long-Island}. The first three are supposed  to be acceptable sentences, while the last one is supposed to be unacceptable.
+As in the original test suite in \citet{sprouse2016experimental}, there are four island phenomena (whether islands, complex np islands, subject islands, and adjunct islands). Each phenomena is exemplified in 50 \textsc{items}, which in turn are composed by four sentences, one per \textsc{condition}, as in \autoref{adjunct_temporal_item_1}, covering the combinations of two \textsc{factors}: presence or absence of an island structure (the \textsc{structure} factor), and and presence of a short or long-distance dependency (\textsc{gap-position} factor). Therefore, each sentence in an item varies minimally from the other 3 to exemplify one these four \textsc{conditions:} \textsc{Short-NonIsland}, {Long-NonIsland}, {Short-Island}, and {Long-Island}. The first three are supposed  to be acceptable sentences, while the last one is supposed to be unacceptable.
+
+As in \citet{sprouse2016experimental}, this factorial design is aimed at isolating two factors that could impact the acceptability of a sentence: the effect of having a long-distance dependency (e.g. a wh-dependency), and the effect of having a complex syntactic structure like a syntactic island. Each item as \autoref{adjunct_temporal_item_1} has four sentences given by the combination of these two factors. 
+
+In \autoref{adjunct_temporal_item_1}, the Short-NonIsland sentence has a short distance dependency, because the arguments of the main clause verb "dice" are next to it. The Long-NonIsland sentence, on the other hand, has a long-distance dependency, because the interrogative "Che cosa" depends to the verb of the subordinate clause "avrebbe inviato", as a direct object "gap".
+
+% describe / introduce wh-dependencies
+
+In the present thesis, we focus on four phenomena of island effect structures: whether islands, complex np islands, subject islands, and adjunct islands, all based on wh-dependencies (we leave rc-dependencies like those treated in \citet{sprouse2016experimental}, for future work.)
 
 % Here are two sample items for the adjunct island complex NP island phenomena from the test suite we developed for this thesis:
 
 % todo: add notes on the variations: ed for adjuncts, we add both conditional and temporal adjuncts
 
+
 \begin{example}
-	\textsc{Adjunct islands}
+	\textsc{Whether islands}
+	\renewcommand{\labelenumi}{\alph{enumi}.}
+	\begin{enumerate}
+		\item \textsc{Short-NonIsland:} \\
+		Chi pensa che io abbia riscosso il pagamento?
+		\item \textsc{Long-NonIsland:} \\
+		Cosa pensi che io abbia riscosso?
+		\item \textsc{Short-Island:} \\
+		Chi si domanda se io abbia riscosso il pagamento?
+		\item \textsc{Long-Island:} \\	
+		*Cosa ti domandi se io abbia riscosso?			
+	\end{enumerate}
+	\label{whether_item_1}
+\end{example}
+
+We have two types of adjuncts islands. In temporal adjuncts, the island structure is a temporal adjunct clause headed by a temporal adverbs like "\textit{dopo, prima, quando, mentre}" ("\textit{aftern, before, when, while}"). Conditional adjuncts are headed by "\textit{se}" ("\textit{if}").
+
+\begin{example}
+	\textsc{Adjunct islands (temporal)}
 	\renewcommand{\labelenumi}{\alph{enumi}.}
 	\begin{enumerate}
 		\item \textsc{Short-NonIsland:} \\
@@ -2126,12 +2153,33 @@ As in the original test suite in \citet{sprouse2016experimental}, there are four
 		Chi ha stampato l’illustrazione dopo che l'autore ha inviato il libro all’editore? \\
 		(`Who printed the illustration after the author sent the book to the publisher?')
 		\item \textsc{Long-Island:} \\				
-		Che cosa il disegnatore ha stampato l’illustrazione dopo che l'autore ha inviato all’editore? \\
-		(`What did the designer printe the illustration after the author sent to the publisher?')
+		*Che cosa il disegnatore ha stampato l’illustrazione dopo che l'autore ha inviato all’editore? \\
+		(`What did the designer printed the illustration after the author sent to the publisher?')
 	\end{enumerate}
-	\label{adjunct_item_1}
+	\label{adjunct_temporal_item_1}
 \end{example}
 
+\begin{example}
+	\textsc{Adjunct islands (conditional)}
+	\renewcommand{\labelenumi}{\alph{enumi}.}
+	\begin{enumerate}
+		\item \textsc{Short-NonIsland:} \\
+		Chi dice che il pilota aumenterà la velocità dell'aereo? \\
+		(`Who says that the pilot will increase the plane speed?')
+		\item \textsc{Long-NonIsland:} \\
+		Che cosa dici che il pilota aumenterà? \\
+		(`What do you say that the pilot will increase?')
+		\item \textsc{Short-Island:} \\
+		Chi infrangerà il muro del suono se aumenterà la velocità dell'aereo? \\
+		(`Who will break the sound barrier if he increases the plane speed?')
+		\item \textsc{Long-Island:} \\				
+		*Che cosa il pilota infrangerà il muro del suono se aumenterà? \\
+		(`What will the pilot break the sound barrier if he increases?')
+	\end{enumerate}
+	\label{adjunct_conditional_item_1}
+\end{example}
+
+	
 \begin{example}
 	\textsc{Complex NP islands}
 	\renewcommand{\labelenumi}{\alph{enumi}.}
@@ -2146,38 +2194,45 @@ As in the original test suite in \citet{sprouse2016experimental}, there are four
 		Chi ha smentito la voce che l'agenzia avrebbe diffuso il sondaggio? \\
 		(`Who denied the rumor that the agency had released the poll?')
 		\item \textsc{Long-Island:} \\				
-		Cosa hai smentito la voce che l'agenzia avrebbe diffuso? \\
+		*Cosa hai smentito la voce che l'agenzia avrebbe diffuso? \\
 		(`What have you denied the rumor that the agency had released?')
 	\end{enumerate}
 	\label{complex_item_1}
 \end{example}
 
+
+We followed the experimental setup of \citep{sprouse2016experimental}, in order to compare our results with theirs. Therefore the factorial definition of subject islands is modified to the other three island types. 
+The \textsc{gap-position} factor for the other three island types varies between \textsc{matrix-subject} and \textsc{embedded-subject} (..), for subject islands it varies between \textsc{embedded-object}and \textsc{embedded-subject}. As discussed in \citep{sprouse2016experimental} this causes the non-parallel lines in the plots to have slopes in opposite directions.
+% an increase (instead of a decrease) in acceptability when going from "short" dependency to "long" dependency clauses
+% The sentences indicated with the \textsc{short} dependency type, actually "extract" (have a dependency with) the direct object of the subordinate clause, while the sentences with the \textsc{long} dependency type extract the subject of the subordinate clause. 
+% Sprouse 2016: "the lack of preposition stranding in Italian meant that the gap locations of the oblique (PP) arguments were not unambiguously signaled. For wh-islands, complex NP islands, and adjunct islands, we were able to minimize potential ambiguity through the careful selection of predicates. However, a pilot experiment suggested that this was not possible for subject islands because of the presence of a second NP (the object) that could be modified by the displaced PP. To remedy this, we decided to modify the factorial definition of subject islands slightly. Whereas the factor GAP-POSITION in the canonical factorial definition in (12) varies between MATRIXSUBJECT and EMBEDDED-SUBJECT gap positions, the modified subject island definition varies between EMBEDDED-OBJECT and EMBEDDED-SUBJECT gap positions. This allows us to include a PP adjunct with both the subject and object NP, minimizing the potential for the errant interpretation of the gap location of the displaced PP. This modified design closely resembles the definitions used in traditional syntax studies, but crucially results in a non-monotonic interaction rather than a monotonic interaction (the non-parallel lines have slopes in opposite directions). " (Sprouse 2016)
+
+The rationale for this change is to minimize potential textual ambiguity in signaling  the gap locations of the oblique (PP) arguments, due the fact that Italian does not allow \textit{preposition stranding}. Preposition stranding is the possibility of having a preposition \textit{stranded} (separated from) its object. For example, in the English sentence \textit{I know \textbf{who} you bought the painting \textbf{from}}, "from" and "who" are stranded. Instead, Italian forces "\textit{pied-piping}" (another metaphorical technical term introduced by \citet{ross1967constraints}, like that of "islands", as mentioned in \autoref{sec:islands_intro}), the fact that the prepositional phrase must be continuous (the wh-word \textit{brings along} the preposition): \textit{So \textbf{da chi} hai comprato il quadro}.
+
 \begin{example}
-	\textsc{Whether islands}
+	\textsc{Subject islands}
 	\renewcommand{\labelenumi}{\alph{enumi}.}
 	\begin{enumerate}
 		\item \textsc{Short-NonIsland:} \\
-		Chi pensa che io abbia riscosso il pagamento?
+		Chi pensi che la decisione avvantaggi? \\
+		(`Who do you think the decision benefits?')
 		\item \textsc{Long-NonIsland:} \\
-		Cosa pensi che io abbia riscosso?
+		Chi pensi che abbia assunto la decisione? \\
+		(`Who do you think took the decision?')
 		\item \textsc{Short-Island:} \\
-		Chi si domanda se io abbia riscosso il pagamento?
-		\item \textsc{Long-Island:} \\	
-		Cosa ti domandi se io abbia riscosso?			
+		Di chi pensi che la decisione del sindaco avvantaggi gli interessi?	 \\
+		(`Who do you think the mayor's decision benefits the interests of?')
+		\item \textsc{Long-Island:} \\				
+		*Di chi pensi che la decisione avvantaggi gli interessi degli agricoltori? \\
+		(`Who do you think the decision of benefits the farmers' interests?')
 	\end{enumerate}
-	\label{whether_item_1}
+	\label{subject_islands_item_1}
 \end{example}
 
-% todo: add subject island example
+
 % todo, in section sec:factoria_paradigm, use examples from sprouse (english or italian)
 
-As in \citet{sprouse2016experimental}, this factorial design is aimed at isolating two factors that could impact the acceptability of a sentence: the effect of having a long-distance dependency (e.g. a wh-dependency), and the effect of having a complex syntactic structure like a syntactic island. Each item as \autoref{adjunct_item_1} has four sentences given by the combination of these two factors. 
 
-In \autoref{adjunct_item_1}, the Short-NonIsland sentence has a short distance dependency, because the arguments of the main clause verb "dice" are next to it. The Long-NonIsland sentence, on the other hand, has a long-distance dependency, because the interrogative "Che cosa" depends to the verb of the subordinate clause "avrebbe inviato", as a direct object "gap".
-
-% describe / introduce wh-dependencies
-
-In the present thesis, we focus on four phenomena of island effect structures: whether islands, complex np islands, subject islands, and adjunct islands, all based on wh-dependencies (we leave rc-dependencies like those treated in \citet{sprouse2016experimental}, for future work.)
 
 
 \section{Tested models}
@@ -2308,8 +2363,8 @@ We also explored the possibility of deriving minimal pairs from each factorial i
 % update accuracy scores, in particular for Gilberto, aquired using 3 minimal pairs (3 acceptable sentences vs 1 unacceptable), since there were code changes on special tokens (check for warning at the beginning if special tokens were not inizialized in some models)
 % how the results have changed with the last update? (they seemed very differen) better or worse?
 
-In \autoref{tab:accuracy_it_data} we see the accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_item_1}. 
-\\ Each acceptable sentence of an item like \autoref{adjunct_item_1} is compared with the unacceptable sentence, and the score is considered accurate if the acceptable sentence receives an higher score than the unacceptable one.
+In \autoref{tab:accuracy_it_data} we see the accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_temporal_item_1}. 
+\\ Each acceptable sentence of an item like \autoref{adjunct_temporal_item_1} is compared with the unacceptable sentence, and the score is considered accurate if the acceptable sentence receives an higher score than the unacceptable one.
 
 For instance, on the first row of results, we see the scores for the adjunct island phenomenon (with wh-dependencies), where the acceptable Short-NonIsland sentence gets scored higher than the unacceptable sentence (Long-Island) 96 \% of the times by the Gpt-2 model with the LP sentence acceptability estimate.
 
@@ -2319,7 +2374,7 @@ All models seem to struggle with the Short-Island sentence type of the Subject i
 
 On average, the Gpt-2 model with the PenLP scoring measure performs best, with a 86.1\% mean accuracy.
 
-Although it's between different languages (English and Italian), the scores on \autoref{adjunct_item_1} seem to be higher than the ones on the BLiMP benchmark in \autoref{tab:accuracy_blimp}. 
+Although it's between different languages (English and Italian), the scores on \autoref{adjunct_temporal_item_1} seem to be higher than the ones on the BLiMP benchmark in \autoref{tab:accuracy_blimp}. 
 % TODO: compare BLiMP data with accuracies on Sprouse English test suite.
 
 
