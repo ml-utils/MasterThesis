@@ -281,44 +281,74 @@ For more complex syntactic phenomena, like Negative Polarity Items (NPIs) or con
 
 \section{On transformer-based language models} % A brief overview on transformer-based language models
 
-% ?TODO: chapter on ..state of the art / baselines transformer based langugage models ..
+The Transformer neural network architecture \citep{vaswani2017attention} takes a sequence of tokens as input, which processes through a series of layers of "transformer blocks", and produces in output a contextualized representation of each token, in the form of vector embeddings \citep{manning2020emergent}.
 
-% section on overview of NN language models, DL language models, transformers based language models
+The transformer blocks are based on the "attention mechanism", which is a form of generalized dot-product that models all pairwise interactions between each token and any other token in the input sequence.
+%the terminology used to describe the Transformer: "the attention is a function of a query (Q) and set of key (K) and value (V ) pairs" \citep{liu2018generating} 
 
-% a  self-supervisedlearning approach. In self-supervised learning, a system is given no  explicit  labeling  of  raw  data,  but  it  is  able  to  construct  its own supervised learning problems by choosing to interpret someof  the  data  as  a  “label”  to  be  predicted \citep{manning2020emergent}
+For each input sequence, an attention "head" assigns a weight to each pair of tokens, indicating how much "attention" the model should pay to the first word when modeling properties of the second one. Each transformer block can have multiple attention heads in parallel, each capturing a different token–token dependency relationships between words. For each token, the information from each head in a layer block is aggregated into a vector embedding, which is a contextualized representation of that token in the input sequence \citep{manning2020emergent}.
 
-% The  canonical  casefor  human  language  is  the  language-modeling  task  of  trying to  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
-% (that unsupervised models could not develop interesting knowledge of language) this  has  been  the  dominant  perspective  in  linguistics, where language models have long been seen as inadequateand having no scientific interest, even when their usefulness inpractical engineering applications is grudgingly accepted (15, 16). \citep{manning2020emergent}
-
-
-%\subsection{Transformers and the Attention Mechanism}
-
-Transformers  are "a neural network architecture,  without  any  recurrent  connections  (22),  which  takes  a sequence  of  words  (or  other  symbols)  as  input  and  produces a contextualized vector representation of each word as its out-put (Fig. 3). It contains many millions of trainable parameters in  a  number  of  layers,  typically  requiring  massive  amounts  of data  and  computation  to  train.  This  makes  Transformers  difficult  to  train,  but  also  highly  expressive  models  that  can  out-perform  other  contemporary  neural  networks  when  properly optimized" \citep{manning2020emergent}
-
-"The key mechanism by which Transformers contextualize representations  is  multi-headed  attention  (see  Fig.  5)."  \citep{manning2020emergent} 
-"attention is a kind of \textbf{generalized dot product}" % (Manning Lecture) https://www.youtube.com/watch?v=aKO1Yok6e4Q&list=PLGJm1x3XQeK0gmqfRkP-VmrEf4UYx5IDW&index=4
-which models all pairwise interactions between words.
-
-"Attention(23) dynamically assigns a weight to every pair of words in the sequence, indicating how much the model should “pay attention to” the first word when computing the representation of the second one."  \citep{manning2020emergent}
-"Transformers use multiple attention heads in parallel, where  each  head  can  potentially  capture  a  completely  different word–word relation. Transformers aggregate the information from each head to produce a single output vector representation for each word in the sequence." \citep{manning2020emergent}
-% "We provide more mathematical detail below" \citep{manning2020emergent}
+A typical task to train these model is the Masked Language Model objective, or cloze task, in which a portion of each sequence is masked (typically 15\% of the tokens) and the model must predict the masked words given the unmasked ones. The probability that the model assigns to each masked word is used to calculate the cross-entropy loss for back-propagation. % \citep{jurafsky2021speech}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/attention-manning-pnas.png} 
-	\caption{Overview of the attention mechanism, taken from \citet{manning2020emergent}.} 
-	\label{fig:manning_attention} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/The-Transformer-based-BERT-base-architecture-with-twelve-encoder-blocks.png} 
+	\caption{The Transformer based BERT base architecture with twelve encoder blocks.} 
+	\label{fig:Transformer-based-BERT-base-architecture} 
 	\medskip
 	\small
-	(TODO: request permission, pnas licence is CC ND)
+	(Image taken from \citet{khalid2021rubert}, license CC BY 4.0)
 \end{figure}
 
+%During training, the 
+%Training objective function, cross-entropy loss:
+% "During training, the probability assigned to the correct word is used to calculate the cross-entropy loss for each item in the sequence. As with RNNs, the loss for a training sequence is the average cross-entropy loss over the entire sequence." (Jurasfky 3rd ed. ch.9)(figure 9.21)
+
+%"Attention(23) dynamically assigns a weight to every pair of words in the sequence, indicating how much the model should “pay attention to” the first word when computing the representation of the second one."  \citep{manning2020emergent}
+% "Transformers use multiple attention heads in parallel, where  each  head  can  potentially  capture  a  completely  different word–word relation. "
+%"Transformers aggregate the information from each head to produce a single output vector representation for each word in the sequence." \citep{manning2020emergent}
+
+
+Transformer blocks, unlike recurrent neural networks (RNNs), have the computational advantage of not being recurrent, and therefore are highly parallelizable, faster to compute, and scale in a way that RNNs cannot \citep{lau2020furiously}. Transformer based language models contain several millions of trainable parameters. A common baseline model for BERT is composed of 110 million parameters spread over 12 layers of transformer blocks (\autoref{fig:Transformer-based-BERT-base-architecture}). 
+
+They typically require massive amount of data (in the order of at least hundreds of million tokens) and computation time to achieve state of the art performance in natural language processing tasks, and are therefore very expensive to train from scratch, although they can outperform the previous generation of neural language models when properly optimized \citep{manning2020emergent}. 
+
+%"It contains many millions of trainable parameters in  a  number  of  layers,  typically  requiring  massive  amounts  of data  and  computation  to  train.  This  makes  Transformers  difficult  to  train,  but  also  highly  expressive  models  that  can  out-perform  other  contemporary  neural  networks  when  properly optimized" \citep{manning2020emergent}
+
+%"The Transformer architecture (Vaswani et al., 2017) replaces RNN cells with self-attention and point-wise fully connected layers, which are highly parallelizable and thus cheaper to compute."
+
+%transformer blocks "Each provides a multi-headed self-attention unit over all input words, allowing it to capture multiple dependencies between words, while avoiding the need for recurrence. With no need to process a sentence in sequence, the model parallelizes more efficiently, and scales in a way that RNNs cannot" \citep{lau2020furiously}
+
+%\subsection{Transformers and the Attention Mechanism}
+
+%Transformers  are "a neural network architecture,  without  any  recurrent  connections  (22),  which  takes  a sequence  of  words  (or  other  symbols)  as  input  and  produces a contextualized vector representation of each word as its out-put (Fig. 3)."  \citep{manning2020emergent}
+
+
+%"The key mechanism by which Transformers contextualize representations  is  multi-headed  attention  (see  Fig.  5)."  \citep{manning2020emergent} 
+%"attention is a kind of \textbf{generalized dot product}" % (Manning Lecture) https://www.youtube.com/watch?v=aKO1Yok6e4Q&list=PLGJm1x3XQeK0gmqfRkP-VmrEf4UYx5IDW&index=4
+%which models all pairwise interactions between words.
+
+
+% "We provide more mathematical detail below" \citep{manning2020emergent}
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=1\textwidth]{images/Chapter1/attention-manning-pnas.png} 
+%	\caption{Overview of the attention mechanism, taken from \citet{manning2020emergent}.} 
+%	\label{fig:manning_attention} 
+%	\medskip
+%	\small
+%	(TODO: request permission, pnas licence is CC ND)
+%\end{figure}
+
+
+
 % a non-recurrent architecture, called the Transformer \citep{vaswani2017attention} 
-The lack of recurrence in the transformers architecture "enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length" \citep{liu2018generating} 
+%The lack of recurrence in the transformers architecture "enables greater within-training-example parallelization, at the cost of quadratic complexity in the input sequence length" \citep{liu2018generating} 
 
 % Jurasfy book (draft new 3rd edition), ch.10 .. \citep[ch.9-10]{jurafsky2021speech} 
 
-the terminology used to describe the Transformer: "the attention is a function of a query (Q) and set of key (K) and value (V ) pairs" \citep{liu2018generating} 
+
 % multi-head self-attention of the Transformer
 
 % to reduce memory usage, limiting the dot products between Q and K
@@ -350,13 +380,21 @@ the terminology used to describe the Transformer: "the attention is a function o
 % auto pruning of attention heads?
 
 
-Training objective function, cross-entropy loss:
- "During training, the probability assigned to the correct word is used to calculate the cross-entropy loss for each item in the sequence. As with RNNs, the loss for a training sequence is the average cross-entropy loss over the entire sequence." (Jurasfky 3rd ed. ch.9)(figure 9.21)
 
 % query, key, value
 
-transformer blocks "Each provides a multi-headed self-attention unit over all input words, allowing it to capture multiple dependencies between words, while avoiding the need for recurrence. With no need to process a sentence in sequence, the model parallelizes more efficiently, and scales in a way that RNNs cannot" \citep{lau2020furiously}
 
+
+
+% a  self-supervisedlearning approach. In self-supervised learning, a system is given no  explicit  labeling  of  raw  data,  but  it  is  able  to  construct  its own supervised learning problems by choosing to interpret someof  the  data  as  a  “label”  to  be  predicted \citep{manning2020emergent}
+
+% ?TODO: chapter on ..state of the art / baselines transformer based langugage models ..
+
+% section on overview of NN language models, DL language models, transformers based language models
+
+
+% The  canonical  case for  human  language  is  the  language-modeling  task  of  trying to  predict  the  next  word  in  an  utterance  based  on  the  tempo-rally preceding words (Fig. 2). Variant tasks include the maskedlanguage-modeling  task  of  predicting  a  masked  word  in  a  text[a.k.a.  the  cloze  task  (11)]  and  predicting  the  words  likely  tooccur  around  a  given  word  (12,  13).  Autoencoders  (14)  canalso be thought of as self-supervised learning systems. Since noexplicit labeling of the data is required, self-supervised learningis  a  type  of  unsupervised  learning,  but  the  approach  of  self-generating supervised learning objectives differentiates it fromother unsupervised learning techniques such as clustering \citep{manning2020emergent}
+% (that unsupervised models could not develop interesting knowledge of language) this  has  been  the  dominant  perspective  in  linguistics, where language models have long been seen as inadequateand having no scientific interest, even when their usefulness inpractical engineering applications is grudgingly accepted (15, 16). \citep{manning2020emergent}
 
 
 \chapter{A Brief Introduction to Island Effects}\label{sec:islands_intro}
