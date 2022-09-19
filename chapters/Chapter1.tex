@@ -98,21 +98,88 @@ This line of research is also of interest for addressing research questions in l
 
 % With the presente thesis we intend to ..
 % (move contributions subsection on related work section)
-\section{Our contributions}
+\section{Our contributions and research questions } % 
 
-Our contributions to this line of research are the following.
-% we ..add/follow/contribute to this line of research ..
-assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
-..linguistic knowledge tested mainly in English; for Italian.. there is the ItaCola ..corpus/test suite, which ..follows the acceptability judgment paradigm (..that has now be ..surpassed by the minimal pairs one..(surpassed or still used?)
+
+We contribute to the research on target syntactic evaluation of neural language models by assessing transformer-based language models trained in the Italian language on one of the most challenging syntactic phenomena, island effects.
+
+We develop a test suite covering four types of syntactic islands in Italian: whether islands, adjunct islands, complex NP islands, and subject islands, all based on wh-dependencies and simple wh-words as fillers. The test suite is composed of 50 items per island type, each composed of 4 sentences, for a total of 200 stimuli.
+
+We test both unidirectional (GPT-2) and bidirectional (BERT) transformer-based language models, all with a fixed size of 110M parameters, but trained on different corpora of different sizes, from 2B to 13B tokens.
+
+For our methodology, we apply a factorial experimental setup adapted from psycholinguistic research, subtracting out the influence of multiple effects and controlling confounds. We compare our results with a previous study \citep{sprouse2016experimental} on human subjects using a similar format for the same island effects in Italian. Following \citet{hu2020systematic}, we also define a factorial success criterion to obtain a final accuracy score, and compare our results with previous work testing neural language models on island effects in the English language. We then try to explain the results by making a further analysis of the per-token surpisal scores of bidirectional models on some items. We find that this type of analysis to the individual token scores is very effective in explaining the results and what linguistic factors seem to influence more the models responses.
+
+To our knowledge, this is the first work on the targeted syntactic evaluation of Italian transformer-based models that uses a factorial design and covers island effects.
+% In current research language models are tested for linguistic skills primarily in English, with the ItaCoLA corpus (based on the acceptability judgment paradigm) being one of the few notable exceptions.
+
+The research questions we try to address with the present work are the following:
+
+Do the models responses to island effects resemble those from humans? Do their acceptability judgements seem to be affected by the same island effects in the same way?
+Are the accuracy scores of Italian language models on island effects comparable to those of English models on the same syntactic island types?
+
+% are they scores comparable different than English models (less morphologically rich language, and cross linguistic differences in island effect)
+Do we see any correlation between the model performance and the amount and quality of training data, or their architecture (unidirectional vs bidirectional)?
+
+Is our methodology effective in assessing language models on island effects? Which factors should be controlled the most for confounds?
+% methodological problems, difficulty in defining sentences that control for confounds
+% which factors should be controlled when designing minimal pairs or items for a factorial design?
+
+
+% (separate chapter, or section of other chapter?)}
+
+%Context, lit review ..
+%the literature on syntactic tests.. intrinsic tests
+%the purpose of syntactic/linguistic fine-grained tests
+%
+%research question it might ask:
+%
+%..use of a factorial design
+%is that a complementary way to test language models?
+%
+%does these tests in particular tells us something more/new/.. about ..what these models learn about language/how they learn it?
+
+%how does these tests compare to previous ones? on similar phenomena (english)
+%between languages (english vs italian)
+%in phenomena present in both english and italian vs new phenomena present in italian but not english
+%(some of these might not be .."research questions", but ..ways to analyse/interpret our results.. therefore belonging more to methodology than research questions)
+%
+%(todo: run the english tests, using the Sprouse english datasets, seeing the accuracy results for these models (bert, RoBERTa, gpt)
+%
+%(about the tests on Bert, and the question if it's getting cues from other words in the sentence, because it's a bidirectional LM unlike gpt..)
+%
+%TODO: add methodology section .. find refs on "methodology", gathering and analyzing data
+
+%explain the decision of building a manual test set
+%compare with blimp autogenerated test set
+%detail ..which factor are controlled in our example
+%following sentences schema from sprouse et al.
+
+% quote umberto eco at the beginning on the section on methodology (translate it)
+
+%our contributions wrt to trotta et al 2021:
+%comparable number of examples (50), but for more phenomena (4 instead of 1)
+%difference in the wh-islands phenomena
+%NB in fig.1 (right) trotta et al also omit the wh islands results
+%problem in trotta et al for sentences with multiple phenomena
+%(check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
+
+
+
+
+
+%Our contributions to this line of research are the following.
+%% we ..add/follow/contribute to this line of research ..
+%assessing Italian transformer-based models one of the most challenging syntactic ..tasks (island effects)
+%..linguistic knowledge tested mainly in English; for Italian.. there is the ItaCola ..corpus/test suite, which ..follows the acceptability judgment paradigm (..that has now be ..surpassed by the minimal pairs one..(surpassed or still used?)
 
 % Overview on island effects
 % overview of the interest for testing them in LMs (they are challenging), and brief mention of importance in linguistics (..)
 % Island Effects and their assessment
-\textbf{Island effects} one of the most challenging.. (although high performance already achieved..)
-island effects these are among the most complex syntactic phenomena 
-they also ..highlight a methodological problem and limitedness of (and pose challenges for) the minimal pairs approach to test them in a comprehensive way: the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psycholinguistic studies.
+%\textbf{Island effects} one of the most challenging.. (although high performance already achieved..)
+%island effects these are among the most complex syntactic phenomena 
+%they also ..highlight a methodological problem and limitedness of (and pose challenges for) the minimal pairs approach to test them in a comprehensive way: the ..now established/common minimal pairs approach is not sufficient to capture and asses a comprehensive definition of the phenomena. For this, we apply a factorial experimental setup, that can be considered as a generalization of the minimal pairs paradigm, and has been ..imported into language model testing from the methodology of psycholinguistic studies.
 
-we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
+%we test 4 italian models with fixed parameters size (about 110) but varying in the type and size of training corpora (from 2B of .. to 13B of BERT XXL), and in the architecture and training strategy (unidirectional Gpt2 and bidirectional BERT).
 
 %the importance of knowing ..how much training data (or which model architectures, or which training tasks/strategies) work best to ..achieve linguistic knowledge, and to acquire in a robust and human-like way. (..so communication with humans ..is more effective, the downstream tasks/applications are more/actually useful, ..)
 
@@ -2197,46 +2264,6 @@ They found evidence that these models learned wh-islands
 % "And the lack of adjunct island effects with English rc-dependencies could be explained if those materials (and only those materials) contained complement if -clauses instead of adjunct if -clauses. We believe that this sort of explanation (in which the results are the consequence of a confound) is extremely unlikely due to the careful nature of our materials construction, therefore in the discussion that follows we will take the results at face value. We have posted the entire set of materials on the first author’s website so that interested readers can assess the likelihood of these confounds for themselves." \citep{sprouse2016experimental}
 
 
-\section{Our research questions and contributions}
-
-% (separate chapter, or section of other chapter?)}
-
-%Context, lit review ..
-%the literature on syntactic tests.. intrinsic tests
-%the purpose of syntactic/linguistic fine-grained tests
-%
-%research question it might ask:
-%
-%..use of a factorial design
-%is that a complementary way to test language models?
-%
-%does these tests in particular tells us something more/new/.. about ..what these models learn about language/how they learn it?
-
-%how does these tests compare to previous ones? on similar phenomena (english)
-%between languages (english vs italian)
-%in phenomena present in both english and italian vs new phenomena present in italian but not english
-%(some of these might not be .."research questions", but ..ways to analyse/interpret our results.. therefore belonging more to methodology than research questions)
-%
-%(todo: run the english tests, using the Sprouse english datasets, seeing the accuracy results for these models (bert, RoBERTa, gpt)
-%
-%(about the tests on Bert, and the question if it's getting cues from other words in the sentence, because it's a bidirectional LM unlike gpt..)
-%
-%TODO: add methodology section .. find refs on "methodology", gathering and analyzing data
-
-%explain the decision of building a manual test set
-%compare with blimp autogenerated test set
-%detail ..which factor are controlled in our example
-%following sentences schema from sprouse et al.
-
-% quote umberto eco at the beginning on the section on methodology (translate it)
-
-%our contributions wrt to trotta et al 2021:
-%comparable number of examples (50), but for more phenomena (4 instead of 1)
-%difference in the wh-islands phenomena
-%NB in fig.1 (right) trotta et al also omit the wh islands results
-%problem in trotta et al for sentences with multiple phenomena
-%(check if some sentences in our dataset also show any of the other phenomena tagget in trotta et al)(if not, another advange of our contribution)
-
 
 
 \chapter{Experimental setup}
@@ -2433,11 +2460,6 @@ We used these two scores as a relative estimate of sentence acceptability, for t
 
 % in method/.. section, mention the fact that we plan to also do a qualitative analysis comparing the plots with those of sprouse.. mention normalization of the scores to a liker scale ..
 % todo: compare accuracy percentage by DD scores.. with sprouse results on human, to see if the island types with the strongest DD also have the strongest accuracy (but it makes no sense, we can already compare the DD scores on the same datasets.. although the plots are on averages, while the accuracies might tell a different story)
-
-
-
-
-
 
 
 
