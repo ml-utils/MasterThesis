@@ -1794,7 +1794,7 @@ On the other hand, BERT \citep{devlin2018bert} is a bidirectional language model
 	PLL_{biLM}(W) = \sum_{t=1}^{|W|} \log P_{uniLM}(w_t | W_{\setminus t})
 \end{displaymath}
 
-This is equivalent to summing up the \textit{surprisal} of each individual token in the sentence. Surprisal is the negative log probability of a word given its context, and intuitively is a measure of how surprising that word is in that context. Surprisal is a well-established measure to predict human incremental processing difficulty, measuring for instance phenomena like garden-path disambiguation effects  \citep{hu2020systematic}.
+This is equivalent to summing up the \textit{surprisal} of each individual token in the sentence. Surprisal is the negative log probability of a word given its context, and intuitively is a measure of how surprising that word is in that context. Surprisal is a well-established measure to predict human incremental processing difficulty, measuring for instance phenomena like garden-path disambiguation effects \citep{hu2020systematic}.
 
 \begin{displaymath}
 	S(w|C) = -\log_2 P(w|C)
@@ -1986,8 +1986,9 @@ They found evidence that these models learned wh-islands
 % \enquote{residual acceptability difference between the baseline condition (\textit{Short-distance, no-Island}) and \enquote*{island violation} condition (\textit{Long-distance, Island}), after the main effects of structure and distance have been subtracted away.}
 
 
-\citep{hu2020systematic} 
+\citet{hu2020systematic} tested LSTMs and GPT-2 (but not bidirectional LMs) on several syntactic phenomena, including long-distance dependencies, using a 2 x 2 factorial experimental setup. They measured the probabilities of critical sentence regions instead of full-sentence probabilities. They defined factorial success criteria for each phenomenon, enabling them to obtain accuracy percentage scores as end results. This makes their approach suitable withing benchmarks like BLiMP, that also produce a final accuracy score. They found that GTP-2 scored almost 80\% accuracy on long-distance dependencies, but they did not compared it with a human reference score.
 
+% "Targeted syntactic evaluation is just one in a series of complementary methods being developed to assess the learning outcomes of neural language processing models. Other methods include classifying sentences as grammatical or ungrammatical (Warstadt et al., 2019b), decoding syntactic features from a model’s internal state (Belinkov et al., 2017; Giulianelli et al., 2018), or transfer learningto a strictly syntactic task such as parsing or POS tagging (Hewitt and Manning, 2019). As each task brings an explicit set of assumptions, complementary assessment methods can collectively provide greater insight into models’ learning outcomes" \citet{hu2020systematic}
 
 % compare the datasets of BLiMP and that of hu and Wilcox (2020)
 % Hu, number of suites: 34, adapted from previously published work (which?)
