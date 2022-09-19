@@ -2554,7 +2554,7 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 	\begin{center}
 		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
 			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT}} & \multicolumn{1}{c|}{\textbf{BERT XXL}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
-			\textbf{Pheno-menon} & \textbf{Factorial score} & LP & LP & LP & LP \\
+			\textbf{Island type} & \textbf{Factorial score} & LP & PLL & PLL & PLL \\
 			\hline
 			\multirow{1}{0.8cm}{Whether} 
 			& DD & \textbf{100} & 96 & \textbf{100} & \textbf{100} \\ 
@@ -2571,7 +2571,7 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 			\textbf{Average} & & 81.5\% & 86.5\% & 88.5\% & \textbf{91\%}    \\ 	
 			
 		\end{tabular}
-		\caption{Accuracy percentages for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert. Each factorial item of 4 sentences is scored with the success criterion $DD\_score > 0$.}
+		\caption{Accuracy percentages for GPT-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. For the GPT-2 model we estimated the sentence acceptability with the sentence log probability (LP), while for the BERT-based models we used the sentence pseudo-log-likelihood (PLL). The DD score is calculated by subtracting the structure and long-distance effects from total effect, as in \citep{sprouse2016experimental}. The success criterion for each factorial item of 4 sentences is $DD > 0$.}
 		\label{tab:accuracy_DD_it_data}
 	\end{center}
 \end{table}
