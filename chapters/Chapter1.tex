@@ -1338,11 +1338,23 @@ There is still no generally accepted method for obtaining binary acceptability p
 %"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
 
 
-
-
 The concept of acceptability is broader than that of grammaticality. Grammaticality usually refers to syntactic acceptability (well-formedness), but acceptability in general includes also semantic, pragmatic, and even non-linguistic factors, like sentence length \citep{lau2020furiously}. Additionally, acceptability is usually a graded judgment, while grammaticality is a binary one (a sentence can be either grammatical or not).
 % "Acceptability is closely related to the concept of grammaticality. The latter is a theoretical construction corresponding to syntactic well-formedness, and it is typically interpreted as a binary property (i.e., a sentence is either grammatical or ungrammatical). Acceptability, on the other hand, includes syntactic, semantic, pragmatic, and non-linguistic factors, such as sentence length. It is gradient, rather than binary, in nature (Denison, 2004; Sorace and Keller, 2005; Sprouse, 2007)" \citep{lau2020furiously}
 
+Before the introduction of methods for extracting acceptability judgments from neural language models, the primary performance metric for their evaluation was \textbf{perplexity}, which is a broad-coverage metric that  scores how well, on average, a model predicts a word in its contex, and captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted, hu2020systematic}.  
+% "Neural network architectures are typically evaluated on random samples of naturally occurring sentences, e.g., using perplexity on held-out data in language modeling. Since the majority of natural language sentences are grammatically simple, models can achieve high overall accuracy using flawed heuristics that fail on harder cases. This makes it difficult to distinguish simple but robust sequence models from more expressive architectures" \citep{linzen2016assessing}. %"(Socher, 2014; Grefenstette et al., 2015; Joulin and Mikolov, 2015)"
+% "The majority of NLP work on neural networks evaluates them on their performance in a task such as language modeling or machine translation (Sundermeyer et al., 2012; Bahdanau et al., 2015). These evaluation setups average over many different syntactic constructions, making it difficult to isolate the network’s syntactic capabilities." \citep{linzen2016assessing}
+
+As \citet{chowdhury2018rnn} explain, "Perplexity measures how many equally probable words can follow a point in the text; as the sentence grows longer and more information accumulates, the options for the following word decrease." %Perplexity is calculated by P P L = e − T CEL N , where the total cross-entropy loss (T CEL = PCEL) is computed for the sub-dataset and the total number of words, N, in the corresponding dataset. Both measures are 
+It is "based on the intuition that an ungrammatical sentence should ‘confuse’ the NN more than a corresponding grammatical one, and that this confusion will translate in a decreased ability to make correct predictions." \citep{chowdhury2018rnn}
+
+
+However, perplexity cannot give detailed insight into these models’ knowledge of grammar, as it has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models \citep{marvin2018targeted, hu2020systematic, warstadt2020blimp}. Perplexity is not suitable to estimate ungrammaticality from a language model, since it does not locate the source of ungrammaticality at a specific point in a sentence \citep{chowdhury2018rnn}. As noted by \citet{marvin2018targeted} "The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions."
+
+While perplexity is not suitable as an absolute measure of a sentence grammaticality, it can be used as a relative measure between a minimal pair of sentences, varying only for a property that makes one sentence grammatical and the other ungrammatical, as has been done with the targeted syntactic evaluation (TSE) assessment paradigm.
+% "As it turns out, neither PPL or CEL are perfect ways to evaluate a language model for ungrammaticality, since they do not locate it at a specific point in the sentences. Yet, this could also be an advantage, since global measures like PPL/CEL can potentially catch parsing problems that arise earlier than expected, and record a perturbation in the NN’s later predictions as it recovers from an ungrammatical point earlier in the text. Therefore, these methods seem appropriate for a first exploration of this task."  \citep{chowdhury2018rnn}
+% "In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
+The introduction of the targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, therefore serves also as a supplement to perplexity as a complementary measure that capture other aspects of a model performance. Additionally, fine-grained linguistic assessment can provide more challenging evaluations, and it is also a tool that help in the explainability of these models, since the test results from fine-grained linguistic assessment are more interpretable \citep{hu2020systematic}.
 
 % "more work is needed to find methods for extracting reliable Boolean acceptability judgments from unsupervised language models. Our approach of fitting a threshold to the models of Lau et al. (2016) gives encouraging results, but these models are ultimately not as effective as supervised models." 
 
@@ -1672,43 +1684,49 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 
 \section{Metrics for the linguistic evaluation of language models}
 
+% "The study raises several methodological issues, first and foremost in the choice of measures. Perplexity 	seems to be an obvious first choice for a language model, but even when it is normalized by the number of words in the sentence it is sensitive to contrasting effects: longer sentences are more predictable, but recursively embedded sentences are less. Moreover, complex structures increase perplexity more when they are at the beginning of a sentence than at the end (see our discussion of Task C results)." chowdhury2018rnn
+%Various evaluation measures have been investigated to approximate grammaticality judgments from the output of a language model, and this area of research has not yet converged to an established methodology, with multiple approaches currently being in use. 
+
+% Among the measures that have been explored, there are perplexity (PPL), Cross-entropy loss (CEL)
+
+
 % move to appropriate section: "off-the-shelf models."  \citep{hu2020systematic} 
-Various evaluation measures have been explored to approximate grammaticality judgments out of a language model output.
-% \citep{chowdhury2018rnn} : "We explored various possibilities, from global measures like perplexity (PPL) and non-normalized sentence cross-entropy loss (CEL), to local measures like the normalized log probability of a full stop LogPn(F S) or question mark LogPn(QM) after the current word." 
+% \citep{chowdhury2018rnn} : "We explored various possibilities, from global measures like perplexity (PPL) and non-normalized sentence cross-entropy loss (CEL), to local measures like the normalized log probability of a full stop LogPn(F S) or question mark LogPn(QM) after the current word."   \citep{chowdhury2018rnn}
 
-% "Cross-entropy loss (CEL) measures the distance between the output distribution predicted by the model and one-hot vector representing the target word (ti). The loss for the test sentence can therefore be described as an approximation of the equation CEL = Pn i=1 ln P(ti), where P(ti) is the probability given by the model to the i th target word in the sentence of length n. In our analysis, we mostly use the averaged CEL (ACEL) while comparing each particular set of cases. Note that (A)CEL is not normalized by sentence length." \citep{chowdhury2018rnn}
-% Is GPT2 loss is an Averaged Cross-Entropy Loss? (that would explain why Lau et al multiply it by the number of tokens to get the sentence score)
-
-% "Perplexity measures how many equally probable words can follow a point in the text; as the sentence grows longer and more information accumulates, the options for the following word decrease. Perplexity is calculated by P P L = e − T CEL N , where the total cross-entropy loss (T CEL = PCEL) is computed for the sub-dataset and the total number of words, N, in the corresponding dataset. Both measures are based on the intuition that an ungrammatical sentence should ‘confuse’ the NN more than a corresponding grammatical one, and that this confusion will translate in a decreased ability to make correct predictions." \citep{chowdhury2018rnn}
-
-% "As for the local measure, normalized log probability of the full stop and question mark is calculated as LogPn(QM/F S) = log( pm(=) pu(=) ) where pm(=) is the probability of the symbol, =, at a given position given by the model; pu(=) is the unigram probability of the ="  \citep{chowdhury2018rnn}
-% "On the other hand, the advantage of the local measure used in this study (P(FS/QM), i.e. the confidence that the sentence is about to end) is that it can give precise information about the point at which ungrammaticality is detected (e.g. after catch in (1)), or can be used to track the NN expectations through time, as we do in Figure 1. The disadvantage is that, as example (1a) shows, a sentence can always continue in unexpected ways. Moreover, in some cases of ungrammaticality the presence of individual words might not be a significant predictor."  \citep{chowdhury2018rnn}
-
-% "As it turns out, neither PPL or CEL are perfect ways to evaluate a language model for ungrammaticality, since they do not locate it at a specific point in the sentences. Yet, this could also be an advantage, since global measures like PPL/CEL can potentially catch parsing problems that arise earlier than expected, and record a perturbation in the NN’s later predictions as it recovers from an ungrammatical point earlier in the text. Therefore, these methods seem appropriate for a first exploration of this task."  \citep{chowdhury2018rnn}
 
 
  
 % move to appropriate section:
-"To accommodate sentence length and lexical frequency we experiment with several simple normalization methods, converting probabilities to acceptability measures (Section 3.2)." \citep{lau2020furiously}
+%"To accommodate sentence length and lexical frequency we experiment with several simple normalization methods, converting probabilities to acceptability measures (Section 3.2)." \citep{lau2020furiously}
 
 % acceptability judgements, LM probability of a sentence, likelihood, ..
 
 % measures and estimations of sentence probability/likelihood, and of grammaticality/acceptabiliy 
 % for bi-directional language models..
 
+
+% \subsection{Perplexity}\label{sec:issues_with_perplexity}
+
+
+
+
+
+% "Cross-entropy loss (CEL) measures the distance between the output distribution predicted by the model and one-hot vector representing the target word (ti). The loss for the test sentence can therefore be described as an approximation of the equation CEL = Pn i=1 ln P(ti), where P(ti) is the probability given by the model to the i th target word in the sentence of length n." 
+% "In our analysis, we mostly use the averaged CEL (ACEL) while comparing each particular set of cases. Note that (A)CEL is not normalized by sentence length." \citep{chowdhury2018rnn}
+% Is GPT2 loss is an Averaged Cross-Entropy Loss? (that would explain why Lau et al multiply it by the number of tokens to get the sentence score)
+
+% "As for the local measure, normalized log probability of the full stop and question mark is calculated as LogPn(QM/F S) = log( pm(=) pu(=) ) where pm(=) is the probability of the symbol, =, at a given position given by the model; pu(=) is the unigram probability of the ="  \citep{chowdhury2018rnn}
+% "On the other hand, the advantage of the local measure used in this study (P(FS/QM), i.e. the confidence that the sentence is about to end) is that it can give precise information about the point at which ungrammaticality is detected (e.g. after catch in (1)), or can be used to track the NN expectations through time, as we do in Figure 1. The disadvantage is that, as example (1a) shows, a sentence can always continue in unexpected ways. Moreover, in some cases of ungrammaticality the presence of individual words might not be a significant predictor."  \citep{chowdhury2018rnn}
+
+
+
+
 % the numerical properties, that show that bidirectional model can separate fluency from likelihood, unlike unidirectional ones..
 %"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by \log P_{LM}(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
 % in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
 
 
-\subsection{Perplexity}\label{sec:issues_with_perplexity}
-
-Before the introduction of methods for extracting acceptability judgments from neural language models, the primary performance metric for their evaluation was perplexity, which is a broad-coverage metricthat  scores how well, on average, a model predicts a word in its contex, and captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted, hu2020systematic}.  
-% "Neural network architectures are typically evaluated on random samples of naturally occurring sentences, e.g., using perplexity on held-out data in language modeling. Since the majority of natural language sentences are grammatically simple, models can achieve high overall accuracy using flawed heuristics that fail on harder cases. This makes it difficult to distinguish simple but robust sequence models from more expressive architectures" \citep{linzen2016assessing}. %"(Socher, 2014; Grefenstette et al., 2015; Joulin and Mikolov, 2015)"
-% "The majority of NLP work on neural networks evaluates them on their performance in a task such as language modeling or machine translation (Sundermeyer et al., 2012; Bahdanau et al., 2015). These evaluation setups average over many different syntactic constructions, making it difficult to isolate the network’s syntactic capabilities." \citep{linzen2016assessing}
-However, perplexity cannot give detailed insight into these models’ knowledge of grammar, as it has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models \citep{marvin2018targeted, hu2020systematic, warstadt2020blimp}. As noted by \citet{marvin2018targeted} "The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions."
-% "In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
-The introduction of the targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, therefore serves also as a supplement to \textbf{perplexity}. Additionally, fine-grained linguistic assessment can provide more challenging evaluations, and it is also a tool that help in the explainability of these models, since the test results from fine-grained linguistic assessment are more interpretable \citep{hu2020systematic}.
+% 
 
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
 % "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
@@ -1736,10 +1754,6 @@ The introduction of the targeted linguistic evaluation of language models, and t
 % "a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons." 
 
 
-
-
-
-
 % perplexity correlate with human reading.. processing complexity (cite)
 % (cite Venturi paper?) list of other phenomana perplexity correlates with
 
@@ -1762,7 +1776,7 @@ The introduction of the targeted linguistic evaluation of language models, and t
 % Venturi paper: https://aclanthology.org/2021.deelio-1.5.pdf 
 % "This demonstrates that the considered features are able to model aspects involved in NLM’s perplexity that go beyond the simple length of sentence. This is particularly the case of GPT-2, suggesting that the probability assigned to a sentence by a traditional NLM is more explainable in terms of linguistic phenomena mainly affecting morpho-syntactic and syntactic structure."
 
-% "The study raises several methodological issues, first and foremost in the choice of measures. Perplexity 	seems to be an obvious first choice for a language model, but even when it is normalized by the number of words in the sentence it is sensitive to contrasting effects: longer sentences are more predictable, but recursively embedded sentences are less. Moreover, complex structures increase perplexity more when they are at the beginning of a sentence than at the end (see our discussion of Task C results)." chowdhury2018rnn
+
 
 \subsection{Surprisal}
 
