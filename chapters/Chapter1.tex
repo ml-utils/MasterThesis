@@ -962,6 +962,10 @@ One aspect that influences the difference in sentence structure of syntactic isl
 
 A factorial experimental setup allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
 
+% "Experimental syntax provides a set of tools that goes beyond the traditional acceptability judgment experiments that have been used (to good success) in the existing literature. " "reviewing the complex patterns of island effects, both across languages and across construction types, that have been previously reported in the syntax literature" \citep{sprouse2013experimental}
+
+% "use some of these complex patterns to tease apart the role of different levels of linguistic representation and processing in explaining the unacceptability of island effects." \citep{sprouse2013experimental}
+
 % "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
 A common use case is to have \textsc{items} (the equivalent of the sentence pairs in a minimal pairs approach) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
 
@@ -1013,27 +1017,27 @@ The factorial design allows to calculate the effect of the combination of the di
 % todo: the senence acceptability estimates
 
 
-\section{Draft sections}
-\subsection{Factorial definition of Island Effects}
+%
+%"However, investigating the learning of syntactic island effects requires \textbf{a formally explicit definition} of the target state beyond the diacritics that are typically used to delineate unacceptable sentences in syntactic articles." \citep{pearl2013syntactic}
+%
+%"To that end, we decided to explicitly construct the target state from data from \citet{sprouse2012test}, who collected formal acceptability judgments for four island types using the magnitude estimation task: Complex NP islands (2a), (simple) Subject islands (2b), Whether islands (2c), and (conditional) Adjunct islands (2d)." 
+%"These four islands were selected by Sprouse, Wagers \& Phillips (2012a) for several reasons. First, they have been argued to be captured by syntactic constraints (e.g., Subjacency or the Condition on Extraction Domains), as opposed to the island types that have historically been captured with semantic constraints (e.g., factive islands, negative islands)." \citep{pearl2013syntactic}
 
+%A factorial definition of island effect can control for the syntactic properties of sentences that contain island violations, like the presence of long-distance dependencies, and the presence of an island construct (whether it is violated or not) \citep{pearl2013syntactic}. Having
+%"Sprouse, Wagers \& Phillips used a (2x2 \textbf{factorial definition} of each island effect (shown in 6-9), which controls for the two salient syntactic properties of island-violating sentences: (i) they contain a long-distance dependency, and (ii) they contain an island structure." 
+As \citet{pearl2013syntactic} explain "translating each of these properties into separate factors, each with two levels (dependency GAP POSITION: matrix, embedded; STRUCTURE present in question: non-island, island)," allows "to define island effects as a superadditive interaction of the two factors (..) in other words, an island effect is the additional unacceptability that arises when the two factors are combined, above and beyond the independent contribution of each factor. Specifically, a syntactic island occurs when there is more unacceptability than what the EMBEDDED dependency and the presence of an ISLAND structure in the question contribute by themselves" \citep{pearl2013syntactic}. "An acceptability judgment experiment that employs a factorial definition of island effects. First, we can isolate the effect of dependency length on acceptability by contrasting a sentence with a short WH-dependency, an extraction from a matrix clause, with a sentence that contains a longer WH-dependency, an extraction from an embedded clause. Similarly, we can isolate the effect of processing island structures by contrasting a sentence with an island structure with a sentence that does not contain an island structure. Finally, we can measure the effect on acceptability of processing both long-distance WH-dependencies and island structures—the island effect itself—by combining both in a single sentence" \citep{sprouse2012test}.
 
-"However, investigating the learning of syntactic island effects requires \textbf{a formally explicit definition} of the target state beyond the diacritics that are typically used to delineate unacceptable sentences in syntactic articles." \citep{pearl2013syntactic}
-
-"To that end, we decided to explicitly construct the target state from data from \citet{sprouse2012test}, who collected formal acceptability judgments for four island types using the magnitude estimation task: Complex NP islands (2a), (simple) Subject islands (2b), Whether islands (2c), and (conditional) Adjunct islands (2d). These four islands were selected by Sprouse, Wagers \& Phillips (2012a) for several reasons. First, they have been argued to be captured by syntactic constraints (e.g., Subjacency or the Condition on Extraction Domains), as opposed to the island types that have historically been captured with semantic constraints (e.g., factive islands, negative islands)." \citep{pearl2013syntactic}
-
-
-"Sprouse, Wagers \& Phillips used a (2x2 \textbf{factorial definition} of each island effect (shown in 6-9), which controls for the two salient syntactic properties of island-violating sentences: (i) they contain a long-distance dependency, and (ii) they contain an island structure. By translating each of these properties into separate factors, each with two levels (dependency GAP POSITION: matrix, embedded; STRUCTURE present in question: non-island, island), Sprouse, Wagers \& Phillips were able to define island effects as a superadditive interaction of the two factors—in other words, an island effect is the additional unacceptability that arises when the two factors are combined, above and beyond the independent contribution of each factor. Specifically, a syntactic island occurs when there is more unacceptability than what the EMBEDDED dependency and the presence of an ISLAND structure in the question contribute by themselves."\citep{pearl2013syntactic}
-
-"an acceptability judgment experiment that employs a factorial definition of island effects. First, we can isolate the effect of dependency length on acceptability by contrasting a sentence with a short WH-dependency, an extraction from a matrix clause (5a), with a sentence that contains a longer WH-dependency, an extraction from an embedded clause (5b). Similarly, we can isolate the effect of processing island structures by contrasting a sentence with an island structure (5c) with a sentence that does not contain an island structure (5a). Finally, we can measure the effect on acceptability of processing both long-distance WH-dependencies and island structures—the island effect itself—by combining both in a single sentence (5d)." \citep{sprouse2012test}
-
-" A matrix clause is a clause that contains another clause. Thus, the main clause in (37), the professor told the students, is a matrix clause since it contains another clause (that he was going to cancel the next class), which is said to be embedded inside the matrix clause:
-(37)
- The professor told the students that he was going to cancel the next class. ." (Martin J. Endley, Linguistic Perspectives on English Grammar. Information Age, 2010)
+%" A matrix clause is a clause that contains another clause. Thus, the main clause in (37), the professor told the students, is a matrix clause since it contains another clause (that he was going to cancel the next class), which is said to be embedded inside the matrix clause:
+%(37)
+%The professor told the students that he was going to cancel the next class. ." (Martin J. Endley, Linguistic Perspectives on English Grammar. Information Age, 2010)
+%
 
 
 
 
-\subsection{Unprocessed quotes}
+%\section{Draft sections}
+
+%\subsection{Unprocessed quotes}
 
 
 % TODO, additions: the argument that island effects can be learnerd only with native bias, has been ..countered by evidence from statistical/neural language models that are able to learn at least a subset of them (refs ..)
@@ -1054,9 +1058,10 @@ The factorial design allows to calculate the effect of the combination of the di
 % "catalog of the constructions that demonstrate them"
 % "Even from the brief introduction to island effects presented above, it should be clear that identifying the source of island effects requires much more than a simple catalog of the constructions that demonstrate them." \citep{sprouse2013experimental}
 
-% "Experimental syntax provides a set of tools that goes beyond the traditional acceptability judgment experiments that have been used (to good success) in the existing literature. " "reviewing the complex patterns of island effects, both across languages and across construction types, that have been previously reported in the syntax literature" \citep{sprouse2013experimental}
 
-% "use some of these complex patterns to tease apart the role of different levels of linguistic representation and processing in explaining the unacceptability of island effects. Second, these patterns present a list of phenomena that any comprehensive theory of island effects must explain. It is not enough for a theory of island effects to simply explain the unacceptability of island effects in one language or one construction; a comprehensive theory must also explain the complex pattern that is observed across languages and across constructions."  \citep{sprouse2013experimental}
+
+
+%"Second, these patterns present a list of phenomena that any comprehensive theory of island effects must explain. It is not enough for a theory of island effects to simply explain the unacceptability of island effects in one language or one construction; a comprehensive theory must also explain the complex pattern that is observed across languages and across constructions."  \citep{sprouse2013experimental}
 
 
 
@@ -1082,13 +1087,13 @@ The factorial design allows to calculate the effect of the combination of the di
 % ". In chapter 10, Goldberg explores the possibility that island effects may be reducible to an information-theoretic conflict that arises when elements are extracted from backgrounded constituents" \citep{sprouse2013experimental}
 
 % ". In chapter 11, Kush, Omaki, and Hornstein investigate to what extent the factors that allow extraction from relative clause islands in Swedish also ameliorate extraction from relative clause islands in English." \citep{sprouse2013experimental}
+%
+%"The results of the supplemental experiments confirm that dependency type is the major source of variation, not featural specification, while providing a concrete quantification of what exactly the effect of complex wh-phrases on island effects is." \citep{sprouse2016experimental}
+%
+%"Second, we want to apply the factorial design cross linguistically to see if it reveals patterns of variation that are distinct from the patterns revealed by informal methods. For this article, we decided to test syntactic island effects in English and Italian because these two languages have been cited as evidence for cross-linguistic variation in syntactic island effects (e.g., Rizzi 1982)" \citep{sprouse2016experimental}
 
-"The results of the supplemental experiments confirm that dependency type is the major source of variation, not featural specification, while providing a concrete quantification of what exactly the effect of complex wh-phrases on island effects is." \citep{sprouse2016experimental}
-
-"Second, we want to apply the factorial design cross linguistically to see if it reveals patterns of variation that are distinct from the patterns revealed by informal methods. For this article, we decided to test syntactic island effects in English and Italian because these two languages have been cited as evidence for cross-linguistic variation in syntactic island effects (e.g., Rizzi 1982)" \citep{sprouse2016experimental}
-
-
-"we want to apply the factorial design across dependency types within each language. For this article, we decided to test both wh-dependencies, i.e., dependencies between a wh-word/phrase and a gap within the interrogative clause that the wh-word/phrase introduces, and relative-clause dependencies (rc-dependencies, in short), i.e., dependencies between the head introducing a headed relative clause and a gap within the relative clause. Both dependencies have been reported to display syntactic island effects, and rc-dependencies have been reported to display crosslinguistic variation (Rizzi 1982)"  \citep{sprouse2016experimental}
+%
+%"we want to apply the factorial design across dependency types within each language. For this article, we decided to test both wh-dependencies, i.e., dependencies between a wh-word/phrase and a gap within the interrogative clause that the wh-word/phrase introduces, and relative-clause dependencies (rc-dependencies, in short), i.e., dependencies between the head introducing a headed relative clause and a gap within the relative clause. Both dependencies have been reported to display syntactic island effects, and rc-dependencies have been reported to display crosslinguistic variation (Rizzi 1982)"  \citep{sprouse2016experimental}
 
 % in discussing possibly different results in accuracies across different island types, it is ..important to note that different types of island ..effects have been shown to have different ..impacts on acceptability (see quote above; continuum from wh, less ..restrictive, to rc, the most)
 
@@ -1110,7 +1115,7 @@ The factorial design allows to calculate the effect of the combination of the di
 
 
 
-\subsection{Processed quotes}
+%\subsection{Processed quotes}
 
 % "the wh-word or wh-phrase at the beginning of the sentence, which is often called the antecedent or the filler," \citep{sprouse2016experimental}
 
@@ -1183,7 +1188,7 @@ The factorial design allows to calculate the effect of the combination of the di
 %(5) a. Smart though I think [that Jack is ], I don't trust him to do simple math. \\
 %b. *Smart though I wonder [whether Jack is ], I trust him to do simple math."   \\
 
-\subsection{Quotes for other sections}
+%\subsection{Quotes for other sections}
 
 % The processing of filler-gap dependencies 
 
