@@ -2534,6 +2534,33 @@ GilBERTo \footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camember
 \section{Accuracy on factorial scores}
 
 % .. intro
+In \autoref{tab:accuracy_DD_it_data} we see that the BERT-based models outperform GPT-2 in the overall scores, and this confirms findings in previous work like \citep{salazar2020masked}. GPT-2 is outperformed by BERT even when trained on a similar amount of data (around 2B tokens), with a difference of over 5 points in accuracy (from 81.5\% to 86.5\%), which increases (although with diminishing returns) in models trained on larger data. BERT XXL, trained on 13B tokens, achieves 88.5\% accuracy, while GilBERTo, trained on 11B tokens, performs the best at 91\%.
+
+\begin{table} \scriptsize 
+	\begin{center}
+		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
+			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT}} & \multicolumn{1}{c|}{\textbf{BERT XXL}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
+			\textbf{Island type} & \textbf{Factorial score} & LP & PLL & PLL & PLL \\
+			\hline
+			\multirow{1}{0.8cm}{Whether} 
+			& $DD > 0$ & \textbf{100} & 96 & \textbf{100} & \textbf{100} \\ 
+			\hline
+			\multirow{1}{0.8cm}{Adjunct}  
+			& $DD > 0$ & \textbf{98} & 70 & 64 & 72 \\ 
+			\hline
+			\multirow{1}{0.8cm}{ComplexNP} 
+			& $DD > 0$ & 46 & 96 & \textbf{100} & 98 \\  			 
+			\hline
+			\multirow{1}{0.8cm}{Subject} 
+			& $DD > 0$ & 82 & 84 & 90 & \textbf{94} \\ 
+			\hline
+			\textbf{Average} & & 81.5\% & 86.5\% & 88.5\% & \textbf{91\%}    \\ 	
+			
+		\end{tabular}
+		\caption{Accuracy percentages for GPT-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. For the GPT-2 model we estimated the sentence acceptability with the sentence log probability (LP), while for the BERT-based models we used the sentence pseudo-log-likelihood (PLL). The DD score is calculated by subtracting the structure and long-distance effects from total effect, as in \citep{sprouse2016experimental}. The success criterion for each factorial item of 2 x 2 sentences is $DD > 0$.}
+		\label{tab:accuracy_DD_it_data}
+	\end{center}
+\end{table}
 
 Our results confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like Gpt2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
 Salaza observed/found that for Gpt2-like model, the penalty term actually has a dampening effect on the ..
@@ -2550,31 +2577,7 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 % todo: rerun the spike analysis, but sorting the examples by dd score
 % todo: check alpha value and redo score for gpt with PenLP
 % strange very low results, with the dd score, for gilberto.. (problem in using the special tokens?)
-\begin{table} \scriptsize 
-	\begin{center}
-		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
-			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT}} & \multicolumn{1}{c|}{\textbf{BERT XXL}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
-			\textbf{Island type} & \textbf{Factorial score} & LP & PLL & PLL & PLL \\
-			\hline
-			\multirow{1}{0.8cm}{Whether} 
-			& DD & \textbf{100} & 96 & \textbf{100} & \textbf{100} \\ 
-			\hline
-			\multirow{1}{0.8cm}{Adjunct}  
-			& DD & \textbf{98} & 70 & 64 & 72 \\ 
-			\hline
-			\multirow{1}{0.8cm}{ComplexNP} 
-			& DD & 46 & 96 & \textbf{100} & 98 \\  			 
-			\hline
-			\multirow{1}{0.8cm}{Subject} 
-			& DD & 82 & 84 & 90 & \textbf{94} \\ 
-			\hline
-			\textbf{Average} & & 81.5\% & 86.5\% & 88.5\% & \textbf{91\%}    \\ 	
-			
-		\end{tabular}
-		\caption{Accuracy percentages for GPT-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. For the GPT-2 model we estimated the sentence acceptability with the sentence log probability (LP), while for the BERT-based models we used the sentence pseudo-log-likelihood (PLL). The DD score is calculated by subtracting the structure and long-distance effects from total effect, as in \citep{sprouse2016experimental}. The success criterion for each factorial item of 4 sentences is $DD > 0$.}
-		\label{tab:accuracy_DD_it_data}
-	\end{center}
-\end{table}
+
 
 
 % todo: tests from Sprouse testsuites, in Both English and Italian, to see if they are comparable (use accuracy on DD factorial score )
