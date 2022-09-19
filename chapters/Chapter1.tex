@@ -2540,12 +2540,40 @@ Looking at performance in individual island types, we can see that whether islan
 
 Instead, subject islands, at least in the forms captured in our test suite, seem to be the type of island whose mastering is most directly correlated with the amount of training data: the models trained on 2B of tokens reached and accuracy of 82\% and 84\%, while the models trained on 11-13B tokens achieved an accuracy of 90\% and 94\%. This seems to indicate that at least some type of island effects are among the hardest syntactic phenomena to be grasped by current transformer-based language models, at least when trained on ungrounded raw text in a self-supervised task without explicit linguistic supervision. All of these four models are trained a minimum of 2B tokens, which is already an order of magnitude more than the amount of data (100M tokens) at which they learn most (but not all) syntactic and semantic phenomena \citep{zhang2021you}. It is also possible that the current targeted syntactic benchmarks like BLiMP are not challenging enough, and overestimate these models actual linguistic abilities, as has been argued by \citet{newman2021refining}.
 
+\begin{table} \scriptsize 
+	\begin{center}
+	\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
+			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT}} & \multicolumn{1}{c|}{\textbf{BERT XXL}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
+			\textbf{Island type} & \textbf{Factorial score} & LP & PLL & PLL & PLL \\
+			\hline
+			\multirow{1}{0.8cm}{Whether} 
+			& $DD > 0$ & \textbf{100} & 96 & \textbf{100} & \textbf{100} \\ 
+			\hline
+			\multirow{1}{0.8cm}{Adjunct}  
+			& $DD > 0$ & \textbf{98} & 70 & 64 & 72 \\ 
+			\hline
+			\multirow{1}{0.8cm}{ComplexNP} 
+			& $DD > 0$ & 46 & 96 & \textbf{100} & 98 \\  			 
+			\hline
+			\multirow{1}{0.8cm}{Subject} 
+			& $DD > 0$ & 82 & 84 & 90 & \textbf{94} \\ 
+			\hline
+			\textbf{Average} & & 81.5\% & 86.5\% & 88.5\% & \textbf{91\%}    \\ 	
+			
+		\end{tabular}
+		\caption{Accuracy percentages for GPT-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. For the GPT-2 model we estimated the sentence acceptability with the sentence log probability (LP), while for the BERT-based models we used the sentence pseudo-log-likelihood (PLL). The DD score is calculated by subtracting the structure and long-distance effects from total effect, as in \citep{sprouse2016experimental}. The success criterion for each factorial item of 2 x 2 sentences is $DD > 0$.}
+		\label{tab:accuracy_DD_it_data}
+	\end{center}
+\end{table}
+
+
 Another possible explanation for the fact that these models seem to need massive amounts of data to learn subject islands, much more than for other syntactic phenomena, is that this correlates with Italian speakers finding subject islands weaker than other types. Indeed, \citet{sprouse2016experimental} found that subject islands with wh-dependencies are the type of island that scored the lowest (indicating "weaker" island effects) on human Italian subjects (\autoref{fig:sprouse_humans}), and that subject islands with rc-dependencies even showed almost no island effects on human subjects.
 
 For adjunct and complex NP islands, the results show a mixed picture. For adjuncts islands, performance seems to be correlated not with training set size (at least beyond 2B tokens), but with architecture, with GPT-2 outperforming the other models and reaching 98\% despite being  trained on 2.2B tokens.
 
 Complex NP islands, on the other hand, show the opposite picture: it seems to be the GPT-2 architecture to be struggling with them (with a very low 46\% score, which could be considered below chance), while the other models score at 96\% or higher.
 
+..\\
 % (show table with DD accuracy scorese also on original Sprouse test suite, to show how/if better confounds controlled .. question if results rappresentative with just 8 samples.. if more or less challenging..)
 % accuracy results on Sprouse dataset
 %GPT-2 with LP:
@@ -2573,7 +2601,7 @@ Complex NP islands, on the other hand, show the opposite picture: it seems to be
 %DDs_with_lp: 100.00% (wh_subject_island)
 %
 
-% (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
+
 
 %
 %(confirms that whether islands are the easiest)
@@ -2596,56 +2624,8 @@ Complex NP islands, on the other hand, show the opposite picture: it seems to be
 %
 %Looking at performance in individual island types, we can see that whether islands seems to be the easiest one to le
 
-\begin{table} \scriptsize 
-	\begin{center}
-	\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
-			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT}} & \multicolumn{1}{c|}{\textbf{BERT XXL}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
-			\textbf{Island type} & \textbf{Factorial score} & LP & PLL & PLL & PLL \\
-			\hline
-			\multirow{1}{0.8cm}{Whether} 
-			& $DD > 0$ & \textbf{100} & 96 & \textbf{100} & \textbf{100} \\ 
-			\hline
-			\multirow{1}{0.8cm}{Adjunct}  
-			& $DD > 0$ & \textbf{98} & 70 & 64 & 72 \\ 
-			\hline
-			\multirow{1}{0.8cm}{ComplexNP} 
-			& $DD > 0$ & 46 & 96 & \textbf{100} & 98 \\  			 
-			\hline
-			\multirow{1}{0.8cm}{Subject} 
-			& $DD > 0$ & 82 & 84 & 90 & \textbf{94} \\ 
-			\hline
-			\textbf{Average} & & 81.5\% & 86.5\% & 88.5\% & \textbf{91\%}    \\ 	
-			
-		\end{tabular}
-		\caption{Accuracy percentages for GPT-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. For the GPT-2 model we estimated the sentence acceptability with the sentence log probability (LP), while for the BERT-based models we used the sentence pseudo-log-likelihood (PLL). The DD score is calculated by subtracting the structure and long-distance effects from total effect, as in \citep{sprouse2016experimental}. The success criterion for each factorial item of 2 x 2 sentences is $DD > 0$.}
-		\label{tab:accuracy_DD_it_data}
-	\end{center}
-\end{table}
 
-Our results confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like Gpt2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
-Salaza observed/found that for Gpt2-like model, the penalty term actually has a dampening effect on the ..
-In the sentence proability score given by Gpt2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surpraisals at individual token position.
-
-The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
-
-compare results btw italian bert and gpt.. gpt better by a little (which is surprising, considering that in english bert outperforms gpt instead, ..and by a wide marging.) This might be due to the due in which these models have been trained (discuss the amount and quality of data..)
-
-% todo, follow up experiments:
-% token spikes for the complex np items (problems comparing long island advantaged over long nonisland)
-% editing and scoring sentences for new test, balancing semantic material
-
-% todo: rerun the spike analysis, but sorting the examples by dd score
-% todo: check alpha value and redo score for gpt with PenLP
-% strange very low results, with the dd score, for gilberto.. (problem in using the special tokens?)
-
-
-
-% todo: tests from Sprouse testsuites, in Both English and Italian, to see if they are comparable (use accuracy on DD factorial score )
-
-% \subsection{Comparison with BLiMP results on island effects in English}
-% ..
-
-% The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
+For cross-linguistic comparison, we try to reproduce the results on the English BLiMP benchmark reported by \citet{warstadt2020blimp, salazar2020masked} for the three island types it has in common with our test suites: wh-islands, adjuncts, and complex NP islands and we report our results in \autoref{tab:accuracy_blimp}.
 
 \begin{table} 
 	\begin{center}
@@ -2671,6 +2651,35 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 		\label{tab:accuracy_blimp}
 	\end{center}
 \end{table}
+
+
+% (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
+Our results confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like Gpt2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
+Salazar observed/found that for Gpt2-like model, the penalty term actually has a dampening effect on the ..
+In the sentence proability score given by Gpt2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surpraisals at individual token position.
+
+The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
+
+compare results btw italian bert and gpt.. gpt better by a little (which is surprising, considering that in english bert outperforms gpt instead, ..and by a wide marging.) This might be due to the due in which these models have been trained (discuss the amount and quality of data..)
+
+% todo, follow up experiments:
+% token spikes for the complex np items (problems comparing long island advantaged over long nonisland)
+% editing and scoring sentences for new test, balancing semantic material
+
+% todo: rerun the spike analysis, but sorting the examples by dd score
+% todo: check alpha value and redo score for gpt with PenLP
+% strange very low results, with the dd score, for gilberto.. (problem in using the special tokens?)
+
+
+
+% todo: tests from Sprouse testsuites, in Both English and Italian, to see if they are comparable (use accuracy on DD factorial score )
+
+% \subsection{Comparison with BLiMP results on island effects in English}
+% ..
+
+% The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
+
+
 
 
 \section{Using factorial sentences as minimal pairs}
