@@ -96,7 +96,8 @@ This line of research is also of interest for addressing research questions in l
 % - ..explainability, 
 % - having a complementary measure of model performance, explaining performance (good or bad) in downstream application benchmarks, 
 
-
+% With the presente thesis we intend to ..
+% (move contributions subsection on related work section)
 \section{Our contributions}
 
 Our contributions to this line of research are the following.
@@ -1682,7 +1683,7 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 %"More generally, we can look for a weakened wh-licensing interaction for island vs. non-island positions, which would mean that the network believes a relationship between the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
 %"A positive but nonzero wh-licensing interaction would be in line with human acceptability judgments, which do not always categorically rule out gaps in island positions (Ambridge and Goldberg, 2008), and with human online processing experiments, which have shown that gap expectation is attenuated during processing of areas where gaps cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering, 1996; Phillips, 2006). Therefore, in this section we take a significant reduction in the island relative to the non-island case to constitute evidence that the model has ‘learned’ the constraint." \citep{wilcox2018rnn}
 
-\section{Metrics for the linguistic evaluation of language models}
+%\section{Metrics for the linguistic evaluation of language models}
 
 % "The study raises several methodological issues, first and foremost in the choice of measures. Perplexity 	seems to be an obvious first choice for a language model, but even when it is normalized by the number of words in the sentence it is sensitive to contrasting effects: longer sentences are more predictable, but recursively embedded sentences are less. Moreover, complex structures increase perplexity more when they are at the beginning of a sentence than at the end (see our discussion of Task C results)." chowdhury2018rnn
 %Various evaluation measures have been investigated to approximate grammaticality judgments from the output of a language model, and this area of research has not yet converged to an established methodology, with multiple approaches currently being in use. 
@@ -1784,20 +1785,20 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 % intro to token surprisal spikes analysis, taken from salazar
 % analisis of numerical properties of output (of surprisals/PLL), taken from salazar et al 2020
 
-In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -\log_2 p(w|C)$, " \citep{hu2020systematic}
-Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
+%In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -\log_2 p(w|C)$, " \citep{hu2020systematic}
+%Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
 
 
-"evaluate MLMs out of the box via their pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
-called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
-" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and Cho, 2019), " \citep{salazar2020masked}
+%"evaluate MLMs out of the box via their pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
+%called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
+%" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and Cho, 2019), " \citep{salazar2020masked}
 
-"PLL’s unsupervised expression of linguistic acceptability without a left-to-right bias, greatly improving on scores from GPT-2 (+10 points on island effects, NPI licensing in BLiMP) " \citep{salazar2020masked}
+%"PLL’s unsupervised expression of linguistic acceptability without a left-to-right bias, greatly improving on scores from GPT-2 (+10 points on island effects, NPI licensing in BLiMP) " \citep{salazar2020masked}
 % PLLs and their associated pseudo-perplexities (PPPLs)   \citep{salazar2020masked}
 
-"To score a sentence, one creates copies with each token masked out. The log probability for each missing token is summed over copies to give the
-pseudo-log-likelihood score (PLL)." (Figure from \citet{salazar2020masked})
-"given by summing the conditional log probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
+%"To score a sentence, one creates copies with each token masked out. The log probability for each missing token is summed over copies to give the
+%pseudo-log-likelihood score (PLL)." (Figure from \citet{salazar2020masked})
+%"given by summing the conditional log probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
 
 PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
 "Log probabilities model the joint distribution; PLL does so as well, albeit implicitly (Appendix B)"  \citep{salazar2020masked}
@@ -1915,9 +1916,9 @@ the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked
 
 
 
-\section{Island effects assessment in language models}
-
-(TODO)
+%\section{Island effects assessment in language models}
+%
+%(TODO)
 
 % Wilcox, Blimp, ..
 
