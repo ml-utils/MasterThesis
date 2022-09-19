@@ -1700,37 +1700,6 @@ Various evaluation measures have been explored to approximate grammaticality jud
 %"Consider a two-word proper noun, e.g., W = “San Francisco”: " "It is a highly-fluent but low-probability bigram and thus gets penalized by \log P_{LM}(W). Informally, PLL(W) expresses how likely each token is given other tokens (self-consistency), while log PLM(W) expresses the unconditional probability of a sentence, beginning with the costly unconditional term PLM(San)" "Both give similar probabilities P(Francisco | San) ~= e-1:0 ~= 37\%, but differ in the first summand"  \citep{salazar2020masked}
 % in sequence models like ASR, "GPT-2 restores fluency using common and repeated words, at the cost of adequacy:" "One can view these as exacerbations of the rare word problem due to overconfident logits (Nguyen and Chiang, 2018), and of over-translation (Tu et al., 2016). " "Meanwhile, BERT rewards selfconsistency, which lets rarer but still-fluent words with better acoustic or translation scores to persist:" "and promotes the more globally-fluent Union by the Union of LiberCivities. We also see the under-translation (i.e., omission) of Liber being corrected, without being discouraged by the rare sequence LiberCivities." \citep{salazar2020masked}
 
-\subsection{Surprisal}
-
-% intro discussion on surprisal, taken from ..salazar et al
-% intro to token surprisal spikes analysis, taken from salazar
-% analisis of numerical properties of output (of surprisals/PLL), taken from salazar et al 2020
-
-In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -\log_2 p(w|C)$, " \citep{hu2020systematic}
-Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
-
-
-"evaluate MLMs out of the box via their pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
-called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
-" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and Cho, 2019), " \citep{salazar2020masked}
-
-"PLL’s unsupervised expression of linguistic acceptability without a left-to-right bias, greatly improving on scores from GPT-2 (+10 points on island effects, NPI licensing in BLiMP) " \citep{salazar2020masked}
-% PLLs and their associated pseudo-perplexities (PPPLs)   \citep{salazar2020masked}
-
-"To score a sentence, one creates copies with each token masked out. The log probability for each missing token is summed over copies to give the
-pseudo-log-likelihood score (PLL)." (Figure from \citet{salazar2020masked})
-"given by summing the conditional log probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
-
-PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
-"Log probabilities model the joint distribution; PLL does so as well, albeit implicitly (Appendix B)"  \citep{salazar2020masked}
-% one could use PLL as a “prior” or regularizer for scores given by discriminatively-finetuned BERT models in tasks like passage re-ranking (Nogueira and Cho, 2019) 
-
-" domain shifts can be visibly observed from the positionwise scores log PMLM(wt j Wnt)" \citep{salazar2020masked}
-
-" by learning g(W ) first. They argue \textit{g} expresses \textbf{fluency}; fixing\textit{g} early allows f(W ; X) to focus its capacity on \textbf{adequacy} in encoding the source, and thus specializing the two models. With this perspective in mind, we compare log PLM and PLL as candidates for log g."  \citep{salazar2020masked}
-"In this work we interpret fluency as linguistic acceptability ..  informally, the syntactic and semantic validity of a sentence according to human judgments (Schutze ¨ , 1996)" \citep{salazar2020masked} "Its graded form is well-proxied by neural language model scores (log PLM) once length and lexical frequency
-are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
-
 
 \subsection{Perplexity}\label{sec:issues_with_perplexity}
 
@@ -1794,6 +1763,39 @@ The introduction of the targeted linguistic evaluation of language models, and t
 % "This demonstrates that the considered features are able to model aspects involved in NLM’s perplexity that go beyond the simple length of sentence. This is particularly the case of GPT-2, suggesting that the probability assigned to a sentence by a traditional NLM is more explainable in terms of linguistic phenomena mainly affecting morpho-syntactic and syntactic structure."
 
 % "The study raises several methodological issues, first and foremost in the choice of measures. Perplexity 	seems to be an obvious first choice for a language model, but even when it is normalized by the number of words in the sentence it is sensitive to contrasting effects: longer sentences are more predictable, but recursively embedded sentences are less. Moreover, complex structures increase perplexity more when they are at the beginning of a sentence than at the end (see our discussion of Task C results)." chowdhury2018rnn
+
+\subsection{Surprisal}
+
+% intro discussion on surprisal, taken from ..salazar et al
+% intro to token surprisal spikes analysis, taken from salazar
+% analisis of numerical properties of output (of surprisals/PLL), taken from salazar et al 2020
+
+In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -\log_2 p(w|C)$, " \citep{hu2020systematic}
+Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
+
+
+"evaluate MLMs out of the box via their pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
+called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
+" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and Cho, 2019), " \citep{salazar2020masked}
+
+"PLL’s unsupervised expression of linguistic acceptability without a left-to-right bias, greatly improving on scores from GPT-2 (+10 points on island effects, NPI licensing in BLiMP) " \citep{salazar2020masked}
+% PLLs and their associated pseudo-perplexities (PPPLs)   \citep{salazar2020masked}
+
+"To score a sentence, one creates copies with each token masked out. The log probability for each missing token is summed over copies to give the
+pseudo-log-likelihood score (PLL)." (Figure from \citet{salazar2020masked})
+"given by summing the conditional log probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
+
+PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
+"Log probabilities model the joint distribution; PLL does so as well, albeit implicitly (Appendix B)"  \citep{salazar2020masked}
+% one could use PLL as a “prior” or regularizer for scores given by discriminatively-finetuned BERT models in tasks like passage re-ranking (Nogueira and Cho, 2019) 
+
+" domain shifts can be visibly observed from the positionwise scores log PMLM(wt j Wnt)" \citep{salazar2020masked}
+
+" by learning g(W ) first. They argue \textit{g} expresses \textbf{fluency}; fixing\textit{g} early allows f(W ; X) to focus its capacity on \textbf{adequacy} in encoding the source, and thus specializing the two models. With this perspective in mind, we compare log PLM and PLL as candidates for log g."  \citep{salazar2020masked}
+"In this work we interpret fluency as linguistic acceptability ..  informally, the syntactic and semantic validity of a sentence according to human judgments (Schutze ¨ , 1996)" \citep{salazar2020masked} "Its graded form is well-proxied by neural language model scores (log PLM) once length and lexical frequency
+are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
+
+
 
 \subsection{Pseudo-log-likelihood scores (PLLs)}
 
