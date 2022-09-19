@@ -2507,25 +2507,20 @@ To be more directly comparable with the results in \citet{sprouse2016experimenta
 %we considered a model (like a GP2-2 instance) with a particular sentence acceptability approximation (LP or PenLP) as the equivalent of a human subject, normalizing in the same scale all its scores across the four wh-dependency island effects phenomena of a particular test suite.
 
 
-
-
-
-
 \section{Tested models}
 
-All the four models tested have the same numer of parameters (about 110M).
+All the four Italian models tested have the same numer of parameters (about 110M) They include one unidirectional language model, GePpeTto \citep{de2020geppetto}, based on the GPT-2 architecture \citep{radford2018improving}; and three bidirectional language models based on the BERT architecture \citep{devlin2018bert}.
 % very by number of steps; by corpus size; and the type/quality of data ..
 
-\textbf{GePpeTto} (LorenzoDeMattei/GePpeTto): % foot note for link, ref for paper
-trained on a 13.8GB corpus, which correspond to about \textbf{2.2B tokens}, from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers, hidden layer size 768, 12-heads, for a total 117M parameters. The vocabulary size is 30k. % It was trained for 620k steps.
+GePpeTto\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto} is a cased model trained on a 13.8GB Italian corpus, which correspond to about \textbf{2.2B tokens}, from Wikipedia and ItWac corpus. The model’s size corresponds to GPT-2 small, with 12 layers, a hidden layer size of 768 units, and 12 attention heads, for a total of 117M parameters. The vocabulary size is 30k. % It was trained for 620k steps.
 % GPT-2 Architecture - GePpeTto Wikipedia + ItWAC (14GB)
-12-layer, 
+
 % 2B tokens, while the xxl-cased version was trained on 13B tokens
-\textbf{BERT} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): BERT-base cased model trained on a 13GB corpus, corresponding to \textbf{2B tokens}, from a Wikipedia dump, and the OPUS corpus. Model size: 12-layer, 768-hidden, 12-heads, and a total of 109M parameters. %  training with an initial sequence length of 512 subwords for ~2-3M steps.
+BERT\footnote{https://huggingface.co/dbmdz/bert-base-italian-cased}): a BERT-base cased model trained on a 13GB Italian corpus, corresponding to \textbf{2B tokens}, from a Wikipedia dump, and the OPUS corpus. The model s composed of 12-layer, with a hidden layer size of 768 units, 12-heads, and a total of 109M parameters. %  training with an initial sequence length of 512 subwords for ~2-3M steps.
 
-\textbf{BERT XXL} (https://huggingface.co/dbmdz/bert-base-italian-xxl-cased): BERT-base cased model trained on a 81GB corpus, corresponding to \textbf{13B tokens}, from a Wikipedia dump, and the OPUS and OSCAR corpora. Same model size as the BERT model above. 
+BERT XXL \footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased}: it has the same architecture of the above BERT model, but it was trained on a 81GB corpus, corresponding to \textbf{13B tokens}, with included the OSCAR corpus, in addition to the same Wikipedia dump and OPUS corpus used for the above BERT model.
 
-\textbf{GilBERTo} (https://huggingface.co/idb-ita/gilberto-uncased-from-camembert): uncased model trained on \textbf{~71GB} of Italian text (11.2 billion tokens) from the OSCAR corpus. The vocabulary size is 32k. It uses the RoBERTa base architecture \citep{liu2019roberta} with a model size of: 12-layer, 768-hidden, 12-heads, a vocabulary of 32k subword units, and a total of about 110M parameters. % trained with the subword masking technique for 100k steps 
+GilBERTo \footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}: an uncased model trained on 71GB of Italian text (\textbf{11.2B} tokens) from the OSCAR corpus. It uses the RoBERTa base architecture \citep{liu2019roberta} with a model size of: 12-layer, 768-hidden, 12-heads, a vocabulary of 32k sub-word units, and a total of about 110M parameters. % trained with the subword masking technique for 100k steps 
 
 % note that gilberto outperforms BERT despite using less training tokens (11B vs 13B), but diff in number of parameters?
 % geppetto competitive despite using far less data (13.8 GB or 2.2B tokens)
