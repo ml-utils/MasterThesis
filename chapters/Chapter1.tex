@@ -2462,6 +2462,16 @@ We used these two scores as a relative estimate of sentence acceptability, for t
 % todo: compare accuracy percentage by DD scores.. with sprouse results on human, to see if the island types with the strongest DD also have the strongest accuracy (but it makes no sense, we can already compare the DD scores on the same datasets.. although the plots are on averages, while the accuracies might tell a different story)
 
 
+%\section{Measures}
+%\subsubsection{Scores normalization}
+
+To be more directly comparable with the results in \citet{sprouse2016experimental}, the scores (LP or PenLP) were then discretized into a 7-point likert scale (using bins rather than quantiles) and normalized into z-scores. Since for humans the likert scale discretization and the z-score normalization were done normalizing all the score of each individual separately, normalized to the same scale all the scores of each model across the four wh-dependency island effects phenomena of a particular test suite.
+
+%we considered a model (like a GP2-2 instance) with a particular sentence acceptability approximation (LP or PenLP) as the equivalent of a human subject, normalizing in the same scale all its scores across the four wh-dependency island effects phenomena of a particular test suite.
+
+
+
+
 
 
 \section{Tested models}
@@ -2484,16 +2494,6 @@ trained on a 13.8GB corpus, which correspond to about \textbf{2.2B tokens}, from
 % geppetto competitive despite using far less data (13.8 GB or 2.2B tokens)
 % test on add dbmdz/bert-base-italian-cased (trained on 2B tokens, while the xxl-cased version was trained on 13B tokens). To make the point on how much data needed, and showing if going from 2B to 13B is needed even for syntax.
 % so this gives a more direct comparison with geppetto..
-
-\section{Measures}
-\subsubsection{Scores normalization}
-
-To be more directly comparable with the results in \citet{sprouse2016experimental}, the scores (LP or PenLP) were then discretized into a 7-point likert scale (using bins rather than quantiles) and normalized into z-scores.
-
-Since for humans the likert scale discretization and the z-score normalization were done normalizing all the score of each individual separately, we considered a model (like a Gpt-2 instance) with a particular sentence acceptability approximation (LP or PenLP) as the equivalent of a human subject, normalizing in the same scale all its scores across the four wh-dependency island effects phenomena of a particular test suite.
-
-
-
 
 
 \chapter{Results}
