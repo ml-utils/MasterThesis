@@ -2693,6 +2693,12 @@ are subject islands items better controlled for confounds/more balanced/minimal?
 what does the token spikes analysis says?
 correlation between accuracy scores and token spikes (but BERT only..)
 
+in particular, explain the following observations:
+
+for adjunct islands, why the 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo?
+for subject islands, the progressive increase in accuracy, more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
+for complex NP islands, the slight increase in performance (from 96 to 98 to 100) correlated with amount of training data
+also for whether islands, the slight increase in performance, from 96 to 100. Performance seem to reache 100 somewhere bewttn 2B and 11B tokens.
 
 
 % (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
