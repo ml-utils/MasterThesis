@@ -2697,6 +2697,7 @@ in particular, explain the following observations:
 
 for adjunct islands, why the 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo?
 
+todo: series of token surprisals plots comparing directly BERT and BERT XXL
 
 
 for subject islands, the progressive increase in accuracy, more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
@@ -2900,6 +2901,39 @@ Although it's between different languages (English and Italian), the scores on \
 %tokenizer.backend_tokenizer.pre_tokenizer.pre_tokenize_str("Hello, how are  you?")
 %[('Hello', (0, 5)), (',', (5, 6)), ('how', (7, 10)), ('are', (11, 14)), ('you', (16, 19)), ('?', (19, 20))]
 %\end{lstlisting}
+
+\section{Token surprisal analysis}
+In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adjunct_item_188_surprisals}, \ref{fig:md_gilberto_adjunct_item_185_surprisals} we can see token surprisals plots from BERT, BERT XXL, and GilBERTo on an adjunct island item. 
+
+% Chi dice che la camera boccerà l'emendamento?
+% Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_adjunct_islands_item_188.png
+% Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png
+% Madeddu_dbmdz_bert-base-italian-cased_wh_adjunct_islands_item_145.png
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_adjunct_islands_item_145.png} 
+	\caption{Token surprisal an adjunct island item, as scored by the Italian BERT.} 
+	\label{fig:md_bert2b_adjunct_item_145_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_adjunct_islands_item_188.png} 
+	\caption{Token surprisal an adjunct island item, as scored by the Italian BERT XXL.} 
+	\label{fig:md_bertxxl_adjunct_item_188_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png} 
+	\caption{Token surprisal an adjunct island item, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_adjunct_item_185_surprisals} 
+	\medskip
+\end{figure}
+
 
 \section{Qualitative analysis}
 
