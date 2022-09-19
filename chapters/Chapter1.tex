@@ -1641,11 +1641,7 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 % intro to token surprisal spikes analysis, taken from salazar
 % analisis of numerical properties of output (of surprisals/PLL), taken from salazar et al 2020
 
-%In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -\log_2 p(w|C)$, " \citep{hu2020systematic}
-%Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
 
-
-%"evaluate MLMs out of the box via their pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
 %called ..LP by \citep{lau2020furiously} and .. by prev study .. (2016)
 %" pseudo-loglikelihood scores (PLLs) from MLMs (Wang and Cho, 2019), " \citep{salazar2020masked}
 
@@ -1656,34 +1652,35 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 %pseudo-log-likelihood score (PLL)." (Figure from \citet{salazar2020masked})
 %"given by summing the conditional log probabilities log PMLM(wt j Wnt) of each sentence token (Shin et al., 2019). These are induced in BERT by replacing wt with [MASK]" \citep{salazar2020masked}
 
-PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
-"Log probabilities model the joint distribution; PLL does so as well, albeit implicitly (Appendix B)"  \citep{salazar2020masked}
+%PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
+%"Log probabilities model the joint distribution; PLL does so as well, albeit implicitly (Appendix B)"  \citep{salazar2020masked}
 % one could use PLL as a “prior” or regularizer for scores given by discriminatively-finetuned BERT models in tasks like passage re-ranking (Nogueira and Cho, 2019) 
 
-" domain shifts can be visibly observed from the positionwise scores log PMLM(wt j Wnt)" \citep{salazar2020masked}
+%" domain shifts can be visibly observed from the positionwise scores log PMLM(wt j Wnt)" \citep{salazar2020masked}
 
 " by learning g(W ) first. They argue \textit{g} expresses \textbf{fluency}; fixing\textit{g} early allows f(W ; X) to focus its capacity on \textbf{adequacy} in encoding the source, and thus specializing the two models. With this perspective in mind, we compare log PLM and PLL as candidates for log g."  \citep{salazar2020masked}
 "In this work we interpret fluency as linguistic acceptability ..  informally, the syntactic and semantic validity of a sentence according to human judgments (Schutze ¨ , 1996)" \citep{salazar2020masked} "Its graded form is well-proxied by neural language model scores (log PLM) once length and lexical frequency
 are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 
-\subsection{Traditional unidirectional language models (Gpt2)}
+\subsection{Sentence probabilities from unidirectional and bidirectional language models}
 
 % Traditional LM can "produce sentence probabilities (density estimation) " \citep{salazar2020masked}
 
 % todo: definition of token, distinction from words
 % todo: definition/mention of tokenizations, and subword units
 
-Conventional language models, like LSTM, TDLM, and GPT2, are unidirectional, they predict the probability of a token using only past tokens
+Conventional language models, like those based on long-short term memory units (LSTM), and GPT-2 \citep{radford2019language}, are unidirectional, they predict the probability of a token using only the previous tokens preceeding it. This allows to estimate the log probability for a sentence $W$ via the chain rule, by summing the log probabilities of each token $w_t$ in the sentence conditioned by the previous tokens \citep{salazar2020masked, lau2020furiously, bengio2003neural}: \\
+\begin{displaymath}
+	\log P_{uniLM}(W) = \sum_{t=1}^{|W|} \log P_{uniLM}(w_t | W_{<t})
+\end{displaymath}
+
 % "conventional language models (LMs) predict wt using only past tokens W<t := (w1; : : : ; wt-1)." 
-"the input [to GPT2] is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and fed to multiple layers of ‘‘transformer blocks’’ before the target word is predicted" ""Much of its power resides in these transformer blocks" \citep{lau2020furiously}
+%"the input [to GPT2] is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and fed to multiple layers of ‘‘transformer blocks’’ before the target word is predicted" ""Much of its power resides in these transformer blocks" \citep{lau2020furiously}
 
-
-The unidirectionality of conventional LMs allows to estimate log probabilities for a sentence W via the chain rule \citep{salazar2020masked} \\
-$log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$" 
 % "which can be used out of the box to rescore hypotheses in end-to-end speech recognition and machine translation (Chan et al., 2016; Gulcehre et al., 2015), and to evaluate sentences for linguistic acceptability (Lau et al., 2017)."  \citep{salazar2020masked}
 
-"Given a unidirectional language model, we can infer the probability of a sentence by multiplying the estimated probabilities of each token using previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020furiously, bengio2003neural} 
+%"Given a unidirectional language model, we can infer the probability of a sentence by multiplying the estimated probabilities of each token using previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020furiously, bengio2003neural} 
 % →P (s) = |s| Y i =0 P(wi|w<i)
 % "where s is the sentence, and wi a token in s. LSTM, TDLM, and GPT2 are unidirectional models, so they all compute sentence probability as described" \citep{lau2020furiously}
 
@@ -1791,9 +1788,34 @@ $log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
 
 % "Overview of BERT Architecture. Fundamentally, BERT is a stack of Transformer encoder layers (Vaswani et al., 2017) that consist of multiple self-attention ‘‘heads’’ (..) " \citep{rogers2020primer}
 
-"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
+%"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
 
-"The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
+On the other hand, BERT \citep{devlin2018bert} is a bidirectional language model, that it's trained to predict the probability of a token given both the tokens preceding and following it in a sequence. The ability to see both left and right contexts is one of the strengths of BERT over models GPT-2, however, this makes it harder to obtain sentence probabilities from its output. An alternative approach that has been proposed, is to estimate a sentence probability by masking one token at a time and summing up the resulting log probabilities of each one, conditioned on the other tokens \citep{salazar2020masked, lau2020furiously}. The resulting measure is not a true probability (the probabilities of all the possible sentences don't sum up to 1), but a pseudo-log-likelihood score (PLL):
+
+\begin{displaymath}
+	PLL_{biLM}(W) = \sum_{t=1}^{|W|} \log P_{uniLM}(w_t | W_{\setminus t})
+\end{displaymath}
+
+This is equivalent to summing up the \textit{surprisal} of each individual token in the sentence. Surprisal is the negative log probability of a word given its context, and intuitively is a measure of how surprising that word is in that context. Surprisal is a well-established measure to predict human incremental processing difficulty, measuring for instance phenomena like garden-path disambiguation effects  \citep{hu2020systematic}.
+
+\begin{displaymath}
+	S(w|C) = -\log_2 P(w|C)
+\end{displaymath}
+
+Where $S(w|C)$ is the surprisal of the word $w$ given its context $C$.
+
+%\citet{lau2020furiously} formula for BERT sentence acceptability:
+%"It is important to note, however, that sentence probability computed this way is not a true probability value: These probabilities do not sum to 1.0 over all sentences. Equation (1), in contrast, does guarantee true probabilities" \citep{lau2020furiously}
+
+%In probabilistic language models, garden-path disambiguation effects "are well captured by word negative log probabilities, or \textbf{SURPRISALS} (Hale, 2001): $S(w|C) = -\log_2 p(w|C)$, " \citep{hu2020systematic}
+%Surprisals "are independently well-established to predict human incremental processing difficulty over several orders of magnitude in word probability (Smith and Levy, 2013). " \citep{hu2020systematic}
+
+%"evaluate MLMs out of the box via their pseudo-log-likelihood scores (PLLs)," \citep{salazar2020masked}
+
+% The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are: (..)
+% "pseudo-log-likelihood scores (PLLs)" "are computed by masking tokens one by one" and summing up the resulting log probabilities of each masked token \citep{salazar2020masked, lau2020furiously}
+
+%"The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
 
 
 % "MLMs model all pairwise interactions $w_s$ and $w_{s'}$ via dot product attention" "conditioned on past and future context" \citep{salazar2020masked}
@@ -1802,11 +1824,11 @@ $log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
 % On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
 
 
-"BERT’s MLM objective can be viewed as stochastic maximum pseudolikelihood estimation (MPLE) \citet{wang2019bert}(Besag, 1975) on a training set  .. " \citep{salazar2020masked}
-"In this way, MLMs learn an underlying joint distribution whose conditional distributions 
-$w_t | W_{\setminus t}$ 
-are modeled by masking at position $t$."  \citep{salazar2020masked}
-% We include a further discussion in Appendix B" \citep{salazar2020masked}
+%"BERT’s MLM objective can be viewed as stochastic maximum pseudolikelihood estimation (MPLE) \citet{wang2019bert}(Besag, 1975) on a training set  .. " \citep{salazar2020masked}
+%"In this way, MLMs learn an underlying joint distribution whose conditional distributions 
+%$w_t | W_{\setminus t}$ 
+%are modeled by masking at position $t$."  \citep{salazar2020masked}
+%% We include a further discussion in Appendix B" \citep{salazar2020masked}
 
 
 
@@ -1814,29 +1836,12 @@ are modeled by masking at position $t$."  \citep{salazar2020masked}
 
 \subsection{Pseudo-log-likelihood scores (PLLs)}
 
-The Formula for the sentence acceptability estimates \( LP, PenLP \) from \citet{lau2020furiously} are: (..)
-
-"pseudo-log-likelihood scores (PLLs)" "are computed by masking tokens one by one" and summing up the resulting log probabilities of each masked token \citep{salazar2020masked}
 % (link with \citet{lau2020furiously} article, and the prev one for circa 2016, that use this same score/formula, but with different names?)
 
 
+\citet{salazar2020masked} compared the numerical properties of the sentence log probabilities obtained from GPT-2, and the PLL scores obtainaed from BERT, and found that PLL, and found that PLL’s summands (the token surprisals) are more uniform across an utterance’s length, while GPT-2 displays a left-to-right bias, with high surprisal values at the beginning of the sentence, which decrease as the model sees the rest of the sentence tokens. This is due to the fact that, in a unidirectional language models, at the beginning of a sentence only a few tokens have been seen, therefore it's very hard to predict the following tokens, which therefore tend to have high surprisals. Therefore plots showing the surprisals of each token from a BERT model tend to be "flat" (with all values oscillating approximately within the same range), while GPT-2 models display a descending curve.
 
-"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-to-right bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
-
-
-\citet{lau2020furiously} formula for BERT sentence acceptability:
-"It is important to note, however, that sentence probability computed this way is not a true probability value: These probabilities do not sum to 1.0 over all sentences. Equation (1), in contrast, does guarantee true probabilities" \citep{lau2020furiously}
-% (do they really guarantee true probabilities, summing up to 1.0 over all sentences?)
-On BERT formula:
-"Intuitively, the sentence probability computed with this bidirectional formulation is a measure of the model’s confidence in the likelihood of the sentence"\citep{lau2020furiously}
-"To compute the true probability, Wang and Cho (2019) show that we need to sum the pre-softmax weights for each token to score a
-sentence, and then divide the score by the total
-score of all sentences. As it is impractical to
-compute the total score of all sentences (an
-infinite set), the true sentence probabilities for
-these bidirectional models are intractable. We use
-our non-normalized confidence scores as stand-ins
-for these probabilities."\citep{lau2020furiously}
+This descending curve in the per token surprisals in unigram LMs is intrinsic to the fact of being able to see only the left context of a token, and tends to hide the spikes in surprisals of individual tokens due for instance in ungrammaticality. For this reason, the per token surprisals of bidirectional models like BERT, help to differentiate fluency from likeliness  \citep{salazar2020masked}.
 
 "Sentence probability (estimated either using
 unidirectional or bidirectional context) is affected
@@ -1844,49 +1849,66 @@ by its length (e.g., longer sentences have lower
 probabilities), and word frequency (e.g., the cat is
 big vs. the yak is big)" \citep{lau2020furiously}
 
+%the results of the overlapping of two phenomena, the li
+%"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-to-right bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
+
+
+
+% (do they really guarantee true probabilities, summing up to 1.0 over all sentences?)
+%On BERT formula:
+%"Intuitively, the sentence probability computed with this bidirectional formulation is a measure of the model’s confidence in the likelihood of the  sentence"\citep{lau2020furiously} "To compute the true probability, Wang and Cho (2019) show that we need to sum the pre-softmax weights for each token to score a sentence, and then divide the score by the total score of all sentences. As it is impractical to compute the total score of all sentences (an
+%infinite set), the true sentence probabilities for these bidirectional models are intractable." 
+%"We use our non-normalized confidence scores as stand-ins for these probabilities."\citep{lau2020furiously}
+
+
+
 %(normalizing by dividing the sentence probability given by a unigram language model) - log P(S) / log P_u(S)   \citep{lau2020furiously}
 
 %\subsubsection{Softmax, logistic function, and other activation functions applied to the models' output}
 % \label{sec:softmax}
-We calculated the LP and PenLP measures taking as a basis the models' outputs after the softmax activation function applied to the last layer. 
+%We calculated the LP and PenLP measures taking as a basis the models' outputs after the softmax activation function applied to the last layer. 
 
 % As an alternative, for BERT-based models, we also experimented with using a logistic function rather then the softmax. We called the resulting scores LP-L and PenLP-L to distinguish them from the softmax based ones. Note that with the logistic function, for the masked word prediction scores, we still obtain a value between [0, 1] for each word in the model vocabulary, but this is not a probability since the sum of all the values is greater than one.
 % TODO: consider normalizing so the sum is equal to 1?.
 % see paper by .. , in which, instead of the top k scores, for predictions they use the ..top-p, that is, the top words that in aggregate reach a probability threshold p. NB: the purpose of such measure is for text generation, and it doesn't seem applyable to the present study (sentence scoring).
 
-The formulas for LP and PenLP (taken from \citep{lau2020furiously})are:
+\citet{lau2020furiously} proposed to normalize by sentence length the sentence scores obtained from GPT-2 (LP) and BERT (PLL), by dividing them by a penalty term which depends on the sentence length measured in number of tokens: 
 
-\begin{displaymath}
-	LP = \log P(s)
-\end{displaymath}
 \begin{displaymath}
 	PenLP = \frac{LP}{((5+|s|) \big/ (5+1))^\alpha}
 \end{displaymath}
+% the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked}
 
-Where \( P(s) \) is the probability of the sentence \( s \). The PenLP divides the \( LP \) estimate by a penalty term which depends on the sentence lenght \( |s| \), measured in number of tokens. Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
+Where \( LP \) is the log probability of the sentence \( s \). \citet{lau2020furiously} found better overall across models results with \( \alpha=0.8 \). However, \citet{salazar2020masked} found that dividing by this penalty term is beneficial only for unidirectional models like GPT-2, because it has a dampening effect on the descending curve of the token surprisals discussed above. For bidirectional models like BERT, instead this normalization is detrimental, and the unnormalized PLLs tend to give better estimates of sentence probabilities. With these measures, \citet{salazar2020masked} found that BERT outperforms GPT-2 on the BLiMP benchmark. We found confirmation of this fact in the results of preliminary experiments for this thesis, and for this reason in our comparisons we'll score GPT-2 with PenLP and BERT-based models with the PLL to estimate sentence acceptability.
 
-For BERT-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
-\\ ..
+%"All MLMs spike at the final token of an utterance, before our appended period “.”. Terminal words are difficult to predict in general, " "Otherwise, the averaged cross-entropies are flat." \citet{salazar2020masked}
+%(TODO: insert the 2 figures from salazar et al.)
 
-Numerical properties of PLL
-fixing |W|, flat graph for Bert, descending curve for Gpt  
-"given fixed jWj one expects -log PMLM(wt j Wnt) to be in the same range for
-all t. Meanwhile -log PLM(wt j W<t) decreases as t ! jWj, the rate of which was studied in recurrent language models (Takahashi and Tanaka-Ishii, 2018)." \citet{salazar2020masked}
-"the outsized cost of the unconditional first unigram in Figure 3. "
-% "This also explains why bi-SANLM was more robust than uni-SANLM at shorter and earlier positions (Shin et al., 2019); the difference is intrinsic to log probabilities versus PLLs, and is not due to model or data size" \citet{salazar2020masked}
-% " domain adaptation (Section 3.5) affects PLL’s positionwise cross-entropies. Cased BERT spikes at position 1, as it observes a lowercase word where a capitalized word is expected. "  \citet{salazar2020masked}
-"All MLMs spike at the final token of an utterance, before our appended period “.”. Terminal words are difficult to predict in general, " "Otherwise, the averaged cross-entropies are flat." \citet{salazar2020masked}
-(TODO: insert the 2 figures from salazar et al.)
-
-"averaged cross-entropies are flat.": "This, plus our success on BLiMP, suggest positionwise scores as a way of detecting “disfluencies” (at least, those in the form of domain mismatches) by observing spikes in cross-entropy; "  \citet{salazar2020masked}
-"with log PLM, spikes are confounded by the curve in Figure 3."  \citet{salazar2020masked}
-"In Appendix C, we plot sentence-level PLLs versus jWj and observe linearity as jWj ! 1, with spikes from the last word and lowercase first word smoothing out." "This behavior motivates our choice of $\alpha = 1:0$ when applying the Google NMT-style length penalty (Wu et al., 2016)  to PLLs, which corresponds to the asymptoticallylinear LPMLM = (5 + jWj)=(5 + 1). " \citet{salazar2020masked}
+%"averaged cross-entropies are flat.": "This, plus our success on BLiMP, suggest positionwise scores as a way of detecting “disfluencies” (at least, those in the form of domain mismatches) by observing spikes in cross-entropy; "  \citet{salazar2020masked}
+%"with log PLM, spikes are confounded by the curve in Figure 3."  \citet{salazar2020masked}
+%"In Appendix C, we plot sentence-level PLLs versus jWj and observe linearity as jWj ! 1, with spikes from the last word and lowercase first word smoothing out." "This behavior motivates our choice of $\alpha = 1:0$ when applying the Google NMT-style length penalty (Wu et al., 2016)  to PLLs, which corresponds to the asymptoticallylinear LPMLM = (5 + jWj)=(5 + 1). " \citet{salazar2020masked}
 % "In contrast, autoregressive scores like PLM(W) integrate over the inverse power-law curve in Figure 3. We speculate that this explains the effectiveness of their hyperparameter α = 0:6, widely used in NMT baselines like ours, " \citet{salazar2020masked}
 
-the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked}
 
 
-\section{Controlling for confounds}
+
+% Following \citet{lau2020furiously}, we use \( \alpha=0.8 \).
+
+
+%"the outsized cost of the unconditional first unigram in Figure 3. "
+% "This also explains why bi-SANLM was more robust than uni-SANLM at shorter and earlier positions (Shin et al., 2019); the difference is intrinsic to log probabilities versus PLLs, and is not due to model or data size" \citet{salazar2020masked}
+% " domain adaptation (Section 3.5) affects PLL’s positionwise cross-entropies. Cased BERT spikes at position 1, as it observes a lowercase word where a capitalized word is expected. "  \citet{salazar2020masked}
+
+
+%For BERT-like models, we use the estimate from \citet{lau2020furiously} of the log probability LP of a sentence s. It is estimated by masking each word in s, calculating the probability of the prediction of the masked word, and summing the log of all these probabilities:
+%\\ ..
+
+%Numerical properties of PLL
+%fixing |W|, flat graph for Bert, descending curve for Gpt  
+%"given fixed jWj one expects -log PMLM(wt j Wnt) to be in the same range for
+%all t. Meanwhile -log PLM(wt j W<t) decreases as t ! jWj, the rate of which was studied in recurrent language models (Takahashi and Tanaka-Ishii, 2018)." \citet{salazar2020masked}
+
+%\section{Controlling for confounds}
 
 % "In order to filter out the effect of words which could affect the network performance in ways orthogonal to the structures at issue, we opted to increase the number of sentences to evaluate by building them as sentence schemata, (e.g. (2) for the subject relative Task A), which were expanded automatically to generate all the possible ways of picking one of the expressions within {}. Note that some of the variable were experimental conditions (e.g. the presence of that or who in (2)), others were added just to increase variety at the level of the content lexicon, so as to minimize possible effects of collocations or sentences the network might have encountered in the training phase. The results we present are averaged across all the sentences that express the same experimental condition."  \citep{chowdhury2018rnn}
 
