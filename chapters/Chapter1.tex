@@ -2573,9 +2573,7 @@ For adjunct and complex NP islands, the results show a mixed picture. For adjunc
 
 Complex NP islands, on the other hand, show the opposite picture: it seems to be the GPT-2 architecture to be struggling with them (with a very low 46\% score, which could be considered below chance), while the other models score at 96\% or higher.
 
-We can now try to explain these results with some qualitative analysis, comparing .. plots from humans, .. token spikes.. 
 
-for complex NP islands, GPT-2 ..
 
 % wrong
 % for subjects islands, for which GPT-2 achieves, with 82\%, the lowest accuracy among all the models, we can see that, compared to human subjects, the model struggles to correcly scoring the acceptability embedded-object-island sentence\footnote{the "embedded-object" property is indicated as "short" in the plots}, giving it a too high score compared to the other sentences.
@@ -2676,6 +2674,23 @@ We find that, as in the results for Italian models, the GPT-2 architecture seems
 		\label{tab:accuracy_blimp}
 	\end{center}
 \end{table}
+
+We can now try to explain these results with some qualitative analysis, comparing .. plots from humans, .. token spikes.. 
+In most cases, there is no clear correlation between accuracy scores and plots resemblance to those of humans.  % note that these are average scores.. although error bars are shown, ..; so outliers might influence the average scores, while the accuracies.. are separate for each item.
+
+
+for complex NP islands, GPT-2 .. low performance clearly reflected in the plot, basically no island effect found, while the other models on average are able to separate the acceptability of the different sentences in each item.
+
+for adjunct islands ..seems there is no direct .. correlation between the accuracy scores and the plots. Also for whether islands.
+(looking at the token spikes?)
+
+neither for subject islands there is a clear direct correlation between the models accuracy scores and the similarity of the trends of the lines in the factorial plots between the models and the plots of the human scores. While 
+% the model accuracy scores improve with the amount of training data (GPT-2 and BERT about 80\%, BERT XXL and GilBERTo about 90\%), at the same time their respective plots (fig ..) diverge more and more from those on humans (the two lines, from being clearly separated, start to cross).
+ 
+ 
+ 
+are subject islands items better controlled for confounds/more balanced/minimal?
+what does the token spikes analysis says?
 
 
 
@@ -2878,6 +2893,8 @@ Although it's between different languages (English and Italian), the scores on \
 %\end{lstlisting}
 
 \section{Qualitative analysis}
+
+% We analyzed the per token surprisal from GPT-2 for the items in our testsuite, but didn't find them to be easily interpretable like those from the BERT-based models. The only clear pattern that we could discern from these plots are spikes in surprisal for words split into subword units. Additionally, we did not observe the descending curve in sentence acceptability found by Salazar et al. (2020), nor did we find that the normalization by sentence length improved the accuracy of GPT-2 output. These discrepancies might be due to a difference in methodology. In the appendix, we attach a sample of token surprisal plots from GPT-2 for each of the island types tested.
 
 In this section we compare our results obtained from transformer-based language models with those from human subjects collected by  \citet{sprouse2016experimental}. 
 
@@ -3523,7 +3540,10 @@ italian rc-dependencies, in the case of, introduced only by ..oblique relative p
 
 % (future work: more challenging tests, controlling for frequency effects/more marginal web forms: do the accuracy/island effects captured by the model ..degrade when less common constructs/verb forms are used?)
 
-\section{Future work}
+\section{Follow up experiments and future work}
+
+In future work, we plan to do some follow-up experiments.
+% We want to analyze the plots for GPT-2 per token surpisal as done for the other models\footnote{This will require some more coding that is out of the time constraints for this thesis.}, to explain more clearly and in more detail the outcome of the performance scores. In particular, we want to investigate wy GPT-2 scored so low (46\% accuracy) for complex NP islands. Obtaining the 
 
 
 \chapter{Conclusions}
