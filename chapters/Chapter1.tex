@@ -1331,10 +1331,13 @@ Both \citet{wilcox2018rnn, hu2020systematic} tested only conventional left-to-ri
 \subsection{Grammaticality vs Probability}
 
 % "A language model (LM) defines a probability distribution over sequences of words. "  \citep{marvin2018targeted}
-While linguists are usually concerned with grammaticality or \textit{acceptability} judgments when assessing linguistic expressions, computational language processing has traditionally been more concerned with \textit{likelihood}, i.e. the probability of a sentence being produced or encountered \citep{lau2020furiously}. But the concepts of grammaticality and probability, while related and partially overlapping, do not coincide. In other words, while computational language models learn a probability distribution of word sequences, this does not corresponds exactly to a grammaticality or acceptability judgment \citep{marvin2018targeted}.
+While linguists are usually concerned with grammaticality or \textit{acceptability} judgments when assessing linguistic expressions, computational language processing has traditionally been more concerned with \textit{likelihood}, i.e. the probability of a sentence being produced or encountered \citep{lau2020furiously}. But the concepts of grammaticality and probability, while related and partially overlapping, do not coincide. In principle, a sentence can appear with very low probability but still be grammatically well-formed, such as the known example from generativist linguistics \textit{Colorless green ideas sleep furiously} \citep{hu2020systematic}. In other words, while computational language models learn a probability distribution of word sequences, this does not corresponds exactly to a grammaticality or acceptability judgment \citep{marvin2018targeted}.
+
 There is still no generally accepted method for obtaining binary acceptability predictions from unsupervised language models, and this remains a fundamental research question \citep{lau2020furiously, warstadt2020blimp}\footnote{On a related note, even in the psycholinguistic literature and in theoretical linguistics there is no generally established metric for graded grammaticality judgments \citep{chowdhury2018rnn, cowart1997experimental, sorace2005gradience}.}. % "This is because CoLA is designed for binary acceptability classification, and there is no generally accepted method for obtaining binary acceptability predictions from unsupervised models like LMs.2""2Though see \citet{lau2016grammaticality} for some promising proposals for normalizing LM probabilities to correlate with gradient acceptability" \citep{warstadt2020blimp}	
  %  is to determine how these two concepts are related %computational language models learn a probability distribution of words and expressions. 
 %"The question of whether and how these properties are related is a fundamental one" \citep{lau2020furiously}
+
+
 
 
 The concept of acceptability is broader than that of grammaticality. Grammaticality usually refers to syntactic acceptability (well-formedness), but acceptability in general includes also semantic, pragmatic, and even non-linguistic factors, like sentence length \citep{lau2020furiously}. Additionally, acceptability is usually a graded judgment, while grammaticality is a binary one (a sentence can be either grammatical or not).
@@ -1667,7 +1670,7 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 %"More generally, we can look for a weakened wh-licensing interaction for island vs. non-island positions, which would mean that the network believes a relationship between the wh-licensor and the island gap is less likely"  \citep{wilcox2018rnn}
 %"A positive but nonzero wh-licensing interaction would be in line with human acceptability judgments, which do not always categorically rule out gaps in island positions (Ambridge and Goldberg, 2008), and with human online processing experiments, which have shown that gap expectation is attenuated during processing of areas where gaps cannot occur licitly, but does not always disappear entirely (Stowe, 1986; Traxler and Pickering, 1996; Phillips, 2006). Therefore, in this section we take a significant reduction in the island relative to the non-island case to constitute evidence that the model has ‘learned’ the constraint." \citep{wilcox2018rnn}
 
-\section{Linguistic evaluation measures for language models}
+\section{Metrics for the linguistic evaluation of language models}
 
 % move to appropriate section: "off-the-shelf models."  \citep{hu2020systematic} 
 Various evaluation measures have been explored to approximate grammaticality judgments out of a language model output.
@@ -1729,39 +1732,43 @@ PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
 are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 
-\subsection{Issues with perplexity}\label{sec:issues_with_perplexity}
+\subsection{Perplexity}\label{sec:issues_with_perplexity}
 
-
+Before the introduction of methods for extracting acceptability judgments from neural language models, the primary performance metric for their evaluation was perplexity, which is a broad-coverage metricthat  scores how well, on average, a model predicts a word in its contex, and captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted, hu2020systematic}.  
+% "Neural network architectures are typically evaluated on random samples of naturally occurring sentences, e.g., using perplexity on held-out data in language modeling. Since the majority of natural language sentences are grammatically simple, models can achieve high overall accuracy using flawed heuristics that fail on harder cases. This makes it difficult to distinguish simple but robust sequence models from more expressive architectures" \citep{linzen2016assessing}. %"(Socher, 2014; Grefenstette et al., 2015; Joulin and Mikolov, 2015)"
 % "The majority of NLP work on neural networks evaluates them on their performance in a task such as language modeling or machine translation (Sundermeyer et al., 2012; Bahdanau et al., 2015). These evaluation setups average over many different syntactic constructions, making it difficult to isolate the network’s syntactic capabilities." \citep{linzen2016assessing}
-% "Neural network architectures are typically evaluated on random samples of naturally occurring sentences, e.g., using perplexity on held-out data in language modeling. Since the majority of natural language sentences are grammatically simple, models can achieve high overall accuracy using flawed heuristics that fail on harder cases. This makes it difficult to distinguish simple but robust sequence models from more expressive architectures (Socher, 2014; Grefenstette et al., 2015; Joulin and Mikolov, 2015)" \citep{linzen2016assessing}
+However, perplexity cannot give detailed insight into these models’ knowledge of grammar, as it has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models \citep{marvin2018targeted, hu2020systematic, warstadt2020blimp}. As noted by \citet{marvin2018targeted} "The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions."
+% "In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
+The introduction of the targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, therefore serves also as a supplement to \textbf{perplexity}. Additionally, fine-grained linguistic assessment can provide more challenging evaluations, and it is also a tool that help in the explainability of these models, since the test results from fine-grained linguistic assessment are more interpretable \citep{hu2020systematic}.
 
-The targeted linguistic evaluation of language models, and the minimal pairs paradigm in particular, serve also as a supplement to \textbf{perplexity}, which is the metric that has been previously used to evaluate language models, as it captures how well the probability distribution learned by the model conforms to that of a particular linguistic domain \citep{marvin2018targeted}. However, perplexity has been found to be at least partially dissociable from scores capturing specifically the grammatical skills of language models (see \ref{sec:issues_with_perplexity}) \citep{marvin2018targeted, hu2020systematic}.
 % Minimal pairs approach (since 2016) as a supplement to the Perplexity measure/metric:
 % "We propose to supplement perplexity with a metric that assesses whether the probability distribution defined by the model conforms to the grammar of the language. Following previous work (Lau et al., 2017; Linzen et al., 2016; Gulordava et al., 2018), we suggest that given two sentences that differ minimally from each other, one of which is grammatical and the other which is not, it is desirable for the model to assign a higher probability to the grammatical one" \citep{marvin2018targeted}
 
-Perplexity: 
-"perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
-"the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
+%"perplexity on large benchmark datasets like WikiText-103 (Merity et al., 2016) has remained the primary performance metric, which cannot give detailed insight into these models’ knowledge of grammar." \citep{warstadt2020blimp}
+%"the most widespread currency of evaluation for language models is perplexity-how well, on average, a model predicts a word in its context" \citep{hu2020systematic}
 %"Standard language models are trained to predict the next token given a context of previous tokens. Language models are typically assessed by their perplexity, the inverse geometric mean of the joint probability of words w1; : : : ; wN in a held-out test corpus C:" \citep{hu2020systematic}
 % perplexity has been found to correlate with human gaze duration while reading  \citep{hu2020systematic}
 
 % "Language models are typically evaluated using perplexity: it is considered desirable for an LM to assign a high probability to held-out data from the same corpus as the training data" \citep{marvin2018targeted}
 % Perplexity issues: 
-"In previous work, perplexity and syntactic judgment accuracy have been found to be partly dissociable (Kuncoro et al., 2018; Tran et al., 2018)" \citep{marvin2018targeted}
-\citet{hu2020systematic} found a dissociation between perplexity and syntactic generalization performance.
+
+% \citet{hu2020systematic} found a dissociation between perplexity and syntactic generalization performance.
 % "we find a substantial dissociation between perplexity and SG score." \citep{hu2020systematic}
 %"information-theoretic metrics, such as perplexity, "  \citep{hu2020systematic}
 
 %"This measure conflates multiple sources of success (or failure) in predicting the next word: common collocations, semantics, pragmatics, syntax, and so on." 
-"The quality of the syntactic predictions made by the LM is arguably particularly difficult to measure using perplexity: since most sentences are grammatically simple and most words can be predicted from their local context, perplexity rewards LMs primarily for collocational and semantic predictions." \citep{marvin2018targeted}
+
 
 % (observation: a problem with perplexities is that it mixes knowledge of language with actually studying a domain to be able to predict the content; studiare a memoria il testset)
 
 % (learning language and having good domain adaptability, learning a new domain) (as for adding semantic structure, learning a new domain involves learning patterns in that domain, understanding it; like studying for an exam and drawing diagrams to organize/systematicize the knowledge; some diagrams/patterns/insights are provided by teachers, like in supervised learning.. but a characteristic of human ..intelligence/.. is the ability to infer/find/.. patters/diagrams/.. by oneself) (the ability to perform certain reasoning patterns, that can be used in multiple domains)
 
 
-"a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons. In principle, a sentence can appear with vanishingly low probability but still be grammatically wellformed, such as \textit{Colorless green ideas sleep furiously} (Chomsky, 1957).  "  \citep{hu2020systematic}
-"While perplexity remains an integral part of language model evaluation," "fine-grained linguistic assessment can provide both more challenging and more interpretable tests to evaluate neural models."  \citep{hu2020systematic}
+% "a broad-coverage metric such as perplexity may not be ideal for assessing human-like syntactic knowledge for a variety of reasons." 
+
+
+
+
 
 
 % perplexity correlate with human reading.. processing complexity (cite)
