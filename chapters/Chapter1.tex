@@ -2542,8 +2542,43 @@ Instead, subject islands, at least in the forms captured in our test suite, seem
 
 Another possible explanation for the fact that these models seem to need massive amounts of data to learn subject islands, much more than for other syntactic phenomena, is that this correlates with Italian speakers finding subject islands weaker than other types. Indeed, \citet{sprouse2016experimental} found that subject islands with wh-dependencies are the type of island that scored the lowest (indicating "weaker" island effects) on human Italian subjects (\autoref{fig:sprouse_humans}), and that subject islands with rc-dependencies even showed almost no island effects on human subjects.
 
+For adjunct and complex NP islands, the results show a mixed picture. For adjuncts islands, performance seems to be correlated not with training set size (at least beyond 2B tokens), but with architecture, with GPT-2 outperforming the other models and reaching 98\% despite being  trained on 2.2B tokens.
 
+Complex NP islands, on the other hand, show the opposite picture: it seems to be the GPT-2 architecture to be struggling with them (with a very low 46\% score, which could be considered below chance), while the other models score at 96\% or higher.
 
+% (show table with DD accuracy scorese also on original Sprouse test suite, to show how/if better confounds controlled .. question if results rappresentative with just 8 samples.. if more or less challenging..)
+% accuracy results on Sprouse dataset
+%GPT-2 with LP:
+%DDs_with_lp: 100.00% (wh_whether_island)
+%DDs_with_lp: 50.00% (wh_adjunct_island)
+%DDs_with_lp: 37.50% (wh_complex_np)
+%DDs_with_lp: 87.50% (wh_subject_island)
+%
+%dbmdz/bert-base-italian-cased
+%DDs_with_lp: 100.00% (wh_whether_island)
+%DDs_with_lp: 62.50% (wh_adjunct_island)
+%DDs_with_lp: 100.00% (wh_complex_np)
+%DDs_with_lp: 87.50% (wh_subject_island)
+%
+%dbmdz/bert-base-italian-xxl-cased:
+%DDs_with_lp: 100.00% (wh_whether_island)
+%DDs_with_lp: 75.00% (wh_adjunct_island)
+%DDs_with_lp: 100.00% (wh_complex_np)
+%DDs_with_lp: 100.00% (wh_subject_island)
+%
+%idb-ita/gilberto-uncased-from-camembert:
+%DDs_with_lp: 100.00% (wh_whether_island)
+%DDs_with_lp: 87.50% (wh_adjunct_island)
+%DDs_with_lp: 100.00% (wh_complex_np)
+%DDs_with_lp: 100.00% (wh_subject_island)
+%
+
+% (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
+
+%
+%(confirms that whether islands are the easiest)
+
+% explaining the accuracy results with the plots and token spikes, anticipate here observations
 
 % on controlling confounds, issues we've found ..
 % designing minimal pairs or factorial items that isolate a specific phenomena and control for confounds is a non-trivial and labor intensive task, ..which makes relatively expensive the development of broad covereg targeted linguistic test suites.
