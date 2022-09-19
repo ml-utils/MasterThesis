@@ -1781,16 +1781,14 @@ Conventional language models, like those based on long-short term memory units (
 %
 %"The input is expected to contain raw, unnormalized scores for each class. input has to be a Tensor of size (C)(C) for unbatched input, (minibatch, C)(minibatch,C) "
 
-..
 
-\subsection{Bidirectional language models (BERT)}
 
 
 % "Overview of BERT Architecture. Fundamentally, BERT is a stack of Transformer encoder layers (Vaswani et al., 2017) that consist of multiple self-attention ‘‘heads’’ (..) " \citep{rogers2020primer}
 
 %"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
 
-On the other hand, BERT \citep{devlin2018bert} is a bidirectional language model, that it's trained to predict the probability of a token given both the tokens preceding and following it in a sequence. The ability to see both left and right contexts is one of the strengths of BERT over models GPT-2, however, this makes it harder to obtain sentence probabilities from its output. An alternative approach that has been proposed, is to estimate a sentence probability by masking one token at a time and summing up the resulting log probabilities of each one, conditioned on the other tokens \citep{salazar2020masked, lau2020furiously}. The resulting measure is not a true probability (the probabilities of all the possible sentences don't sum up to 1), but a pseudo-log-likelihood score (PLL):
+On the other hand, BERT \citep{devlin2018bert} is a bidirectional language model, that it's trained to predict the probability of a token given both the tokens preceding and following it in a sequence. The ability to see both left and right contexts is one of the strengths of BERT over models GPT-2, however, this makes it harder to obtain sentence probabilities from its output. An alternative approach that has been proposed, is to estimate a sentence probability by masking one token at a time and summing up the resulting log probabilities of each one, conditioned on the other tokens \citep{salazar2020masked, lau2020furiously}. The resulting measure is not a true probability (the probabilities of all the possible sentences don't sum up to 1), but a \textit{pseudo-log-likelihood} score (PLL):
 
 \begin{displaymath}
 	PLL_{biLM}(W) = \sum_{t=1}^{|W|} \log P_{uniLM}(w_t | W_{\setminus t})
@@ -1834,7 +1832,7 @@ Where $S(w|C)$ is the surprisal of the word $w$ given its context $C$.
 
 % \pagebreak
 
-\subsection{Pseudo-log-likelihood scores (PLLs)}
+%\subsection{Pseudo-log-likelihood scores (PLLs)}
 
 % (link with \citet{lau2020furiously} article, and the prev one for circa 2016, that use this same score/formula, but with different names?)
 
@@ -1843,11 +1841,11 @@ Where $S(w|C)$ is the surprisal of the word $w$ given its context $C$.
 
 This descending curve in the per token surprisals in unigram LMs is intrinsic to the fact of being able to see only the left context of a token, and tends to hide the spikes in surprisals of individual tokens due for instance in ungrammaticality. For this reason, the per token surprisals of bidirectional models like BERT, help to differentiate fluency from likeliness  \citep{salazar2020masked}.
 
-"Sentence probability (estimated either using
-unidirectional or bidirectional context) is affected
-by its length (e.g., longer sentences have lower
-probabilities), and word frequency (e.g., the cat is
-big vs. the yak is big)" \citep{lau2020furiously}
+%"Sentence probability (estimated either using
+%unidirectional or bidirectional context) is affected
+%by its length (e.g., longer sentences have lower
+%probabilities), and word frequency (e.g., the cat is
+%big vs. the yak is big)" \citep{lau2020furiously}
 
 %the results of the overlapping of two phenomena, the li
 %"Unlike log probabilities, PLL’s summands are more uniform across an utterance’s length (no left-to-right bias), helping \textbf{differentiate fluency from likeliness}" \citep{salazar2020masked}
