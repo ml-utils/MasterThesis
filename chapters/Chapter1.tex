@@ -1212,8 +1212,6 @@ As \citet{pearl2013syntactic} explain "translating each of these properties into
 
 
 
-
-
 \chapter{Related work}
 
 The previous works closest to ours are those by \citet{wilcox2018rnn, hu2020systematic, sprouse2016experimental}, which use a factorial test design and assess island effects or filler-gap dependencies, on neural language models in the case of \citet{wilcox2018rnn, hu2020systematic}, and on human subjects in the case of \citet{sprouse2016experimental}
@@ -1520,17 +1518,17 @@ As noted in the original BLiMP paper, the minimal pairs paradigm might not be su
 
 % mention how Wilcox measure island effects: expectations of a gap should be attenuated
 
-\subsubsection{CoLA}
-
-On test suite development:
-"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
-% cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
-"naturalistic approach vs a constructed dataset"
-"syntactically challenging examples are sparsely represented in a corpus" "naturally occurring sentences are difficult to control for confounds" \citep{marvin2018targeted}
-
-Corpora of sentences and their grammaticality. 
-"The most recent and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
-CoLA is included in the GLUE benchmark (Wang et al., 2018)
+%\subsubsection{CoLA}
+%
+%On test suite development:
+%"investigates acceptability judgments in real textual contexts, " \citep{lau2020furiously} 
+%% cite criticism in other papers (marvin and linzen) about the limitation of natural sentences: do not isolate/contrast phenomena, confound, ..sparse, ..
+%"naturalistic approach vs a constructed dataset"
+%"syntactically challenging examples are sparsely represented in a corpus" "naturally occurring sentences are difficult to control for confounds" \citep{marvin2018targeted}
+%
+%Corpora of sentences and their grammaticality. 
+%"The most recent and comprehensive corpus is CoLA (Warstadt et al., 2019b), containing 10k sentences covering a wide variety of linguistic phenomena provided as examples in linguistics papers and books."\citep{warstadt2020blimp}	
+%CoLA is included in the GLUE benchmark (Wang et al., 2018)
 
 %..
 %the meaning of cross entropy (average?)
@@ -1542,16 +1540,16 @@ CoLA is included in the GLUE benchmark (Wang et al., 2018)
 %Trotta et al 2021 Monolingual and Cross-Lingual Acceptability Judgments with the Italian CoLA corpus
 
 %"An additional check was performed to manually control for typos and transcription errors."
-..
 
-\subsubsection{BLiMP}
 
-"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
-challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
-"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less negative) score." \citep{salazar2020masked} 
-% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
-
-\subsubsection{Other test suites (Hu et al, Wilcox et al, ..)}
+%\subsubsection{BLiMP}
+%
+%"the Benchmark of Linguistic Minimal Pairs (BLiMP) \citep{warstadt2020blimp}, a
+%challenge set of 67k pairs which isolate contrasts in syntax, morphology, and semantics"  \citep{salazar2020masked} 
+%"BLiMP provides an unsupervised setting: language models are evaluated on how often they give the acceptable sentence a higher (i.e., less negative) score." \citep{salazar2020masked} 
+%% "This is equivalent to 2-best rescoring without sequence model scores (log f = 0)" \citep{salazar2020masked} 
+%
+%\subsubsection{Other test suites (Hu et al, Wilcox et al, ..)}
 % section "Data set construction"   \citep{marvin2018targeted}
 
 % \citet{marvin2018targeted} "use templates to automatically construct a large number of English sentence pairs (∼350,000)."
@@ -1560,7 +1558,7 @@ challenge set of 67k pairs which isolate contrasts in syntax, morphology, and se
 
 \subsection{Factorial approaches}
 
-Factorial experimental setup can be considered a generalization the minimal pairs approach. A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. 
+A factorial experimental setup can be considered a generalization the minimal pairs approach. A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. 
 
 % ..
 
