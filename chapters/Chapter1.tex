@@ -2575,8 +2575,7 @@ Complex NP islands, on the other hand, show the opposite picture: it seems to be
 
 
 
-% wrong
-% for subjects islands, for which GPT-2 achieves, with 82\%, the lowest accuracy among all the models, we can see that, compared to human subjects, the model struggles to correcly scoring the acceptability embedded-object-island sentence\footnote{the "embedded-object" property is indicated as "short" in the plots}, giving it a too high score compared to the other sentences.
+% wrong: % for subjects islands, for which GPT-2 achieves, with 82\%, the lowest accuracy among all the models, we can see that, compared to human subjects, the model struggles to correcly scoring the acceptability embedded-object-island sentence\footnote{the "embedded-object" property is indicated as "short" in the plots}, giving it a too high score compared to the other sentences.
 
 % (show table with DD accuracy scorese also on original Sprouse test suite, to show how/if better confounds controlled .. question if results rappresentative with just 8 samples.. if more or less challenging..)
 % accuracy results on Sprouse dataset
@@ -2628,27 +2627,16 @@ Complex NP islands, on the other hand, show the opposite picture: it seems to be
 %
 %Looking at performance in individual island types, we can see that whether islands seems to be the easiest one to le
 
+\subsection{Cross-linguistic comparison with BLiMP scores}
 
 For cross-linguistic comparison, we try to reproduce the results on the English BLiMP benchmark reported by \citet{warstadt2020blimp, salazar2020masked} for the three island types it has in common with our test suites: wh-islands, adjuncts, and complex NP islands and we report our results in \autoref{tab:accuracy_blimp}.
 
 Preliminarily, we note that on the BLiMP test suites, it makes no difference whether to use the acceptability score normalization with a penalty on sentence length (which results in the PenLP score defined by \citet{lau2020furiously}), because each minimal pair is controlled to have sentences of exactly the same length. However, the BLiMP minimal pairs paradigm allows only for a narrower definition of island effects, that does not really capture adequately the phenomenon.
 
 We find that, as in the results for Italian models, the GPT-2 architecture seems to be favored in adjunct islands, in which it outperforms by at least 5 percentage points the BERT-based models on the BLiMP test suite ().
-
 % wh-islands might be too different to capture the same phenomenon
 %complex NP ..
 
-%(how much pretraining data and params size for the english models?)
-%GPT-2 Medium is the 355M parameter , vocabulary size of 50,257. 
-%GPT-2-large with 36 layers and 774M parameters
-%GPT2 124M params
-%trained on WebText (webpages linked from Reddit) 40GB , estimate WebText contains about 8B tokens (warstadt)
-
-% BERT base cased original data used to train BERT. (16GB) (3.2B tokens)
-%BERT-Large, Cased (Whole Word Masking): 24-layer, 1024-hidden, 16-heads, 340M parameters
-%BERT-Base, Cased: 12-layer, 768-hidden, 12-heads , 110M parameters
-%roberta-large 	355M params 160GB of text (32B tokens)
-%roberta.base 125 params
 
 \begin{table} 
 	\begin{center}
@@ -2675,66 +2663,20 @@ We find that, as in the results for Italian models, the GPT-2 architecture seems
 	\end{center}
 \end{table}
 
-We can now try to explain these results with some qualitative analysis, comparing .. plots from humans, .. token spikes.. 
-In most cases, there is no clear correlation between accuracy scores and plots resemblance to those of humans.  % note that these are average scores.. although error bars are shown, ..; so outliers might influence the average scores, while the accuracies.. are separate for each item.
+%(how much pretraining data and params size for the english models?)
+%GPT-2 Medium is the 355M parameter , vocabulary size of 50,257. 
+%GPT-2-large with 36 layers and 774M parameters
+%GPT2 124M params
+%trained on WebText (webpages linked from Reddit) 40GB , estimate WebText contains about 8B tokens (warstadt)
+
+% BERT base cased original data used to train BERT. (16GB) (3.2B tokens)
+%BERT-Large, Cased (Whole Word Masking): 24-layer, 1024-hidden, 16-heads, 340M parameters
+%BERT-Base, Cased: 12-layer, 768-hidden, 12-heads , 110M parameters
+%roberta-large 	355M params 160GB of text (32B tokens)
+%roberta.base 125 params
 
 
-for complex NP islands, GPT-2 .. low performance clearly reflected in the plot, basically no island effect found, while the other models on average are able to separate the acceptability of the different sentences in each item.
-
-for adjunct islands ..seems there is no direct .. correlation between the accuracy scores and the plots. Also for whether islands.
-(looking at the token spikes?)
-
-neither for subject islands there is a clear direct correlation between the models accuracy scores and the similarity of the trends of the lines in the factorial plots between the models and the plots of the human scores. While 
-% the model accuracy scores improve with the amount of training data (GPT-2 and BERT about 80\%, BERT XXL and GilBERTo about 90\%), at the same time their respective plots (fig ..) diverge more and more from those on humans (the two lines, from being clearly separated, start to cross).
- 
- 
-are subject islands items better controlled for confounds/more balanced/minimal?
-
-what does the token spikes analysis says?
-correlation between accuracy scores and token spikes (but BERT only..)
-
-in particular, explain the following observations:
-
-for adjunct islands, why the 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo?
-
-todo: series of token surprisals plots comparing directly BERT and BERT XXL
-
-
-for subject islands, the progressive increase in accuracy, more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
-for complex NP islands, the slight increase in performance (from 96 to 98 to 100) correlated with amount of training data
-also for whether islands, the slight increase in performance, from 96 to 100. Performance seem to reache 100 somewhere bewttn 2B and 11B tokens.
-
-
-% (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
-Our results do not confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like GPT-2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
-Salazar observed/found that for GPT-2-like model, the penalty term actually has a dampening effect on the ..
-In the sentence proability score given by GPT-2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surprisals at individual token position.
-
-The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
-
-compare results btw italian bert and gpt.. gpt better by a little (which is surprising, considering that in english bert outperforms gpt instead, ..and by a wide marging.) This might be due to the due in which these models have been trained (discuss the amount and quality of data..)
-
-% todo, follow up experiments:
-% token spikes for the complex np items (problems comparing long island advantaged over long nonisland)
-% editing and scoring sentences for new test, balancing semantic material
-
-% todo: rerun the spike analysis, but sorting the examples by dd score
-% todo: check alpha value and redo score for gpt with PenLP
-% strange very low results, with the dd score, for gilberto.. (problem in using the special tokens?)
-
-
-
-% todo: tests from Sprouse testsuites, in Both English and Italian, to see if they are comparable (use accuracy on DD factorial score )
-
-% \subsection{Comparison with BLiMP results on island effects in English}
-% ..
-
-% The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
-
-
-
-
-\section{Using factorial sentences as minimal pairs}
+\subsection{Using factorial sentences as minimal pairs}
 % \section{Accuracy results for island effects minimal pairs in Italian}
 
 % todo: discuss that this is not really feasible, 
@@ -2768,33 +2710,33 @@ Although it's between different languages (English and Italian), the scores on \
 \begin{table} \scriptsize 
 	\begin{center}
 		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
-			  &  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{2}{c|}{\textbf{BERT (it)}}  & \multicolumn{2}{c|}{\textbf{GilBERTo (it)}} \\
-			 \textbf{Pheno-menon} & \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP & Pen LP \\
+			&  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{2}{c|}{\textbf{BERT (it)}}  & \multicolumn{2}{c|}{\textbf{GilBERTo (it)}} \\
+			\textbf{Pheno-menon} & \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP & Pen LP \\
 			\hline
 			\multirow{3}{0.8cm}{Wh-whether} 
 			& Short-N.I. & 92 & 96 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 
 			& Long-N.I. & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 
 			& Short-I.S. & 64 & 98 & 90 & 96  & \textbf{100} & \textbf{100}  \\ 	
 			
-		  	\hline
+			\hline
 			\multirow{3}{0.8cm}{Wh-adjunct}  
-						& Short-N.I. & \textbf{96} & 92 & 94 & 90 & 90 & 82  \\ 
-					   	& Long-N.I. & \textbf{98} & 86 & 68 & 42 & 76 & 54  \\ 
-		  	 		    & Short-I.S. & 96 & 98 & \textbf{100} & 98 & 96 & 94  \\ 
-		  	\hline
-		  	\multirow{3}{0.8cm}{Wh-complex np} 
-		  				& Short-N.I. & 90 & 92 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 
-		  			  	& Long-N.I. & \textbf{100} & 42 & 96 & 92 & \textbf{100} & 98  \\ 
-		  				& Short-I.S. & 38 & 88 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 		  			 
-		  	\hline
-		  	\multirow{3}{0.8cm}{Wh-subject} 
-		  				& Short-N.I. & \textbf{100} & 94 & 28 & 8 & 68 & 36  \\ 
-					  	& Long-N.I. & \textbf{100} & 98 & 86 & 56 & 98 & 86  \\ 
-		  				& Short-I.S. & 40 & 56 & 62 & 60 & 72 & \textbf{76}  \\ 
-
-		  	\hline
-		  	\textbf{Average} & & 84.5\% & 86.7\% & 85.3\% & 78.5\% & \textbf{91.7\%} & 85.5\%    \\ 	
-		  		  	
+			& Short-N.I. & \textbf{96} & 92 & 94 & 90 & 90 & 82  \\ 
+			& Long-N.I. & \textbf{98} & 86 & 68 & 42 & 76 & 54  \\ 
+			& Short-I.S. & 96 & 98 & \textbf{100} & 98 & 96 & 94  \\ 
+			\hline
+			\multirow{3}{0.8cm}{Wh-complex np} 
+			& Short-N.I. & 90 & 92 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 
+			& Long-N.I. & \textbf{100} & 42 & 96 & 92 & \textbf{100} & 98  \\ 
+			& Short-I.S. & 38 & 88 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}  \\ 		  			 
+			\hline
+			\multirow{3}{0.8cm}{Wh-subject} 
+			& Short-N.I. & \textbf{100} & 94 & 28 & 8 & 68 & 36  \\ 
+			& Long-N.I. & \textbf{100} & 98 & 86 & 56 & 98 & 86  \\ 
+			& Short-I.S. & 40 & 56 & 62 & 60 & 72 & \textbf{76}  \\ 
+			
+			\hline
+			\textbf{Average} & & 84.5\% & 86.7\% & 85.3\% & 78.5\% & \textbf{91.7\%} & 85.5\%    \\ 	
+			
 		\end{tabular}
 		\caption{Accuracy percentages for Gpt-2 and BERT Italian models, on a test suite of 50 items per phenomenon developed for the present thesis. The Gpt2-it model is LorenzoDeMattei/GePpeTto. The BERT-it model is dbmdz/bert-base-italian-xxl-cased. The GilBERTo-it model (an Italian RoBERTa variant) is idb-ita/gilberto-uncased-from-camembert.}
 		\label{tab:accuracy_it_data}
@@ -2806,28 +2748,28 @@ Although it's between different languages (English and Italian), the scores on \
 		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
 			&  & \multicolumn{2}{c|}{\textbf{Gpt2 (it)}} & \multicolumn{4}{c|}{\textbf{BERT (it)}}  & \multicolumn{4}{c|}{\textbf{GilBERTo (it)}} \\
 			\textbf{Pheno-menon} 
-				& \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP-L & Pen LP-L & LP & Pen LP & LP-L & Pen LP-L \\
+			& \textbf{Sentence form} & LP & Pen LP & LP & Pen LP & LP-L & Pen LP-L & LP & Pen LP & LP-L & Pen LP-L \\
 			\hline
 			\multirow{3}{0.8cm}{Wh-adjunct}  
-				& Short-N.I.	& 25  & 75  & \textbf{87.5}	& \textbf{87.5 }	& 75 	& 75  		& 62.5  & \textbf{87.5} & \textbf{87.5} & \textbf{87.5}   	\\ 
-				& Long-N.I.  	& \textbf{75} & \textbf{75} & \textbf{75} & \textbf{75}	& 62.5 	& 62.5 	& 50 & 62.5 & \textbf{75} & \textbf{75} \\ 
-				& Short-I.S.  	& 25  &  50 & \textbf{100} 	& \textbf{100} 	& \textbf{100} 	& \textbf{100} 		& 12.5  & 50   & 50   & 62.5  	\\ 
+			& Short-N.I.	& 25  & 75  & \textbf{87.5}	& \textbf{87.5 }	& 75 	& 75  		& 62.5  & \textbf{87.5} & \textbf{87.5} & \textbf{87.5}   	\\ 
+			& Long-N.I.  	& \textbf{75} & \textbf{75} & \textbf{75} & \textbf{75}	& 62.5 	& 62.5 	& 50 & 62.5 & \textbf{75} & \textbf{75} \\ 
+			& Short-I.S.  	& 25  &  50 & \textbf{100} 	& \textbf{100} 	& \textbf{100} 	& \textbf{100} 		& 12.5  & 50   & 50   & 62.5  	\\ 
 			\hline
 			\multirow{3}{0.8cm}{Wh-complex np} 
-				& Short-N.I. & \textbf{100}  & \textbf{100} & \textbf{100} & \textbf{100}  & \textbf{100}  & \textbf{100}  		& 62.5 & 50   & 75   & 75   \\ 
-				& Long-N.I.  & \textbf{100} & 50 & \textbf{100} & \textbf{100}  & \textbf{100}  & 87.5 	& 87.5 & 37.5 & 12.5 & 12.5 \\ 
-				& Short-I.S.  & 37.5	& 75  	& \textbf{100} & \textbf{100}  & \textbf{100}  & \textbf{100}  		& 62.5 & 87.5 & 87.5 & 87.5 \\ 	  			 
+			& Short-N.I. & \textbf{100}  & \textbf{100} & \textbf{100} & \textbf{100}  & \textbf{100}  & \textbf{100}  		& 62.5 & 50   & 75   & 75   \\ 
+			& Long-N.I.  & \textbf{100} & 50 & \textbf{100} & \textbf{100}  & \textbf{100}  & 87.5 	& 87.5 & 37.5 & 12.5 & 12.5 \\ 
+			& Short-I.S.  & 37.5	& 75  	& \textbf{100} & \textbf{100}  & \textbf{100}  & \textbf{100}  		& 62.5 & 87.5 & 87.5 & 87.5 \\ 	  			 
 			\hline
 			\multirow{3}{0.8cm}{Wh-subject} 
-				& Short-N.I.  & \textbf{100}  & 87.5 	& 62.5 & 12.5 & 37.5 & 37.5 	& 75   & 25   & 12.5 & 0  \\ 
-				& Long-N.I.  & \textbf{100}   & \textbf{100}  	& 87.5 & 87.5 & 87.5 & 87.5 	& 87.5 & 25   & 12.5 & 0  \\  
-				& Short-I.S.  & 37.5 & 37.5 	& 50   & 50   & 50	 & 50  		& 75   & 62.5 & 50   & 50  \\ 
+			& Short-N.I.  & \textbf{100}  & 87.5 	& 62.5 & 12.5 & 37.5 & 37.5 	& 75   & 25   & 12.5 & 0  \\ 
+			& Long-N.I.  & \textbf{100}   & \textbf{100}  	& 87.5 & 87.5 & 87.5 & 87.5 	& 87.5 & 25   & 12.5 & 0  \\  
+			& Short-I.S.  & 37.5 & 37.5 	& 50   & 50   & 50	 & 50  		& 75   & 62.5 & 50   & 50  \\ 
 			\hline
 			\multirow{3}{0.8cm}{Wh-whether} 
-				& Short-N.I.  & 87.5 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} \\ 
-				& Long-N.I.   & \textbf{100}  & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 87.5 & 87.5  \\ 
-				& Short-I.S.  & 62.5 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}	& 25  & 62.5 & \textbf{100}  & \textbf{100} \\ 
-		  	\hline
+			& Short-N.I.  & 87.5 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} \\ 
+			& Long-N.I.   & \textbf{100}  & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & 87.5 & 87.5  \\ 
+			& Short-I.S.  & 62.5 & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100} & \textbf{100}	& 25  & 62.5 & \textbf{100}  & \textbf{100} \\ 
+			\hline
 			\textbf{Average} & & 70.8\% & 79.2\% & \textbf{88.5\%}  & 84.4\%  & 84.4\% & 83.3\% & 66.7\% & 62.5\% & 62.5\% & 61.5\% \\ 	
 			
 		\end{tabular}
@@ -2902,7 +2844,75 @@ Although it's between different languages (English and Italian), the scores on \
 %[('Hello', (0, 5)), (',', (5, 6)), ('how', (7, 10)), ('are', (11, 14)), ('you', (16, 19)), ('?', (19, 20))]
 %\end{lstlisting}
 
-\section{Token surprisal analysis}
+
+
+\section{Qualitative analysis}
+
+% We analyzed the per token surprisal from GPT-2 for the items in our testsuite, but didn't find them to be easily interpretable like those from the BERT-based models. The only clear pattern that we could discern from these plots are spikes in surprisal for words split into subword units. Additionally, we did not observe the descending curve in sentence acceptability found by Salazar et al. (2020), nor did we find that the normalization by sentence length improved the accuracy of GPT-2 output. These discrepancies might be due to a difference in methodology. In the appendix, we attach a sample of token surprisal plots from GPT-2 for each of the island types tested.
+
+In this section we compare our results obtained from transformer-based language models with those from human subjects collected by  \citet{sprouse2016experimental}. 
+
+
+
+We can now try to explain the results in \autoref{tab:accuracy_DD_it_data} with some qualitative analysis, comparing .. plots from humans, .. token spikes.. 
+In most cases, there is no clear correlation between accuracy scores and plots resemblance to those of humans.  % note that these are average scores.. although error bars are shown, ..; so outliers might influence the average scores, while the accuracies.. are separate for each item.
+
+
+for complex NP islands, GPT-2 .. low performance clearly reflected in the plot, basically no island effect found, while the other models on average are able to separate the acceptability of the different sentences in each item.
+
+for adjunct islands ..seems there is no direct .. correlation between the accuracy scores and the plots. Also for whether islands.
+(looking at the token spikes?)
+
+neither for subject islands there is a clear direct correlation between the models accuracy scores and the similarity of the trends of the lines in the factorial plots between the models and the plots of the human scores. While 
+% the model accuracy scores improve with the amount of training data (GPT-2 and BERT about 80\%, BERT XXL and GilBERTo about 90\%), at the same time their respective plots (fig ..) diverge more and more from those on humans (the two lines, from being clearly separated, start to cross).
+
+
+are subject islands items better controlled for confounds/more balanced/minimal?
+
+what does the token spikes analysis says?
+correlation between accuracy scores and token spikes (but BERT only..)
+
+in particular, explain the following observations:
+
+for adjunct islands, why the 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo?
+
+todo: series of token surprisals plots comparing directly BERT and BERT XXL
+
+
+for subject islands, the progressive increase in accuracy, more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
+for complex NP islands, the slight increase in performance (from 96 to 98 to 100) correlated with amount of training data
+also for whether islands, the slight increase in performance, from 96 to 100. Performance seem to reache 100 somewhere bewttn 2B and 11B tokens.
+
+
+% (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
+Our results do not confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like GPT-2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
+Salazar observed/found that for GPT-2-like model, the penalty term actually has a dampening effect on the ..
+In the sentence proability score given by GPT-2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surprisals at individual token position.
+
+The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
+
+compare results btw italian bert and gpt.. gpt better by a little (which is surprising, considering that in english bert outperforms gpt instead, ..and by a wide marging.) This might be due to the due in which these models have been trained (discuss the amount and quality of data..)
+
+% todo, follow up experiments:
+% token spikes for the complex np items (problems comparing long island advantaged over long nonisland)
+% editing and scoring sentences for new test, balancing semantic material
+
+% todo: rerun the spike analysis, but sorting the examples by dd score
+% todo: check alpha value and redo score for gpt with PenLP
+% strange very low results, with the dd score, for gilberto.. (problem in using the special tokens?)
+
+
+
+% todo: tests from Sprouse testsuites, in Both English and Italian, to see if they are comparable (use accuracy on DD factorial score )
+
+% \subsection{Comparison with BLiMP results on island effects in English}
+% ..
+
+% The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
+
+
+
+\subsection{Token surprisal analysis}
 In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adjunct_item_188_surprisals}, \ref{fig:md_gilberto_adjunct_item_185_surprisals} we can see token surprisals plots from BERT, BERT XXL, and GilBERTo on an adjunct island item. We can see that a prevailing factor influencing the models probabilities, and therefore the surprisals and the final sentence acceptability estimates, is how much a model has learned the probabilities of certain collocations. In particular we can see a difference between BERT and BERT XXL, seemingly due to the different amount of data they have been trained with (2B vs 13B tokens). 
 
 
@@ -2930,22 +2940,18 @@ In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adju
 	\medskip
 \end{figure}
 
-In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, n the top sentence, we can see that BERT (the model trained with fewest data), has not learned a strong association between "\textit{emendamento}" ("\textit{emendament}") and "\textit{la camera boccerà}" ("\textit{the lower chanber will reject}"), and for this reason the word gets a surprisal spike highly influences the sentence final score. However, in the third sentence, we can see that the same word ("\textit{emendamento}") does not get the same spike, likely for the presence, far back at the beginning of the sentence, of the word "\textit{legge}" (\textit{law}), for which probably the model already has learned a strong association with "\textit{emendamento}".
+In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, n the top sentence, we can see that BERT (the model trained with fewest data), has not learned a strong association between "\textit{emendamento}" ("\textit{emendament}") and "\textit{la camera boccerà}" ("\textit{the lower chamber will reject}"), and for this reason the word gets a surprisal spike highly influences the sentence final score. However, in the third sentence, we can see that the same word ("\textit{emendamento}") does not get the same spike, likely for the presence, far back at the beginning of the sentence, of the word "\textit{legge}" (\textit{law}), for which probably the model already has learned a strong association with "\textit{emendamento}".
 
 Looking in \autoref{fig:md_bertxxl_adjunct_item_188_surprisals} at the plots for the same sentences from BERT XXL (trained with billions more data), we can see that the spikes in the first sentence for \textit{"camera"} ("\textit{lower chamber}") and  "\textit{emendamento}" ("\textit{emendament}"), have been much lowered compared to the previous model, likely because after 13B tokens of training data BERT has finally learned the association between these two words.
 
-Factors like this can tilt the final factorial scores of an item, affecting its accuracy, and playing as a confound that masks these models responses to the syntactic phenomena we are interested. For these reasons, the sentences in a factorial item should be strictly balanced lexically, ideally having the same words (just in different order, as it is often the case in the BLiMP test suites), or at least have the same semantically full content words, with variations only in functional words. However, this is a non-trivial task, and designing targeted linguistic benchmarks in such a way, and for a comprehensive number of linguistic phenomena it's challenging and potentially very expensive. The approach adopted in works like BLiMP, to automatically generate the items from templates, is not necessarily less demanding, since for more complex phenomena there is also and increase in the the complexity of the templates and of the annotation schema for the selectional preferences of each word in the sampling lexicon such as the one used in BLiMP.
+Factors like this can tilt the final factorial scores of an item, affecting its accuracy, and playing as a confound that masks these models responses to the syntactic phenomena we are interested. For these reasons, the sentences in a factorial item should be strictly balanced lexically, ideally having the same words (just in different order, as it is often the case in the BLiMP test suites), or at least have the same semantically full content words, with variations only in functional words. However, this is a non-trivial task, and designing targeted linguistic benchmarks in such a way, and for a comprehensive number of linguistic phenomena it's challenging and potentially very expensive. The approach adopted in works like BLiMP, to automatically generate the items from templates, is not necessarily less demanding, since for more complex phenomena there is also an increase in the the complexity of the templates and of the annotation schema for the selectional preferences of each word in the sampling lexicon such as the one used in BLiMP.
 
 % Chi dice che la camera boccerà l'emendamento?
 % Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_adjunct_islands_item_188.png
 % Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png
 % Madeddu_dbmdz_bert-base-italian-cased_wh_adjunct_islands_item_145.png
 
-\section{Qualitative analysis}
-
-% We analyzed the per token surprisal from GPT-2 for the items in our testsuite, but didn't find them to be easily interpretable like those from the BERT-based models. The only clear pattern that we could discern from these plots are spikes in surprisal for words split into subword units. Additionally, we did not observe the descending curve in sentence acceptability found by Salazar et al. (2020), nor did we find that the normalization by sentence length improved the accuracy of GPT-2 output. These discrepancies might be due to a difference in methodology. In the appendix, we attach a sample of token surprisal plots from GPT-2 for each of the island types tested.
-
-In this section we compare our results obtained from transformer-based language models with those from human subjects collected by  \citet{sprouse2016experimental}. 
+\subsection{Qualitative analysis (continued)}
 
 In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT (base-xxl version)\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:plots_3_sprouse}-\ref{fig:plots_4_sprouse} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
 
