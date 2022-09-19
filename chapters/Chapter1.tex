@@ -212,7 +212,7 @@ For more complex syntactic phenomena, like Negative Polarity Items (NPIs) or con
 
 
 
-\section{Some details on the architecture of transformer-based language models} % A brief overview on transformer-based language models
+\section{On transformer-based language models} % A brief overview on transformer-based language models
 
 % ?TODO: chapter on ..state of the art / baselines transformer based langugage models ..
 
@@ -291,150 +291,6 @@ Training objective function, cross-entropy loss:
 transformer blocks "Each provides a multi-headed self-attention unit over all input words, allowing it to capture multiple dependencies between words, while avoiding the need for recurrence. With no need to process a sentence in sequence, the model parallelizes more efficiently, and scales in a way that RNNs cannot" \citep{lau2020furiously}
 
 
-\subsection{Traditional unidirectional language models (Gpt2)}
-
-% Traditional LM can "produce sentence probabilities (density estimation) " \citep{salazar2020masked}
-
-% todo: definition of token, distinction from words
-% todo: definition/mention of tokenizations, and subword units
-
-Conventional language models, like LSTM, TDLM, and GPT2, are unidirectional, they predict the probability of a token using only past tokens
-% "conventional language models (LMs) predict wt using only past tokens W<t := (w1; : : : ; wt-1)." 
-"the input [to GPT2] is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and fed to multiple layers of ‘‘transformer blocks’’ before the target word is predicted" ""Much of its power resides in these transformer blocks" \citep{lau2020furiously}
-
-
-The unidirectionality of conventional LMs allows to estimate log probabilities for a sentence W via the chain rule \citep{salazar2020masked} \\
-$log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$" 
-% "which can be used out of the box to rescore hypotheses in end-to-end speech recognition and machine translation (Chan et al., 2016; Gulcehre et al., 2015), and to evaluate sentences for linguistic acceptability (Lau et al., 2017)."  \citep{salazar2020masked}
-
-"Given a unidirectional language model, we can infer the probability of a sentence by multiplying the estimated probabilities of each token using previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020furiously, bengio2003neural} 
-% →P (s) = |s| Y i =0 P(wi|w<i)
-% "where s is the sentence, and wi a token in s. LSTM, TDLM, and GPT2 are unidirectional models, so they all compute sentence probability as described" \citep{lau2020furiously}
-
-% The GPT architecture \citep{radford2018improving} ..
-% TODO: intended meaning of the loss measure, sentence likelihood, contrast with sentence acceptability, .., ungrammatical sentences that are more likely than rarer grammatical ones, ..)
-% (math formulas of Gpt output, activation functions..)
-
-
-% C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
-
-% recap: average cross entropy loss should be how the gpt2 output loss is calculated (add img with Jurafsky figures)
-% ..check with transformers code how it's actually calculated
-% (calls torch CrossEntropyLoss, which "computes the cross entropy loss between input and target")
-
-% gpt forward method:
-
-% https://www.overleaf.com/learn/latex/Code_listing
-%\begin{lstlisting}[language=Python]
-%
-%# modeling_gpt2.py
-%
-%class GPT2Model(GPT2PreTrainedModel):
-%    def __init__(self, config):
-%    	..
-%    def forward(
-%	    self,
-%	    input_ids=None,	
-%	    ..
-%	 ):
-%	 	..
-%	 	return BaseModelOutputWithPastAndCrossAttentions(
-%		 	last_hidden_state=hidden_states,
-%		 	past_key_values=presents,
-%		 	hidden_states=all_hidden_states,
-%		 	attentions=all_self_attentions,
-%		 	cross_attentions=all_cross_attentions,
-%	 	)
-%
-%class GPT2LMHeadModel(GPT2PreTrainedModel):	
-%
-%	def __init__(self, config):
-%		self.transformer = GPT2Model(config)
-%		self.lm_head = nn.Linear(
-%			config.n_embd, 
-%			config.vocab_size, bias=False
-%		)
-%	
-%	def forward(input_ids=None, ..	labels=None, ..):
-%		r"""labels (`torch.LongTensor` of shape 
-%		`(batch_size, sequence_length)`, *optional*):
-%		Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set
-%		`labels = input_ids` Indices are selected in 
-%		`[-100, 0, ..., config.vocab_size]` 
-%		All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
-%		"""
-%		
-%		transformer_outputs = self.transformer(input_ids, ..)
-%		hidden_states = transformer_outputs[0]  # last_hidden_state or hidden_states?
-%		lm_logits = self.lm_head(hidden_states)
-%		shift_logits = lm_logits[..., :-1, :].contiguous()
-%		shift_labels = labels[..., 1:].contiguous()
-%		
-%		loss_fct = CrossEntropyLoss()
-%		loss = loss_fct(
-%			shift_logits.view(-1, shift_logits.size(-1)), 
-%			shift_labels.view(-1)
-%		)
-%	
-%		return CausalLMOutputWithCrossAttentions(
-%			loss=loss,
-%			..
-%		)
-%\end{lstlisting}
-
-% todo, clarify: cross entropy fun takes (input, target), but gpt2 calls it with (logits, labels), which are both the sentence_ids (the ids of the tokens in the sentence)
-
-% pytorch CrossEntropyLoss formula:
-
-%\begin{lstlisting}
-%	
-%class CrossEntropyLoss(_WeightedLoss):
-%	def forward(self, input: Tensor, target: Tensor) -> Tensor:
-%		return F.cross_entropy(input, target, ..)
-%		
-%		lm_logits = self.lm_head(hidden_states)
-%\end{lstlisting}
-%
-%usage:
-%\begin{lstlisting}
-%model_output = model(
-%sentence_ids_in_batch_as_tensor,
-%labels=sentence_ids_in_batch_as_tensor,
-%)
-%loss = model_output.loss
-%\end{lstlisting}
-
-%From the pytorch cross entropy documentation, about the two parameters input and labels:
-%
-%"The input is expected to contain raw, unnormalized scores for each class. input has to be a Tensor of size (C)(C) for unbatched input, (minibatch, C)(minibatch,C) "
-
-..
-
-\subsection{Bidirectional language models (BERT)}
-
-
-% "Overview of BERT Architecture. Fundamentally, BERT is a stack of Transformer encoder layers (Vaswani et al., 2017) that consist of multiple self-attention ‘‘heads’’ (..) " \citep{rogers2020primer}
-
-"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
-
-"The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
-
-
-% "MLMs model all pairwise interactions $w_s$ and $w_{s'}$ via dot product attention" "conditioned on past and future context" \citep{salazar2020masked}
-% PLLs of models like EMLO would have different properties from [BERT] (e.g., their cross-entropies in Figure 4 may be convex instead of flat)  \citep{salazar2020masked}
-
-% On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
-
-
-"BERT’s MLM objective can be viewed as stochastic maximum pseudolikelihood estimation (MPLE) \citet{wang2019bert}(Besag, 1975) on a training set  .. " \citep{salazar2020masked}
-"In this way, MLMs learn an underlying joint distribution whose conditional distributions 
-$w_t | W_{\setminus t}$ 
-are modeled by masking at position $t$."  \citep{salazar2020masked}
-% We include a further discussion in Appendix B" \citep{salazar2020masked}
-
-
-
-% \pagebreak
 
 \chapter{A Brief Introduction to Island Effects}\label{sec:islands_intro}
 
@@ -1811,6 +1667,150 @@ PLL’s summands  are conditional probabilities   \citep{salazar2020masked}
 are accounted for (Lau et al., 2017)."  \citep{salazar2020masked}
 
 
+\subsection{Traditional unidirectional language models (Gpt2)}
+
+% Traditional LM can "produce sentence probabilities (density estimation) " \citep{salazar2020masked}
+
+% todo: definition of token, distinction from words
+% todo: definition/mention of tokenizations, and subword units
+
+Conventional language models, like LSTM, TDLM, and GPT2, are unidirectional, they predict the probability of a token using only past tokens
+% "conventional language models (LMs) predict wt using only past tokens W<t := (w1; : : : ; wt-1)." 
+"the input [to GPT2] is a sequence of previously seen words, which are then mapped to embeddings (along with their positions) and fed to multiple layers of ‘‘transformer blocks’’ before the target word is predicted" ""Much of its power resides in these transformer blocks" \citep{lau2020furiously}
+
+
+The unidirectionality of conventional LMs allows to estimate log probabilities for a sentence W via the chain rule \citep{salazar2020masked} \\
+$log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$" 
+% "which can be used out of the box to rescore hypotheses in end-to-end speech recognition and machine translation (Chan et al., 2016; Gulcehre et al., 2015), and to evaluate sentences for linguistic acceptability (Lau et al., 2017)."  \citep{salazar2020masked}
+
+"Given a unidirectional language model, we can infer the probability of a sentence by multiplying the estimated probabilities of each token using previously seen (left) words as context (Bengio et al., 2003):" \citep{lau2020furiously, bengio2003neural} 
+% →P (s) = |s| Y i =0 P(wi|w<i)
+% "where s is the sentence, and wi a token in s. LSTM, TDLM, and GPT2 are unidirectional models, so they all compute sentence probability as described" \citep{lau2020furiously}
+
+% The GPT architecture \citep{radford2018improving} ..
+% TODO: intended meaning of the loss measure, sentence likelihood, contrast with sentence acceptability, .., ungrammatical sentences that are more likely than rarer grammatical ones, ..)
+% (math formulas of Gpt output, activation functions..)
+
+
+% C’è da aggiungere che la loss del modello gpt (score PenLP), usato come misura di accettabilità, è in realtà una stima globale della ..likelihood della frase (reference for this .. from gpt paper or other paper on ..transformers based language models). Ciò non corrisponde esattamente ad un giudizio di accettabilità/grammaticalità. Infatti, potrebbe darsi il caso, che una frase piuttosto comune (..) ma con un errore (sintattico, semantico, o altro) riceva una ..loss/likelihood maggiore di una frase. grammaticalmente corretta ma “rara”, o meglio, che usa un costrutto ricercato.. (es. ..).
+
+% recap: average cross entropy loss should be how the gpt2 output loss is calculated (add img with Jurafsky figures)
+% ..check with transformers code how it's actually calculated
+% (calls torch CrossEntropyLoss, which "computes the cross entropy loss between input and target")
+
+% gpt forward method:
+
+% https://www.overleaf.com/learn/latex/Code_listing
+%\begin{lstlisting}[language=Python]
+%
+%# modeling_gpt2.py
+%
+%class GPT2Model(GPT2PreTrainedModel):
+%    def __init__(self, config):
+%    	..
+%    def forward(
+%	    self,
+%	    input_ids=None,	
+%	    ..
+%	 ):
+%	 	..
+%	 	return BaseModelOutputWithPastAndCrossAttentions(
+%		 	last_hidden_state=hidden_states,
+%		 	past_key_values=presents,
+%		 	hidden_states=all_hidden_states,
+%		 	attentions=all_self_attentions,
+%		 	cross_attentions=all_cross_attentions,
+%	 	)
+%
+%class GPT2LMHeadModel(GPT2PreTrainedModel):	
+%
+%	def __init__(self, config):
+%		self.transformer = GPT2Model(config)
+%		self.lm_head = nn.Linear(
+%			config.n_embd, 
+%			config.vocab_size, bias=False
+%		)
+%	
+%	def forward(input_ids=None, ..	labels=None, ..):
+%		r"""labels (`torch.LongTensor` of shape 
+%		`(batch_size, sequence_length)`, *optional*):
+%		Labels for language modeling. Note that the labels **are shifted** inside the model, i.e. you can set
+%		`labels = input_ids` Indices are selected in 
+%		`[-100, 0, ..., config.vocab_size]` 
+%		All labels set to `-100` are ignored (masked), the loss is only computed for labels in `[0, ..., config.vocab_size]`
+%		"""
+%		
+%		transformer_outputs = self.transformer(input_ids, ..)
+%		hidden_states = transformer_outputs[0]  # last_hidden_state or hidden_states?
+%		lm_logits = self.lm_head(hidden_states)
+%		shift_logits = lm_logits[..., :-1, :].contiguous()
+%		shift_labels = labels[..., 1:].contiguous()
+%		
+%		loss_fct = CrossEntropyLoss()
+%		loss = loss_fct(
+%			shift_logits.view(-1, shift_logits.size(-1)), 
+%			shift_labels.view(-1)
+%		)
+%	
+%		return CausalLMOutputWithCrossAttentions(
+%			loss=loss,
+%			..
+%		)
+%\end{lstlisting}
+
+% todo, clarify: cross entropy fun takes (input, target), but gpt2 calls it with (logits, labels), which are both the sentence_ids (the ids of the tokens in the sentence)
+
+% pytorch CrossEntropyLoss formula:
+
+%\begin{lstlisting}
+%	
+%class CrossEntropyLoss(_WeightedLoss):
+%	def forward(self, input: Tensor, target: Tensor) -> Tensor:
+%		return F.cross_entropy(input, target, ..)
+%		
+%		lm_logits = self.lm_head(hidden_states)
+%\end{lstlisting}
+%
+%usage:
+%\begin{lstlisting}
+%model_output = model(
+%sentence_ids_in_batch_as_tensor,
+%labels=sentence_ids_in_batch_as_tensor,
+%)
+%loss = model_output.loss
+%\end{lstlisting}
+
+%From the pytorch cross entropy documentation, about the two parameters input and labels:
+%
+%"The input is expected to contain raw, unnormalized scores for each class. input has to be a Tensor of size (C)(C) for unbatched input, (minibatch, C)(minibatch,C) "
+
+..
+
+\subsection{Bidirectional language models (BERT)}
+
+
+% "Overview of BERT Architecture. Fundamentally, BERT is a stack of Transformer encoder layers (Vaswani et al., 2017) that consist of multiple self-attention ‘‘heads’’ (..) " \citep{rogers2020primer}
+
+"BERT (Devlin et al., 2019) and its improvements to natural language understanding have spurred a rapid succession of contextual language representations (Yang et al., 2019; Liu et al., 2019; inter alia) which use larger datasets and more involved training schemes. Their success is attributed to their use of bidirectional context, often via their masked language model (MLM) objectives." \citet{salazar2020masked}
+
+"The self-supervision task used to train BERT is the masked language-modeling  or  cloze  task,  where  one  is  given  a  text  in which  some  of  the  original  words  have  been  replaced  with  a special  mask  symbol.  The  goal  is  to  predict,  for  each  masked position,  the  original  word  that  appeared  in  the  text  (Fig.  3).To perform well on this task, the model needs to leverage the surrounding context to infer what that word could be." \citep{manning2020emergent}
+
+
+% "MLMs model all pairwise interactions $w_s$ and $w_{s'}$ via dot product attention" "conditioned on past and future context" \citep{salazar2020masked}
+% PLLs of models like EMLO would have different properties from [BERT] (e.g., their cross-entropies in Figure 4 may be convex instead of flat)  \citep{salazar2020masked}
+
+% On the use of the Softmax, the logistic function (or possibly a probability measure based on the logistic function, but dividing all values for the total sum)
+
+
+"BERT’s MLM objective can be viewed as stochastic maximum pseudolikelihood estimation (MPLE) \citet{wang2019bert}(Besag, 1975) on a training set  .. " \citep{salazar2020masked}
+"In this way, MLMs learn an underlying joint distribution whose conditional distributions 
+$w_t | W_{\setminus t}$ 
+are modeled by masking at position $t$."  \citep{salazar2020masked}
+% We include a further discussion in Appendix B" \citep{salazar2020masked}
+
+
+
+% \pagebreak
 
 \subsection{Pseudo-log-likelihood scores (PLLs)}
 
