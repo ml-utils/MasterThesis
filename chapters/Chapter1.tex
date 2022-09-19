@@ -2696,6 +2696,9 @@ correlation between accuracy scores and token spikes (but BERT only..)
 in particular, explain the following observations:
 
 for adjunct islands, why the 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo?
+
+
+
 for subject islands, the progressive increase in accuracy, more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
 for complex NP islands, the slight increase in performance (from 96 to 98 to 100) correlated with amount of training data
 also for whether islands, the slight increase in performance, from 96 to 100. Performance seem to reache 100 somewhere bewttn 2B and 11B tokens.
@@ -3005,7 +3008,7 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_whether_island_item_158.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_whether_island_item_158.png} 
 	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by the Italian BERT.} 
 	\label{fig:md_bert_whether_item_158_surprisals} % this internally labels the figure for future referencing.
 	\medskip
@@ -3015,7 +3018,7 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_152.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_152.png} 
 	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by GilBERTo.} 
 	\label{fig:md_gilberto_whether_item_152_surprisals} 
 	\medskip
@@ -3025,7 +3028,7 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
 	\caption{Token surprisal for the four sentences of one of the adjunct island items, as scored by GilBERTo.} 
 	\label{fig:md_gilberto_adjunct_item_195_surprisals} 
 	\medskip
