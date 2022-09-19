@@ -2903,17 +2903,13 @@ Although it's between different languages (English and Italian), the scores on \
 %\end{lstlisting}
 
 \section{Token surprisal analysis}
-In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adjunct_item_188_surprisals}, \ref{fig:md_gilberto_adjunct_item_185_surprisals} we can see token surprisals plots from BERT, BERT XXL, and GilBERTo on an adjunct island item. 
+In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adjunct_item_188_surprisals}, \ref{fig:md_gilberto_adjunct_item_185_surprisals} we can see token surprisals plots from BERT, BERT XXL, and GilBERTo on an adjunct island item. We can see that a prevailing factor influencing the models probabilities, and therefore the surprisals and the final sentence acceptability estimates, is how much a model has learned the probabilities of certain collocations. In particular we can see a difference between BERT and BERT XXL, seemingly due to the different amount of data they have been trained with (2B vs 13B tokens). 
 
-% Chi dice che la camera boccerà l'emendamento?
-% Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_adjunct_islands_item_188.png
-% Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png
-% Madeddu_dbmdz_bert-base-italian-cased_wh_adjunct_islands_item_145.png
 
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_adjunct_islands_item_145.png} 
-	\caption{Token surprisal an adjunct island item, as scored by the Italian BERT.} 
+	\caption{Token surprisal of an adjunct island item, as scored by the Italian BERT.} 
 	\label{fig:md_bert2b_adjunct_item_145_surprisals} 
 	\medskip
 \end{figure}
@@ -2921,7 +2917,7 @@ In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adju
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_adjunct_islands_item_188.png} 
-	\caption{Token surprisal an adjunct island item, as scored by the Italian BERT XXL.} 
+	\caption{Token surprisal of an adjunct island item, as scored by the Italian BERT XXL.} 
 	\label{fig:md_bertxxl_adjunct_item_188_surprisals} 
 	\medskip
 \end{figure}
@@ -2929,11 +2925,21 @@ In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adju
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png} 
-	\caption{Token surprisal an adjunct island item, as scored by GilBERTo.} 
+	\caption{Token surprisal of an adjunct island item, as scored by GilBERTo.} 
 	\label{fig:md_gilberto_adjunct_item_185_surprisals} 
 	\medskip
 \end{figure}
 
+In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, n the top sentence, we can see that BERT (the model trained with fewest data), has not learned a strong association between "\textit{emendamento}" ("\textit{emendament}") and "\textit{la camera boccerà}" ("\textit{the lower chanber will reject}"), and for this reason the word gets a surprisal spike highly influences the sentence final score. However, in the third sentence, we can see that the same word ("\textit{emendamento}") does not get the same spike, likely for the presence, far back at the beginning of the sentence, of the word "\textit{legge}" (\textit{law}), for which probably the model already has learned a strong association with "\textit{emendamento}".
+
+Looking in \autoref{fig:md_bertxxl_adjunct_item_188_surprisals} at the plots for the same sentences from BERT XXL (trained with billions more data), we can see that the spikes in the first sentence for \textit{"camera"} ("\textit{lower chamber}") and  "\textit{emendamento}" ("\textit{emendament}"), have been much lowered compared to the previous model, likely because after 13B tokens of training data BERT has finally learned the association between these two words.
+
+Factors like this can tilt the final factorial scores of an item, affecting its accuracy, and playing as a confound that masks these models responses to the syntactic phenomena we are interested. For these reasons, the sentences in a factorial item should be strictly balanced lexically, ideally having the same words (just in different order, as it is often the case in the BLiMP test suites), or at least have the same semantically full content words, with variations only in functional words. However, this is a non-trivial task, and designing targeted linguistic benchmarks in such a way, and for a comprehensive number of linguistic phenomena it's challenging and potentially very expensive. The approach adopted in works like BLiMP, to automatically generate the items from templates, is not necessarily less demanding, since for more complex phenomena there is also and increase in the the complexity of the templates and of the annotation schema for the selectional preferences of each word in the sampling lexicon such as the one used in BLiMP.
+
+% Chi dice che la camera boccerà l'emendamento?
+% Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_adjunct_islands_item_188.png
+% Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png
+% Madeddu_dbmdz_bert-base-italian-cased_wh_adjunct_islands_item_145.png
 
 \section{Qualitative analysis}
 
