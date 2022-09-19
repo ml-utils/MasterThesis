@@ -2630,9 +2630,27 @@ for complex NP islands, GPT-2 ..
 %
 %Looking at performance in individual island types, we can see that whether islands seems to be the easiest one to le
 
-..\\
+
 For cross-linguistic comparison, we try to reproduce the results on the English BLiMP benchmark reported by \citet{warstadt2020blimp, salazar2020masked} for the three island types it has in common with our test suites: wh-islands, adjuncts, and complex NP islands and we report our results in \autoref{tab:accuracy_blimp}.
-We note that on the BLiMP test suites, it makes no difference whether to use the acceptability score normalization with a penalty on sentence length (which results in the PenLP score defined by \citet{lau2020furiously}), because each minimal pair is controlled to have sentences of exactly the same length. However, the BLiMP minimal pairs paradigm allows only for a narrower definition of island effects, that does not really capture adequately the phenomenon.
+
+Preliminarily, we note that on the BLiMP test suites, it makes no difference whether to use the acceptability score normalization with a penalty on sentence length (which results in the PenLP score defined by \citet{lau2020furiously}), because each minimal pair is controlled to have sentences of exactly the same length. However, the BLiMP minimal pairs paradigm allows only for a narrower definition of island effects, that does not really capture adequately the phenomenon.
+
+We find that, as in the results for Italian models, the GPT-2 architecture seems to be favored in adjunct islands, in which it outperforms by at least 5 percentage points the BERT-based models on the BLiMP test suite ().
+
+% wh-islands might be too different to capture the same phenomenon
+%complex NP ..
+
+%(how much pretraining data and params size for the english models?)
+%GPT-2 Medium is the 355M parameter , vocabulary size of 50,257. 
+%GPT-2-large with 36 layers and 774M parameters
+%GPT2 124M params
+%trained on WebText (webpages linked from Reddit) 40GB , estimate WebText contains about 8B tokens (warstadt)
+
+% BERT base cased original data used to train BERT. (16GB) (3.2B tokens)
+%BERT-Large, Cased (Whole Word Masking): 24-layer, 1024-hidden, 16-heads, 340M parameters
+%BERT-Base, Cased: 12-layer, 768-hidden, 12-heads , 110M parameters
+%roberta-large 	355M params 160GB of text (32B tokens)
+%roberta.base 125 params
 
 \begin{table} 
 	\begin{center}
@@ -2643,10 +2661,10 @@ We note that on the BLiMP test suites, it makes no difference whether to use the
 			Gpt2-large 					& 90.2 			& 72 			& 79.1 \\ 
 			Gpt2-medium 				& \textbf{91.6} & 72.3			& 77.9 \\
 			Gpt2 						& 91.3 			& 68.8 			& 82.2 \\
-			BERT-large-cased 	& 86.3			& 67.4 			& 69.4 \\
 			BERT-base-cased 		& 88.1 			& 56 			& 66.2 \\
-			RoBERTa-large 		& 86.9			& \textbf{82.3}	& \textbf{88.2} \\
+			BERT-large-cased 	& 86.3			& 67.4 			& 69.4 \\
 			RoBERTa-base			& 84.9			& 75.3 			& 76.2 \\   
+			RoBERTa-large 		& 86.9			& \textbf{82.3}	& \textbf{88.2} \\
 			
 		\end{tabular}
 		\caption{Accuracy results on some extraction islands phenomena in the BLiMP English test suite. The score on the first row are taken from the original paper \citet{warstadt2020blimp} 
@@ -2659,7 +2677,7 @@ We note that on the BLiMP test suites, it makes no difference whether to use the
 	\end{center}
 \end{table}
 
-We find that, as in the results for Italian models, the GPT-2 architecture seems to be favoured in adjunct islads, in which it outperforms by at least 5 percentage points the BERT-based models.
+
 
 ..\\
 % (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
