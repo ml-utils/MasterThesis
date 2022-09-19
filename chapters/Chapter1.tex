@@ -2490,7 +2490,7 @@ For bi-directional models, based on BERT, we estimated sentence probabilities us
 % W_{\setminus t}
 
 % normalizing by sentence lenght? as in Lau et al  .. not effective in our case .. numerical properties as in Salazar ..
-% this amounts to a sum of surpraisals .. as we'll discuss in section ..
+% this amounts to a sum of surprisals .. as we'll discuss in section ..
 We used these two scores as a relative estimate of sentence acceptability, for the purpose of comparing similar sentences (varying across controlled conditions) within an item like (\ref{adjunct_island_2_it}).
 
 % ?todo: python code for sentence likelihood/probability scores
@@ -2688,17 +2688,17 @@ neither for subject islands there is a clear direct correlation between the mode
 % the model accuracy scores improve with the amount of training data (GPT-2 and BERT about 80\%, BERT XXL and GilBERTo about 90\%), at the same time their respective plots (fig ..) diverge more and more from those on humans (the two lines, from being clearly separated, start to cross).
  
  
- 
 are subject islands items better controlled for confounds/more balanced/minimal?
+
 what does the token spikes analysis says?
+correlation between accuracy scores and token spikes (but BERT only..)
 
 
 
-..\\
 % (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
-Our results confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like GPT-2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
+Our results do not confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like GPT-2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
 Salazar observed/found that for GPT-2-like model, the penalty term actually has a dampening effect on the ..
-In the sentence proability score given by GPT-2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surpraisals at individual token position.
+In the sentence proability score given by GPT-2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surprisals at individual token position.
 
 The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
 
