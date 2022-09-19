@@ -960,10 +960,10 @@ One aspect that influences the difference in sentence structure of syntactic isl
 
 \section{Factorial experimental setups from psycholinguistic studies}\label{sec:factoria_paradigm}
 
-A factorial design allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
+A factorial experimental setup allows to quantify and tease out the effect of different factors that contribute to a phenomenon, in order to better control confounds \citep{sprouse2016experimental, sprouse2012test}. Compared to a minimal pairs approach to language models assessment, a factorial test design is better suited to assess more complex syntactic phenomena like island effects \citep{warstadt2020blimp}.
 
 % "Each test suite contains a number of ITEMS (typically between 20 and 30), and each item appears in several CONDITIONS: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical knowledge. " \citep{hu2020systematic}
-A common use case is to have the \textsc{items} (the equivalent of the sentence pairs) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
+A common use case is to have \textsc{items} (the equivalent of the sentence pairs in a minimal pairs approach) structured in a 2 × 2 paradigm, with four sentences in total, each across two binary \textsc{properties}. Each sentence exemplifies a \textsc{condition}, which is a particular state of the two properties. For instance, in the case of \citep{wilcox2018rnn} factorial assessment of filler-gap dependencies, the two properties were the presence or absence of a filler, and the presence or absence of a gap. The same approach can be generalized to more complex paradigms, with more than two properties, each having more than two \textsc{levels} (as is the case for binary properties).
 
 
 Consider the item in the following example (\ref{adjunct_island_2_it}), in which condition a. displays a short-distance dependency and no island structure (\textsc{SD/NI}); condition b. displays a long-distance dependency and no island structure (\textsc{LD/NI}); condition c. displays a short-distance dependency and an adjunct island structure (\textsc{SD/IS}); and condition d. displays a long-distance dependency crossing an adjunct island structure (\textsc{LD/IS}). Sentences a-c are supposed to be acceptable, while d is unacceptable because of an island effect:
@@ -1011,43 +1011,6 @@ This factorial score is used by \citet{sprouse2016experimental} to assess island
 The factorial design allows to calculate the effect of the combination of the different properties, by making subtractions between the scores of the sentences of an item, because they differ minimally between each other (only on the basis of the controlled properties). This allows to factor as many confound as possible, even unexpected ones, as long as they are evenly distributed within across the sentences of an item \citep{sprouse2016experimental, hu2020systematic}.
 
 % todo: the senence acceptability estimates
-
-\section{Sentence acceptability estimates}
-
-We assessed uni-directional and bi-directional transformer-based Italian language models. For the uni-directional models (based on GPT-2), we scored sentences using the log probability given as output by the model, which is calculated by multiplying the estimated probabilities of each token $t_i$ of a sentence $s$ using the previously seen left tokens $t_{<i}$ as context\citep{lau2020furiously, bengio2003neural}:
-
-\begin{displaymath}
-	\log P(s) = \sum_{i=0}^{|s|} \log P_{GPT2}(t_i | t_{<i}) 
-\end{displaymath}
-% 	LP = \log P(s)
-% $\log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
-
-For bi-directional models, based on BERT, we estimated sentence probabilities using a pseudo-log-likelihood score (PLL), obtained by summing the conditional log probabilities of each token, using as context the rest of the tokens in the sentence (both left and right), as in \citet{salazar2020masked} and \citet{lau2020furiously}:
-
-\begin{displaymath}
-	PLL(s) =\sum_{i=0}^{|s|} \log P_{BERT}(t_i | t_{<i}, t_{>i}) 
-\end{displaymath}
-% W_{\setminus t}
-
-% normalizing by sentence lenght? as in Lau et al  .. not effective in our case .. numerical properties as in Salazar ..
-% this amounts to a sum of surpraisals .. as we'll discuss in section ..
-We used these two scores as a relative estimate of sentence acceptability, for the purpose of comparing similar sentences (varying across controlled conditions) within an item like (\ref{adjunct_island_2_it}).
-
-% ?todo: python code for sentence likelihood/probability scores
-
-% in method/.. section, mention the fact that we plan to also do a qualitative analysis comparing the plots with those of sprouse.. mention normalization of the scores to a liker scale ..
-% todo: compare accuracy percentage by DD scores.. with sprouse results on human, to see if the island types with the strongest DD also have the strongest accuracy (but it makes no sense, we can already compare the DD scores on the same datasets.. although the plots are on averages, while the accuracies might tell a different story)
-
-
-
-
-
-
-\subsection{Island effects assessment in language models}
-
-(TODO)
-
-% Wilcox, Blimp, ..
 
 
 \section{Draft sections}
@@ -1926,7 +1889,11 @@ the Google NMT-style length penalty (Wu et al., 2016)   \citet{salazar2020masked
 
 
 
+\section{Island effects assessment in language models}
 
+(TODO)
+
+% Wilcox, Blimp, ..
 
 \section{Review of results from previous related work}
 
@@ -2377,6 +2344,39 @@ Preposition stranding is the possibility of having a preposition \textit{strande
 
 % mixed effects models 
 % "we constructed linear mixed effects models with items and participants included as random factors on each of the island types using GAP-POSITION and STRUCTURE as fixed factors. This is comparable to a repeated-measures two-way ANOVA, but with participants and items entering the model simultaneously. We then calculated p-values for the two main effects and the interaction term using likelihood ratio tests. We decided to use linear mixed effects models because of their current popularity among some experimentalists; however, it should be noted that the theoretical appropriateness of treating the items in acceptability judgment experiments as a random effect is far from settled (see Wike and Church 1976 and other articles in that volume). As such, these statistical tests may be overly conservative (i.e., the p-values reported here may be too high)."  \citep{sprouse2016experimental}
+
+\section{Sentence acceptability estimates}
+
+We assessed uni-directional and bi-directional transformer-based Italian language models. For the uni-directional models (based on GPT-2), we scored sentences using the log probability given as output by the model, which is calculated by multiplying the estimated probabilities of each token $t_i$ of a sentence $s$ using the previously seen left tokens $t_{<i}$ as context\citep{lau2020furiously, bengio2003neural}:
+
+\begin{displaymath}
+	\log P(s) = \sum_{i=0}^{|s|} \log P_{GPT2}(t_i | t_{<i}) 
+\end{displaymath}
+% 	LP = \log P(s)
+% $\log P_{LM}(W) = \sum_{t=1}^{|W|} log P_{LM}(w_t | W_{<t}$"
+
+For bi-directional models, based on BERT, we estimated sentence probabilities using a pseudo-log-likelihood score (PLL), obtained by summing the conditional log probabilities of each token, using as context the rest of the tokens in the sentence (both left and right), as in \citet{salazar2020masked} and \citet{lau2020furiously}:
+
+\begin{displaymath}
+	PLL(s) =\sum_{i=0}^{|s|} \log P_{BERT}(t_i | t_{<i}, t_{>i}) 
+\end{displaymath}
+% W_{\setminus t}
+
+% normalizing by sentence lenght? as in Lau et al  .. not effective in our case .. numerical properties as in Salazar ..
+% this amounts to a sum of surpraisals .. as we'll discuss in section ..
+We used these two scores as a relative estimate of sentence acceptability, for the purpose of comparing similar sentences (varying across controlled conditions) within an item like (\ref{adjunct_island_2_it}).
+
+% ?todo: python code for sentence likelihood/probability scores
+
+% in method/.. section, mention the fact that we plan to also do a qualitative analysis comparing the plots with those of sprouse.. mention normalization of the scores to a liker scale ..
+% todo: compare accuracy percentage by DD scores.. with sprouse results on human, to see if the island types with the strongest DD also have the strongest accuracy (but it makes no sense, we can already compare the DD scores on the same datasets.. although the plots are on averages, while the accuracies might tell a different story)
+
+
+
+
+
+
+
 
 
 \section{Tested models}
