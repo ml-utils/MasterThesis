@@ -2536,9 +2536,27 @@ GilBERTo \footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camember
 % .. intro
 In \autoref{tab:accuracy_DD_it_data} we see that the BERT-based models outperform GPT-2 in the overall scores, and this confirms findings in previous work like \citep{salazar2020masked}. GPT-2 is outperformed by BERT even when trained on a similar amount of data (around 2B tokens), with a difference of over 5 points in accuracy (from 81.5\% to 86.5\%), which increases (although with diminishing returns) in models trained on larger data. BERT XXL, trained on 13B tokens, achieves 88.5\% accuracy, while GilBERTo, trained on 11B tokens, performs the best at 91\%.
 
+Looking at performance in individual island types, we can see that whether islands seems to be the easiest one to learn with all models achieving 100\% accuracy except BERT at 96\%.
+
+Instead, subject islands, at least in the forms captured in our test suite, seem to be the type of island whose mastering is most directly correlated with the amount of training data: the models trained on 2B of tokens reached and accuracy of 82\% and 84\%, while the models trained on 11-13B tokens achieved an accuracy of 90\% and 94\%. This seems to indicate that at least some type of island effects are among the hardest syntactic phenomena to be grasped by current transformer-based language models, at least when trained on ungrounded raw text in a self-supervised task without explicit linguistic supervision. All of these four models are trained a minimum of 2B tokens, which is already an order of magnitude more than the amount of data (100M tokens) at which they learn most (but not all) syntactic and semantic phenomena \citep{zhang2021you}. It is also possible that the current targeted syntactic benchmarks like BLiMP are not challenging enough, and overestimate these models actual linguistic abilities, as has been argued by \citet{newman2021refining}.
+
+Another possible explanation for the need of these models of massive amounts of data to learn subject islands, is that this correlates with Italian speakers finding subject islands weaker than other types. Indeed, \citet{sprouse2016experimental} found that subject islands with wh-dependencies are the type of island that scored the lowest (indicating "weaker" island effects) on human Italian subjects (\autoref{fig:sprouse_humans}), and that subject islands with rc-dependencies even showed almost no island effects on human subjects.
+
+%(compare subject islands plots with humans)
+%As we'll see in the following paragraphs, plots of .. also show significant similarities between humans and language models. ..
+%
+%
+%For adjunct and complex NP islands, the results show a mixed picture.
+%..
+
+
+%This compares to results on BLiMP ..
+%
+%Looking at performance in individual island types, we can see that whether islands seems to be the easiest one to le
+
 \begin{table} \scriptsize 
 	\begin{center}
-		\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
+	\begin{tabular}{p{0.095\linewidth}|p{0.099\linewidth}|c|p{0.05\linewidth}|c|p{0.04\linewidth}|p{0.04\linewidth}|p{0.04\linewidth}|c|p{0.04\linewidth}|c|p{0.04\linewidth}|}
 			&  & \multicolumn{1}{c|}{\textbf{GePpeTto}} & \multicolumn{1}{c|}{\textbf{BERT}} & \multicolumn{1}{c|}{\textbf{BERT XXL}}  & \multicolumn{1}{c|}{\textbf{GilBERTo}} \\
 			\textbf{Island type} & \textbf{Factorial score} & LP & PLL & PLL & PLL \\
 			\hline
