@@ -2986,6 +2986,26 @@ To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surp
 
 In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{short-nonisland} sentence ("\textit{Chi pensa che io abbia studiato la teoria?}") has the additional tokens "\textit{la teoria}", which significantly adds to the total sum of surprisal. The same phenomenon can be see in \autoref{fig:md_gilberto_whether_item_152_surprisals}, where the phrase "\textit{vinto il premio}" (found in the \textsc{short-nonisland}) sums up to slightly more surprisal than the word "\textit{vinto}" alone (found in the \textsc{long-nonisland}). However, in general we can't just assume that a longer sentence will get a lower acceptability scores, because having more content words can give more semantic cues, making it easier to predict each of them when it's masked during the scoring, lowering the surprisals (as can be seen in \autoref{fig:md_gilberto_adjunct_item_195_surprisals}, discussed in the next paragraph).
 
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_152.png} 
+	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_whether_item_152_surprisals} 
+	\medskip
+	\small
+	Note that the tokens are lowercased because GilBERTo is available only in the uncased version, otherwise uppercase words would be split, increase the surprisals, and introduce confounds.
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
+	\caption{Token surprisal for the four sentences of one of the adjunct island items, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_adjunct_item_195_surprisals} 
+	\medskip
+	\small
+\end{figure}
+
+
 % ..
 
 % \subsubsection{Whether islands}
@@ -3307,24 +3327,8 @@ Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te s
 
 
 
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_152.png} 
-	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by GilBERTo.} 
-	\label{fig:md_gilberto_whether_item_152_surprisals} 
-	\medskip
-	\small
-	Note that the tokens are lowercased because GilBERTo is available only in the uncased version, otherwise uppercase words would be split, increase the surprisals, and introduce confounds.
-\end{figure}
 
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
-	\caption{Token surprisal for the four sentences of one of the adjunct island items, as scored by GilBERTo.} 
-	\label{fig:md_gilberto_adjunct_item_195_surprisals} 
-	\medskip
-	\small
-\end{figure}
+
 
 
 
