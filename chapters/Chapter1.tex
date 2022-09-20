@@ -2859,6 +2859,18 @@ With this qualitative analysis we try to explain the results in \autoref{tab:acc
 
 The fact that (3) complex NP islands, there is a slight increase in performance of BERT-based models (from 96\% to 98\% to 100\%) correlated with the amount of training data of each model. The fact that (4) GPT-2 shows a complete drop in performance (to 46\%) for this type of islands. The fact that (5) for whether islands, BERT (trained on 2B tokens) is the only model to score below 100\% accuracy, at 96\%, and therefore performance for this type of island seems to reach 100\% somewhere between 2B and 11B tokens.\\
 
+In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT (base-xxl version)\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:sprouse_gpt_penlp}-\ref{fig:sprouse_bert2b_lp} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
+
+The y axis represents the structure condition (island or non-island). The x axis (for whether, adjunct, and complex NP islands) represents the dependency distance: short-distance extraction from the matrix clause, or long-distance extraction from the embedded clause. The x axis for subject islands, instead, as discussed in \autoref{sec:testsuite_design}, represents extraction of the object from the embedded clause, or extraction of the subject from the embedded clause. The "non-island" line, marked in solid blue, connects the values for the two sentences without the island structure. The orange dotted line is the "island line", connecting the values for the two sentences with the island structure.
+
+% in the two datasets the stimuli are similar, but there are differences (for instance, out adjunct islands test suite includes temporal adjuncts, while in the Sprouse one includes only conditional adjuncts, as noted in section ..).
+
+% todo, and move to appropriate section: discuss/clarify about the different labeling of plots: short/long distance dependencies, vs matrix/embedded or subject/object
+
+
+
+We can see that the plots for whether (top-left plot of each figure), adjunct (bottom-right), and subject islands (bottom-left) from the GPT-2 model (\autoref{fig:md_gpt_penlp}) show some similarities with those obtained on human subjects (\autoref{fig:sprouse_humans}), but also some significant differences.
+
 Looking at the plots in .., we preliminarly note .. resemblance with the plots for the average scores given by Italia speakers and reported by ..sprouse et al.
 % todo: put here the factorial plots first, before the token surprisals plots
 
@@ -3085,17 +3097,7 @@ Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te s
 
 \subsection{Qualitative analysis (continued)}
 
-In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT (base-xxl version)\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:sprouse_gpt_penlp}-\ref{fig:sprouse_bert2b_lp} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
 
-The y axis represents the structure condition (island or non-island). The x axis (for whether, adjunct, and complex NP islands) represents the dependency distance: short-distance extraction from the matrix clause, or long-distance extraction from the embedded clause. The x axis for subject islands, instead, as discussed in \autoref{sec:testsuite_design}, represents extraction of the object from the embedded clause, or extraction of the subject from the embedded clause. The "non-island" line, marked in solid blue, connects the values for the two sentences without the island structure. The orange dotted line is the "island line", connecting the values for the two sentences with the island structure.
-
-% in the two datasets the stimuli are similar, but there are differences (for instance, out adjunct islands test suite includes temporal adjuncts, while in the Sprouse one includes only conditional adjuncts, as noted in section ..).
-
-% todo, and move to appropriate section: discuss/clarify about the different labeling of plots: short/long distance dependencies, vs matrix/embedded or subject/object
-
-
-
-We can see that the plots for whether (top-left plot of each figure), adjunct (bottom-right), and subject islands (bottom-left) from the GPT-2 model (\autoref{fig:md_gpt_penlp}) show some similarities with those obtained on human subjects (\autoref{fig:sprouse_humans}), but also some significant differences.
 
 
 % (assess a smaller model trained only on 100M tokens?)
