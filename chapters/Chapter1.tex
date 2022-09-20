@@ -3724,9 +3724,27 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 
 % (future work: more challenging tests, controlling for frequency effects/more marginal web forms: do the accuracy/island effects captured by the model ..degrade when less common constructs/verb forms are used?)
 
-\section{Follow up experiments and future work}
+\section{Follow-up experiments and future work}
 
 In future work, we plan to do some follow-up experiments ..
+
+Developing a revised test suites to control for more confounds.
+Split the test suite for adjunct islands into temporal adjuncts and conditional adjuncts.
+Strictly balance the sentence in each item to use the same lexical content.
+Control for the increased processing complexity due to interrogative forms. Duplicate the test suites with versions in the affirmative, as in \citet{wilcox2018rnn}.
+Translate into Italian the Filler-Gap and island effects items from \citet{wilcox2018rnn}, and try their approach of assessing island effects as a reduction in expected gaps in the presence of a filler, and compare their approach with the one by \citet{sprouse2016experimental} adopted in this thesis.
+
+Translate and adapt our test suites also into English, and compare the results with those from English speakers collected by \citet{sprouse2016experimental}, and compare also with the results on English island effects on the BLiMP test suites, and those from \cite{wilcox2018rnn}.
+
+Control for OOV words, possibly creating a duplicate for each test suite, one with and one without OOV words.
+Controlling for less common verb forms, e.g. using the indicative mood instead of the subjunctive mood.
+Controlling for the effects of using personal pronouns and proper names (e.g. \textit{Gianni, Luisa}) instead of common nouns (e.g. lo studente, il dottore, etc.).
+Controlling for the effect of using, within a sentence, words with strong association (e.g. \textit{lo studente legge il libro}, \textit{il poliziotto arresta il ladro}, etc.), vs marginal ones.
+Test for also across rc-dependencies, as in \citep{sprouse2016experimental}
+
+Revising our approach to extract per-token surprisals from GPT-2, to reproduce the descending curve of surprisals along the sentence length, as observed by \citet{salazar2020masked}.
+
+
 % We want to analyze the plots for GPT-2 per token surpisal as done for the other models\footnote{This will require some more coding that is out of the time constraints for this thesis.}, to explain more clearly and in more detail the outcome of the performance scores. In particular, we want to investigate wy GPT-2 scored so low (46\% accuracy) for complex NP islands. Obtaining the 
 
 % testsuites from psychonlinguistic studies need to be adapted considerably when applied to neural language models, which seems to be much more sensitive to confounding semantic factors than syntactic ones when evaluating a sentence probability or pseudo-likelihood. % (which correlate with human processing difficulty).
