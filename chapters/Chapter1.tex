@@ -2963,6 +2963,11 @@ Factors like this can tilt the final factorial scores of an item, affecting its 
 
 \subsubsection{Subject islands}
 
+For subject islans, the token surprisals in Fig. .. - ..
+
+In \autoref{fig:md_gpt_subject_item_152_surprisals} we observe the non-optimal sub-word units splits performed by the tokenizer: \textit{"impoverito"} (\textit{"impoverished"}) has been split as \textit{imp-ov-erito}, which clearly cannot take advantage of the semantically informative root \textit{"pover-"}. \citet{bostrom2020byte} have found that sub-word splitting algorithms like BPE % does Gpt/geppetto use BPE?
+are non optimal, and that a more linguistically plausible sub word tokenization (with units that resemble more traditional morphemes), increases performance in downstream tasks. We argue that and optimal subword units tokenization should be a key element of a deep neural language models, since all the representations that the models learn are learned on top of these building blocks. We can expect that non optimal building blocks starting points will limit the possible generalizations and the patterns that these models are able to learn. The split of a training corpus in tokens is a strong signal that conveys a lot of information, and finding more optimal sub-word unit splits can also be though of as a form of regularization that avoids overfitting phenomena on the probability distribution of the training corpus.
+
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_subject_islands_item_196.png} 
