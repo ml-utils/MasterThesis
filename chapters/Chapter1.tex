@@ -2974,6 +2974,16 @@ One difference with the plots from human scores, is that for whether islands (fo
 
 To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surprisals}, which shows the surprisals of each token in one of the whether islands items. The token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. 
 
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_whether_island_item_158.png} 
+	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by the Italian BERT XXL.} 
+	\label{fig:md_bert_whether_item_158_surprisals} % this internally labels the figure for future referencing.
+	\medskip
+	\small
+	Token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. At the top of the figure there is the factorial DD score on the whole item (one that is $>0$ the item is considered scored accurately). There are also the factorial measures of length and structure effect, and the total effect. Note that these are raw values obtained from the (negative) sum of the token surprisals, while the values seen in plots like in \autoref{fig:md_gilberto_lp} are normalized across all the sentence scores for all the phenomena given by a particular model.
+\end{figure}
+
 In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{short-nonisland} sentence ("\textit{Chi pensa che io abbia studiato la teoria?}") has the additional tokens "\textit{la teoria}", which significantly adds to the total sum of surprisal. The same phenomenon can be see in \autoref{fig:md_gilberto_whether_item_152_surprisals}, where the phrase "\textit{vinto il premio}" (found in the \textsc{short-nonisland}) sums up to slightly more surprisal than the word "\textit{vinto}" alone (found in the \textsc{long-nonisland}). However, in general we can't just assume that a longer sentence will get a lower acceptability scores, because having more content words can give more semantic cues, making it easier to predict each of them when it's masked during the scoring, lowering the surprisals (as can be seen in \autoref{fig:md_gilberto_adjunct_item_195_surprisals}, discussed in the next paragraph).
 
 % ..
@@ -3296,16 +3306,6 @@ Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te s
 \end{figure}	
 
 
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_whether_island_item_158.png} 
-	\caption{Token surprisal for the four sentences of one of the whether island items, as scored by the Italian BERT XXL.} 
-	\label{fig:md_bert_whether_item_158_surprisals} % this internally labels the figure for future referencing.
-	\medskip
-	\small
-	Token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. At the top of the figure there is the factorial DD score on the whole item (one that is $>0$ the item is considered scored accurately). There are also the factorial measures of length and structure effect, and the total effect. Note that these are raw values obtained from the (negative) sum of the token surprisals, while the values seen in plots like in \autoref{fig:md_gilberto_lp} are normalized across all the sentence scores for all the phenomena given by a particular model.
-\end{figure}
 
 \begin{figure}[p]
 	\centering
