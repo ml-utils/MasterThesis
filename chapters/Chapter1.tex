@@ -3124,7 +3124,7 @@ Conversely from the adjuncts islands, GPT-2 seems to struggle with complex NP is
 
 % (\autoref{fig:md_gpt_penlp}) BERT XXL (\autoref{fig:md_bert_lp}) \ref{fig:md_gilberto_lp}
 
-We see that, for complex NP items (top-right plot of each figure from \autoref{fig:sprouse_humans} to \autoref{fig:md_bert2b_lp}), the long non-island sentences scored by the GPT-2 model with a lower acceptability than by the human subjects, and on the right edge the blue line and orange line converge to the same low value. This does not happen in the BERT XXL  (\autoref{fig:md_bert_lp}) and GilBERTo models (\ref{fig:md_gilberto_lp}). This might be due to the GPT-2 model being more sensitive to more marginal sentences ending with a gap followed by a question mark, as in the long-distance dependency sentences tested for this type of island ("\textit{Che cosa pensi che Gianni avrebbe comprato \_?}", en: "\textit{What do you think Gianni has bought?}").
+We see that, for complex NP items (top-right plot of each figure from \autoref{fig:sprouse_humans} to \autoref{fig:md_bert2b_lp}), the long non-island sentences scored by the GPT-2 model with a lower acceptability than by the human subjects, and on the right edge the blue line and orange line converge to the same low value. This does not happen in the BERT XXL  (\autoref{fig:md_bert_lp}) and GilBERTo models (\ref{fig:md_gilberto_lp}). This might be due to the GPT-2 model being more sensitive to more marginal sentences ending with a gap followed by a question mark, as in the long-distance dependency sentences tested for this type of island ("\textit{Che cosa pensi che Gianni avrebbe comprato \_?}", en: "\textit{What do you think Gianni has bought?}").\\
 %This seems to be due to the long distance dependency effect, that gets exacerbated as a sentence increases in lenght (in these test suites, the complex NP islands examples have longer sentences).
 
 %\begin{figure}[H]
@@ -3146,6 +3146,41 @@ We see that, for complex NP items (top-right plot of each figure from \autoref{f
 % a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
 % but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
 
+Back to the question of why BERT XXL achieves 100\% accuracy in complex NP islands, going 4 points above BERT, we can have a look at the token surprisals plots in \autoref{fig:md_bertxxl_complex_np_item_32_surprisals} and \autoref{fig:md_bert2b_complex_np_item_173_surprisals} for a sentence that BERT XXL scores correctly (DD score = 17.75) and BERT incorrectly (-0.21). 
+
+We observe that the difference in the final DD score, seems largely driven by the better acceptability that BERT XXL gives to the \textsc{long-nonisland} sentence (second from the top in the plots), which results in a much lower expected length effect  (7.95 vs 18.86) in the final factorial calculation. Looking at the sentence in question \textit{"Cosa hai rivelato che il consiglio di amministrazione avrebbe redatto?"} (\textit{"What did you reveal that the board of directors had drafted?"}) We see that BERT assigns a larger surprisal value to the region "\textit{Cosa hai rivelato}" ("\textit{What did you reveal}"), and this could in fact be due to a syntactic phenomena, with BERT XLL having learned the less common construct that this phrase introduces here. We also see that BERT gives a much larger surprisal to the word "\textit{amministrazione}" (literally "\textit{administration}", with stands for "\textit{directors}" in the multi-word expression (MWE) equivalent to "\textit{board of directors}"), and this could instead be due to BERT not having learned yet (even after 2B tokens of pretraining data) the collocation "\textit{consiglio di amministrazione}".
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_complex_np_islands_item_88.png} 
+	\caption{Token surprisal of a complex NP island item, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_complex_np_item_88_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_complex_np_islands_item_32.png} 
+	\caption{Token surprisal of a complex NP island item, as scored by the Italian BERT XXL.} 
+	\label{fig:md_bertxxl_complex_np_item_32_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_complex_np_islands_item_173.png} 
+	\caption{Token surprisal of a complex NP island item, as scored by the Italian BERT.} 
+	\label{fig:md_bert2b_complex_np_item_173_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_complex_np_islands_item_142.png} 
+	\caption{Token surprisal of a complex NP island item, as scored by GePpeTto.} 
+	\label{fig:md_gpt_complex_np_item_142_surprisals} 
+	\medskip
+\end{figure}
 
 \subsection{Subject islands}
 Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on humans (\autoref{fig:sprouse_humans}), we can see that the in the BERT XXL plot for subject islands, the two lines cross, unlike in those for humans. This is due to the fact that BERT XXL (on average) scores with very low acceptability the simplest sentence (the one for the \textsc{short-nonisland} condition on), lower than the other three sentence conditions. So the variation from it to any of the other three sentences sees and increase in acceptability. But the overall DD score is still positive (hence the 90\% accuracy BERT XXL gets on this island type, albeit less then the 94\% by GilBERTo), because the increase in acceptability from \textsc{short-nonisland} to \textsc{long-island} (a-d in formula \ref{formula:factorial_score}) is still lower than the increase expected from the sum of the two other factors (length and structure), therefore this less-than-expected increase can be attributed to a super-additive island effect.
@@ -3154,8 +3189,6 @@ Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on human
 % GPT-2, despite having a plot for subject islands very similar to that of humans, unlike GilBERTo, and expecially BERT, these both overperform it in the accuracy score. ..(82, 90, 94)
 
 \subsection{Token surprisal analysis}
-\subsubsection{Adjunct islands}
-
 
 
 \subsubsection{Subject islands}
@@ -3198,39 +3231,6 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 	\medskip
 \end{figure}
 
-\subsubsection{Complex NP islands}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_complex_np_islands_item_173.png} 
-	\caption{Token surprisal of a complex NP island item, as scored by the Italian BERT.} 
-	\label{fig:md_bert2b_complex_np_item_173_surprisals} 
-	\medskip
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_complex_np_islands_item_32.png} 
-	\caption{Token surprisal of a complex NP island item, as scored by the Italian BERT XXL.} 
-	\label{fig:md_bertxxl_complex_np_item_32_surprisals} 
-	\medskip
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_complex_np_islands_item_88.png} 
-	\caption{Token surprisal of a complex NP island item, as scored by GilBERTo.} 
-	\label{fig:md_gilberto_complex_np_item_88_surprisals} 
-	\medskip
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_complex_np_islands_item_142.png} 
-	\caption{Token surprisal of a complex NP island item, as scored by GePpeTto.} 
-	\label{fig:md_gpt_complex_np_item_142_surprisals} 
-	\medskip
-\end{figure}
 
 \subsubsection{Whether islands}
 
