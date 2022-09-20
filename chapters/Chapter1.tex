@@ -2534,7 +2534,9 @@ GilBERTo \footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camember
 \section{Accuracy on factorial scores}
 
 % .. intro
-In \autoref{tab:accuracy_DD_it_data} we see that the BERT-based models outperform GPT-2 in the overall scores, and this confirms findings in previous work like \citep{salazar2020masked}. GPT-2 is outperformed by BERT even when trained on a similar amount of data (around 2B tokens), with a difference of over 5 points in accuracy (from 81.5\% to 86.5\%), which increases (although with diminishing returns) in models trained on larger data. BERT XXL, trained on 13B tokens, achieves 88.5\% accuracy, while GilBERTo, trained on 11B tokens, performs the best at 91\%.
+In \autoref{tab:accuracy_DD_it_data} we report the results from testing the four Italian models on our test suites covering four island effect types. The accuracy scores are based on the success criterion for each item, defined as $DD > 0$, where the DD score is calculated as described in \autoref{sec:factoria_paradigm} with the formula \ref{formula:factorial_score}. To recap, the DD score is obtained by subtracting from the total effect (the difference in acceptability between the baseline sentence and the ungrammatical one) the effects of dependency length (gap-position) and structure (presence or absence of an island construct), to obtain a measure quantifying only the violation of the island constraint (that is, the island effect).
+
+We see that the BERT-based models outperform GPT-2 in the overall scores, and this confirms findings in previous work like \citep{salazar2020masked}. GPT-2 is outperformed by BERT even when trained on a similar amount of data (around 2B tokens), with a difference of over 5 points in accuracy (from 81.5\% to 86.5\%), which increases (although with diminishing returns) in models trained on larger data. BERT XXL, trained on 13B tokens, achieves 88.5\% accuracy, while GilBERTo, trained on 11B tokens, performs the best at 91\%.
 
 Looking at performance in individual island types, we can see that whether islands seems to be the easiest one to learn with all models achieving 100\% accuracy except BERT at 96\%.
 
