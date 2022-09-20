@@ -2961,6 +2961,41 @@ Factors like this can tilt the final factorial scores of an item, affecting its 
 % Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png
 % Madeddu_dbmdz_bert-base-italian-cased_wh_adjunct_islands_item_145.png
 
+\subsubsection{Subject islands}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_subject_islands_item_196.png} 
+	\caption{Token surprisal of an subject island item, as scored by the Italian BERT.} 
+	\label{fig:md_bert2b_subject_item_196_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_subject_islands_item_198.png} 
+	\caption{Token surprisal of an subject island item, as scored by the Italian BERT XXL.} 
+	\label{fig:md_bertxxl_subject_item_198_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_subject_islands_item_199.png} 
+	\caption{Token surprisal of an subject island item, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_subject_item_199_surprisals} 
+	\medskip
+\end{figure}
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_subject_islands_item_152.png} 
+	\caption{Token surprisal of an subject island item, as scored by GePpeTto.} 
+	\label{fig:md_gpt_subject_item_152_surprisals} 
+	\medskip
+\end{figure}
+
 \subsection{Qualitative analysis (continued)}
 
 In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT (base-xxl version)\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:plots_3_sprouse}-\ref{fig:plots_4_sprouse} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
