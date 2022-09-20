@@ -2701,14 +2701,12 @@ We report in \autoref{tab:accuracy_it_data} the accuracy scores obtained in such
 %These accuracy scores of several Gpt and BERT-based models on an Italian island effects test suite developed for the present thesis. The minimal pairs are drawn from a factorial test design whose item are like \autoref{adjunct_temporal_item_1}. 
 Each acceptable sentence of an item like \autoref{adjunct_temporal_item_1} is compared with the unacceptable sentence, and the score is considered accurate if the acceptable sentence receives an higher score than the unacceptable one.
 
-For instance, on the first row of results, we see the scores for the whether island type, the acceptable Short-NonIsland sentence gets scored higher than the unacceptable sentence (Long-Island) 92\% of the times by the GPT-2 model with the LP sentence acceptability estimate, and 96\% of the time when the sentence score is normalized by length as in \citet{lau2020furiously}.
+For instance, on the first row of results, we see the scores for the whether island type, the acceptable Short-NonIsland sentence gets scored higher than the unacceptable sentence (Long-Island) 92\% of the times by the GPT-2 model with the LP sentence acceptability estimate, and 96\% of the time when the sentence score is normalized by length as in \citet{lau2020furiously}. The GilBERTo model (trained on 11B tokens) reaches the top overall average accuracy, with a score of 91.7\% which is similar to the one obtained with the factorial scoring.
 
-
-All models seem to struggle with the Short-Island sentence type of the Subject islands phenomenon, with the highest score being 68\%. (TODO: see which of the 50 sentences are scored higher/lower, and why).
-
-On average, the Gpt-2 model with the PenLP scoring measure performs best, with a 86.1\% mean accuracy.
-
-Although it's between different languages (English and Italian), the scores on \autoref{adjunct_temporal_item_1} seem to be higher than the ones on the BLiMP benchmark in \autoref{tab:accuracy_blimp}. 
+%All models seem to struggle with the Short-Island sentence type of the Subject islands phenomenon, with the highest score being 68\%. (TODO: see which of the 50 sentences are scored higher/lower, and why).
+%On average, the Gpt-2 model with the PenLP scoring measure performs best, with a 86.1\% mean accuracy.
+%
+%Although it's between different languages (English and Italian), the scores on \autoref{adjunct_temporal_item_1} seem to be higher than the ones on the BLiMP benchmark in \autoref{tab:accuracy_blimp}. 
 % TODO: compare BLiMP data with accuracies on Sprouse English test suite.
 
 
@@ -2783,7 +2781,6 @@ Although it's between different languages (English and Italian), the scores on \
 %	\end{center}
 %\end{table}
 
-..
 % \subsection{Discussion}
 % ..
 
@@ -2855,11 +2852,14 @@ Although it's between different languages (English and Italian), the scores on \
 
 % We analyzed the per token surprisal from GPT-2 for the items in our testsuite, but didn't find them to be easily interpretable like those from the BERT-based models. The only clear pattern that we could discern from these plots are spikes in surprisal for words split into subword units. Additionally, we did not observe the descending curve in sentence acceptability found by Salazar et al. (2020), nor did we find that the normalization by sentence length improved the accuracy of GPT-2 output. These discrepancies might be due to a difference in methodology. In the appendix, we attach a sample of token surprisal plots from GPT-2 for each of the island types tested.
 
-In this section we compare our results obtained from transformer-based language models with those from human subjects collected by  \citet{sprouse2016experimental}. 
+In this section we compare our results obtained from transformer-based language models with those from human subjects collected by  \citet{sprouse2016experimental}. We complement this with an analysis of the models per-token surprisals given for some of the items in our test suites.
 
 
+With this qualitative analysis we try to explain the results in \autoref{tab:accuracy_DD_it_data}. Specifically, the fact that (1) for adjunct islands, there is a 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo. That (2) for subject islands, there is a progressive increase in accuracy, which more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
 
-We can now try to explain the results in \autoref{tab:accuracy_DD_it_data} with some qualitative analysis, comparing .. plots from humans, .. token spikes.. 
+The fact that (3) complex NP islands, there is a slight increase in performance of BERT-based models (from 96\% to 98\% to 100\%) correlated with the amount of training data of each model. The fact that (4) GPT-2 shows a complete drop in performance (to 46\%) for this type of islands. The fact that (5) for whether islands, BERT (trained on 2B tokens) is the only model to score below 100\% accuracy, at 96\%, and therefore performance for this type of island seems to reach 100\% somewhere between 2B and 11B tokens.\\
+
+
 In most cases, there is no clear correlation between accuracy scores and plots resemblance to those of humans.  % note that these are average scores.. although error bars are shown, ..; so outliers might influence the average scores, while the accuracies.. are separate for each item.
 
 
