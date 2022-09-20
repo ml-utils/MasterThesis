@@ -2861,6 +2861,49 @@ The fact that (3) complex NP islands, there is a slight increase in performance 
 
 In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT (base-xxl version)\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:sprouse_gpt_penlp}-\ref{fig:sprouse_bert2b_lp} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
 
+	
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png} 
+	\caption{Plots of average acceptability scores from humans taken from \citep{sprouse2016experimental}}
+	\label{fig:sprouse_humans} 
+	\medskip
+\end{figure}	
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
+	\caption{Plots of average acceptability scores from GePpeTto, on the test suites developed for the present thesis.}
+	\label{fig:md_gpt_penlp} 
+	\medskip
+\end{figure}	
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m28s27.png} 
+	\caption{Plots of average acceptability scores from GilBERTo, on the test suites developed for the present thesis.}
+	\label{fig:md_gilberto_lp} 
+	\medskip
+\end{figure}	
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png} 
+	\caption{Plots of average acceptability scores from BERT XXL (13B of training tokens), on the test suites developed for the present thesis.}
+	\label{fig:md_bert_lp} 
+	\medskip
+\end{figure}	
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-cased_LP-zscores-likert-2022-09-17_h11m10s08.png} 
+	\caption{Plots of average acceptability scores from BERT (2B of training tokens), on the test suites developed for the present thesis.}
+	\label{fig:md_bert2b_lp} 
+	\medskip
+\end{figure}	
+
 The y axis represents the structure condition (island or non-island). The x axis (for whether, adjunct, and complex NP islands) represents the dependency distance: short-distance extraction from the matrix clause, or long-distance extraction from the embedded clause. The x axis for subject islands, instead, as discussed in \autoref{sec:testsuite_design}, represents extraction of the object from the embedded clause, or extraction of the subject from the embedded clause. The "non-island" line, marked in solid blue, connects the values for the two sentences without the island structure. The orange dotted line is the "island line", connecting the values for the two sentences with the island structure.
 
 % in the two datasets the stimuli are similar, but there are differences (for instance, out adjunct islands test suite includes temporal adjuncts, while in the Sprouse one includes only conditional adjuncts, as noted in section ..).
@@ -2869,7 +2912,7 @@ The y axis represents the structure condition (island or non-island). The x axis
 
 
 
-We can see that the plots for whether (top-left plot of each figure), adjunct (bottom-right), and subject islands (bottom-left) from the GPT-2 model (\autoref{fig:md_gpt_penlp}) show some similarities with those obtained on human subjects (\autoref{fig:sprouse_humans}), but also some significant differences.
+We can see that the plots for whether (top-left plot of each figure), adjunct (bottom-right), and subject islands (bottom-left) from the GPT-2 model (\autoref{fig:md_gpt_penlp}) show some similarities with those obtained on human subjects (\autoref{fig:sprouse_humans}), but also some significant differences.\\
 
 Looking at the plots in .., we preliminarly note .. resemblance with the plots for the average scores given by Italia speakers and reported by ..sprouse et al.
 % todo: put here the factorial plots first, before the token surprisals plots
@@ -3118,48 +3161,7 @@ Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te s
 % after this 2 pages with 3 figures for the plots on the 3 models and the sprouse testsuite, for comparison
 % \begin{figure}[p]
 % \begin{figure}[ht]
-	
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png} 
-	\caption{Plots of average acceptability scores from humans taken from \citep{sprouse2016experimental}}
-		\label{fig:sprouse_humans} 
-		\medskip
-\end{figure}	
-	
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png} 
-	\caption{Plots of average acceptability scores from GePpeTto, on the test suites developed for the present thesis.}
-	\label{fig:md_gpt_penlp} 
-	\medskip
-\end{figure}	
 
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m28s27.png} 
-	\caption{Plots of average acceptability scores from GilBERTo, on the test suites developed for the present thesis.}
-	\label{fig:md_gilberto_lp} 
-	\medskip
-\end{figure}	
-
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png} 
-	\caption{Plots of average acceptability scores from BERT XXL (13B of training tokens), on the test suites developed for the present thesis.}
-	\label{fig:md_bert_lp} 
-	\medskip
-\end{figure}	
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-cased_LP-zscores-likert-2022-09-17_h11m10s08.png} 
-	\caption{Plots of average acceptability scores from BERT (2B of training tokens), on the test suites developed for the present thesis.}
-	\label{fig:md_bert2b_lp} 
-	\medskip
-\end{figure}	
 
 % plots on Sprouse test suite
 
