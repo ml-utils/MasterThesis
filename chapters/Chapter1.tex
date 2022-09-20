@@ -3222,17 +3222,12 @@ We observe that the difference in the final DD score, seems largely driven by th
 \end{figure}
 
 \subsection{Subject islands}
-Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on humans (\autoref{fig:sprouse_humans}), we can see that the in the BERT XXL plot for subject islands, the two lines cross, unlike in those for humans. This is due to the fact that BERT XXL (on average) scores with very low acceptability the simplest sentence (the one for the \textsc{short-nonisland} condition on), lower than the other three sentence conditions. So the variation from it to any of the other three sentences sees and increase in acceptability. But the overall DD score is still positive (hence the 90\% accuracy BERT XXL gets on this island type, albeit less then the 94\% by GilBERTo), because the increase in acceptability from \textsc{short-nonisland} to \textsc{long-island} (a-d in formula \ref{formula:factorial_score}) is still lower than the increase expected from the sum of the two other factors (length and structure), therefore this less-than-expected increase can be attributed to a super-additive island effect.
+Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on humans (\autoref{fig:sprouse_humans}), we can see that the in the BERT XXL plot for subject islands, the two lines cross, unlike in those for humans. This is due to the fact that BERT XXL (on average) scores with very low acceptability the simplest sentence (the one for the \textsc{short-nonisland} condition on), lower than the other three sentence conditions. So the variation from it to any of the other three sentences sees and increase in acceptability. But the overall DD score is still positive (hence the 90\% accuracy BERT XXL gets on this island type, albeit less then the 94\% by GilBERTo), because the increase in acceptability from \textsc{short-nonisland} to \textsc{long-island} (a-d in formula \ref{formula:factorial_score}) is still lower than the increase expected from the sum of the two other factors (length and structure), therefore this less-than-expected increase can be attributed to a super-additive island effect.\\
 % but ideally we should revise the items to avoid this effects, less confounds to subtract out, more clear effects
 
 % GPT-2, despite having a plot for subject islands very similar to that of humans, unlike GilBERTo, and expecially BERT, these both overperform it in the accuracy score. ..(82, 90, 94)
 
-\subsection{Token surprisal analysis}
-
-
-\subsubsection{Subject islands}
-
-For subject islans, the token surprisals in Fig. .. - ..
+% For subject islans, the token surprisals in Fig. .. - ..
 
 In \autoref{fig:md_gpt_subject_item_152_surprisals} we observe the non-optimal sub-word units splits performed by the tokenizer used by GPT-2: the out-of-vocabulary (OOV) word \textit{"impoverito"} (\textit{"impoverished"}) has been split into \textit{imp-ov-erito}, which clearly cannot take advantage of the semantically informative root \textit{"pover-"} ("\textit{poor}"). \citet{bostrom2020byte} found that sub-word splitting algorithms like BPE % does Gpt/geppetto use BPE?
 are non optimal, and that a more linguistically plausible sub-word tokenization (with units that resemble more traditional morphemes), increases performance in downstream tasks. We argue that an optimal subword units tokenization should be a key element of a deep neural language models, since all the representations that these models learn are learned on top of these building blocks. We can expect that non optimal building blocks starting points will limit the possible generalizations and the patterns that these models are able to learn on top of them. The split of a training corpus in tokens is a strong signal that conveys a lot of information, and finding more optimal sub-word unit splits can also be though of as a form of regularization that avoids overfitting phenomena on the probability distribution of the training corpus.
@@ -3269,10 +3264,6 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 	\label{fig:md_gpt_subject_item_152_surprisals} 
 	\medskip
 \end{figure}
-
-
-
-\subsection{Qualitative analysis (continued)}
 
 
 
