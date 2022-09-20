@@ -3018,8 +3018,18 @@ In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{sh
 
 % TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
 
+Back to the question of why BERT is the only model not to reach 100\% accuracy on whether islands, there seems to be no clear explanation for this fact looking at the token surprisals of the same item across all the models, as shown in \autoref{fig:md_bert2b_whether_item_180_surprisals}-\ref{fig:md_gpt_whether_item_135_surprisals}.
+One thing we notice is that the baseline acceptable sentence (\textsc{short-nonisland}) ("\textit{Chi pensa che io abbia aumentato l'affitto?}") ("\textit{Who thinks that I have raised the rent?}") gets a lower acceptability in BERT XXL (\autoref{fig:md_bertxxl_whether_item_156_surprisals}) than BERT (\autoref{fig:md_bert2b_whether_item_180_surprisals}). The trend of the surprisal plots seems to be almost the same between BERT and BERT XXL, with a few difference. We can notice the strange phenomenon that BERT XXL gets a high surprisal (much higher than BERT) on the words "\textit{affitto}" ("\textit{rent}") and "\textit{io}" ("\textit{I}"). Again this seems another case of semantic phenomena having a prevailing confounding effect, that could mask the effect of syntactic ones.
 
-Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te surprisal plots what is driving this change, but it seems due to the fact that the baseline acceptable sentence (\textsc{short-nonisland}) get a lower acceptability in BERT XXL. We can notice the strange phenomenon that BERT XXL gets a high surprisal (much higher than BERT) on the word "\textit{affitto}" ("\textit{rent}"). Again this is seems another case of semantic phenomena having a prevailing confounding effect, that could mask the effec of syntactic ones.
+% sentences on Chi pensa che io abbia aumentato l'affitto?
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_121.png} 
+	\caption{Token surprisal of a whether island item, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_whether_item_121_surprisals} 
+	\medskip
+\end{figure}
 
 \begin{figure}[p]
 	\centering
@@ -3037,13 +3047,6 @@ Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te s
 	\medskip
 \end{figure}
 
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_121.png} 
-	\caption{Token surprisal of a whether island item, as scored by GilBERTo.} 
-	\label{fig:md_gilberto_whether_item_121_surprisals} 
-	\medskip
-\end{figure}
 
 \begin{figure}[p]
 	\centering
@@ -3059,7 +3062,7 @@ GilBERTo has a much lower accuracy score (72\%) than GPT-2 (98\%) for adjunct is
 
 Looking at the token surprisals for one of the adjunct island items (with a \textit{conditional} adjunct island construct introduced by "\textit{se}", "\textit{if}"), we can see in \autoref{fig:md_gilberto_adjunct_item_195_surprisals} that the \textsc{long-nonisland} (second sentence from the top) gets really high spikes for the phrase "\textit{il sindacato indirà}" ("\textit{the union will call}"), while in the case of the \textsc{short-nonisland} (first sentence from the top), the phrase "\textit{il sindacato indirà lo sciopero}" ("\textit{the union will call the strike}") gets a much smaller surprisal on the word \textit{sindacato} ("\textit{union}"), seemingly because the presence addition of the word for \textit{strike} (which, mutually, also gets almost no surprisal for the same reason) makes it much more likely to predict when masked. However, these spikes are also present (albeit a bit ameliorated) in the \textsc{long-island} sentence (last at the bottom), so this effect would be subtracted out by the factorial scoring. The thing that keeps the DD score negative (and therefore renders this item inaccuratly scored) is that the \textsc{long-nonisland} sentence has also a surprisal spikes for the phrase "\textit{dici che}" ("\textit{you say that}"), and this seem to be due to syntactic reasons: the model seems to consider less likely this kind of long-distance dependency construct ("\textit{che cosa dici che il sindacato indirà?}") than another long-distance dependency construct where there is a island violation ("\textit{che cosa gli edicolanti chiuderanno i battenti se il sindacator indirà?}"). We can conclude then that the worse accuracy score that GilBERTo gets in adjuncts islands (\autoref{tab:accuracy_DD_it_data}) seems to be indeed due to an unrobust learning of this type of adjunct island constraints by GilBERTo.
 
-\begin{figure}[p]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
 	\caption{Token surprisal for the four sentences of one of the adjunct island items, as scored by GilBERTo.} 
