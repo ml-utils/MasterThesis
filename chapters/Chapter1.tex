@@ -3038,6 +3038,8 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 \subsubsection{Whether islands}
 
 
+Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te surprisal plots what is driving this change, but it seems due to the fact that the baseline acceptable sentence (\textsc{short-nonisland}) get a lower acceptability in BERT XXL. We can notice the strange phenomenon that BERT XXL gets a high surprisal (much higher than BERT) on the word "\textit{affitto}" ("\textit{rent}"). Again this is seems another case of semantic phenomena having a prevailing confounding effect, that could mask the effec of syntactic ones.
+
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_whether_island_item_180.png} 
