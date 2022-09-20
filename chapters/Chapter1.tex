@@ -3105,21 +3105,21 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 % after this 2 pages with 3 figures for the plots on the 3 models and the sprouse testsuite, for comparison
 % \begin{figure}[p]
 % \begin{figure}[ht]
+	
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png} 
+	\caption{Plots of average acceptability scores from humans taken from \citep{sprouse2016experimental}}
+		\label{fig:sprouse_humans} 
+		\medskip
+	\end{figure}	
+	
+
+	
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
 \thispagestyle{empty}
 \newgeometry{noheadfoot=true,top=1.5cm,bottom=1.5cm}
-\begin{figure}[p]
-	\centering
-	\ULsubfloat[Image from \citet{sprouse2016experimental}\label{fig:sprouse_humans}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}%
-	}
-	\caption{Plots of average scores from humans (\ref{fig:sprouse_humans}) taken from \citep{sprouse2016experimental}.
-	}
-	%\label{fig:plots_1_mdd}
-	% \small (..)
-\end{figure}
-
 \begin{figure}[p]
 	\centering
 	\ULsubfloat[Fig.\ref{fig:md_gpt_penlp} \label{fig:md_gpt_penlp}]{%
