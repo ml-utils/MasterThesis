@@ -2874,14 +2874,14 @@ correlation between accuracy scores and token spikes (but BERT only..)
 
 in particular, explain the following observations:
 
-for adjunct islands, why the 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo?
+(1) for adjunct islands, why the 6+ points drop in accuracy by BERT XXL (the model trained on the largest amount of data), compared to BERT and GilBERTo?
 
 todo: series of token surprisals plots comparing directly BERT and BERT XXL
 
 
-for subject islands, the progressive increase in accuracy, more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
-for complex NP islands, the slight increase in performance (from 96 to 98 to 100) correlated with amount of training data
-also for whether islands, the slight increase in performance, from 96 to 100. Performance seem to reache 100 somewhere bewttn 2B and 11B tokens.
+(2) for subject islands, the progressive increase in accuracy, more or less correlates with amount of training data, from BERT (2B tokens), to BERT XXL (13B tokens), to GilBERTo (11B tokens).
+(3) for complex NP islands, the slight increase in performance (from 96 to 98 to 100) correlated with amount of training data
+(4) also for whether islands, the slight increase in performance, from 96 to 100. Performance seem to reache 100 somewhere bewttn 2B and 11B tokens.
 
 
 % (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
@@ -3597,7 +3597,7 @@ italian rc-dependencies, in the case of, introduced only by ..oblique relative p
 
 \section{Follow up experiments and future work}
 
-In future work, we plan to do some follow-up experiments.
+In future work, we plan to do some follow-up experiments ..
 % We want to analyze the plots for GPT-2 per token surpisal as done for the other models\footnote{This will require some more coding that is out of the time constraints for this thesis.}, to explain more clearly and in more detail the outcome of the performance scores. In particular, we want to investigate wy GPT-2 scored so low (46\% accuracy) for complex NP islands. Obtaining the 
 
 
