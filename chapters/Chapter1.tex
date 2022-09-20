@@ -3114,13 +3114,24 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 	\ULsubfloat[Image from \citet{sprouse2016experimental}\label{fig:sprouse_humans}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Plot_1_Sprouse_paper.png}%
 	}
-	\vspace{10pt}
-	\ULsubfloat[\label{fig:md_gpt_penlp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}%
-	}
-	\caption{Plots of average scores from humans (\ref{fig:sprouse_humans}) and from GePpeTto (\ref{fig:md_gpt_penlp}), on the test suites developed for the present thesis. 
+	\caption{Plots of average scores from humans (\ref{fig:sprouse_humans}) taken from \citep{sprouse2016experimental}.
 	}
 	\label{fig:plots_1_mdd}
+	% \small (..)
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\ULsubfloat[Fig.\ref{fig:md_gpt_penlp} \label{fig:md_gpt_penlp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h15m12s44.png}%
+	}
+	\vspace{10pt}
+	\ULsubfloat[Fig.\ref{fig:md_gilberto_lp} \label{fig:md_gilberto_lp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m28s27.png}%
+	}
+	\caption{Plots of average scores from GePpeTto (\ref{fig:md_gpt_penlp})  and from GilBERTo (\ref{fig:md_gilberto_lp}), on the test suites developed for the present thesis. 
+	}
+	\label{fig:plots_3_mdd}
 	% \small (..)
 \end{figure}
 
@@ -3129,14 +3140,15 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 \thispagestyle{empty}
 \begin{figure}[p]
 	\centering
-	\caption{Plots of average scores from BERT XXL \ref{fig:md_bert_lp} and GilBERTo (\ref{fig:md_gilberto_lp}), on the test suites developed for the present thesis. 
-	}
+	
 	\ULsubfloat[Fig.\ref{fig:md_bert_lp}  \label{fig:md_bert_lp}]{%
 		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}%
 	}
 	\vspace{10pt}
-	\ULsubfloat[Fig.\ref{fig:md_gilberto_lp} \label{fig:md_gilberto_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m28s27.png}%
+	\ULsubfloat[Fig.\ref{fig:md_bert2b_lp}  \label{fig:md_bert2b_lp}]{%
+		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-cased_LP-zscores-likert-2022-09-17_h11m10s08.png}%
+	}
+	\caption{Plots of average scores from BERT XXL \ref{fig:md_bert_lp} and BERT (\ref{fig:md_bert2b_lp}), on the test suites developed for the present thesis. 
 	}
 	\label{fig:plots_2_mdd}
 \end{figure}
