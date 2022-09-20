@@ -3132,21 +3132,23 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 \end{figure}	
 
 
-\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
-\AddThispageHook{\thispagestyle{empty}}%
-\thispagestyle{empty}
 \begin{figure}[p]
 	\centering
-	\ULsubfloat[Fig.\ref{fig:md_bert_lp}  \label{fig:md_bert_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png}%
-	}
-	\vspace{10pt}
-	\ULsubfloat[Fig.\ref{fig:md_bert2b_lp}  \label{fig:md_bert2b_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-cased_LP-zscores-likert-2022-09-17_h11m10s08.png}%
-	}
-	\caption{Plots of average scores from BERT XXL \ref{fig:md_bert_lp} and BERT (\ref{fig:md_bert2b_lp}), on the test suites developed for the present thesis. 
-	}
-\end{figure}
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h15m39s52.png} 
+	\caption{Plots of average acceptability scores from BERT XXL (13B of training tokens), on the test suites developed for the present thesis.}
+	\label{fig:md_bert_lp} 
+	\medskip
+\end{figure}	
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Madeddu_wh_dbmdz_bert-base-italian-cased_LP-zscores-likert-2022-09-17_h11m10s08.png} 
+	\caption{Plots of average acceptability scores from BERT (2B of training tokens), on the test suites developed for the present thesis.}
+	\label{fig:md_bert2b_lp} 
+	\medskip
+\end{figure}	
+
+
 
 \afterpage{\clearpage}% force [p] figure to next page (probably not needed)
 \AddThispageHook{\thispagestyle{empty}}%
