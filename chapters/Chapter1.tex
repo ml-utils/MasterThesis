@@ -3074,7 +3074,7 @@ Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te s
 
 \subsection{Qualitative analysis (continued)}
 
-In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT (base-xxl version)\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:plots_3_sprouse}-\ref{fig:plots_4_sprouse} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
+In Fig. \ref{fig:sprouse_humans} we see the original plots from \citet{sprouse2016experimental}, on results collected from Italian subjects for wh-dependencies islands. Figures \ref{fig:md_gpt_penlp} to \ref{fig:md_gilberto_lp} show the plots we obtained for the same types of island constructs and wh-dependencies, with our test suite (that has a format similar to that of Sprouse et al.), on three Italian language models: the GPT-2-based GePpeTto \citep{de2020geppetto}\footnote{https://huggingface.co/LorenzoDeMattei/GePpeTto}, BERT (base-xxl version)\footnote{https://huggingface.co/dbmdz/bert-base-italian-xxl-cased} and the RoBERTa-based GilBERTo\footnote{https://huggingface.co/idb-ita/gilberto-uncased-from-camembert}. For comparison, we also show in Fig.\ref{fig:sprouse_gpt_penlp}-\ref{fig:sprouse_bert2b_lp} plots on the scores given by the three above language models on the original test suites by \citet{sprouse2016experimental}.
 
 The y axis represents the structure condition (island or non-island). The x axis (for whether, adjunct, and complex NP islands) represents the dependency distance: short-distance extraction from the matrix clause, or long-distance extraction from the embedded clause. The x axis for subject islands, instead, as discussed in \autoref{sec:testsuite_design}, represents extraction of the object from the embedded clause, or extraction of the subject from the embedded clause. The "non-island" line, marked in solid blue, connects the values for the two sentences without the island structure. The orange dotted line is the "island line", connecting the values for the two sentences with the island structure.
 
@@ -3148,39 +3148,41 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 	\medskip
 \end{figure}	
 
+% plots on Sprouse test suite
 
-
-\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
-\AddThispageHook{\thispagestyle{empty}}%
-\thispagestyle{empty}
 \begin{figure}[p]
 	\centering
-	\ULsubfloat[Fig.\ref{fig:sprouse_gpt_penlp}  \label{fig:sprouse_gpt_penlp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png}%
-	}
-	\vspace{10pt}
-	\ULsubfloat[Fig.\ref{fig:sprouse_bert_lp} \label{fig:sprouse_bert_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png}%
-	}
-	\caption{Plots of average scores from GePpeTto \ref{fig:sprouse_gpt_penlp} and BERT XXL (\ref{fig:sprouse_bert_lp}), on the original test suite by \citet{sprouse2016experimental}. 
-	}
-	\label{fig:plots_3_sprouse}
-\end{figure}
+	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_LorenzoDeMattei_GePpeTto_PenLP-zscores-likert-2022-09-14_h17m23s36.png} 
+	\caption{Plots of average acceptability scores from GePpeTto, on the test suite by \citet{sprouse2016experimental}.}
+	\label{fig:sprouse_gpt_penlp} 
+	\medskip
+\end{figure}	
 
-\afterpage{\clearpage}% force [p] figure to next page (probably not needed)
-\AddThispageHook{\thispagestyle{empty}}%
-\thispagestyle{empty}
 \begin{figure}[p]
 	\centering
-	\ULsubfloat[Fig.\ref{fig:sprouse_gilbertot_lp}  \label{fig:sprouse_gilbertot_lp}]{%
-		\includegraphics[width=.9\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m19s47.png}%
-	}
-	\vspace{10pt}
-	\caption{Plots of average scores from GilBERTo (\ref{fig:sprouse_gilbertot_lp}), on the original test suite by \citet{sprouse2016experimental}. 
-	}
-	\label{fig:plots_4_sprouse}
-\end{figure}
-\restoregeometry
+	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_idb-ita_gilberto-uncased-from-camembert_LP-zscores-likert-2022-09-16_h10m19s47.png} 
+	\caption{Plots of average acceptability scores from GilBERTo, on the test suite by \citet{sprouse2016experimental}.}
+	\label{fig:sprouse_gilbertot_lp} 
+	\medskip
+\end{figure}	
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-xxl-cased_LP-zscores-likert-2022-09-14_h17m27s24.png} 
+	\caption{Plots of average acceptability scores from BERT XXL (13B of training tokens), on the test suite by \citet{sprouse2016experimental}.}
+	\label{fig:sprouse_bert_lp} 
+	\medskip
+\end{figure}	
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/Sprouse_wh_dbmdz_bert-base-italian-cased_LP-zscores-likert-2022-09-17_h11m04s37.png} 
+	\caption{Plots of average acceptability scores from BERT (2B of training tokens), on the test suite by \citet{sprouse2016experimental}.}
+	\label{fig:sprouse_bert2b_lp} 
+	\medskip
+\end{figure}	
+
+
 
 \begin{figure}[p]
 	\centering
@@ -3213,7 +3215,7 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 
 
 \subsection{Whether islands}
-One difference is that for whether islands (for GPT-2 but also for the other two language models, \autoref{fig:md_gpt_penlp}-\autoref{fig:md_gilberto_lp}), the line connecting the \textsc{short-nonisland} and the \textsc{long-nonisland} goes upwards instead of downwards like for humans; that is, on average the language models give the \textsc{long-nonisland} a higher acceptability estimation score (the pseudo-log-likelihood, PLL), than the \textsc{short-nonisland} (and this trend remains also when the models score the original test suite administerd by Sprouse to humans, diplayed in \autoref{fig:plots_3_sprouse}-\autoref{fig:plots_4_sprouse}).
+One difference is that for whether islands (for GPT-2 but also for the other two language models, \autoref{fig:md_gpt_penlp}-\autoref{fig:md_gilberto_lp}), the line connecting the \textsc{short-nonisland} and the \textsc{long-nonisland} goes upwards instead of downwards like for humans; that is, on average the language models give the \textsc{long-nonisland} a higher acceptability estimation score (the pseudo-log-likelihood, PLL), than the \textsc{short-nonisland} (and this trend remains also when the models score the original test suite administerd by Sprouse to humans, diplayed in \autoref{fig:sprouse_gpt_penlp}-\autoref{fig:sprouse_bert2b_lp}).
 
 To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surprisals}, which shows the surprisals of each token in one of the whether islands items. The token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. 
 
