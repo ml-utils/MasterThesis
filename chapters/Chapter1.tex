@@ -2965,8 +2965,8 @@ Factors like this can tilt the final factorial scores of an item, affecting its 
 
 For subject islans, the token surprisals in Fig. .. - ..
 
-In \autoref{fig:md_gpt_subject_item_152_surprisals} we observe the non-optimal sub-word units splits performed by the tokenizer: \textit{"impoverito"} (\textit{"impoverished"}) has been split as \textit{imp-ov-erito}, which clearly cannot take advantage of the semantically informative root \textit{"pover-"}. \citet{bostrom2020byte} have found that sub-word splitting algorithms like BPE % does Gpt/geppetto use BPE?
-are non optimal, and that a more linguistically plausible sub word tokenization (with units that resemble more traditional morphemes), increases performance in downstream tasks. We argue that and optimal subword units tokenization should be a key element of a deep neural language models, since all the representations that the models learn are learned on top of these building blocks. We can expect that non optimal building blocks starting points will limit the possible generalizations and the patterns that these models are able to learn. The split of a training corpus in tokens is a strong signal that conveys a lot of information, and finding more optimal sub-word unit splits can also be though of as a form of regularization that avoids overfitting phenomena on the probability distribution of the training corpus.
+In \autoref{fig:md_gpt_subject_item_152_surprisals} we observe the non-optimal sub-word units splits performed by the tokenizer used by GPT-2: the out-of-vocabulary (OOV) word \textit{"impoverito"} (\textit{"impoverished"}) has been split into \textit{imp-ov-erito}, which clearly cannot take advantage of the semantically informative root \textit{"pover-"} ("\textit{poor}"). \citet{bostrom2020byte} found that sub-word splitting algorithms like BPE % does Gpt/geppetto use BPE?
+are non optimal, and that a more linguistically plausible sub-word tokenization (with units that resemble more traditional morphemes), increases performance in downstream tasks. We argue that an optimal subword units tokenization should be a key element of a deep neural language models, since all the representations that these models learn are learned on top of these building blocks. We can expect that non optimal building blocks starting points will limit the possible generalizations and the patterns that these models are able to learn on top of them. The split of a training corpus in tokens is a strong signal that conveys a lot of information, and finding more optimal sub-word unit splits can also be though of as a form of regularization that avoids overfitting phenomena on the probability distribution of the training corpus.
 
 \begin{figure}[p]
 	\centering
@@ -2998,6 +2998,40 @@ are non optimal, and that a more linguistically plausible sub word tokenization 
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_subject_islands_item_152.png} 
 	\caption{Token surprisal of an subject island item, as scored by GePpeTto.} 
 	\label{fig:md_gpt_subject_item_152_surprisals} 
+	\medskip
+\end{figure}
+
+\subsubsection{Complex NP islands}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_complex_np_islands_item_173.png} 
+	\caption{Token surprisal of an complex NP island item, as scored by the Italian BERT.} 
+	\label{fig:md_bert2b_complex_np_item_173_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_complex_np_islands_item_32.png} 
+	\caption{Token surprisal of an complex NP island item, as scored by the Italian BERT XXL.} 
+	\label{fig:md_bertxxl_complex_np_item_32_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_complex_np_islands_item_88.png} 
+	\caption{Token surprisal of an complex NP island item, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_complex_np_item_88_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_complex_np_islands_item_142.png} 
+	\caption{Token surprisal of an complex NP island item, as scored by GePpeTto.} 
+	\label{fig:md_gpt_complex_np_item_142_surprisals} 
 	\medskip
 \end{figure}
 
