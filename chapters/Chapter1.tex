@@ -2970,9 +2970,11 @@ We can see that the plots for whether (top-left plot of each figure), adjunct (b
 
 
 \subsection{Whether islands}
-One difference with the plots from human scores, is that for whether islands (for GPT-2 but also for the other two language models, \autoref{fig:md_gpt_penlp}-\autoref{fig:md_gilberto_lp}), the line connecting the \textsc{short-nonisland} and the \textsc{long-nonisland} goes upwards instead of downwards like for humans; that is, on average the language models give the \textsc{long-nonisland} a higher acceptability estimation score (the pseudo-log-likelihood, PLL), than the \textsc{short-nonisland} (and this trend remains also when the models score the original test suite administerd by Sprouse to humans, diplayed in \autoref{fig:sprouse_gpt_penlp}-\autoref{fig:sprouse_bert2b_lp}).
+For whether islands, one difference between the plots from human scores and those from the models (\autoref{fig:md_gpt_penlp}-\autoref{fig:md_bert2b_lp}), is that for whether islands  the line connecting the \textsc{short-nonisland} and the \textsc{long-nonisland} goes upwards instead of downwards like for humans; that is, on average the language models give the \textsc{long-nonisland} a higher acceptability estimation score (the pseudo-log-likelihood, PLL), than the \textsc{short-nonisland} (and this trend remains also when the models score the original test suite administerd by Sprouse to humans, diplayed in \autoref{fig:sprouse_gpt_penlp}-\autoref{fig:sprouse_bert2b_lp}).
 
-To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surprisals}, which shows the surprisals of each token in one of the whether islands items. The token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. 
+To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surprisals}, which shows the surprisals of each token in one of the whether islands items. Plots showin the surprisal for each token in a sentence are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score (the pseudo-log-probability) is just the (negative) sum of the token surprisals. 
+
+
 
 \begin{figure}[p]
 	\centering
@@ -2984,8 +2986,6 @@ To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surp
 	Token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. At the top of the figure there is the factorial DD score on the whole item (one that is $>0$ the item is considered scored accurately). There are also the factorial measures of length and structure effect, and the total effect. Note that these are raw values obtained from the (negative) sum of the token surprisals, while the values seen in plots like in \autoref{fig:md_gilberto_lp} are normalized across all the sentence scores for all the phenomena given by a particular model.
 \end{figure}
 
-In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{short-nonisland} sentence ("\textit{Chi pensa che io abbia studiato la teoria?}") has the additional tokens "\textit{la teoria}", which significantly adds to the total sum of surprisal. The same phenomenon can be see in \autoref{fig:md_gilberto_whether_item_152_surprisals}, where the phrase "\textit{vinto il premio}" (found in the \textsc{short-nonisland}) sums up to slightly more surprisal than the word "\textit{vinto}" alone (found in the \textsc{long-nonisland}). However, in general we can't just assume that a longer sentence will get a lower acceptability scores, because having more content words can give more semantic cues, making it easier to predict each of them when it's masked during the scoring, lowering the surprisals (as can be seen in \autoref{fig:md_gilberto_adjunct_item_195_surprisals}, discussed in the next section).
-
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_152.png} 
@@ -2996,15 +2996,7 @@ In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{sh
 	Note that the tokens are lowercased because GilBERTo is available only in the uncased version, otherwise uppercase words would be split, increase the surprisals, and introduce confounds.
 \end{figure}
 
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
-	\caption{Token surprisal for the four sentences of one of the adjunct island items, as scored by GilBERTo.} 
-	\label{fig:md_gilberto_adjunct_item_195_surprisals} 
-	\medskip
-	\small
-\end{figure}
-
+In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{short-nonisland} sentence ("\textit{Chi pensa che io abbia studiato la teoria?}") has the additional tokens "\textit{la teoria}", which significantly adds to the total sum of surprisal. The same phenomenon can be see in \autoref{fig:md_gilberto_whether_item_152_surprisals}, where the phrase "\textit{vinto il premio}" (found in the \textsc{short-nonisland}) sums up to slightly more surprisal than the word "\textit{vinto}" alone (found in the \textsc{long-nonisland}). However, in general we can't just assume that a longer sentence will get a lower acceptability scores, because having more content words can give more semantic cues, making it easier to predict each of them when it's masked during the scoring, lowering the surprisals (as can be seen in \autoref{fig:md_gilberto_adjunct_item_195_surprisals}, discussed in the next section).\\
 
 % ..
 
@@ -3027,10 +3019,54 @@ In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{sh
 % TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
 
 
+Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te surprisal plots what is driving this change, but it seems due to the fact that the baseline acceptable sentence (\textsc{short-nonisland}) get a lower acceptability in BERT XXL. We can notice the strange phenomenon that BERT XXL gets a high surprisal (much higher than BERT) on the word "\textit{affitto}" ("\textit{rent}"). Again this is seems another case of semantic phenomena having a prevailing confounding effect, that could mask the effec of syntactic ones.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_whether_island_item_180.png} 
+	\caption{Token surprisal of a whether island item, as scored by the Italian BERT.} 
+	\label{fig:md_bert2b_whether_item_180_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_whether_island_item_156.png} 
+	\caption{Token surprisal of a whether island item, as scored by the Italian BERT XXL.} 
+	\label{fig:md_bertxxl_whether_item_156_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_121.png} 
+	\caption{Token surprisal of a whether island item, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_whether_item_121_surprisals} 
+	\medskip
+\end{figure}
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_whether_island_item_135.png} 
+	\caption{Token surprisal of a whether island item, as scored by GePpeTto.} 
+	\label{fig:md_gpt_whether_item_135_surprisals} 
+	\medskip
+\end{figure}
+
+
 \subsection{Adjunct islands}
 GilBERTo has a much lower accuracy score (72\%) than GPT-2 (98\%) for adjunct islands (\autoref{tab:accuracy_DD_it_data}), and this is the only island type in which it doesn't outperforms or at least come very close to both of the other two models. From the plots it seems that this is due to the \textsc{long-nonisland} sentences getting on average too low of an acceptability, so the expected \textsc{length-effect} that will be subtracted from the total effect (formula \ref{formula:factorial_score}) is really large (\autoref{fig:md_gilberto_lp}). 
 
 Looking at the token surprisals for one of the adjunct island items (with a \textit{conditional} adjunct island construct introduced by "\textit{se}", "\textit{if}"), we can see in \autoref{fig:md_gilberto_adjunct_item_195_surprisals} that the \textsc{long-nonisland} (second sentence from the top) gets really high spikes for the phrase "\textit{il sindacato indirà}" ("\textit{the union will call}"), while in the case of the \textsc{short-nonisland} (first sentence from the top), the phrase "\textit{il sindacato indirà lo sciopero}" ("\textit{the union will call the strike}") gets a much smaller surprisal on the word \textit{sindacato} ("\textit{union}"), seemingly because the presence addition of the word for \textit{strike} (which, mutually, also gets almost no surprisal for the same reason) makes it much more likely to predict when masked. However, these spikes are also present (albeit a bit ameliorated) in the \textsc{long-island} sentence (last at the bottom), so this effect would be subtracted out by the factorial scoring. The thing that keeps the DD score negative (and therefore renders this item inaccuratly scored) is that the \textsc{long-nonisland} sentence has also a surprisal spikes for the phrase "\textit{dici che}" ("\textit{you say that}"), and this seem to be due to syntactic reasons: the model seems to consider less likely this kind of long-distance dependency construct ("\textit{che cosa dici che il sindacato indirà?}") than another long-distance dependency construct where there is a island violation ("\textit{che cosa gli edicolanti chiuderanno i battenti se il sindacator indirà?}"). We can conclude then that the worse accuracy score that GilBERTo gets in adjuncts islands (\autoref{tab:accuracy_DD_it_data}) seems to be indeed due to an unrobust learning of this type of adjunct island constraints by GilBERTo.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_195.png} 
+	\caption{Token surprisal for the four sentences of one of the adjunct island items, as scored by GilBERTo.} 
+	\label{fig:md_gilberto_adjunct_item_195_surprisals} 
+	\medskip
+	\small
+\end{figure}
 
 Also in \autoref{fig:md_gilberto_adjunct_item_195_surprisals} (an adjunct island item scored by GilBERTo), we can notice what seems to be causing the \textsc{short-island} sentences to have a higher acceptability estimate than \textsc{short-nonisland} ones, and therefore the island and non island lines to "cross" in \autoref{fig:md_gilberto_lp} (plot at the bottom-right). The \textsc{short-nonisland} too has the phrase "\textit{il sindacato indirà lo sciopero}", but it has also additional content words that give semantic cues and therefore further lower the surprisals, with the phrase "\textit{chiuderà i battenti}".
 
@@ -3232,42 +3268,6 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 \end{figure}
 
 
-\subsubsection{Whether islands}
-
-
-Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te surprisal plots what is driving this change, but it seems due to the fact that the baseline acceptable sentence (\textsc{short-nonisland}) get a lower acceptability in BERT XXL. We can notice the strange phenomenon that BERT XXL gets a high surprisal (much higher than BERT) on the word "\textit{affitto}" ("\textit{rent}"). Again this is seems another case of semantic phenomena having a prevailing confounding effect, that could mask the effec of syntactic ones.
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_whether_island_item_180.png} 
-	\caption{Token surprisal of a whether island item, as scored by the Italian BERT.} 
-	\label{fig:md_bert2b_whether_item_180_surprisals} 
-	\medskip
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_whether_island_item_156.png} 
-	\caption{Token surprisal of a whether island item, as scored by the Italian BERT XXL.} 
-	\label{fig:md_bertxxl_whether_item_156_surprisals} 
-	\medskip
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_whether_island_item_121.png} 
-	\caption{Token surprisal of a whether island item, as scored by GilBERTo.} 
-	\label{fig:md_gilberto_whether_item_121_surprisals} 
-	\medskip
-\end{figure}
-
-\begin{figure}[p]
-	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_whether_island_item_135.png} 
-	\caption{Token surprisal of a whether island item, as scored by GePpeTto.} 
-	\label{fig:md_gpt_whether_item_135_surprisals} 
-	\medskip
-\end{figure}
 
 \subsection{Qualitative analysis (continued)}
 
