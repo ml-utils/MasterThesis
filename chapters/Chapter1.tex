@@ -2914,7 +2914,7 @@ The y axis represents the structure condition (island or non-island). The x axis
 
 We can see that the plots for whether (top-left plot of each figure), adjunct (bottom-right), and subject islands (bottom-left) from the GPT-2 model (\autoref{fig:md_gpt_penlp}) show some similarities with those obtained on human subjects (\autoref{fig:sprouse_humans}), but also some significant differences.\\
 
-Looking at the plots in .., we preliminarly note .. resemblance with the plots for the average scores given by Italia speakers and reported by ..sprouse et al.
+%Looking at the plots in .., we preliminarly note .. resemblance with the plots for the average scores given by Italia speakers and reported by ..sprouse et al.
 % todo: put here the factorial plots first, before the token surprisals plots
 
 % first discuss the resemblance between the model plots and the human plots
@@ -2922,35 +2922,35 @@ Looking at the plots in .., we preliminarly note .. resemblance with the plots f
 % then discuss the comparison between the accuracy scores and the plots, and also compare with the token surprisals
 % add estensive descriptive captions to each figure, also reprising the main text discussion
 
-for complex NP islands, GPT-2 .. low performance clearly reflected in the plot, basically no island effect found, while the other models on average are able to separate the acceptability of the different sentences in each item.
+%for complex NP islands, GPT-2 .. low performance clearly reflected in the plot, basically no island effect found, while the other models on average are able to separate the acceptability of the different sentences in each item.
+%
+%
+%In most other cases (island types: ..), there is no clear correlation between accuracy scores and plots resemblance to those of humans.  % note that these are average scores.. although error bars are shown, ..; so outliers might influence the average scores, while the accuracies.. are separate for each item.
 
 
-In most other cases (island types: ..), there is no clear correlation between accuracy scores and plots resemblance to those of humans.  % note that these are average scores.. although error bars are shown, ..; so outliers might influence the average scores, while the accuracies.. are separate for each item.
-
-
-for adjunct islands ..seems there is no direct .. correlation between the accuracy scores and the plots. Also for whether islands.
-(looking at the token spikes?)
-
-neither for subject islands there is a clear direct correlation between the models accuracy scores and the similarity of the trends of the lines in the factorial plots between the models and the plots of the human scores. While 
+%for adjunct islands ..seems there is no direct .. correlation between the accuracy scores and the plots. Also for whether islands.
+%(looking at the token spikes?)
+%
+%neither for subject islands there is a clear direct correlation between the models accuracy scores and the similarity of the trends of the lines in the factorial plots between the models and the plots of the human scores. While 
 % the model accuracy scores improve with the amount of training data (GPT-2 and BERT about 80\%, BERT XXL and GilBERTo about 90\%), at the same time their respective plots (fig ..) diverge more and more from those on humans (the two lines, from being clearly separated, start to cross).
 
 
-are subject islands items better controlled for confounds/more balanced/minimal?
-
-what does the token spikes analysis says?
-correlation between accuracy scores and token spikes (but BERT only..)
+%are subject islands items better controlled for confounds/more balanced/minimal?
+%
+%what does the token spikes analysis says?
+%correlation between accuracy scores and token spikes (but BERT only..)
 
 
 
 % (show results also with PenLP, show that, contrary to Salazar and Lau et al, this also hurts the performance of GPT-2)
-Our results do not confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like GPT-2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
-Salazar observed/found that for GPT-2-like model, the penalty term actually has a dampening effect on the ..
-In the sentence proability score given by GPT-2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surprisals at individual token position.
-
-The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
-
-compare results btw italian bert and gpt.. gpt better by a little (which is surprising, considering that in english bert outperforms gpt instead, ..and by a wide marging.) This might be due to the due in which these models have been trained (discuss the amount and quality of data..)
-
+%Our results do not confirm the findings by ..Salazar that the penalty term is beneficial only for unidirectional models (like GPT-2) and not for bidirectional ones (like BERT), because of their respective numerical properties of ..
+%Salazar observed/found that for GPT-2-like model, the penalty term actually has a dampening effect on the ..
+%In the sentence proability score given by GPT-2 models there is a confound/the overlapping of two phenomena: .. the decreasing of the curve at the advancing of the token position, and the spikes of surprisals at individual token position.
+%
+%The accuracy scores on 3 out of 4 of the island types (..) are high .. (compare with results in english, blimp, and on sprouse english). (benefit of the factorial design in canceling out confounds ..). Complex np on the other hand confound due to ..predominant ..effect in these models of semantic aspects .. at least when using this method of estimating relative sentence acceptability (using the model outputs out of the box..)
+%
+%compare results btw italian bert and gpt.. gpt better by a little (which is surprising, considering that in english bert outperforms gpt instead, ..and by a wide marging.) This might be due to the due in which these models have been trained (discuss the amount and quality of data..)
+%
 % todo, follow up experiments:
 % token spikes for the complex np items (problems comparing long island advantaged over long nonisland)
 % editing and scoring sentences for new test, balancing semantic material
@@ -2969,6 +2969,104 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 % The score on the first row of \autoref{tab:accuracy_blimp} are taken from \citet{warstadt2020blimp}
 
 
+\subsection{Whether islands}
+One difference with the plots from human scores, is that for whether islands (for GPT-2 but also for the other two language models, \autoref{fig:md_gpt_penlp}-\autoref{fig:md_gilberto_lp}), the line connecting the \textsc{short-nonisland} and the \textsc{long-nonisland} goes upwards instead of downwards like for humans; that is, on average the language models give the \textsc{long-nonisland} a higher acceptability estimation score (the pseudo-log-likelihood, PLL), than the \textsc{short-nonisland} (and this trend remains also when the models score the original test suite administerd by Sprouse to humans, diplayed in \autoref{fig:sprouse_gpt_penlp}-\autoref{fig:sprouse_bert2b_lp}).
+
+To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surprisals}, which shows the surprisals of each token in one of the whether islands items. The token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. 
+
+In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{short-nonisland} sentence ("\textit{Chi pensa che io abbia studiato la teoria?}") has the additional tokens "\textit{la teoria}", which significantly adds to the total sum of surprisal. The same phenomenon can be see in \autoref{fig:md_gilberto_whether_item_152_surprisals}, where the phrase "\textit{vinto il premio}" (found in the \textsc{short-nonisland}) sums up to slightly more surprisal than the word "\textit{vinto}" alone (found in the \textsc{long-nonisland}). However, in general we can't just assume that a longer sentence will get a lower acceptability scores, because having more content words can give more semantic cues, making it easier to predict each of them when it's masked during the scoring, lowering the surprisals (as can be seen in \autoref{fig:md_gilberto_adjunct_item_195_surprisals}, discussed in the next paragraph).
+
+% ..
+
+% \subsubsection{Whether islands}
+
+%From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the GTP-2 model, compared with the results from humans gives higher (more acceptable) scores for all sentence types. This difference is more pronounced in the scores performed by Gpt on the original test suite from \citet{sprouse2016experimental} (middle image). 
+% note at the beggining of plots: note that these scores cannot really be used in the aboslute.. but showa a relative trend among island types, with correspondence with humand score. For instance, sentences in items testing .. islands tend to score highest, while .. around middle, and .. lowest.
+
+%The slope of the lines (both for island and non-island sentence structures) is however similar to the human scores. \\
+
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-whether.png} % width= 0.8\textwidth
+%	\caption{Comparison of wh-dependency whether islands} 
+%	\label{fig:wh_whether} % this internally labels the figure for future referencing.
+%\end{figure}
+
+
+% TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
+
+
+\subsection{Adjunct islands}
+GilBERTo has a much lower accuracy score (72\%) than GPT-2 (98\%) for adjunct islands (\autoref{tab:accuracy_DD_it_data}), and this is the only island type in which it doesn't outperforms or at least come very close to both of the other two models. From the plots it seems that this is due to the \textsc{long-nonisland} sentences getting on average too low of an acceptability, so the expected \textsc{length-effect} that will be subtracted from the total effect (formula \ref{formula:factorial_score}) is really large (\autoref{fig:md_gilberto_lp}). 
+
+Looking at the token surprisal for one of the items (of a conditional island construct introduced by "\textit{se}"), we can see in \autoref{fig:md_gilberto_adjunct_item_195_surprisals} that the \textsc{long-nonisland} (second sentence from the top) gets really high spikes for the phrase "\textit{il sindacato indirà}" ("\textit{the union will call}"), while in the case of the \textsc{short-nonisland} (first sentence from the top), the phrase "\textit{il sindacato indirà lo sciopero}" ("\textit{the union will call the strike}") gets a much smaller surprisal on the word \textit{sindacato} ("\textit{union}"), seemingly because the presence addition of the word for \textit{strike} (which, mutually, also gets almost no surprisal for the same reason) makes it much more likely to predict when masked. However, these spikes are also present (albeit a bit ameliorated) in the \textsc{long-island} sentence (last at the bottom), so this effect would be subtracted out by the factorial scoring. The thing that keeps the DD score negative (and therefore renders this item inaccuratly scored) is that the \textsc{long-nonisland} sentence has also a surprisal spikes for the phrase "\textit{dici che}" ("\textit{you say that}"), and this seem to be due to syntactic reasons: the model seems to consider less likely this kind of long-distance dependency construct ("\textit{che cosa dici che il sindacato indirà?}") than another long-distance dependency construct where there is a island violation ("\textit{che cosa gli edicolanti chiuderanno i battenti se il sindacator indirà?}"). We can conclude then that the worse accuracy score that GilBERTo gets in adjuncts islands (\autoref{tab:accuracy_DD_it_data}) seems to be indeed due to an \textbf{unrobust learning of this type of adjunct island constraints} by GilBERTo.
+
+Also in \autoref{fig:md_gilberto_adjunct_item_195_surprisals} (an adjunct island item scored by GilBERTo), we can notice what seems to be causing the \textsc{short-island} sentences to have a higher acceptability estimate than \textsc{short-nonisland} ones, and therefore the island and non island lines to "cross" in \autoref{fig:md_gilberto_lp} (plot at the bottom-right). The \textsc{short-nonisland} too has the phrase "\textit{il sindacato indirà lo sciopero}", but it has also additional content words that give semantic cues and therefore further lower the surprisals, with the phrase "\textit{chiuderà i battenti}".
+
+GPT-2 seem to have learned adjunct island constraints more robustly than the two BERT-based models, as mentioned above. Looking at \autoref{fig:md_gpt_penlp} it seems this is due to the higher gap in acceptability given by GPT-2 than BERT and GilBERTo (\autoref{fig:md_gilberto_lp}). In the case of GPT-2, the gap it's almost 1 standard deviation (these are normalized z-scores), while it's about half that for the BERT-based modes (\autoref{fig:md_gilberto_lp}).
+% todo: add code to show the per token scores from Gpt2, and then generate the spikes plots
+
+% Chi dice che lo studente avrebbe studiato la teoria (and following examples)
+%In Fig. (item 197 for GilBERTo and adjunct islands) we see that there is probably a confound due the use of the less common verb form "\textit{avrebbe studiato}" ("he had studied", subjunctive mood) in the sentences with a non-island structure (two top plots), while in the sentences with an island structure (two bottom plots) there is the more common form "\textit{aver studiato}" ("having studied", infinitive).
+% Balancing variant "ha studiato"; it could be used also in the island sentences with a relative "che ha studiato"
+
+%\subsubsection{Adjunct islands}
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-adjunct.png} 
+%	\caption{Comparison of wh-dependencies adjunct islands} 
+%	\label{fig:wh_adjunct} % this internally labels the figure for future referencing.
+%\end{figure}
+%
+%
+%In \autoref{fig:wh_adjunct} the slope of both lines on the new test suite (right image) is similar to the human scores (left image), althoughg with a lower average acceptability for the Long-NonIsland sentences, which results in a downward steeper line. 
+%
+%In the test suite we developed for this thesis, the Long-Island sentences for adjunct islands have a form that might make them more easily identifiable has unacceptable than the ones in the Sprouse test suite: compare \textit{Che cosa Gianni è partito per Parigi dopo aver fatto?} (\textit{What did Gianni left for Paris after doing?}) in the new dataset, with \textit{Cosa ti irriti se dimentico in ufficio?} (\textit{What do you get irritated if I leave in the office?}) in the original test suite by Sprouse. The ending of the first sentence with a gap might be less frequent and result in a lower acceptability score. 
+% in the sprouse data, at the end there is a preprositional ..phrase like “in ufficio”.
+
+\subsection{Complex NP islands}
+Conversely from the adjuncts islands, GPT-2 seems to struggle with complex NP islands (46\% accuracy in \autoref{tab:accuracy_DD_it_data}), compared to BERT (100\% accuracy) and GilBERTo (98\% accuracy). This is also reflected in the factorial plots showing the average sentence acceptability scores: the one for BERT (\autoref{fig:md_bert_lp}) and GilBERTo (\autoref{fig:md_gilberto_lp}) have slopes similar to the plots from human scores (\autoref{fig:sprouse_humans}), while GPT-2 stands out as different (\autoref{fig:md_gpt_penlp}).
+
+
+% effect of more training data, from bert to gilberto, increases in accuracy
+% discuss differences: ..
+% then note: this improvement from bert to gilberto reflects the low sample efficiency of these models, and/or the current way of training them (e.g. in a text-only single modality): they still require more than .. B tokens to learn more advanced syntactic phenomena like island effects.
+% note: more challeging tests might be needed for the other phenomena too, to account for ..frequency effects of constructs, vocabulary..
+
+%In the middle and right images on \autoref{fig:wh_complex}, we see that, for complex NP items, the long non-island sentences (blue line, right edge) on average get scored by the GPT-2 model with a lower acceptability than by the human subjects, shown in the left image. 
+
+% (\autoref{fig:md_gpt_penlp}) BERT XXL (\autoref{fig:md_bert_lp}) \ref{fig:md_gilberto_lp}
+
+We see that, for complex NP items (top-right plot of each figure from \autoref{fig:sprouse_humans} to \autoref{fig:md_bert2b_lp}), the long non-island sentences scored by the GPT-2 model with a lower acceptability than by the human subjects, and on the right edge the blue line and orange line converge to the same low value. This does not happen in the BERT XXL  (\autoref{fig:md_bert_lp}) and GilBERTo models (\ref{fig:md_gilberto_lp}). This might be due to the GPT-2 model being more sensitive to more marginal sentences ending with a gap followed by a question mark, as in the long-distance dependency sentences tested for this type of island ("\textit{Che cosa pensi che Gianni avrebbe comprato \_?}", en: "\textit{What do you think Gianni has bought?}").
+%This seems to be due to the long distance dependency effect, that gets exacerbated as a sentence increases in lenght (in these test suites, the complex NP islands examples have longer sentences).
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-complex.png} 
+%	\caption{Comparison of plots for wh-dependencies complex NP islands} 
+%	\label{fig:wh_complex} % this internally labels the figure for future referencing.
+%	\medskip
+%	\small
+%	The first plot on the left shows the scores on humans subjects published in \citet{sprouse2016experimental} for Italian complex NP islands with wh-dependencies. For each line, the left-most edge represents the score for the short-distance dependency sentence, the right-most the long-distance dependency. The plot in the middle shows the scores from a Gpt-2 model \citep{de2020geppetto} on the same test suite used for the first plot. The plot on the right shows the scores from the same Gpt-2 model but on the expanded test suite developed for the present thesis.
+%\end{figure}
+
+% still the problem overall in the orginal plots seems an overly low score for the long non island sentences
+% that is, is the long distance depencency that receives a too loo score .. (lenght effect?)
+% while the structure effect ..
+% albeit it's correct, like humans scores, that the long non island has less acceptability than the short island
+% then how is the long distance dependency (lenght effect) scored for the other island phenomena?
+% the difference with the sentences for the other phenomena seem to be that they have a simpler main clause, like "cosa pensi che" (present) + "abbia ppt"  (congiuntivo passato), while for the complex np, is "cosa hai smentito/annunciato/raccontato/sostenuto che" (passato prossimo) + "avrebbe ppt" (condizionale passato)
+% a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
+% but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
+
+
+\subsection{Subject islands}
+Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on humans (\autoref{fig:sprouse_humans}), we can see that the in the BERT XXL plot for subject islands, the two lines cross, unlike in those for humans. This is due to the fact that BERT XXL (on average) scores with very low acceptability the simplest sentence (the one for the \textsc{short-nonisland} condition on), lower than the other three sentence conditions. So the variation from it to any of the other three sentences sees and increase in acceptability. But the overall DD score is still positive (hence the 90\% accuracy BERT XXL gets on this island type, albeit less then the 94\% by GilBERTo), because the increase in acceptability from \textsc{short-nonisland} to \textsc{long-island} (a-d in formula \ref{formula:factorial_score}) is still lower than the increase expected from the sum of the two other factors (length and structure), therefore this less-than-expected increase can be attributed to a super-additive island effect.
+% but ideally we should revise the items to avoid this effects, less confounds to subtract out, more clear effects
+
+% GPT-2, despite having a plot for subject islands very similar to that of humans, unlike GilBERTo, and expecially BERT, these both overperform it in the accuracy score. ..(82, 90, 94)
 
 \subsection{Token surprisal analysis}
 \subsubsection{Adjunct islands}
@@ -3229,104 +3327,6 @@ Plateau at 100\% accuracy between 2-11B trainin tokens. It's not clear from te s
 \end{figure}
 
 
-\subsection{Whether islands}
-One difference is that for whether islands (for GPT-2 but also for the other two language models, \autoref{fig:md_gpt_penlp}-\autoref{fig:md_gilberto_lp}), the line connecting the \textsc{short-nonisland} and the \textsc{long-nonisland} goes upwards instead of downwards like for humans; that is, on average the language models give the \textsc{long-nonisland} a higher acceptability estimation score (the pseudo-log-likelihood, PLL), than the \textsc{short-nonisland} (and this trend remains also when the models score the original test suite administerd by Sprouse to humans, diplayed in \autoref{fig:sprouse_gpt_penlp}-\autoref{fig:sprouse_bert2b_lp}).
-
-To explain why, we can have a look at \autoref{fig:md_bert_whether_item_158_surprisals}, which shows the surprisals of each token in one of the whether islands items. The token surprisal plots like this are a kind of "zoom" into the sentence acceptability estimates, since, in the case of BERT-based models, the sentence score is just the (negative) sum of the token surprisals. 
-
-In \autoref{fig:md_bert_whether_item_158_surprisals}, we see that the \textsc{short-nonisland} sentence ("\textit{Chi pensa che io abbia studiato la teoria?}") has the additional tokens "\textit{la teoria}", which significantly adds to the total sum of surprisal. The same phenomenon can be see in \autoref{fig:md_gilberto_whether_item_152_surprisals}, where the phrase "\textit{vinto il premio}" (found in the \textsc{short-nonisland}) sums up to slightly more surprisal than the word "\textit{vinto}" alone (found in the \textsc{long-nonisland}). However, in general we can't just assume that a longer sentence will get a lower acceptability scores, because having more content words can give more semantic cues, making it easier to predict each of them when it's masked during the scoring, lowering the surprisals (as can be seen in \autoref{fig:md_gilberto_adjunct_item_195_surprisals}, discussed in the next paragraph).
-
-% ..
-
-% \subsubsection{Whether islands}
-
-%From \autoref{fig:wh_whether} for whether islands with wh-dependencies, we can see that the GTP-2 model, compared with the results from humans gives higher (more acceptable) scores for all sentence types. This difference is more pronounced in the scores performed by Gpt on the original test suite from \citet{sprouse2016experimental} (middle image). 
-% note at the beggining of plots: note that these scores cannot really be used in the aboslute.. but showa a relative trend among island types, with correspondence with humand score. For instance, sentences in items testing .. islands tend to score highest, while .. around middle, and .. lowest.
-
-%The slope of the lines (both for island and non-island sentence structures) is however similar to the human scores. \\
-
-
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-whether.png} % width= 0.8\textwidth
-%	\caption{Comparison of wh-dependency whether islands} 
-%	\label{fig:wh_whether} % this internally labels the figure for future referencing.
-%\end{figure}
-
-
-% TODO: table showing accuracy scores for the 4 sentences of an item; comparison on variations across multiple items
-
-
-\subsection{Adjunct islands}
-GilBERTo has a much lower accuracy score (72\%) than GPT-2 (98\%) for adjunct islands (\autoref{tab:accuracy_DD_it_data}), and this is the only island type in which it doesn't outperforms or at least come very close to both of the other two models. From the plots it seems that this is due to the \textsc{long-nonisland} sentences getting on average too low of an acceptability, so the expected \textsc{length-effect} that will be subtracted from the total effect (formula \ref{formula:factorial_score}) is really large (\autoref{fig:md_gilberto_lp}). 
-
-Looking at the token surprisal for one of the items (of a conditional island construct introduced by "\textit{se}"), we can see in \autoref{fig:md_gilberto_adjunct_item_195_surprisals} that the \textsc{long-nonisland} (second sentence from the top) gets really high spikes for the phrase "\textit{il sindacato indirà}" ("\textit{the union will call}"), while in the case of the \textsc{short-nonisland} (first sentence from the top), the phrase "\textit{il sindacato indirà lo sciopero}" ("\textit{the union will call the strike}") gets a much smaller surprisal on the word \textit{sindacato} ("\textit{union}"), seemingly because the presence addition of the word for \textit{strike} (which, mutually, also gets almost no surprisal for the same reason) makes it much more likely to predict when masked. However, these spikes are also present (albeit a bit ameliorated) in the \textsc{long-island} sentence (last at the bottom), so this effect would be subtracted out by the factorial scoring. The thing that keeps the DD score negative (and therefore renders this item inaccuratly scored) is that the \textsc{long-nonisland} sentence has also a surprisal spikes for the phrase "\textit{dici che}" ("\textit{you say that}"), and this seem to be due to syntactic reasons: the model seems to consider less likely this kind of long-distance dependency construct ("\textit{che cosa dici che il sindacato indirà?}") than another long-distance dependency construct where there is a island violation ("\textit{che cosa gli edicolanti chiuderanno i battenti se il sindacator indirà?}"). We can conclude then that the worse accuracy score that GilBERTo gets in adjuncts islands (\autoref{tab:accuracy_DD_it_data}) seems to be indeed due to an \textbf{unrobust learning of this type of adjunct island constraints} by GilBERTo.
-
-Also in \autoref{fig:md_gilberto_adjunct_item_195_surprisals} (an adjunct island item scored by GilBERTo), we can notice what seems to be causing the \textsc{short-island} sentences to have a higher acceptability estimate than \textsc{short-nonisland} ones, and therefore the island and non island lines to "cross" in \autoref{fig:md_gilberto_lp} (plot at the bottom-right). The \textsc{short-nonisland} too has the phrase "\textit{il sindacato indirà lo sciopero}", but it has also additional content words that give semantic cues and therefore further lower the surprisals, with the phrase "\textit{chiuderà i battenti}".
-
-GPT-2 seem to have learned adjunct island constraints more robustly than the two BERT-based models, as mentioned above. Looking at \autoref{fig:md_gpt_penlp} it seems this is due to the higher gap in acceptability given by GPT-2 than BERT and GilBERTo (\autoref{fig:md_gilberto_lp}). In the case of GPT-2, the gap it's almost 1 standard deviation (these are normalized z-scores), while it's about half that for the BERT-based modes (\autoref{fig:md_gilberto_lp}).
-% todo: add code to show the per token scores from Gpt2, and then generate the spikes plots
-
-% Chi dice che lo studente avrebbe studiato la teoria (and following examples)
-%In Fig. (item 197 for GilBERTo and adjunct islands) we see that there is probably a confound due the use of the less common verb form "\textit{avrebbe studiato}" ("he had studied", subjunctive mood) in the sentences with a non-island structure (two top plots), while in the sentences with an island structure (two bottom plots) there is the more common form "\textit{aver studiato}" ("having studied", infinitive).
-% Balancing variant "ha studiato"; it could be used also in the island sentences with a relative "che ha studiato"
-
-%\subsubsection{Adjunct islands}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-adjunct.png} 
-%	\caption{Comparison of wh-dependencies adjunct islands} 
-%	\label{fig:wh_adjunct} % this internally labels the figure for future referencing.
-%\end{figure}
-%
-%
-%In \autoref{fig:wh_adjunct} the slope of both lines on the new test suite (right image) is similar to the human scores (left image), althoughg with a lower average acceptability for the Long-NonIsland sentences, which results in a downward steeper line. 
-%
-%In the test suite we developed for this thesis, the Long-Island sentences for adjunct islands have a form that might make them more easily identifiable has unacceptable than the ones in the Sprouse test suite: compare \textit{Che cosa Gianni è partito per Parigi dopo aver fatto?} (\textit{What did Gianni left for Paris after doing?}) in the new dataset, with \textit{Cosa ti irriti se dimentico in ufficio?} (\textit{What do you get irritated if I leave in the office?}) in the original test suite by Sprouse. The ending of the first sentence with a gap might be less frequent and result in a lower acceptability score. 
-% in the sprouse data, at the end there is a preprositional ..phrase like “in ufficio”.
-
-\subsection{Complex NP islands}
-Conversely from the adjuncts islands, GPT-2 seems to struggle with complex NP islands (46\% accuracy in \autoref{tab:accuracy_DD_it_data}), compared to BERT (100\% accuracy) and GilBERTo (98\% accuracy). This is also reflected in the factorial plots showing the average sentence acceptability scores: the one for BERT (\autoref{fig:md_bert_lp}) and GilBERTo (\autoref{fig:md_gilberto_lp}) have slopes similar to the plots from human scores (\autoref{fig:sprouse_humans}), while GPT-2 stands out as different (\autoref{fig:md_gpt_penlp}).
-
-
-% effect of more training data, from bert to gilberto, increases in accuracy
-% discuss differences: ..
-% then note: this improvement from bert to gilberto reflects the low sample efficiency of these models, and/or the current way of training them (e.g. in a text-only single modality): they still require more than .. B tokens to learn more advanced syntactic phenomena like island effects.
-% note: more challeging tests might be needed for the other phenomena too, to account for ..frequency effects of constructs, vocabulary..
-
-%In the middle and right images on \autoref{fig:wh_complex}, we see that, for complex NP items, the long non-island sentences (blue line, right edge) on average get scored by the GPT-2 model with a lower acceptability than by the human subjects, shown in the left image. 
-
-% (\autoref{fig:md_gpt_penlp}) BERT XXL (\autoref{fig:md_bert_lp}) \ref{fig:md_gilberto_lp}
-
-We see that, for complex NP items (top-right plot of each figure from \autoref{fig:sprouse_humans} to \autoref{fig:md_bert2b_lp}), the long non-island sentences scored by the GPT-2 model with a lower acceptability than by the human subjects, and on the right edge the blue line and orange line converge to the same low value. This does not happen in the BERT XXL  (\autoref{fig:md_bert_lp}) and GilBERTo models (\ref{fig:md_gilberto_lp}). This might be due to the GPT-2 model being more sensitive to more marginal sentences ending with a gap followed by a question mark, as in the long-distance dependency sentences tested for this type of island ("\textit{Che cosa pensi che Gianni avrebbe comprato \_?}", en: "\textit{What do you think Gianni has bought?}").
-%This seems to be due to the long distance dependency effect, that gets exacerbated as a sentence increases in lenght (in these test suites, the complex NP islands examples have longer sentences).
-
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=1\textwidth]{images/Chapter1/combined_wh-complex.png} 
-%	\caption{Comparison of plots for wh-dependencies complex NP islands} 
-%	\label{fig:wh_complex} % this internally labels the figure for future referencing.
-%	\medskip
-%	\small
-%	The first plot on the left shows the scores on humans subjects published in \citet{sprouse2016experimental} for Italian complex NP islands with wh-dependencies. For each line, the left-most edge represents the score for the short-distance dependency sentence, the right-most the long-distance dependency. The plot in the middle shows the scores from a Gpt-2 model \citep{de2020geppetto} on the same test suite used for the first plot. The plot on the right shows the scores from the same Gpt-2 model but on the expanded test suite developed for the present thesis.
-%\end{figure}
-
-% still the problem overall in the orginal plots seems an overly low score for the long non island sentences
-% that is, is the long distance depencency that receives a too loo score .. (lenght effect?)
-% while the structure effect ..
-% albeit it's correct, like humans scores, that the long non island has less acceptability than the short island
-% then how is the long distance dependency (lenght effect) scored for the other island phenomena?
-% the difference with the sentences for the other phenomena seem to be that they have a simpler main clause, like "cosa pensi che" (present) + "abbia ppt"  (congiuntivo passato), while for the complex np, is "cosa hai smentito/annunciato/raccontato/sostenuto che" (passato prossimo) + "avrebbe ppt" (condizionale passato)
-% a comparison example could be to turn the other 3 island phenomena items into passato prossimo for the main clause
-% but was this discrepancy also in Sprouse data, and is this the reason for their plots differences too? (so the gpt2 model just accentuates this drop in acceptability?)
-
-
-\subsection{Subject islands}
-Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on humans (\autoref{fig:sprouse_humans}), we can see that the in the BERT XXL plot for subject islands, the two lines cross, unlike in those for humans. This is due to the fact that BERT XXL (on average) scores with very low acceptability the simplest sentence (the one for the \textsc{short-nonisland} condition on), lower than the other three sentence conditions. So the variation from it to any of the other three sentences sees and increase in acceptability. But the overall DD score is still positive (hence the 90\% accuracy BERT XXL gets on this island type, albeit less then the 94\% by GilBERTo), because the increase in acceptability from \textsc{short-nonisland} to \textsc{long-island} (a-d in formula \ref{formula:factorial_score}) is still lower than the increase expected from the sum of the two other factors (length and structure), therefore this less-than-expected increase can be attributed to a super-additive island effect.
-% but ideally we should revise the items to avoid this effects, less confounds to subtract out, more clear effects
-
-% GPT-2, despite having a plot for subject islands very similar to that of humans, unlike GilBERTo, and expecially BERT, these both overperform it in the accuracy score. ..(82, 90, 94)
 
 
 
