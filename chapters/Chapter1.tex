@@ -3229,46 +3229,53 @@ Comparing the plots from BERT XXL (\autoref{fig:md_bert_lp}) with those on human
 
 % For subject islans, the token surprisals in Fig. .. - ..
 
-Back to the question on the clear correlation between the amound of model training data, and performance of these models on subject islands, we can have a look at the token surprisal plots for the same test item across the four models.\\
+Back to the question of explaining the correlation between the amount of model training data and the performance of these models on subject islands, we can have a look at the token surprisal plots for the same test item across the four models (\autoref{fig:md_bert2b_subject_item_185_surprisals}-\ref{fig:md_gpt_subject_item_171_surprisals}). In \autoref{fig:md_bertxxl_subject_item_167_surprisals}, we see that BERT XXL gives a better acceptability to the baseline sentence than the BERT model (\autoref{fig:md_bertxxl_subject_item_167_surprisals}), but this seems to be due again to lexical reasons, because BERT XXL gives much smaller surprisals to the words "\textit{foto}" ("\textit{photo}") and to the OOV word "\textit{scandalizzato}" ("\textit{scandalized}"). We also observe that in the two bottom sentences ("\textit{Di chi pensi che la foto dell'artista abbia suscitato l'indignazione?}", "\textit{Di chi pensi che la foto abbia suscitato l'indignazione del pubblico?}") ("\textit{of whom do you think that the artist picture caused the outrage?}", "\textit{of whom do you think that the picture cause the outrage of the audience?}") we notice that BERT, compared to BERT XXL, gives very high surprisal to an  apostrophe punctuation marking the determiner elision and followed by a OOV word ("\textit{l'indignazione}") ("\textit{the outrage}").\\
 
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_subject_islands_item_196.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-cased_wh_subject_islands_item_185.png} 
 	\caption{Token surprisal of an subject island item, as scored by the Italian BERT.} 
-	\label{fig:md_bert2b_subject_item_196_surprisals} 
+	\label{fig:md_bert2b_subject_item_185_surprisals} 
 	\medskip
 \end{figure}
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_subject_islands_item_198.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_dbmdz_bert-base-italian-xxl-cased_wh_subject_islands_item_167.png} 
 	\caption{Token surprisal of an subject island item, as scored by the Italian BERT XXL.} 
-	\label{fig:md_bertxxl_subject_item_198_surprisals} 
+	\label{fig:md_bertxxl_subject_item_167_surprisals} 
 	\medskip
 \end{figure}
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_subject_islands_item_199.png} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_subject_islands_item_159.png} 
 	\caption{Token surprisal of an subject island item, as scored by GilBERTo.} 
-	\label{fig:md_gilberto_subject_item_199_surprisals} 
+	\label{fig:md_gilberto_subject_item_159_surprisals} 
 	\medskip
 \end{figure}
-
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_subject_islands_item_152.png} 
-	\caption{Token surprisal of an subject island item, as scored by GePpeTto.} 
-	\label{fig:md_gpt_subject_item_152_surprisals} 
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_subject_islands_item_171.png} 
+	\caption{Token surprisal of a subject island item, as scored by GePpeTto.} 
+	\label{fig:md_gpt_subject_item_171_surprisals} 
 	\medskip
 \end{figure}
+
+
 
 In \autoref{fig:md_gpt_subject_item_152_surprisals} we observe the non-optimal sub-word units splits performed by the tokenizer used by GPT-2: the out-of-vocabulary (OOV) word \textit{"impoverito"} (\textit{"impoverished"}) has been split into \textit{imp-ov-erito}, which clearly cannot take advantage of the semantically informative root \textit{"pover-"} ("\textit{poor}"). \citet{bostrom2020byte} found that sub-word splitting algorithms like BPE % does Gpt/geppetto use BPE?
 are non optimal, and that a more linguistically plausible sub-word tokenization (with units that resemble more traditional morphemes), increases performance in downstream tasks. We argue that an optimal subword units tokenization should be a key element of a deep neural language models, since all the representations that these models learn are learned on top of these building blocks. We can expect that non optimal building blocks starting points will limit the possible generalizations and the patterns that these models are able to learn on top of them. The split of a training corpus in tokens is a strong signal that conveys a lot of information, and finding more optimal sub-word unit splits can also be though of as a form of regularization that avoids overfitting phenomena on the probability distribution of the training corpus.
 
-
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_subject_islands_item_152.png} 
+	\caption{Token surprisal of a subject island item, as scored by GePpeTto.} 
+	\label{fig:md_gpt_subject_item_152_surprisals} 
+	\medskip
+\end{figure}
 
 
 
