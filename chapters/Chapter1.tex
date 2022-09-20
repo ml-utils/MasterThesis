@@ -2913,6 +2913,7 @@ compare results btw italian bert and gpt.. gpt better by a little (which is surp
 
 
 \subsection{Token surprisal analysis}
+\subsubsection{Adjunct islands}
 In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adjunct_item_188_surprisals}, \ref{fig:md_gilberto_adjunct_item_185_surprisals} we can see token surprisals plots from BERT, BERT XXL, and GilBERTo on an adjunct island item. We can see that a prevailing factor influencing the models probabilities, and therefore the surprisals and the final sentence acceptability estimates, is how much a model has learned the probabilities of certain collocations. In particular we can see a difference between BERT and BERT XXL, seemingly due to the different amount of data they have been trained with (2B vs 13B tokens). 
 
 
@@ -2937,6 +2938,15 @@ In \autoref{fig:md_bert2b_adjunct_item_145_surprisals}, \ref{fig:md_bertxxl_adju
 	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_idb-ita_gilberto-uncased-from-camembert_wh_adjunct_islands_item_185.png} 
 	\caption{Token surprisal of an adjunct island item, as scored by GilBERTo.} 
 	\label{fig:md_gilberto_adjunct_item_185_surprisals} 
+	\medskip
+\end{figure}
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=1\textwidth]{images/Chapter1/token_surpisals/Madeddu_LorenzoDeMattei_GePpeTto_wh_adjunct_islands_item_163.png} 
+	\caption{Token surprisal of an adjunct island item, as scored by GePpeTto.} 
+	\label{fig:md_gpt_adjunct_item_163_surprisals} 
 	\medskip
 \end{figure}
 
