@@ -3724,25 +3724,19 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 
 % (future work: more challenging tests, controlling for frequency effects/more marginal web forms: do the accuracy/island effects captured by the model ..degrade when less common constructs/verb forms are used?)
 
-\section{Follow-up experiments and future work}
+\section{Future work}
 
-In future work, we plan to do some follow-up experiments ..
+% follow-up experiments if there were time within this thesis, or as additions after the final upload on ETD, to be shared directly with the supervisors, and for the printed form, and to be discussed during the graduation presentation.
 
-Developing a revised test suites to control for more confounds.
-Split the test suite for adjunct islands into temporal adjuncts and conditional adjuncts.
-Strictly balance the sentence in each item to use the same lexical content.
-Control for the increased processing complexity due to interrogative forms. Duplicate the test suites with versions in the affirmative, as in \citet{wilcox2018rnn}.
-Translate into Italian the Filler-Gap and island effects items from \citet{wilcox2018rnn}, and try their approach of assessing island effects as a reduction in expected gaps in the presence of a filler, and compare their approach with the one by \citet{sprouse2016experimental} adopted in this thesis.
+In future work, we plan to do develop a revised test suite to control for more confounds. Among the things we plan to do, are: whenever possible, try to strictly balance the sentences in each item to use the same lexical content. Control for the increased processing complexity due to interrogative forms, by duplicate the test suites with versions in the affirmative, as in \citet{wilcox2018rnn}, and in the interrogative. Splitting the test suite for adjunct islands into temporal adjuncts and conditional adjuncts, and potentially other types of adjunct islands. Control for OOV words, possibly creating a duplicate for each test suite, one with and one without OOV or more rare words. Controlling for using simple vs complex wh-phrases as fillers in wh-dependencies. Controlling for less common verb forms, e.g. using the indicative mood instead of the subjunctive mood. Controlling for the effects of using personal pronouns and proper names (e.g. \textit{Gianni, Luisa}) instead of common nouns (e.g. \textit{the student}, \textit{the doctor}, etc.). Controlling for the effect of using, within a sentence, words with strong association (e.g. \textit{the student reads the book}, \textit{the policeman arrested the burglar}, etc.), vs unexpected associations.
 
-Translate and adapt our test suites also into English, and compare the results with those from English speakers collected by \citet{sprouse2016experimental}, and compare also with the results on English island effects on the BLiMP test suites, and those from \cite{wilcox2018rnn}.
+We plan to expand our test suites to test also across rc-dependencies, as in \citep{sprouse2016experimental}, and compare the differences across the same island construct types tested here with wh-dependencies.
 
-Control for OOV words, possibly creating a duplicate for each test suite, one with and one without OOV words.
-Controlling for less common verb forms, e.g. using the indicative mood instead of the subjunctive mood.
-Controlling for the effects of using personal pronouns and proper names (e.g. \textit{Gianni, Luisa}) instead of common nouns (e.g. lo studente, il dottore, etc.).
-Controlling for the effect of using, within a sentence, words with strong association (e.g. \textit{lo studente legge il libro}, \textit{il poliziotto arresta il ladro}, etc.), vs marginal ones.
-Test for also across rc-dependencies, as in \citep{sprouse2016experimental}
+We plan to translate into Italian the filler-gap and island effects test items from \citet{wilcox2018rnn}, and try their approach of assessing island effects as a reduction in expected gaps in the presence of a filler. We plan to compare their approach with the one by \citet{sprouse2016experimental}, that we adopted in the present thesis.
 
-Revising our approach to extract per-token surprisals from GPT-2, to reproduce the descending curve of surprisals along the sentence length, as observed by \citet{salazar2020masked}.
+Finally, we plan to translate and adapt our test suites into English, and to compare the results with those from English speakers collected by \citet{sprouse2016experimental}, and to compare them also with the reported results on English island effects on the BLiMP test suites, and those from \cite{wilcox2018rnn}.
+
+% Revising our approach to extract per-token surprisals from GPT-2, to reproduce the descending curve of surprisals along the sentence length, as observed by \citet{salazar2020masked}.
 
 % drawing examples from the ItaCoLA corpus
 
