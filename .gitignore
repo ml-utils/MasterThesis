@@ -15,5 +15,6 @@ images/Chapter1/attention-manning-pnas.*
 images/AppendixA/gilberto wrong casing/
 images/Chapter1/gilberto wrong casing/
 images/Chapter1/prev versions/
-
+*.pdf
+*.xlsx
 
