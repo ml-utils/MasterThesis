@@ -1592,7 +1592,7 @@ The results of a factorial experimental setup can then be analyzed in multiple w
 %"In this work we have assembled a large number of test suites inspired by the methodology of experimental sentence-processing and psycholinguistic research." \citep{hu2020systematic} 
 %"Each test suite contains a number of \textbf{ITEMS}, and each item appears in several \textbf{CONDITIONS}: across conditions, a given item will differ only according to a controlled manipulation designed to target a particular feature of grammatical  knowledge. For each suite we define a \textbf{SUCCESS CRITERION}, which stipulates inequalities among conditional probabilities of sentence substrings."\citep{hu2020systematic} 
 %
-%(TODO: code refactoring and thesis renamings to follow this terminology by hu2020systematic: item, conditions, success criterion)
+
 
 %In \citet{hu2020systematic}  "a model’s accuracy for a test suite is computed as the percentage of the test suite’s items for which it satisfies the criterion." 
 % "In this appendix, we briefly describe each test suite and the criterion used to determine whether a given model succeeds on each item of the test suite." \citep{hu2020systematic} 
@@ -3424,7 +3424,7 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 % One difference is that for adjunct islands, GPT-2 gives to the \textsc{short-island} sentence gets a higher acceptability score from the transformer model (this might be due to the confound deriving from the format of this sentence, as discussed in section ..).
 
 
-% For future work we would like to contro for more confounds, splitting the testsuites in smaller ones (of about 20 items each as in Hu et al and ..), each exemplyfying only one paradigm (eg. only conditional ajduncts or only temporal adjuncts), 
+% For future work we would like to control for more confounds, splitting the testsuites in smaller ones (of about 20 items each as in Hu et al and ..), each exemplyfying only one paradigm (eg. only conditional ajduncts or only temporal adjuncts), 
 % (and controlling for semantic cues, same lexical, using informative/prototypica common nouns instead of proper nouns or pronouns..), having testuites with rarer verbs/nouns ..
 % and we would like to compare different approaches to quantify island effects: the one from wilcox, that looks the reduction in gap expectancies, and that of sprouse ..
 % see which paradigms are more challeinging
@@ -3630,16 +3630,6 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 
 %\bigskip
 %% TODO: insert plot of variations
-%With other variations experiments, we found that replacing the main clause verb with "sapeva che"/"conosceva che" ("he knew that", see examples in table ..TODO), increases the acceptability of the long-non island sentences; on the other hand, this variation results in a lower acceptability to the short island sentence, compared to the scores from human subjects, and by this way the non-island and island line end up being almost parallel, with the DD score close to zero (which indicates an almost absent island effect).
-%\\ 
-%TODO: add table and plots of senteces with  "sapeva che"/"conosceva che" 
-
-% todo: show tables with examples "sapeva che" % todo: numbered examples like formulas
-% todo: show the plots for "intuizione che", "sapeva che" (two subfigures, each numbered/lettered to be referenced)
-
-% examples of complex np items before and after the "avuto l'intuizione che" variation: ..
-% show the plots for the items using this construct ("avuto l'intuizione che" ), it seems strange scores are given
-% (the island line is higher than the non island one, but they are all acceptable sentence and there is no island restriction anymore)
 
 %\subsection{Variations on whether islands}
 %Experimenting with other sentence variations for whether islands, we found that a variation that aligns the plots more to those from the humans' scores, is replacing the personal pronouns (like "io") with proper nouns (like "Gianni") or common nouns (like “il parlamentare”, or “lo studente”)  like in this example: 
@@ -3658,72 +3648,8 @@ are non optimal, and that a more linguistically plausible sub-word tokenization 
 %\end{example}
 
 % This might be the reason for the discrepancies in some of the 4 phenomena: some make more use of ..nomen agentis, while others rely more on personal pronuns. Try this replacement this in all 4 test sets.
-%TODO: put scores values and/or to quantify the effect of these variations.
-
-%TODO: test sentence variations using less common verb tenses and moods (but consistently across an item or even all items of a suite)
-% Not much difference seems to derive by using less common (..) verbs
-% (examples in which both sentences in a pair also specify the direct object, see how this affects the score? Like long nonisland vs long island ..)
 
 
-%\subsection{Other follow up experiments}
-
-% finetune the models for acceptability? (already existin italian models for this, like from Trotta et al. 2021?)
-% finetuning is very fast anyway 
-% (fine tune also for english the Bostrom models?)
-
-% (also to the plot on acceptability score by sentence lenght?)
-
-% what about a follow up analysis on the thesis, based on the results? like manipulating data to check the effect of somee factors, ..
-
-
-%Analizzare le attivazioni nei vari livelli del modello ..
-%Fare un training .”a strati”, in cui in ciascuno strato c’è il target dell’apprendimento di un livello di base della lingua (morfologia, sintassi, semantica, ampiezza del vocabolario, ..), con strati successivi che aumentano la complessità della conoscenza che il modello ha del linguaggio.
-%
-%
-%Confronto percentuali accuratezza (short/long non island, short island) con quelle in BLiMP
-%(and other works with extraction islands evaluations?)
-
-% test the worst scoring examples (incorrect, and with the highest PLL diff btw acceptable/unacceptable sentences)
-% test balancing island sentences, addint rare words to the long island (eg. "mediatore")
-% test changing the ..minimal pairs/sentences in a item like Wilcox rather than Sprouse. Staring from the long island, remove the dependency (instead of making it short, which changes the lexical content)
-
-% in the intro section to island effects, explaining what they are, also say that repeated exposure increases their acceptability (..so maybe it's just their rarity that makes them unacceptable.. language is use.. if they where more common, because needed for some comunicative goals, they would become acceptable..) (maybe this is true, or more the case, for some island types than others)
-
-% confound: try with items that gives semantic cues (the single omitted word is very likely given the verb before and the ..modifier after it, and sentences that don't give such cues, like more vague verbs and modifiers, or no modifiers; generic modifiers: time specifiers)
-
-% complex np are already balanced
-% wh could be better balanced
-% subject islands are the trickiest to balance ..
-% adjuncts ..
-
-% todo: chiarire i vari tipi di subject islands ..
-% compare the subject islands definition (and the other types) by Wilcox and by Sprouse
-
-% Wilcox: "The Complex NP Constraint (CNPC) holds that a gap cannot be hosted in a sentential clause dominated by a noun phrase with a lexical head noun. This constraint accounts for the unacceptability of (8b), (8c), (8f) and (8g) below. The CNPC does not apply to other NP modifiers, such as PPs, unless the modified NP occurs in subject position (Huang, 1982). This ban, called the Subject Constraint (SC), accounts for the unacceptability of (8h) compared to (8d)."
-
-% "Subject islands " "as movement out of the subject NP " \citep{sprouse2013experimental}
-% IP: inflectional phrase (IP) 
-% CP: complementizer Phrase
-
-% do all movements from the subject NP result in island violation effects?
-
-%italian rc-dependencies, in the case of, introduced only by ..oblique relative pronouns
-%"one global decision that we made was to investigate rc-dependencies that form restrictive relative clauses introduced by a relative pronoun (as opposed to appositive relatives or restrictive relatives introduced by a complementizer, which we leave to future research). This had two major consequences. First, all of the rc-dependencies in Italian had to be constructed with oblique (PP) argument gaps" 
-%("con il/dal quale/su/da/con cui, " etc.)
-%"because Italian restrictive relatives can only be introduced by a relative pronoun when the head of the relative is an oblique argument (subjects and direct objects can only be introduced by the complementizer che ‘that’). This led to a systematic difference between Italian rc-dependencies, which were constructed with oblique argument gaps, and English rc-dependencies, which were constructed with direct object gaps."
-
-% restrictive relative clauses introduced by a relative pronoun
-% as opposed to appositive relatives 
-% or restrictive relatives introduced by a complementizer
-
-
-
-% recap the cross lingual diffs in En and It about island effects
-% then edit/write the whole chapter
-% add notes to other chapters in the analysis of results, formation of the dataset, ..
-
-
-% (future work: more challenging tests, controlling for frequency effects/more marginal web forms: do the accuracy/island effects captured by the model ..degrade when less common constructs/verb forms are used?)
 
 \section{Future work}
 
